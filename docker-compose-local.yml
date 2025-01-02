@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: "answers-app-db"
+    environment:
+      POSTGRES_DB: "answers-db"
+      POSTGRES_USER: "petrosel"
+      POSTGRES_PASSWORD: "VDP.^_key2"
+      PGDATA: "/var/lib/postgresql/pgdata"
+    volumes: 
+      - ./answers-data:/var/lib/postgresql/data
+    ports:
+      - "5430:5432"
+    restart: unless-stopped
