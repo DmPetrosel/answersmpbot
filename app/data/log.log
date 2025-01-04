@@ -1,0 +1,1688 @@
+2025-01-03, Fri, 13:32:37,46 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:32:37,342 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:32:41,10 aiogram.event INFO Update id=450709747 is handled. Duration 476 ms by bot id=7771835226
+2025-01-03, Fri, 13:32:42,424 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:32:42,425 aiogram.event INFO Update id=450709748 is not handled. Duration 132 ms by bot id=7771835226
+2025-01-03, Fri, 13:32:42,425 aiogram.event ERROR Cause exception while process update id=450709748 by bot id=7771835226
+AttributeError: 'NoneType' object has no attribute 'error'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 6, in set_user
+    await async_session.add(user)
+TypeError: object NoneType can't be used in 'await' expression
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 44, in get_answer_reg
+    if await errh.handle_errors(partial(set_user,chat_id=message.from_user.id, username=usr[message.from_user.id]['username'], first_name=usr[message.from_user.id]['name'])):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 28, in handle_errors
+    logger.error(f"Company: {company}. In function {coroutine.func.__module__}.{coroutine.func.__name__} error occurs: {e}. Try through {minutes} minutes. (Attempt number {i})\n {traceback.format_exc()}")
+AttributeError: 'NoneType' object has no attribute 'error'
+2025-01-03, Fri, 13:34:11,548 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:34:11,837 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:34:17,874 aiogram.event INFO Update id=450709749 is handled. Duration 1070 ms by bot id=7771835226
+2025-01-03, Fri, 13:34:19,754 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:34:19,756 aiogram.event INFO Update id=450709750 is not handled. Duration 128 ms by bot id=7771835226
+2025-01-03, Fri, 13:34:19,756 aiogram.event ERROR Cause exception while process update id=450709750 by bot id=7771835226
+AttributeError: 'NoneType' object has no attribute 'error'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 6, in set_user
+    await async_session.add(user)
+TypeError: object NoneType can't be used in 'await' expression
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 44, in get_answer_reg
+    if await errh.handle_errors(partial(set_user,chat_id=message.from_user.id, username=usr[message.from_user.id]['username'], first_name=usr[message.from_user.id]['name'])):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 28, in handle_errors
+    logger.error(f"Company: {company}. In function {coroutine.func.__module__}.{coroutine.func.__name__} error occurs: {e}. Try through {minutes} minutes. (Attempt number {i})\n {traceback.format_exc()}")
+AttributeError: 'NoneType' object has no attribute 'error'
+2025-01-03, Fri, 13:38:47,349 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:38:47,393 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:38:49,973 aiogram.event INFO Update id=450709751 is handled. Duration 383 ms by bot id=7771835226
+2025-01-03, Fri, 13:38:51,253 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:38:51,255 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: object NoneType can't be used in 'await' expression. Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 6, in set_user
+    await async_session.add(user)
+TypeError: object NoneType can't be used in 'await' expression
+
+2025-01-03, Fri, 13:39:33,679 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:39:34,29 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:39:35,423 aiogram.event INFO Update id=450709753 is handled. Duration 280 ms by bot id=7771835226
+2025-01-03, Fri, 13:39:36,864 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:39:36,868 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-03, Fri, 13:39:36,942 aiogram.event INFO Update id=450709754 is handled. Duration 168 ms by bot id=7771835226
+2025-01-03, Fri, 13:41:32,564 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:41:32,614 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:41:36,287 aiogram.event INFO Update id=450709755 is handled. Duration 382 ms by bot id=7771835226
+2025-01-03, Fri, 13:41:41,890 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:41:41,925 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-03, Fri, 13:41:41,925 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:41:41,928 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-03, Fri, 13:41:41,928 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:41:41,930 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-03, Fri, 13:41:41,930 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:41:41,931 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-03, Fri, 13:41:41,933 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-03, Fri, 13:41:41,933 sqlalchemy.engine.Engine INFO [generated in 0.00026s] (2142024077, 'DmPetrosel', 'Дмитрий', None, False)
+2025-01-03, Fri, 13:41:41,935 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-03, Fri, 13:41:41,940 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "last_name" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (1, 2142024077, DmPetrosel, Дмитрий, null, f).
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.NotNullViolationError: null value in column "last_name" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (1, 2142024077, DmPetrosel, Дмитрий, null, f).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "last_name" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (1, 2142024077, DmPetrosel, Дмитрий, null, f).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "last_name" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (1, 2142024077, DmPetrosel, Дмитрий, null, f).
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-01-03, Fri, 13:42:41,945 aiogram.event INFO Update id=450709756 is not handled. Duration 60159 ms by bot id=7771835226
+2025-01-03, Fri, 13:42:41,945 aiogram.event ERROR Cause exception while process update id=450709756 by bot id=7771835226
+NameError: name 'e' is not defined
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 47, in get_answer_reg
+    await bot.send_message(message.from_user.id, str('Регистрация не удалась: \n' + str(e)))
+NameError: name 'e' is not defined
+2025-01-03, Fri, 13:47:25,320 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:47:25,667 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:47:28,3 aiogram.event INFO Update id=450709757 is handled. Duration 295 ms by bot id=7771835226
+2025-01-03, Fri, 13:47:33,493 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:47:33,520 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-03, Fri, 13:47:33,520 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:47:33,522 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-03, Fri, 13:47:33,522 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:47:33,523 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-03, Fri, 13:47:33,524 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:47:33,524 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-03, Fri, 13:47:33,526 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-03, Fri, 13:47:33,526 sqlalchemy.engine.Engine INFO [generated in 0.00033s] (2142024077, 'DmPetrosel', 'Дмитрий', None, False)
+2025-01-03, Fri, 13:47:33,529 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-03, Fri, 13:47:33,532 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-03, Fri, 13:47:33,896 aiogram.event INFO Update id=450709758 is handled. Duration 712 ms by bot id=7771835226
+2025-01-03, Fri, 13:49:17,92 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:49:17,901 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:49:20,947 aiogram.event INFO Update id=450709759 is handled. Duration 426 ms by bot id=7771835226
+2025-01-03, Fri, 13:49:25,882 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:49:25,917 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-03, Fri, 13:49:25,917 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:49:25,920 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-03, Fri, 13:49:25,920 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:49:25,922 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-03, Fri, 13:49:25,922 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:49:25,923 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-03, Fri, 13:49:25,925 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-03, Fri, 13:49:25,925 sqlalchemy.engine.Engine INFO [generated in 0.00034s] (2142024077, 'DmPetrosel', 'Dmitriy', None, False)
+2025-01-03, Fri, 13:49:25,928 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-03, Fri, 13:49:25,933 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Dmitriy', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Dmitriy', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-01-03, Fri, 13:50:25,940 aiogram.event INFO Update id=450709760 is not handled. Duration 60162 ms by bot id=7771835226
+2025-01-03, Fri, 13:50:25,940 aiogram.event ERROR Cause exception while process update id=450709760 by bot id=7771835226
+NameError: name 'e' is not defined
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 47, in get_answer_reg
+    await bot.send_message(message.from_user.id, str('Регистрация не удалась: \n' + str(e)))
+NameError: name 'e' is not defined
+2025-01-03, Fri, 13:52:37,672 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:52:37,713 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:53:40,296 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:53:40,338 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:53:44,8 aiogram.event INFO Update id=450709761 is handled. Duration 782 ms by bot id=7771835226
+2025-01-03, Fri, 13:53:50,312 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:53:50,340 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-03, Fri, 13:53:50,340 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:53:50,342 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-03, Fri, 13:53:50,342 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:53:50,343 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-03, Fri, 13:53:50,344 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:53:50,345 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-03, Fri, 13:53:50,347 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-03, Fri, 13:53:50,347 sqlalchemy.engine.Engine INFO [generated in 0.00025s] (2142024077, 'DmPetrosel', 'Дмитрий', None, False)
+2025-01-03, Fri, 13:53:50,349 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-03, Fri, 13:53:50,354 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-01-03, Fri, 13:55:23,672 aiogram.dispatcher INFO Start polling
+2025-01-03, Fri, 13:55:23,714 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-03, Fri, 13:55:27,654 aiogram.event INFO Update id=450709763 is handled. Duration 1105 ms by bot id=7771835226
+2025-01-03, Fri, 13:55:29,601 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-03, Fri, 13:55:29,632 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-03, Fri, 13:55:29,632 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:55:29,634 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-03, Fri, 13:55:29,634 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:55:29,635 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-03, Fri, 13:55:29,635 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-03, Fri, 13:55:29,636 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-03, Fri, 13:55:29,637 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-03, Fri, 13:55:29,637 sqlalchemy.engine.Engine INFO [generated in 0.00018s] (2142024077, 'DmPetrosel', 'Dm', None, False)
+2025-01-03, Fri, 13:55:29,640 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-03, Fri, 13:55:29,644 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Dm', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Dm', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-01-03, Fri, 13:56:29,647 aiogram.event INFO Update id=450709764 is not handled. Duration 60117 ms by bot id=7771835226
+2025-01-03, Fri, 13:56:29,647 aiogram.event ERROR Cause exception while process update id=450709764 by bot id=7771835226
+NameError: name 'e' is not defined
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 47, in get_answer_reg
+    await bot.send_message(message.from_user.id, str('Регистрация не удалась: \n' + str(e)))
+NameError: name 'e' is not defined
+2025-01-04, Sat, 07:06:54,346 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 07:06:54,668 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 07:07:01,905 aiogram.event INFO Update id=450709765 is handled. Duration 978 ms by bot id=7771835226
+2025-01-04, Sat, 07:07:06,225 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 07:07:06,257 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 07:07:06,257 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:07:06,258 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 07:07:06,258 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:07:06,260 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 07:07:06,260 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:07:06,261 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 07:07:06,263 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 07:07:06,263 sqlalchemy.engine.Engine INFO [generated in 0.00035s] (2142024077, 'DmPetrosel', 'Дмитрий', None, False)
+2025-01-04, Sat, 07:07:06,266 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-04, Sat, 07:07:06,271 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.UniqueViolationError: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-01-04, Sat, 07:08:06,658 aiogram.event INFO Update id=450709766 is handled. Duration 60495 ms by bot id=7771835226
+2025-01-04, Sat, 07:09:16,146 aiogram.event INFO Update id=450709767 is handled. Duration 989 ms by bot id=7771835226
+2025-01-04, Sat, 07:10:14,195 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 07:10:14,196 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) (Background on this error at: https://sqlalche.me/e/20/7s2a). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 190, in greenlet_spawn
+    result = context.switch(*args, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+    self._raise_for_prerequisite_state(fn.__name__, current_state)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 973, in _raise_for_prerequisite_state
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.UniqueViolationError'>: duplicate key value violates unique constraint "users_chat_id_key"
+DETAIL:  Key (chat_id)=(2142024077) already exists.
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (2142024077, 'DmPetrosel', 'Дмитрий', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) (Background on this error at: https://sqlalche.me/e/20/7s2a)
+
+2025-01-04, Sat, 07:11:14,368 aiogram.event INFO Update id=450709768 is handled. Duration 60231 ms by bot id=7771835226
+2025-01-04, Sat, 07:14:17,749 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-04, Sat, 07:14:17,750 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 07:14:17,750 aiogram.dispatcher INFO Polling stopped
+2025-01-04, Sat, 07:14:18,166 sqlalchemy.pool.impl.AsyncAdaptedQueuePool ERROR Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fc67cfa16c0>>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1117, in do_terminate
+    dbapi_connection.terminate()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 910, in terminate
+    self._connection.terminate()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/connection.py", line 1515, in terminate
+    self._abort()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/connection.py", line 1567, in _abort
+    self._protocol.abort()
+  File "asyncpg/protocol/protocol.pyx", line 608, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "/usr/lib/python3.10/asyncio/selector_events.py", line 686, in abort
+    self._force_close(None)
+  File "/usr/lib/python3.10/asyncio/selector_events.py", line 737, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 753, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2025-01-04, Sat, 07:14:18,168 sqlalchemy.pool.impl.AsyncAdaptedQueuePool ERROR The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7fc67cfa16c0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2025-01-04, Sat, 07:16:34,136 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 07:16:34,181 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 07:16:42,162 aiogram.event INFO Update id=450709769 is handled. Duration 1313 ms by bot id=7771835226
+2025-01-04, Sat, 07:16:46,253 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 07:16:46,255 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: 'async_sessionmaker' object has no attribute 'add'. Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 6, in set_user
+    async_session.add(user)
+AttributeError: 'async_sessionmaker' object has no attribute 'add'
+
+2025-01-04, Sat, 07:17:46,350 aiogram.event INFO Update id=450709770 is handled. Duration 60295 ms by bot id=7771835226
+2025-01-04, Sat, 07:19:35,882 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 07:19:36,26 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 07:19:39,280 aiogram.event INFO Update id=450709771 is handled. Duration 1145 ms by bot id=7771835226
+2025-01-04, Sat, 07:19:42,247 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 07:19:42,275 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 07:19:42,275 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:19:42,277 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 07:19:42,277 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:19:42,278 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 07:19:42,278 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:19:42,279 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 07:19:42,280 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 07:19:42,280 sqlalchemy.engine.Engine INFO [generated in 0.00024s] (7675368439, 'Dm_dev_acc', 'David', None, False)
+2025-01-04, Sat, 07:19:42,282 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-04, Sat, 07:19:42,286 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: 7675368439 (value out of int32 range)
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'David', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "asyncpg/protocol/prepared_stmt.pyx", line 175, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+  File "asyncpg/protocol/codecs/base.pyx", line 227, in asyncpg.protocol.protocol.Codec.encode
+  File "asyncpg/protocol/codecs/base.pyx", line 129, in asyncpg.protocol.protocol.Codec.encode_scalar
+  File "asyncpg/pgproto/./codecs/int.pyx", line 60, in asyncpg.pgproto.pgproto.int4_encode
+OverflowError: value out of int32 range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 185, in bind_execute
+  File "asyncpg/protocol/prepared_stmt.pyx", line 204, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+asyncpg.exceptions.DataError: invalid input for query argument $1: 7675368439 (value out of int32 range)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: 7675368439 (value out of int32 range)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: 7675368439 (value out of int32 range)
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'David', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+
+2025-01-04, Sat, 07:20:42,290 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: 7675368439 (value out of int32 range)
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'David', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi) (Background on this error at: https://sqlalche.me/e/20/7s2a). Try through 1 minutes. (Attempt number 2)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 190, in greenlet_spawn
+    result = context.switch(*args, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+    self._raise_for_prerequisite_state(fn.__name__, current_state)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 973, in _raise_for_prerequisite_state
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: 7675368439 (value out of int32 range)
+[SQL: INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'David', None, False)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi) (Background on this error at: https://sqlalche.me/e/20/7s2a)
+
+2025-01-04, Sat, 07:24:39,642 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 07:24:40,8 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 07:24:45,636 aiogram.event INFO Update id=450709773 is handled. Duration 2335 ms by bot id=7771835226
+2025-01-04, Sat, 07:24:48,179 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 07:24:48,208 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 07:24:48,208 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:24:48,210 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 07:24:48,210 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:24:48,211 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 07:24:48,211 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 07:24:48,212 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 07:24:48,213 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, last_name, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 07:24:48,213 sqlalchemy.engine.Engine INFO [generated in 0.00025s] (7675368439, 'Dm_dev_acc', 'David', None, False)
+2025-01-04, Sat, 07:24:48,216 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-04, Sat, 07:24:48,218 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-04, Sat, 07:24:48,280 aiogram.event INFO Update id=450709774 is handled. Duration 265 ms by bot id=7771835226
+2025-01-04, Sat, 07:27:18,418 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-04, Sat, 07:27:18,419 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 07:27:18,419 aiogram.dispatcher INFO Polling stopped
+2025-01-04, Sat, 11:22:09,68 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:22:09,113 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:22:16,6 aiogram.event INFO Update id=450709775 is handled. Duration 751 ms by bot id=7771835226
+2025-01-04, Sat, 11:22:25,474 aiogram.event INFO Update id=450709776 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:22:25,475 aiogram.event ERROR Cause exception while process update id=450709776 by bot id=7771835226
+TypeError: BaseModel.__init__() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 48, in get_answer_reg
+    await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/keyboard/basic_kb.py", line 5, in no_promo_kb
+    return InlineKeyboardBuilder().add(InlineKeyboardButton('Продолжить без промокода', callback_data='no_promo'))
+TypeError: BaseModel.__init__() takes 1 positional argument but 2 were given
+2025-01-04, Sat, 11:24:19,59 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:24:19,103 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:24:24,109 aiogram.event INFO Update id=450709777 is handled. Duration 698 ms by bot id=7771835226
+2025-01-04, Sat, 11:24:28,441 aiogram.event INFO Update id=450709778 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:24:28,441 aiogram.event ERROR Cause exception while process update id=450709778 by bot id=7771835226
+ValidationError: 4 validation errors for SendMessage
+reply_markup.InlineKeyboardMarkup
+  Input should be a valid dictionary or instance of InlineKeyboardMarkup [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+reply_markup.ReplyKeyboardMarkup
+  Input should be a valid dictionary or instance of ReplyKeyboardMarkup [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+reply_markup.ReplyKeyboardRemove
+  Input should be a valid dictionary or instance of ReplyKeyboardRemove [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+reply_markup.ForceReply
+  Input should be a valid dictionary or instance of ForceReply [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 48, in get_answer_reg
+    await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 2948, in send_message
+    call = SendMessage(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/pydantic/main.py", line 214, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 4 validation errors for SendMessage
+reply_markup.InlineKeyboardMarkup
+  Input should be a valid dictionary or instance of InlineKeyboardMarkup [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+reply_markup.ReplyKeyboardMarkup
+  Input should be a valid dictionary or instance of ReplyKeyboardMarkup [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+reply_markup.ReplyKeyboardRemove
+  Input should be a valid dictionary or instance of ReplyKeyboardRemove [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+reply_markup.ForceReply
+  Input should be a valid dictionary or instance of ForceReply [type=model_type, input_value=<aiogram.utils.keyboard.I...bject at 0x71b69f9da980>, input_type=InlineKeyboardBuilder]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+2025-01-04, Sat, 11:28:32,224 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:28:32,266 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:28:36,23 aiogram.event INFO Update id=450709779 is handled. Duration 366 ms by bot id=7771835226
+2025-01-04, Sat, 11:28:42,484 aiogram.event INFO Update id=450709780 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:28:42,485 aiogram.event ERROR Cause exception while process update id=450709780 by bot id=7771835226
+ValidationError: 1 validation error for InlineKeyboardMarkup
+inline_keyboard
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 48, in get_answer_reg
+    await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/keyboard/basic_kb.py", line 6, in no_promo_kb
+    return InlineKeyboardMarkup().add(InlineKeyboardButton(text='Продолжить без промокода', callback_data='no_promo'))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/pydantic/main.py", line 214, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for InlineKeyboardMarkup
+inline_keyboard
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+2025-01-04, Sat, 11:31:45,28 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:31:45,73 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:31:47,925 aiogram.event INFO Update id=450709781 is handled. Duration 321 ms by bot id=7771835226
+2025-01-04, Sat, 11:31:53,126 aiogram.event INFO Update id=450709782 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:31:53,126 aiogram.event ERROR Cause exception while process update id=450709782 by bot id=7771835226
+TypeError: BaseModel.__init__() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 48, in get_answer_reg
+    await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/keyboard/basic_kb.py", line 6, in no_promo_kb
+    return InlineKeyboardMarkup([InlineKeyboardButton(text='Продолжить без промокода', callback_data='no_promo')])
+TypeError: BaseModel.__init__() takes 1 positional argument but 2 were given
+2025-01-04, Sat, 11:36:32,357 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:36:32,403 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:36:35,506 aiogram.event INFO Update id=450709783 is handled. Duration 297 ms by bot id=7771835226
+2025-01-04, Sat, 11:36:37,822 aiogram.event INFO Update id=450709784 is handled. Duration 107 ms by bot id=7771835226
+2025-01-04, Sat, 11:36:54,422 aiogram.event INFO Update id=450709785 is handled. Duration 120 ms by bot id=7771835226
+2025-01-04, Sat, 11:37:13,140 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-04, Sat, 11:37:13,141 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:37:13,141 aiogram.dispatcher INFO Polling stopped
+2025-01-04, Sat, 11:37:50,594 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:37:50,637 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:37:55,799 aiogram.event INFO Update id=450709786 is handled. Duration 285 ms by bot id=7771835226
+2025-01-04, Sat, 11:37:59,836 aiogram.event INFO Update id=450709787 is handled. Duration 99 ms by bot id=7771835226
+2025-01-04, Sat, 11:38:08,441 aiogram.event INFO Update id=450709788 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:43:55,814 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:43:56,190 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:43:58,942 aiogram.event INFO Update id=450709789 is handled. Duration 414 ms by bot id=7771835226
+2025-01-04, Sat, 11:44:02,951 aiogram.event INFO Update id=450709790 is handled. Duration 105 ms by bot id=7771835226
+2025-01-04, Sat, 11:44:16,881 aiogram.event INFO Update id=450709791 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:50:05,13 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:50:05,63 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:50:09,87 aiogram.event INFO Update id=450709792 is handled. Duration 303 ms by bot id=7771835226
+2025-01-04, Sat, 11:50:12,44 aiogram.event INFO Update id=450709793 is handled. Duration 101 ms by bot id=7771835226
+2025-01-04, Sat, 11:50:18,663 aiogram.event INFO Update id=450709794 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:51:07,713 aiogram.event INFO Update id=450709795 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:51:27,814 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-04, Sat, 11:51:27,814 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:51:27,814 aiogram.dispatcher INFO Polling stopped
+2025-01-04, Sat, 11:52:50,241 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:52:50,305 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:52:54,909 aiogram.event INFO Update id=450709796 is handled. Duration 287 ms by bot id=7771835226
+2025-01-04, Sat, 11:52:57,3 aiogram.event INFO Update id=450709797 is handled. Duration 58 ms by bot id=7771835226
+2025-01-04, Sat, 11:53:07,113 aiogram.event INFO Update id=450709798 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:59:19,265 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 11:59:19,311 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 11:59:22,952 aiogram.event INFO Update id=450709799 is handled. Duration 422 ms by bot id=7771835226
+2025-01-04, Sat, 11:59:24,847 aiogram.event INFO Update id=450709800 is handled. Duration 61 ms by bot id=7771835226
+2025-01-04, Sat, 11:59:26,708 aiogram.event INFO Update id=450709801 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 11:59:31,133 aiogram.event INFO Update id=450709802 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:00:05,547 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:00:05,928 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:00:07,658 aiogram.event INFO Update id=450709803 is handled. Duration 406 ms by bot id=7771835226
+2025-01-04, Sat, 12:00:12,563 aiogram.event INFO Update id=450709804 is handled. Duration 63 ms by bot id=7771835226
+2025-01-04, Sat, 12:00:17,222 root INFO Company: unnamed_company. Run function db.get.get_bot_price
+2025-01-04, Sat, 12:00:17,223 root ERROR Company: unnamed_company. In function db.get.get_bot_price error occurs: 'AsyncSession' object has no attribute 'query'. Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/get.py", line 8, in get_bot_price
+    return await async_session.query(Promo).get(promocode).price
+AttributeError: 'AsyncSession' object has no attribute 'query'
+
+2025-01-04, Sat, 12:01:17,230 root ERROR Company: unnamed_company. In function db.get.get_bot_price error occurs: 'AsyncSession' object has no attribute 'query'. Try through 1 minutes. (Attempt number 2)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/get.py", line 8, in get_bot_price
+    return await async_session.query(Promo).get(promocode).price
+AttributeError: 'AsyncSession' object has no attribute 'query'
+
+2025-01-04, Sat, 12:02:17,234 root INFO REGISTRATION DATA: DmPetrosel, Дмитрий, я маретолог, False
+2025-01-04, Sat, 12:02:17,234 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 12:02:17,263 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 12:02:17,263 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:02:17,265 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 12:02:17,265 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:02:17,266 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 12:02:17,266 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:02:17,267 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 12:02:17,269 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 12:02:17,269 sqlalchemy.engine.Engine INFO [generated in 0.00023s] (2142024077, 'DmPetrosel', 'Дмитрий', 'я маретолог', False)
+2025-01-04, Sat, 12:02:17,271 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-04, Sat, 12:02:17,273 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-04, Sat, 12:02:17,421 aiogram.event INFO Update id=450709805 is handled. Duration 120198 ms by bot id=7771835226
+2025-01-04, Sat, 12:10:54,327 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:10:54,369 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:10:59,205 aiogram.event INFO Update id=450709806 is handled. Duration 735 ms by bot id=7771835226
+2025-01-04, Sat, 12:11:02,216 aiogram.event INFO Update id=450709807 is handled. Duration 463 ms by bot id=7771835226
+2025-01-04, Sat, 12:11:17,980 root INFO REGISTRATION DATA: DmPetrosel, Dm, ямаркетолог, True
+2025-01-04, Sat, 12:11:17,981 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 12:11:18,9 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 12:11:18,9 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:11:18,10 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 12:11:18,10 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:11:18,11 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 12:11:18,11 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:11:18,12 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 12:11:18,14 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 12:11:18,14 sqlalchemy.engine.Engine INFO [generated in 0.00022s] (2142024077, 'DmPetrosel', 'Dm', 'ямаркетолог', True)
+2025-01-04, Sat, 12:11:18,16 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-04, Sat, 12:11:18,18 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-04, Sat, 12:11:18,395 aiogram.event INFO Update id=450709808 is handled. Duration 414 ms by bot id=7771835226
+2025-01-04, Sat, 12:11:51,161 aiogram.event INFO Update id=450709809 is handled. Duration 807 ms by bot id=7771835226
+2025-01-04, Sat, 12:11:55,343 aiogram.event INFO Update id=450709810 is handled. Duration 60 ms by bot id=7771835226
+2025-01-04, Sat, 12:11:57,818 aiogram.event INFO Update id=450709811 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:19:03,217 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:19:03,263 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:19:05,949 aiogram.event INFO Update id=450709812 is handled. Duration 369 ms by bot id=7771835226
+2025-01-04, Sat, 12:19:09,202 aiogram.event INFO Update id=450709813 is handled. Duration 203 ms by bot id=7771835226
+2025-01-04, Sat, 12:19:11,571 aiogram.event INFO Update id=450709814 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:22:07,953 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:22:07,999 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:22:11,23 aiogram.event INFO Update id=450709815 is handled. Duration 308 ms by bot id=7771835226
+2025-01-04, Sat, 12:22:13,434 aiogram.event INFO Update id=450709816 is handled. Duration 111 ms by bot id=7771835226
+2025-01-04, Sat, 12:22:15,268 aiogram.event INFO Update id=450709817 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:37:29,617 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:37:30,2 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:37:34,724 aiogram.event INFO Update id=450709818 is handled. Duration 454 ms by bot id=7771835226
+2025-01-04, Sat, 12:37:41,508 aiogram.event INFO Update id=450709819 is handled. Duration 93 ms by bot id=7771835226
+2025-01-04, Sat, 12:40:32,241 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:40:32,289 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:40:37,672 aiogram.event INFO Update id=450709820 is handled. Duration 732 ms by bot id=7771835226
+2025-01-04, Sat, 12:40:40,327 aiogram.event INFO Update id=450709821 is handled. Duration 81 ms by bot id=7771835226
+2025-01-04, Sat, 12:41:28,165 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:41:28,208 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:41:30,691 aiogram.event INFO Update id=450709822 is handled. Duration 291 ms by bot id=7771835226
+2025-01-04, Sat, 12:41:32,902 aiogram.event INFO Update id=450709823 is handled. Duration 72 ms by bot id=7771835226
+2025-01-04, Sat, 12:41:34,703 aiogram.event INFO Update id=450709824 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:41:34,703 aiogram.event ERROR Cause exception while process update id=450709824 by bot id=7771835226
+KeyError: 'promocode'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 86, in callback_selling
+    await promo_continue(callback.from_user.id, price, state)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 90, in promo_continue
+    await write_registration(chat_id, state)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 73, in write_registration
+    logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
+KeyError: 'promocode'
+2025-01-04, Sat, 12:42:40,358 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:42:40,688 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:42:43,143 aiogram.event INFO Update id=450709825 is handled. Duration 682 ms by bot id=7771835226
+2025-01-04, Sat, 12:42:45,92 aiogram.event INFO Update id=450709826 is handled. Duration 78 ms by bot id=7771835226
+2025-01-04, Sat, 12:42:46,338 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, None
+2025-01-04, Sat, 12:42:46,338 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 12:42:46,367 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 12:42:46,367 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:42:46,369 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 12:42:46,369 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:42:46,370 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 12:42:46,370 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:42:46,371 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 12:42:46,373 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 12:42:46,373 sqlalchemy.engine.Engine INFO [generated in 0.00024s] (7675368439, 'Dm_dev_acc', 'Devid', None, None)
+2025-01-04, Sat, 12:42:46,375 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-04, Sat, 12:42:46,379 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "is_admin" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (10, 7675368439, Dm_dev_acc, Devid, null, null).
+[SQL: INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'Devid', None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj). Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.NotNullViolationError: null value in column "is_admin" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (10, 7675368439, Dm_dev_acc, Devid, null, null).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "is_admin" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (10, 7675368439, Dm_dev_acc, Devid, null, null).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "is_admin" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (10, 7675368439, Dm_dev_acc, Devid, null, null).
+[SQL: INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'Devid', None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+2025-01-04, Sat, 12:43:46,383 root ERROR Company: unnamed_company. In function db.set.set_user error occurs: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "is_admin" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (10, 7675368439, Dm_dev_acc, Devid, null, null).
+[SQL: INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'Devid', None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) (Background on this error at: https://sqlalche.me/e/20/7s2a). Try through 1 minutes. (Attempt number 2)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 7, in set_user
+    await async_session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 190, in greenlet_spawn
+    result = context.switch(*args, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 103, in _go
+    self._raise_for_prerequisite_state(fn.__name__, current_state)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 973, in _raise_for_prerequisite_state
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "is_admin" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (10, 7675368439, Dm_dev_acc, Devid, null, null).
+[SQL: INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id]
+[parameters: (7675368439, 'Dm_dev_acc', 'Devid', None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) (Background on this error at: https://sqlalche.me/e/20/7s2a)
+
+2025-01-04, Sat, 12:44:46,518 aiogram.event INFO Update id=450709827 is handled. Duration 120180 ms by bot id=7771835226
+2025-01-04, Sat, 12:45:38,396 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:45:38,551 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:45:40,29 aiogram.event INFO Update id=450709828 is handled. Duration 313 ms by bot id=7771835226
+2025-01-04, Sat, 12:45:42,457 aiogram.event INFO Update id=450709829 is handled. Duration 63 ms by bot id=7771835226
+2025-01-04, Sat, 12:45:44,797 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-01-04, Sat, 12:45:44,797 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 12:45:44,839 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 12:45:44,840 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:45:44,841 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 12:45:44,842 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:45:44,843 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 12:45:44,843 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:45:44,844 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 12:45:44,845 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 12:45:44,845 sqlalchemy.engine.Engine INFO [generated in 0.00028s] (7675368439, 'Dm_dev_acc', 'Devid', None, False)
+2025-01-04, Sat, 12:45:44,848 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-04, Sat, 12:45:44,849 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-04, Sat, 12:45:45,108 aiogram.event INFO Update id=450709830 is handled. Duration 312 ms by bot id=7771835226
+2025-01-04, Sat, 12:45:49,1 aiogram.event INFO Update id=450709831 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:53:00,821 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:53:00,867 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:53:08,612 aiogram.event INFO Update id=450709832 is handled. Duration 1421 ms by bot id=7771835226
+2025-01-04, Sat, 12:53:13,35 aiogram.event INFO Update id=450709833 is handled. Duration 126 ms by bot id=7771835226
+2025-01-04, Sat, 12:53:15,125 aiogram.event INFO Update id=450709834 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:54:53,567 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 12:54:53,611 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 12:54:59,545 aiogram.event INFO Update id=450709835 is handled. Duration 1143 ms by bot id=7771835226
+2025-01-04, Sat, 12:55:02,148 aiogram.event INFO Update id=450709836 is handled. Duration 63 ms by bot id=7771835226
+2025-01-04, Sat, 12:55:03,603 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-01-04, Sat, 12:55:03,603 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 12:55:03,631 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 12:55:03,631 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:55:03,633 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 12:55:03,633 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:55:03,634 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 12:55:03,634 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 12:55:03,635 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 12:55:03,637 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 12:55:03,637 sqlalchemy.engine.Engine INFO [generated in 0.00032s] (7675368439, 'Dm_dev_acc', 'Devid', None, False)
+2025-01-04, Sat, 12:55:03,640 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-04, Sat, 12:55:03,641 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-04, Sat, 12:55:03,827 aiogram.event INFO Update id=450709837 is handled. Duration 225 ms by bot id=7771835226
+2025-01-04, Sat, 12:55:06,382 aiogram.event INFO Update id=450709838 is handled. Duration 68 ms by bot id=7771835226
+2025-01-04, Sat, 12:55:33,613 aiogram.event INFO Update id=450709839 is handled. Duration 721 ms by bot id=7771835226
+2025-01-04, Sat, 12:55:36,65 aiogram.event INFO Update id=450709840 is handled. Duration 188 ms by bot id=7771835226
+2025-01-04, Sat, 12:55:43,132 root ERROR Message(message_id=386, date=datetime.datetime(2025, 1, 4, 9, 55, 43, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, username='DmPetrosel', first_name='Dmitriy', last_name='Petrov', is_forum=None, accent_color_id=None, active_usernames=None, available_reactions=None, background_custom_emoji_id=None, bio=None, birthdate=None, business_intro=None, business_location=None, business_opening_hours=None, can_set_sticker_set=None, custom_emoji_sticker_set_name=None, description=None, emoji_status_custom_emoji_id=None, emoji_status_expiration_date=None, has_aggressive_anti_spam_enabled=None, has_hidden_members=None, has_private_forwards=None, has_protected_content=None, has_restricted_voice_and_video_messages=None, has_visible_history=None, invite_link=None, join_by_request=None, join_to_send_messages=None, linked_chat_id=None, location=None, message_auto_delete_time=None, permissions=None, personal_chat=None, photo=None, pinned_message=None, profile_accent_color_id=None, profile_background_custom_emoji_id=None, slow_mode_delay=None, sticker_set_name=None, unrestrict_boost_count=None), message_thread_id=None, from_user=User(id=2142024077, is_bot=False, first_name='Dmitriy', last_name='Petrov', username='DmPetrosel', language_code='en', is_premium=None, added_to_attachment_menu=None, can_join_groups=None, can_read_all_group_messages=None, supports_inline_queries=None, can_connect_to_business=None, has_main_web_app=None), sender_chat=None, sender_boost_count=None, sender_business_bot=None, business_connection_id=None, forward_origin=None, is_topic_message=None, is_automatic_forward=None, reply_to_message=None, external_reply=None, quote=None, reply_to_story=None, via_bot=None, edit_date=None, has_protected_content=None, is_from_offline=None, media_group_id=None, author_signature=None, text='Я маркетолог', entities=None, link_preview_options=None, effect_id=None, animation=None, audio=None, document=None, paid_media=None, photo=None, sticker=None, story=None, video=None, video_note=None, voice=None, caption=None, caption_entities=None, show_caption_above_media=None, has_media_spoiler=None, contact=None, dice=None, game=None, poll=None, venue=None, location=None, new_chat_members=None, left_chat_member=None, new_chat_title=None, new_chat_photo=None, delete_chat_photo=None, group_chat_created=None, supergroup_chat_created=None, channel_chat_created=None, message_auto_delete_timer_changed=None, migrate_to_chat_id=None, migrate_from_chat_id=None, pinned_message=None, invoice=None, successful_payment=None, refunded_payment=None, users_shared=None, chat_shared=None, connected_website=None, write_access_allowed=None, passport_data=None, proximity_alert_triggered=None, boost_added=None, chat_background_set=None, forum_topic_created=None, forum_topic_edited=None, forum_topic_closed=None, forum_topic_reopened=None, general_forum_topic_hidden=None, general_forum_topic_unhidden=None, giveaway_created=None, giveaway=None, giveaway_winners=None, giveaway_completed=None, video_chat_scheduled=None, video_chat_started=None, video_chat_ended=None, video_chat_participants_invited=None, web_app_data=None, reply_markup=None, forward_date=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None)
+2025-01-04, Sat, 12:55:43,132 aiogram.event INFO Update id=450709841 is handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:57:27,797 aiogram.event INFO Update id=450709842 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 12:58:30,254 aiogram.event INFO Update id=450709843 is handled. Duration 1233 ms by bot id=7771835226
+2025-01-04, Sat, 12:58:36,245 aiogram.event INFO Update id=450709844 is handled. Duration 261 ms by bot id=7771835226
+2025-01-04, Sat, 12:58:40,906 root ERROR Message(message_id=394, date=datetime.datetime(2025, 1, 4, 9, 58, 40, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, username='DmPetrosel', first_name='Dmitriy', last_name='Petrov', is_forum=None, accent_color_id=None, active_usernames=None, available_reactions=None, background_custom_emoji_id=None, bio=None, birthdate=None, business_intro=None, business_location=None, business_opening_hours=None, can_set_sticker_set=None, custom_emoji_sticker_set_name=None, description=None, emoji_status_custom_emoji_id=None, emoji_status_expiration_date=None, has_aggressive_anti_spam_enabled=None, has_hidden_members=None, has_private_forwards=None, has_protected_content=None, has_restricted_voice_and_video_messages=None, has_visible_history=None, invite_link=None, join_by_request=None, join_to_send_messages=None, linked_chat_id=None, location=None, message_auto_delete_time=None, permissions=None, personal_chat=None, photo=None, pinned_message=None, profile_accent_color_id=None, profile_background_custom_emoji_id=None, slow_mode_delay=None, sticker_set_name=None, unrestrict_boost_count=None), message_thread_id=None, from_user=User(id=2142024077, is_bot=False, first_name='Dmitriy', last_name='Petrov', username='DmPetrosel', language_code='en', is_premium=None, added_to_attachment_menu=None, can_join_groups=None, can_read_all_group_messages=None, supports_inline_queries=None, can_connect_to_business=None, has_main_web_app=None), sender_chat=None, sender_boost_count=None, sender_business_bot=None, business_connection_id=None, forward_origin=None, is_topic_message=None, is_automatic_forward=None, reply_to_message=None, external_reply=None, quote=None, reply_to_story=None, via_bot=None, edit_date=None, has_protected_content=None, is_from_offline=None, media_group_id=None, author_signature=None, text='Я маркетолог', entities=None, link_preview_options=None, effect_id=None, animation=None, audio=None, document=None, paid_media=None, photo=None, sticker=None, story=None, video=None, video_note=None, voice=None, caption=None, caption_entities=None, show_caption_above_media=None, has_media_spoiler=None, contact=None, dice=None, game=None, poll=None, venue=None, location=None, new_chat_members=None, left_chat_member=None, new_chat_title=None, new_chat_photo=None, delete_chat_photo=None, group_chat_created=None, supergroup_chat_created=None, channel_chat_created=None, message_auto_delete_timer_changed=None, migrate_to_chat_id=None, migrate_from_chat_id=None, pinned_message=None, invoice=None, successful_payment=None, refunded_payment=None, users_shared=None, chat_shared=None, connected_website=None, write_access_allowed=None, passport_data=None, proximity_alert_triggered=None, boost_added=None, chat_background_set=None, forum_topic_created=None, forum_topic_edited=None, forum_topic_closed=None, forum_topic_reopened=None, general_forum_topic_hidden=None, general_forum_topic_unhidden=None, giveaway_created=None, giveaway=None, giveaway_winners=None, giveaway_completed=None, video_chat_scheduled=None, video_chat_started=None, video_chat_ended=None, video_chat_participants_invited=None, web_app_data=None, reply_markup=None, forward_date=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None)
+2025-01-04, Sat, 12:58:40,906 aiogram.event INFO Update id=450709845 is handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 13:00:42,770 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 13:00:42,962 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 13:00:47,269 aiogram.event INFO Update id=450709846 is handled. Duration 1522 ms by bot id=7771835226
+2025-01-04, Sat, 13:00:51,205 aiogram.event INFO Update id=450709847 is handled. Duration 256 ms by bot id=7771835226
+2025-01-04, Sat, 13:00:57,98 root ERROR Message(message_id=402, date=datetime.datetime(2025, 1, 4, 10, 0, 56, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, username='DmPetrosel', first_name='Dmitriy', last_name='Petrov', is_forum=None, accent_color_id=None, active_usernames=None, available_reactions=None, background_custom_emoji_id=None, bio=None, birthdate=None, business_intro=None, business_location=None, business_opening_hours=None, can_set_sticker_set=None, custom_emoji_sticker_set_name=None, description=None, emoji_status_custom_emoji_id=None, emoji_status_expiration_date=None, has_aggressive_anti_spam_enabled=None, has_hidden_members=None, has_private_forwards=None, has_protected_content=None, has_restricted_voice_and_video_messages=None, has_visible_history=None, invite_link=None, join_by_request=None, join_to_send_messages=None, linked_chat_id=None, location=None, message_auto_delete_time=None, permissions=None, personal_chat=None, photo=None, pinned_message=None, profile_accent_color_id=None, profile_background_custom_emoji_id=None, slow_mode_delay=None, sticker_set_name=None, unrestrict_boost_count=None), message_thread_id=None, from_user=User(id=2142024077, is_bot=False, first_name='Dmitriy', last_name='Petrov', username='DmPetrosel', language_code='en', is_premium=None, added_to_attachment_menu=None, can_join_groups=None, can_read_all_group_messages=None, supports_inline_queries=None, can_connect_to_business=None, has_main_web_app=None), sender_chat=None, sender_boost_count=None, sender_business_bot=None, business_connection_id=None, forward_origin=None, is_topic_message=None, is_automatic_forward=None, reply_to_message=None, external_reply=None, quote=None, reply_to_story=None, via_bot=None, edit_date=None, has_protected_content=None, is_from_offline=None, media_group_id=None, author_signature=None, text='Я маркетолог', entities=None, link_preview_options=None, effect_id=None, animation=None, audio=None, document=None, paid_media=None, photo=None, sticker=None, story=None, video=None, video_note=None, voice=None, caption=None, caption_entities=None, show_caption_above_media=None, has_media_spoiler=None, contact=None, dice=None, game=None, poll=None, venue=None, location=None, new_chat_members=None, left_chat_member=None, new_chat_title=None, new_chat_photo=None, delete_chat_photo=None, group_chat_created=None, supergroup_chat_created=None, channel_chat_created=None, message_auto_delete_timer_changed=None, migrate_to_chat_id=None, migrate_from_chat_id=None, pinned_message=None, invoice=None, successful_payment=None, refunded_payment=None, users_shared=None, chat_shared=None, connected_website=None, write_access_allowed=None, passport_data=None, proximity_alert_triggered=None, boost_added=None, chat_background_set=None, forum_topic_created=None, forum_topic_edited=None, forum_topic_closed=None, forum_topic_reopened=None, general_forum_topic_hidden=None, general_forum_topic_unhidden=None, giveaway_created=None, giveaway=None, giveaway_winners=None, giveaway_completed=None, video_chat_scheduled=None, video_chat_started=None, video_chat_ended=None, video_chat_participants_invited=None, web_app_data=None, reply_markup=None, forward_date=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None)
+2025-01-04, Sat, 13:00:57,98 aiogram.event INFO Update id=450709848 is handled. Duration 0 ms by bot id=7771835226
+2025-01-04, Sat, 13:06:23,30 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-04, Sat, 13:06:23,30 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 13:06:23,31 aiogram.dispatcher INFO Polling stopped
+2025-01-04, Sat, 13:06:27,765 aiogram.dispatcher INFO Start polling
+2025-01-04, Sat, 13:06:28,142 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-04, Sat, 13:06:34,492 aiogram.event INFO Update id=450709849 is handled. Duration 1715 ms by bot id=7771835226
+2025-01-04, Sat, 13:06:38,965 aiogram.event INFO Update id=450709850 is handled. Duration 60 ms by bot id=7771835226
+2025-01-04, Sat, 13:06:44,742 root INFO REGISTRATION DATA: DmPetrosel, Дмитрий, я маркетолог, True
+2025-01-04, Sat, 13:06:44,742 root INFO Company: unnamed_company. Run function db.set.set_user
+2025-01-04, Sat, 13:06:44,770 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-04, Sat, 13:06:44,770 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 13:06:44,772 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-04, Sat, 13:06:44,772 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 13:06:44,773 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-04, Sat, 13:06:44,773 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-04, Sat, 13:06:44,774 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-04, Sat, 13:06:44,775 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, is_admin) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN) RETURNING users.id
+2025-01-04, Sat, 13:06:44,775 sqlalchemy.engine.Engine INFO [generated in 0.00018s] (2142024077, 'DmPetrosel', 'Дмитрий', 'я маркетолог', True)
+2025-01-04, Sat, 13:06:44,778 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-04, Sat, 13:06:44,780 root INFO Company: unnamed_company. Function db.set.set_user is done successfully! (Attempt number 1)
+2025-01-04, Sat, 13:06:45,54 aiogram.event INFO Update id=450709851 is handled. Duration 312 ms by bot id=7771835226
