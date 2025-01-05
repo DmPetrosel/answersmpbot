@@ -20,8 +20,19 @@ print('DATABASE URL = ',DATABASE_URL)
 
 engine = create_async_engine(DATABASE_URL, echo=True)
 
-Session = async_sessionmaker(bind=engine, expire_on_commit=False)
-async_session = Session()
+def connection(method):
+    async def wrapper(*args, **kwargs):
+        async with async_sessionmaker(bind=engine)() as session:
+            try:
+                # Явно не открываем транзакции, так как они уже есть в контексте
+                return await method(*args, session=session, **kwargs)
+            except Exception as e:
+                await session.rollback()  # Откатываем сессию при ошибке
+                raise e  # Поднимаем исключение дальше
+            finally:
+                await session.close()  # Закрываем сессию
+
+    return wrapper
 
 class Base(AsyncAttrs, DeclarativeBase):
     __abstract__ = True
@@ -32,3 +43,4 @@ class Base(AsyncAttrs, DeclarativeBase):
     @declared_attr.directive
     def __tablename__(cls) -> str:
         return cls.__name__.lower() + 's'
+    

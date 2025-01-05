@@ -13,8 +13,7 @@ from functools import partial
 import logging
 from keyboard.basic_kb import *
 class Form(StatesGroup):
-    name = State()
-    lastname = State()
+    first_name = State()
     username = State()
     promocode = State()
 
@@ -36,7 +35,7 @@ async def registration(message: types.Message, state: FSMContext):
         await state.set_state("username")
     else:
         await bot.send_message(message.from_user.id, "Введите имя")
-        await state.set_state("name")
+        await state.set_state("first_name")
     
 
 async def get_answer_reg(message : types.Message, state: FSMContext):
@@ -45,8 +44,8 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
         usr[message.from_user.id]['username'] = var
         await bot.send_message(message.from_user.id, "Введите имя")
         await state.set_state("name")
-    elif await state.get_state() == 'name':
-        usr[message.from_user.id]['name'] = var
+    elif await state.get_state() == 'first_name':
+        usr[message.from_user.id]['first_name'] = var
         try:
             await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
             await state.set_state("promocode")
@@ -74,8 +73,8 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
     return var
 
 async def write_registration(chat_id):
-    logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
-    if await errh.handle_errors(partial(set_user,chat_id=chat_id, username=usr[chat_id]['username'], first_name=usr[chat_id]['name'], promocode=usr[chat_id]['promocode'], is_admin=usr[chat_id]['marketer'])):
+    logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['first_name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
+    if await errh.handle_errors(partial(add_user,chat_id=chat_id, username=usr[chat_id]['username'], first_name=usr[chat_id]['first_name'], promocode=usr[chat_id]['promocode'], marketer=usr[chat_id]['marketer'])):
         await bot.send_message(chat_id, 'Регистрация прошла успешно')
     else:
         await bot.send_message(chat_id, str('Регистрация не удалась: \nВозможно, вы уже зарегистрированы'))
@@ -95,5 +94,5 @@ async def promo_continue(chat_id, price):
 
 def register_selling_handlers(dp):
     dp.message.register(start, Command(commands=("start", "restart", "help")), State(state="*"))
-    dp.message.register(get_answer_reg, StateFilter('name', 'username', 'lastname', 'promocode'))
+    dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
     # dp.callback_query.register(callback_selling, StateFilter('no_promo_call', 'pay_call' ))
