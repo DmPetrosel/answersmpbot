@@ -12,17 +12,27 @@ import errh
 from functools import partial
 import logging
 from keyboard.basic_kb import *
+from func.marketer import *
+
 class Form(StatesGroup):
     first_name = State()
     username = State()
     promocode = State()
 
-usr = {} 
+usr = {}
+user_obj = {}
 
 async def start(message: types.Message, state: FSMContext):
     await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
-    usr[message.from_user.id] = {}
-    await registration(message, state)
+    if(await get_user(chat_id=message.from_user.id)):
+        await bot.send_message(message.from_user.id, "Вы уже зарегистрированы! Здесь будут кнопки с меню. ")
+        user_obj[message.from_user.id] = await get_user(message.from_user.id)
+        if user_obj[message.from_user.id].marketer == True:
+            print('Condition with is marketer passed ==============')
+            await marketer(message.from_user.id)
+    else:
+        usr[message.from_user.id] = {}
+        await registration(message, state)
 
 async def registration(message: types.Message, state: FSMContext):
     await bot.send_message(message.from_user.id, "Давайте зарегистрируемся!")
@@ -56,6 +66,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
         try:
             if var.lower() == 'ямаркетолог' or var.lower() == 'я маркетолог':
                 usr[message.from_user.id]['marketer'] = True
+                usr[message.from_user.id]['promocode'] = 'ямаркетолог'
                 await write_registration(message.from_user.id)
                 await state.clear()
             else:
@@ -70,7 +81,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
             logging.error(f"{e}")
     else:
         await bot.send_message(message.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
-    return var
+    
 
 async def write_registration(chat_id):
     logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['first_name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
@@ -78,6 +89,12 @@ async def write_registration(chat_id):
         await bot.send_message(chat_id, 'Регистрация прошла успешно')
     else:
         await bot.send_message(chat_id, str('Регистрация не удалась: \nВозможно, вы уже зарегистрированы'))
+    user_obj[chat_id] = await get_user(chat_id)
+    if user_obj[chat_id].marketer == True:
+        await marketer(chat_id)
+    else:
+        print("FAAAAAAAAAAAALESEEEEEEEEEEEE=====================")
+    return
 @dp.callback_query(lambda c: F.data == ('no_promo_call', 'pay_call'))
 async def callback_selling(callback: types.CallbackQuery):
     config = configparser.ConfigParser()

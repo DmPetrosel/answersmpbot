@@ -1,6 +1,6 @@
 from db.session import Base
 from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, BigInteger
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship, backref
 class User(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, unique=True, autoincrement=True)
     chat_id: Mapped[int] = mapped_column(BigInteger, unique=True, nullable=False)
@@ -8,6 +8,7 @@ class User(Base):
     first_name: Mapped[str] = mapped_column(String(256), nullable=False)
     promocode: Mapped[str] = mapped_column(String(256), nullable=True)
     marketer: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false", nullable=False,)
+    balance: Mapped[int] = mapped_column(BigInteger, nullable=False, default=0, server_default='0')
 
 class InfoBot(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, unique=True, autoincrement=True)
@@ -21,7 +22,8 @@ class Promo(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, unique=True, autoincrement=True)
     promocode: Mapped[str] = mapped_column(String(256), nullable=False, unique=True)
     price: Mapped[int] = mapped_column(BigInteger, nullable=False)
-    quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     referal: Mapped[str] = mapped_column(String(256), nullable=False)
     chat_id: Mapped[int] = mapped_column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
     expire_date: Mapped[DateTime] = mapped_column(DateTime, nullable=True)
+    user = relationship("User", backref="promocodes")
