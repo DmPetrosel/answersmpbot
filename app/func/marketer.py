@@ -23,9 +23,11 @@ async def marketer(chat_id: int):
     await bot.send_message(chat_id,  f"Ваш баланс: {balance}", reply_markup=marketer_menu_kb())
 
 async def callback_marketer(call: types.CallbackQuery):
-    await call.answer(cache_time=60)
+    # await call.answer(cache_time=60)
+    print('callback marketer')
     if call.data == 'my_promos':
         promos_list = await get_all_promos(call.from_user.id)
+        # dictionry = [[i.promocode, i.price, i.expire_date, i.User.username] for i in promos_list]
         print(promos_list)
         # await call.message.edit_text(f"Ваш баланс: {balance}", reply_markup=marketer_menu_kb)
     # elif call.data == 'create_promo':
@@ -34,4 +36,4 @@ async def callback_marketer(call: types.CallbackQuery):
     #         await call.message.edit_text(f"Ваши промокоды: \n{promocodes}", reply_markup=marketer_menu_kb)
 
 
-dp.callback_query.register(callback_marketer, lambda c: c.data == ('my_promos', 'create_promo'))
+dp.callback_query.register(callback_marketer, lambda c: c.data in ('my_promos', 'create_promo'))

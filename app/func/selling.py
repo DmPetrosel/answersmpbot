@@ -95,7 +95,6 @@ async def write_registration(chat_id):
     else:
         print("FAAAAAAAAAAAALESEEEEEEEEEEEE=====================")
     return
-@dp.callback_query(lambda c: F.data == ('no_promo_call', 'pay_call'))
 async def callback_selling(callback: types.CallbackQuery):
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -110,6 +109,7 @@ async def promo_continue(chat_id, price):
     await bot.send_message(chat_id, f'Ваша цена: {price}', reply_markup=promo_continue_kb())
 
 def register_selling_handlers(dp):
+    dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call'))
     dp.message.register(start, Command(commands=("start", "restart", "help")), State(state="*"))
     dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
     # dp.callback_query.register(callback_selling, StateFilter('no_promo_call', 'pay_call' ))
