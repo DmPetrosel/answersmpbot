@@ -7082,3 +7082,1556 @@ WHERE users.chat_id = $1::BIGINT
 2025-01-10, Fri, 14:36:59,861 aiogram.dispatcher WARNING Received SIGINT signal
 2025-01-10, Fri, 14:36:59,861 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
 2025-01-10, Fri, 14:36:59,862 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 08:28:16,678 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 08:28:16,763 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:28:28,192 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 08:28:28,193 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:28:28,195 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 08:28:28,195 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:28:28,197 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 08:28:28,197 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:28:28,199 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:28:28,210 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:28:28,210 sqlalchemy.engine.Engine INFO [generated in 0.00029s] (2142024077,)
+2025-01-12, Sun, 08:28:28,214 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:28:28,304 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:28:28,305 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:28:28,305 sqlalchemy.engine.Engine INFO [cached since 0.09529s ago] (2142024077,)
+2025-01-12, Sun, 08:28:28,307 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:28:28,309 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:28:28,310 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:28:28,310 sqlalchemy.engine.Engine INFO [cached since 0.09981s ago] (2142024077,)
+2025-01-12, Sun, 08:28:28,312 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:28:28,371 aiogram.event INFO Update id=450710016 is handled. Duration 644 ms by bot id=7771835226
+2025-01-12, Sun, 08:28:30,806 aiogram.event INFO Update id=450710017 is handled. Duration 77 ms by bot id=7771835226
+2025-01-12, Sun, 08:28:49,486 aiogram.event INFO Update id=450710018 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-12, Sun, 08:29:51,568 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 08:29:51,569 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:29:51,569 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 08:32:55,191 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 08:32:55,331 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:32:58,126 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 08:32:58,126 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:32:58,128 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 08:32:58,128 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:32:58,129 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 08:32:58,129 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:32:58,130 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:32:58,140 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:32:58,140 sqlalchemy.engine.Engine INFO [generated in 0.00049s] (2142024077,)
+2025-01-12, Sun, 08:32:58,144 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:32:58,219 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:32:58,220 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:32:58,220 sqlalchemy.engine.Engine INFO [cached since 0.08015s ago] (2142024077,)
+2025-01-12, Sun, 08:32:58,222 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:32:58,224 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:32:58,225 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:32:58,225 sqlalchemy.engine.Engine INFO [cached since 0.08508s ago] (2142024077,)
+2025-01-12, Sun, 08:32:58,227 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:32:58,442 aiogram.event INFO Update id=450710019 is handled. Duration 834 ms by bot id=7771835226
+2025-01-12, Sun, 08:33:03,885 aiogram.event INFO Update id=450710020 is handled. Duration 118 ms by bot id=7771835226
+2025-01-12, Sun, 08:33:11,514 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:33:11,515 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:33:11,515 sqlalchemy.engine.Engine INFO [cached since 13.37s ago] (Message(message_id=860, date=datetime.datetime(2025, 1, 12, 5, 33, 11, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, usern ... (3030 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)
+2025-01-12, Sun, 08:33:11,517 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:33:11,518 aiogram.event INFO Update id=450710021 is not handled. Duration 4 ms by bot id=7771835226
+2025-01-12, Sun, 08:33:11,518 aiogram.event ERROR Cause exception while process update id=450710021 by bot id=7771835226
+DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=860, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=860, date=datetime.datetime(2025, 1, 12, 5, 33, 11, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, usern ... (3030 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+Traceback (most recent call last):
+  File "asyncpg/protocol/prepared_stmt.pyx", line 175, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+  File "asyncpg/protocol/codecs/base.pyx", line 227, in asyncpg.protocol.protocol.Codec.encode
+  File "asyncpg/protocol/codecs/base.pyx", line 129, in asyncpg.protocol.protocol.Codec.encode_scalar
+  File "asyncpg/pgproto/./codecs/int.pyx", line 105, in asyncpg.pgproto.pgproto.int8_encode
+TypeError: 'Message' object cannot be interpreted as an integer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 185, in bind_execute
+  File "asyncpg/protocol/prepared_stmt.pyx", line 204, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+asyncpg.exceptions.DataError: invalid input for query argument $1: Message(message_id=860, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=860, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 28, in marketer
+    user_obj[chat_id] = await get_user(chat_id)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/get.py", line 6, in get_user
+    return await UserDAO.get_by_chat_id(chat_id, session=session)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 33, in get_by_chat_id
+    result = await session.execute(query)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=860, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=860, date=datetime.datetime(2025, 1, 12, 5, 33, 11, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, usern ... (3030 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-12, Sun, 08:35:09,929 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:35:09,929 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:35:09,929 sqlalchemy.engine.Engine INFO [cached since 131.8s ago] (Message(message_id=861, date=datetime.datetime(2025, 1, 12, 5, 35, 9, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, userna ... (3029 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)
+2025-01-12, Sun, 08:35:09,930 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:35:09,931 aiogram.event INFO Update id=450710022 is not handled. Duration 3 ms by bot id=7771835226
+2025-01-12, Sun, 08:35:09,931 aiogram.event ERROR Cause exception while process update id=450710022 by bot id=7771835226
+DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=861, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=861, date=datetime.datetime(2025, 1, 12, 5, 35, 9, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, userna ... (3029 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+Traceback (most recent call last):
+  File "asyncpg/protocol/prepared_stmt.pyx", line 175, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+  File "asyncpg/protocol/codecs/base.pyx", line 227, in asyncpg.protocol.protocol.Codec.encode
+  File "asyncpg/protocol/codecs/base.pyx", line 129, in asyncpg.protocol.protocol.Codec.encode_scalar
+  File "asyncpg/pgproto/./codecs/int.pyx", line 105, in asyncpg.pgproto.pgproto.int8_encode
+TypeError: 'Message' object cannot be interpreted as an integer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 185, in bind_execute
+  File "asyncpg/protocol/prepared_stmt.pyx", line 204, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+asyncpg.exceptions.DataError: invalid input for query argument $1: Message(message_id=861, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=861, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 28, in marketer
+    user_obj[chat_id] = await get_user(chat_id)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/get.py", line 6, in get_user
+    return await UserDAO.get_by_chat_id(chat_id, session=session)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 33, in get_by_chat_id
+    result = await session.execute(query)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=861, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=861, date=datetime.datetime(2025, 1, 12, 5, 35, 9, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, userna ... (3029 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-12, Sun, 08:42:28,79 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 08:42:28,80 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:42:28,80 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 08:42:32,614 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 08:42:32,660 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:42:37,194 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 08:42:37,194 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:42:37,197 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 08:42:37,197 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:42:37,198 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 08:42:37,198 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:42:37,200 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:42:37,209 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:42:37,209 sqlalchemy.engine.Engine INFO [generated in 0.00028s] (2142024077,)
+2025-01-12, Sun, 08:42:37,213 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:42:37,580 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:42:37,580 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:42:37,581 sqlalchemy.engine.Engine INFO [cached since 0.3714s ago] (2142024077,)
+2025-01-12, Sun, 08:42:37,582 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:42:37,584 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:42:37,584 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:42:37,585 sqlalchemy.engine.Engine INFO [cached since 0.3753s ago] (2142024077,)
+2025-01-12, Sun, 08:42:37,586 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:42:37,720 aiogram.event INFO Update id=450710023 is handled. Duration 1223 ms by bot id=7771835226
+2025-01-12, Sun, 08:42:40,51 aiogram.event INFO Update id=450710024 is handled. Duration 89 ms by bot id=7771835226
+2025-01-12, Sun, 08:42:46,899 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:42:46,899 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:42:46,899 sqlalchemy.engine.Engine INFO [cached since 9.69s ago] (Message(message_id=867, date=datetime.datetime(2025, 1, 12, 5, 42, 46, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, usern ... (3030 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)
+2025-01-12, Sun, 08:42:46,901 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:42:46,902 aiogram.event INFO Update id=450710025 is not handled. Duration 4 ms by bot id=7771835226
+2025-01-12, Sun, 08:42:46,902 aiogram.event ERROR Cause exception while process update id=450710025 by bot id=7771835226
+DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=867, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=867, date=datetime.datetime(2025, 1, 12, 5, 42, 46, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, usern ... (3030 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+Traceback (most recent call last):
+  File "asyncpg/protocol/prepared_stmt.pyx", line 175, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+  File "asyncpg/protocol/codecs/base.pyx", line 227, in asyncpg.protocol.protocol.Codec.encode
+  File "asyncpg/protocol/codecs/base.pyx", line 129, in asyncpg.protocol.protocol.Codec.encode_scalar
+  File "asyncpg/pgproto/./codecs/int.pyx", line 105, in asyncpg.pgproto.pgproto.int8_encode
+TypeError: 'Message' object cannot be interpreted as an integer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 185, in bind_execute
+  File "asyncpg/protocol/prepared_stmt.pyx", line 204, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+asyncpg.exceptions.DataError: invalid input for query argument $1: Message(message_id=867, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=867, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 28, in marketer
+    user_obj[chat_id] = await get_user(chat_id)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/get.py", line 6, in get_user
+    return await UserDAO.get_by_chat_id(chat_id, session=session)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 33, in get_by_chat_id
+    result = await session.execute(query)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=867, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=867, date=datetime.datetime(2025, 1, 12, 5, 42, 46, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, usern ... (3030 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-12, Sun, 08:44:02,983 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:44:02,984 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:44:02,984 sqlalchemy.engine.Engine INFO [cached since 85.77s ago] (Message(message_id=868, date=datetime.datetime(2025, 1, 12, 5, 44, 2, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, userna ... (3139 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)
+2025-01-12, Sun, 08:44:02,985 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:44:02,986 aiogram.event INFO Update id=450710026 is not handled. Duration 5 ms by bot id=7771835226
+2025-01-12, Sun, 08:44:02,986 aiogram.event ERROR Cause exception while process update id=450710026 by bot id=7771835226
+DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=868, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=868, date=datetime.datetime(2025, 1, 12, 5, 44, 2, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, userna ... (3139 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+Traceback (most recent call last):
+  File "asyncpg/protocol/prepared_stmt.pyx", line 175, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+  File "asyncpg/protocol/codecs/base.pyx", line 227, in asyncpg.protocol.protocol.Codec.encode
+  File "asyncpg/protocol/codecs/base.pyx", line 129, in asyncpg.protocol.protocol.Codec.encode_scalar
+  File "asyncpg/pgproto/./codecs/int.pyx", line 105, in asyncpg.pgproto.pgproto.int8_encode
+TypeError: 'Message' object cannot be interpreted as an integer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 185, in bind_execute
+  File "asyncpg/protocol/prepared_stmt.pyx", line 204, in asyncpg.protocol.protocol.PreparedStatementState._encode_bind_msg
+asyncpg.exceptions.DataError: invalid input for query argument $1: Message(message_id=868, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=868, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 28, in marketer
+    user_obj[chat_id] = await get_user(chat_id)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/get.py", line 6, in get_user
+    return await UserDAO.get_by_chat_id(chat_id, session=session)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 33, in get_by_chat_id
+    result = await session.execute(query)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 461, in execute
+    result = await greenlet_spawn(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 305, in orm_execute_statement
+    result = conn.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.DataError'>: invalid input for query argument $1: Message(message_id=868, date=datetime.da... ('Message' object cannot be interpreted as an integer)
+[SQL: SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT]
+[parameters: (Message(message_id=868, date=datetime.datetime(2025, 1, 12, 5, 44, 2, tzinfo=TzInfo(UTC)), chat=Chat(id=2142024077, type='private', title=None, userna ... (3139 characters truncated) ... ate=None, forward_from=None, forward_from_chat=None, forward_from_message_id=None, forward_sender_name=None, forward_signature=None, user_shared=None),)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+2025-01-12, Sun, 08:52:57,972 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 08:52:57,972 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:52:57,972 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 08:53:02,206 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 08:53:02,253 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:53:04,395 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 08:53:04,395 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:53:04,398 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 08:53:04,398 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:53:04,400 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 08:53:04,400 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:53:04,403 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:53:04,410 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:53:04,410 sqlalchemy.engine.Engine INFO [generated in 0.00048s] (2142024077,)
+2025-01-12, Sun, 08:53:04,413 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:53:04,492 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:53:04,492 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:53:04,493 sqlalchemy.engine.Engine INFO [cached since 0.0827s ago] (2142024077,)
+2025-01-12, Sun, 08:53:04,494 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:53:04,495 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:53:04,495 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:53:04,495 sqlalchemy.engine.Engine INFO [cached since 0.08558s ago] (2142024077,)
+2025-01-12, Sun, 08:53:04,497 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:53:04,873 aiogram.event INFO Update id=450710027 is handled. Duration 902 ms by bot id=7771835226
+2025-01-12, Sun, 08:53:06,685 aiogram.event INFO Update id=450710028 is handled. Duration 101 ms by bot id=7771835226
+2025-01-12, Sun, 08:53:11,457 aiogram.event INFO Update id=450710029 is not handled. Duration 235 ms by bot id=7771835226
+2025-01-12, Sun, 08:53:11,457 aiogram.event ERROR Cause exception while process update id=450710029 by bot id=7771835226
+TelegramBadRequest: Telegram server says - Bad Request: message identifier is not specified
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 52, in new_promo
+    await bot.edit_message_text('Введите цену')
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 1588, in edit_message_text
+    return await self(call, request_timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 498, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/aiohttp.py", line 189, in make_request
+    response = self.check_response(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message identifier is not specified
+2025-01-12, Sun, 08:54:11,455 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 08:54:11,455 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:54:11,455 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 08:55:48,427 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 08:55:48,525 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:55:50,15 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 08:55:50,15 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:55:50,19 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 08:55:50,19 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:55:50,21 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 08:55:50,21 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:55:50,23 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:55:50,30 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:55:50,30 sqlalchemy.engine.Engine INFO [generated in 0.00032s] (2142024077,)
+2025-01-12, Sun, 08:55:50,34 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:55:50,250 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:55:50,250 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:55:50,251 sqlalchemy.engine.Engine INFO [cached since 0.2206s ago] (2142024077,)
+2025-01-12, Sun, 08:55:50,253 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:55:50,254 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:55:50,255 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:55:50,255 sqlalchemy.engine.Engine INFO [cached since 0.225s ago] (2142024077,)
+2025-01-12, Sun, 08:55:50,257 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:55:50,355 aiogram.event INFO Update id=450710030 is handled. Duration 697 ms by bot id=7771835226
+2025-01-12, Sun, 08:55:51,320 aiogram.event INFO Update id=450710031 is handled. Duration 71 ms by bot id=7771835226
+2025-01-12, Sun, 08:55:56,906 aiogram.event INFO Update id=450710032 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-12, Sun, 08:55:56,906 aiogram.event ERROR Cause exception while process update id=450710032 by bot id=7771835226
+ValidationError: 1 validation error for EditMessageText
+text
+  Input should be a valid string [type=string_type, input_value=2142024077, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/string_type
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 52, in new_promo
+    await bot.edit_message_text(message.from_user.id,'Введите цену')
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 1576, in edit_message_text
+    call = EditMessageText(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/pydantic/main.py", line 214, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for EditMessageText
+text
+  Input should be a valid string [type=string_type, input_value=2142024077, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.10/v/string_type
+2025-01-12, Sun, 08:57:30,885 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 08:57:30,885 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:57:30,885 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 08:59:12,99 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 08:59:12,487 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 08:59:13,952 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 08:59:13,952 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:59:13,955 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 08:59:13,955 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:59:13,957 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 08:59:13,957 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 08:59:13,958 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:59:13,965 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:59:13,965 sqlalchemy.engine.Engine INFO [generated in 0.00025s] (2142024077,)
+2025-01-12, Sun, 08:59:13,969 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:59:14,203 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:59:14,204 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:59:14,204 sqlalchemy.engine.Engine INFO [cached since 0.2391s ago] (2142024077,)
+2025-01-12, Sun, 08:59:14,205 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:59:14,206 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 08:59:14,207 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 08:59:14,207 sqlalchemy.engine.Engine INFO [cached since 0.2421s ago] (2142024077,)
+2025-01-12, Sun, 08:59:14,208 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 08:59:14,433 aiogram.event INFO Update id=450710033 is handled. Duration 1110 ms by bot id=7771835226
+2025-01-12, Sun, 08:59:15,684 aiogram.event INFO Update id=450710034 is handled. Duration 71 ms by bot id=7771835226
+2025-01-12, Sun, 08:59:20,370 aiogram.event INFO Update id=450710035 is not handled. Duration 47 ms by bot id=7771835226
+2025-01-12, Sun, 08:59:20,370 aiogram.event ERROR Cause exception while process update id=450710035 by bot id=7771835226
+TelegramBadRequest: Telegram server says - Bad Request: message can't be edited
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 52, in new_promo
+    await bot.edit_message_text(chat_id = message.from_user.id,message_id=message.message_id, text= 'Введите цену')
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 1588, in edit_message_text
+    return await self(call, request_timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 498, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/aiohttp.py", line 189, in make_request
+    response = self.check_response(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message can't be edited
+2025-01-12, Sun, 09:01:31,394 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:01:31,394 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:01:31,394 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:01:35,341 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:01:35,424 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:01:38,63 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:01:38,63 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:01:38,65 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:01:38,65 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:01:38,66 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:01:38,66 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:01:38,68 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:01:38,80 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:01:38,80 sqlalchemy.engine.Engine INFO [generated in 0.00042s] (2142024077,)
+2025-01-12, Sun, 09:01:38,83 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:01:38,199 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:01:38,200 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:01:38,200 sqlalchemy.engine.Engine INFO [cached since 0.1207s ago] (2142024077,)
+2025-01-12, Sun, 09:01:38,203 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:01:38,204 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:01:38,205 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:01:38,205 sqlalchemy.engine.Engine INFO [cached since 0.1251s ago] (2142024077,)
+2025-01-12, Sun, 09:01:38,206 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:01:38,474 aiogram.event INFO Update id=450710036 is handled. Duration 972 ms by bot id=7771835226
+2025-01-12, Sun, 09:01:39,778 aiogram.event INFO Update id=450710037 is handled. Duration 139 ms by bot id=7771835226
+2025-01-12, Sun, 09:01:43,939 aiogram.event INFO Update id=450710038 is not handled. Duration 0 ms by bot id=7771835226
+2025-01-12, Sun, 09:01:43,939 aiogram.event ERROR Cause exception while process update id=450710038 by bot id=7771835226
+TypeError: Bot.send_message() missing 1 required positional argument: 'chat_id'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 52, in new_promo
+    await bot.send_message( text= 'Введите цену')
+TypeError: Bot.send_message() missing 1 required positional argument: 'chat_id'
+2025-01-12, Sun, 09:03:19,540 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:03:19,541 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:03:19,541 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:03:23,692 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:03:23,984 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:03:24,490 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:03:24,490 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:03:24,494 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:03:24,494 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:03:24,496 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:03:24,496 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:03:24,497 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:03:24,509 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:03:24,509 sqlalchemy.engine.Engine INFO [generated in 0.00084s] (2142024077,)
+2025-01-12, Sun, 09:03:24,513 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:03:24,575 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:03:24,576 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:03:24,576 sqlalchemy.engine.Engine INFO [cached since 0.06748s ago] (2142024077,)
+2025-01-12, Sun, 09:03:24,578 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:03:24,579 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:03:24,579 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:03:24,579 sqlalchemy.engine.Engine INFO [cached since 0.0708s ago] (2142024077,)
+2025-01-12, Sun, 09:03:24,581 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:03:24,698 aiogram.event INFO Update id=450710039 is handled. Duration 455 ms by bot id=7771835226
+2025-01-12, Sun, 09:03:25,876 aiogram.event INFO Update id=450710040 is handled. Duration 75 ms by bot id=7771835226
+2025-01-12, Sun, 09:03:29,633 aiogram.event INFO Update id=450710041 is handled. Duration 120 ms by bot id=7771835226
+2025-01-12, Sun, 09:03:36,418 aiogram.event INFO Update id=450710042 is handled. Duration 148 ms by bot id=7771835226
+2025-01-12, Sun, 09:04:19,689 aiogram.event INFO Update id=450710043 is not handled. Duration 2 ms by bot id=7771835226
+2025-01-12, Sun, 09:04:19,689 aiogram.event ERROR Cause exception while process update id=450710043 by bot id=7771835226
+TypeError: create_promo() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 64, in new_promo
+    await create_promo(message, promos_dict[message.from_user.id])
+TypeError: create_promo() takes 1 positional argument but 2 were given
+2025-01-12, Sun, 09:04:44,335 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:04:44,335 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:04:44,335 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:05:52,775 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:05:52,822 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:05:57,711 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:05:57,711 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:05:57,713 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:05:57,713 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:05:57,714 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:05:57,715 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:05:57,716 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:05:57,724 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:05:57,725 sqlalchemy.engine.Engine INFO [generated in 0.00045s] (2142024077,)
+2025-01-12, Sun, 09:05:57,727 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:05:57,794 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:05:57,795 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:05:57,795 sqlalchemy.engine.Engine INFO [cached since 0.07088s ago] (2142024077,)
+2025-01-12, Sun, 09:05:57,797 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:05:57,799 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:05:57,800 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:05:57,800 sqlalchemy.engine.Engine INFO [cached since 0.07562s ago] (2142024077,)
+2025-01-12, Sun, 09:05:57,802 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:05:57,871 aiogram.event INFO Update id=450710044 is handled. Duration 1029 ms by bot id=7771835226
+2025-01-12, Sun, 09:05:59,711 aiogram.event INFO Update id=450710045 is handled. Duration 86 ms by bot id=7771835226
+2025-01-12, Sun, 09:06:11,787 aiogram.event INFO Update id=450710046 is handled. Duration 75 ms by bot id=7771835226
+2025-01-12, Sun, 09:06:22,771 aiogram.event INFO Update id=450710047 is handled. Duration 326 ms by bot id=7771835226
+2025-01-12, Sun, 09:06:33,681 aiogram.event INFO Update id=450710048 is not handled. Duration 2 ms by bot id=7771835226
+2025-01-12, Sun, 09:06:33,682 aiogram.event ERROR Cause exception while process update id=450710048 by bot id=7771835226
+TypeError: BaseDAO.add() missing 1 required positional argument: 'session'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 64, in new_promo
+    await create_promo(message)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 78, in create_promo
+    await add_promocode(promos_dict[message.from_user.id])
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 20, in add_promocode
+    promocode = await PromoDAO.add(**data)
+TypeError: BaseDAO.add() missing 1 required positional argument: 'session'
+2025-01-12, Sun, 09:10:29,206 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:10:29,207 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:10:29,207 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:21:45,190 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:21:45,232 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:21:53,603 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:21:53,604 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:21:53,606 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:21:53,606 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:21:53,607 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:21:53,608 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:21:53,609 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:21:53,615 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:21:53,615 sqlalchemy.engine.Engine INFO [generated in 0.00032s] (2142024077,)
+2025-01-12, Sun, 09:21:53,618 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:21:53,882 aiogram.event INFO Update id=450710049 is handled. Duration 701 ms by bot id=7771835226
+2025-01-12, Sun, 09:21:58,750 aiogram.event INFO Update id=450710050 is handled. Duration 57 ms by bot id=7771835226
+2025-01-12, Sun, 09:22:06,63 root INFO REGISTRATION DATA: DmPetrosel, Дмитрий, ямаркетолог, True
+2025-01-12, Sun, 09:22:06,63 root INFO Company: unnamed_company. Run function db.session.wrapper
+2025-01-12, Sun, 09:22:06,64 root ERROR Company: unnamed_company. In function db.session.wrapper error occurs: 'dict' object has no attribute 'add'. Try through 1 minutes. (Attempt number 1)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 14, in add_user
+    user = await UserDAO.add(data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 12, in add
+    session.add(new_instance)
+AttributeError: 'dict' object has no attribute 'add'
+
+2025-01-12, Sun, 09:23:06,66 root ERROR Company: unnamed_company. In function db.session.wrapper error occurs: 'dict' object has no attribute 'add'. Try through 1 minutes. (Attempt number 2)
+ Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/errh.py", line 24, in handle_errors
+    result = await task
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 14, in add_user
+    user = await UserDAO.add(data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 12, in add
+    session.add(new_instance)
+AttributeError: 'dict' object has no attribute 'add'
+
+2025-01-12, Sun, 09:23:09,803 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:23:09,803 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:23:09,804 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:23:10,54 aiogram.event INFO Update id=450710051 is not handled. Duration 63992 ms by bot id=7771835226
+2025-01-12, Sun, 09:32:25,667 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:32:25,714 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:32:32,363 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:32:32,363 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:32:32,366 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:32:32,366 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:32:32,367 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:32:32,367 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:32:32,369 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:32:32,375 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:32:32,376 sqlalchemy.engine.Engine INFO [generated in 0.00038s] (2142024077,)
+2025-01-12, Sun, 09:32:32,378 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:32:32,850 aiogram.event INFO Update id=450710052 is handled. Duration 1478 ms by bot id=7771835226
+2025-01-12, Sun, 09:32:37,17 aiogram.event INFO Update id=450710053 is handled. Duration 280 ms by bot id=7771835226
+2025-01-12, Sun, 09:32:41,441 root INFO REGISTRATION DATA: DmPetrosel, Дмитрий, ямаркетолог, True
+2025-01-12, Sun, 09:32:41,442 root INFO Company: unnamed_company. Run function db.session.wrapper
+2025-01-12, Sun, 09:32:41,442 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:32:41,446 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT)
+2025-01-12, Sun, 09:32:41,446 sqlalchemy.engine.Engine INFO [generated in 0.00030s] (2142024077, 'DmPetrosel', 'Дмитрий', 'ямаркетолог', True, 0)
+2025-01-12, Sun, 09:32:41,448 sqlalchemy.engine.Engine INFO COMMIT
+2025-01-12, Sun, 09:32:41,449 root INFO Company: unnamed_company. Function db.session.wrapper is done successfully! (Attempt number 1)
+2025-01-12, Sun, 09:32:41,548 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:32:41,549 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:32:41,549 sqlalchemy.engine.Engine INFO [cached since 9.174s ago] (2142024077,)
+2025-01-12, Sun, 09:32:41,550 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:32:41,551 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:32:41,551 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:32:41,551 sqlalchemy.engine.Engine INFO [cached since 9.176s ago] (2142024077,)
+2025-01-12, Sun, 09:32:41,553 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:32:41,678 aiogram.event INFO Update id=450710054 is handled. Duration 236 ms by bot id=7771835226
+2025-01-12, Sun, 09:33:09,473 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:33:09,474 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:33:09,474 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:33:13,448 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:33:13,494 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:33:19,554 aiogram.event INFO Update id=450710055 is handled. Duration 193 ms by bot id=7771835226
+2025-01-12, Sun, 09:33:29,949 aiogram.event INFO Update id=450710056 is handled. Duration 62 ms by bot id=7771835226
+2025-01-12, Sun, 09:33:33,785 aiogram.event INFO Update id=450710057 is handled. Duration 104 ms by bot id=7771835226
+2025-01-12, Sun, 09:33:44,936 aiogram.event INFO Update id=450710058 is not handled. Duration 2 ms by bot id=7771835226
+2025-01-12, Sun, 09:33:44,936 aiogram.event ERROR Cause exception while process update id=450710058 by bot id=7771835226
+KeyError: 'user_data'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 64, in new_promo
+    await create_promo(message)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 78, in create_promo
+    await add_promocode(promos_dict[message.from_user.id])
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 21, in add_promocode
+    data = d['user_data'] if d['user_data'] else d['kwargs']
+KeyError: 'user_data'
+2025-01-12, Sun, 09:35:58,198 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:35:58,199 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:35:58,199 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:36:01,975 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:36:02,63 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:36:09,706 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:36:09,706 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:36:09,709 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:36:09,709 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:36:09,710 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:36:09,710 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:36:09,711 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:36:09,717 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:36:09,717 sqlalchemy.engine.Engine INFO [generated in 0.00027s] (2142024077,)
+2025-01-12, Sun, 09:36:09,719 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:36:09,786 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:36:09,787 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:36:09,787 sqlalchemy.engine.Engine INFO [cached since 0.06989s ago] (2142024077,)
+2025-01-12, Sun, 09:36:09,788 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:36:09,789 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:36:09,790 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:36:09,790 sqlalchemy.engine.Engine INFO [cached since 0.07269s ago] (2142024077,)
+2025-01-12, Sun, 09:36:09,791 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:36:10,36 aiogram.event INFO Update id=450710059 is handled. Duration 808 ms by bot id=7771835226
+2025-01-12, Sun, 09:36:12,270 aiogram.event INFO Update id=450710060 is handled. Duration 236 ms by bot id=7771835226
+2025-01-12, Sun, 09:36:20,241 aiogram.event INFO Update id=450710061 is handled. Duration 275 ms by bot id=7771835226
+2025-01-12, Sun, 09:36:23,125 aiogram.event INFO Update id=450710062 is handled. Duration 58 ms by bot id=7771835226
+2025-01-12, Sun, 09:36:29,741 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:36:29,743 sqlalchemy.engine.Engine INFO INSERT INTO promos (promocode, price, quantity, referal, chat_id, expire_date) VALUES ($1::VARCHAR, $2::BIGINT, $3::INTEGER, $4::VARCHAR, $5::BIGINT, $6::TIMESTAMP WITHOUT TIME ZONE) RETURNING promos.id
+2025-01-12, Sun, 09:36:29,743 sqlalchemy.engine.Engine INFO [generated in 0.00033s] (None, None, 0, None, None, None)
+2025-01-12, Sun, 09:36:29,745 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:36:29,746 aiogram.event INFO Update id=450710063 is not handled. Duration 8 ms by bot id=7771835226
+2025-01-12, Sun, 09:36:29,746 aiogram.event ERROR Cause exception while process update id=450710063 by bot id=7771835226
+IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "promocode" of relation "promos" violates not-null constraint
+DETAIL:  Failing row contains (1, null, null, 0, null, null, null).
+[SQL: INSERT INTO promos (promocode, price, quantity, referal, chat_id, expire_date) VALUES ($1::VARCHAR, $2::BIGINT, $3::INTEGER, $4::VARCHAR, $5::BIGINT, $6::TIMESTAMP WITHOUT TIME ZONE) RETURNING promos.id]
+[parameters: (None, None, 0, None, None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 534, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.NotNullViolationError: null value in column "promocode" of relation "promos" violates not-null constraint
+DETAIL:  Failing row contains (1, null, null, 0, null, null, null).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "promocode" of relation "promos" violates not-null constraint
+DETAIL:  Failing row contains (1, null, null, 0, null, null, null).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 64, in new_promo
+    await create_promo(message)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 78, in create_promo
+    await add_promocode(promos_dict[message.from_user.id])
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 22, in add_promocode
+    promocode = await PromoDAO.add(**data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 17, in add
+    raise e
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 14, in add
+    await session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1009, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4487, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 568, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 546, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 497, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 780, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "promocode" of relation "promos" violates not-null constraint
+DETAIL:  Failing row contains (1, null, null, 0, null, null, null).
+[SQL: INSERT INTO promos (promocode, price, quantity, referal, chat_id, expire_date) VALUES ($1::VARCHAR, $2::BIGINT, $3::INTEGER, $4::VARCHAR, $5::BIGINT, $6::TIMESTAMP WITHOUT TIME ZONE) RETURNING promos.id]
+[parameters: (None, None, 0, None, None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-01-12, Sun, 09:39:37,389 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:39:37,389 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:39:37,389 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:39:41,468 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:39:41,521 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:39:44,905 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:39:44,905 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:39:44,907 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:39:44,907 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:39:44,908 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:39:44,908 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:39:44,908 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:39:44,915 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:39:44,916 sqlalchemy.engine.Engine INFO [generated in 0.00027s] (2142024077,)
+2025-01-12, Sun, 09:39:44,918 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:39:45,280 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:39:45,281 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:39:45,281 sqlalchemy.engine.Engine INFO [cached since 0.3655s ago] (2142024077,)
+2025-01-12, Sun, 09:39:45,282 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:39:45,283 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:39:45,283 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:39:45,283 sqlalchemy.engine.Engine INFO [cached since 0.3681s ago] (2142024077,)
+2025-01-12, Sun, 09:39:45,285 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:39:45,393 aiogram.event INFO Update id=450710064 is handled. Duration 698 ms by bot id=7771835226
+2025-01-12, Sun, 09:39:46,573 aiogram.event INFO Update id=450710065 is handled. Duration 99 ms by bot id=7771835226
+2025-01-12, Sun, 09:39:50,114 aiogram.event INFO Update id=450710066 is handled. Duration 128 ms by bot id=7771835226
+2025-01-12, Sun, 09:39:52,778 aiogram.event INFO Update id=450710067 is handled. Duration 59 ms by bot id=7771835226
+2025-01-12, Sun, 09:39:58,510 aiogram.event INFO Update id=450710068 is not handled. Duration 3 ms by bot id=7771835226
+2025-01-12, Sun, 09:39:58,510 aiogram.event ERROR Cause exception while process update id=450710068 by bot id=7771835226
+TypeError: db.dao.BaseDAO.add() argument after ** must be a mapping, not tuple
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 64, in new_promo
+    await create_promo(message)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 78, in create_promo
+    await add_promocode(promos_dict[message.from_user.id])
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 22, in add_promocode
+    promocode = await PromoDAO.add(**data)
+TypeError: db.dao.BaseDAO.add() argument after ** must be a mapping, not tuple
+2025-01-12, Sun, 09:40:55,417 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:40:55,418 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:40:55,418 aiogram.dispatcher INFO Polling stopped
+2025-01-12, Sun, 09:40:59,539 aiogram.dispatcher INFO Start polling
+2025-01-12, Sun, 09:40:59,691 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:41:02,882 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-01-12, Sun, 09:41:02,882 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:41:02,884 sqlalchemy.engine.Engine INFO select current_schema()
+2025-01-12, Sun, 09:41:02,884 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:41:02,886 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-01-12, Sun, 09:41:02,886 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-01-12, Sun, 09:41:02,887 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:41:02,893 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:41:02,894 sqlalchemy.engine.Engine INFO [generated in 0.00025s] (2142024077,)
+2025-01-12, Sun, 09:41:02,896 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:41:02,986 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:41:02,986 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:41:02,987 sqlalchemy.engine.Engine INFO [cached since 0.0933s ago] (2142024077,)
+2025-01-12, Sun, 09:41:02,988 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:41:02,988 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-01-12, Sun, 09:41:02,989 sqlalchemy.engine.Engine INFO SELECT users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-01-12, Sun, 09:41:02,989 sqlalchemy.engine.Engine INFO [cached since 0.09545s ago] (2142024077,)
+2025-01-12, Sun, 09:41:02,990 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-01-12, Sun, 09:41:03,151 aiogram.event INFO Update id=450710069 is handled. Duration 441 ms by bot id=7771835226
+2025-01-12, Sun, 09:41:04,566 aiogram.event INFO Update id=450710070 is handled. Duration 193 ms by bot id=7771835226
+2025-01-12, Sun, 09:41:10,678 aiogram.event INFO Update id=450710071 is handled. Duration 104 ms by bot id=7771835226
+2025-01-12, Sun, 09:41:13,449 aiogram.event INFO Update id=450710072 is handled. Duration 110 ms by bot id=7771835226
+2025-01-12, Sun, 09:41:18,154 aiogram.event INFO Update id=450710073 is not handled. Duration 2 ms by bot id=7771835226
+2025-01-12, Sun, 09:41:18,154 aiogram.event ERROR Cause exception while process update id=450710073 by bot id=7771835226
+TypeError: BaseDAO.add() missing 1 required positional argument: 'session'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 64, in new_promo
+    await create_promo(message)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 78, in create_promo
+    await add_promocode(promos_dict[message.from_user.id])
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 22, in add_promocode
+    promocode = await PromoDAO.add(**data)
+TypeError: BaseDAO.add() missing 1 required positional argument: 'session'
+2025-01-12, Sun, 09:43:39,285 aiogram.dispatcher WARNING Received SIGINT signal
+2025-01-12, Sun, 09:43:39,285 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'Автоответы на мп'
+2025-01-12, Sun, 09:43:39,286 aiogram.dispatcher INFO Polling stopped

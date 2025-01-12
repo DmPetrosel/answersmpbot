@@ -7,8 +7,8 @@ class BaseDAO:
     model = None
 
     @classmethod
-    async def add(cls, session:AsyncSession, **kwargs):
-        new_instance = cls.model(**kwargs)
+    async def add(cls, *args, session:AsyncSession, **kwargs):
+        new_instance = cls.model(*args,**kwargs)
         session.add(new_instance)
         try:
             await session.commit()

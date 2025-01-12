@@ -1,8 +1,6 @@
 from create_bot import dp, bot
 from aiogram import types,  Dispatcher, handlers, F
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import State, StatesGroup
-from aiogram.filters.state import State
 from aiogram.filters import Command, StateFilter
 from varname.helpers import Wrapper
 import configparser
@@ -13,11 +11,8 @@ from functools import partial
 import logging
 from keyboard.basic_kb import *
 from func.marketer import *
+from func.states import *
 
-class Form(StatesGroup):
-    first_name = State()
-    username = State()
-    promocode = State()
 
 usr = {}
 user_obj = {}
@@ -62,9 +57,9 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
         except Exception as e:
             logging.error(f"{e}")
     elif await state.get_state() == 'promocode':   
-        usr[message.from_user.id]['promocode'] = var.lower()
+        usr[message.from_user.id]['promocode'] = var.lower().strip()
         try:
-            if var.lower() == 'ямаркетолог' or var.lower() == 'я маркетолог':
+            if var.lower().strip() == 'ямаркетолог' or var.lower().strip() == 'я маркетолог':
                 usr[message.from_user.id]['marketer'] = True
                 usr[message.from_user.id]['promocode'] = 'ямаркетолог'
                 await write_registration(message.from_user.id)

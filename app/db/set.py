@@ -10,6 +10,15 @@ from db.dao import *
     
 @connection
 async def add_user(user_data : dict = None, **kwargs):
-    data = user_data if user_data else kwargs
+    d = locals()
+    data = d['user_data'] if d['user_data'] else d['kwargs']
     user = await UserDAO.add(**data)
     return user
+
+@connection
+async def add_promocode(*args , **kwargs):
+    d = locals()
+    data = d['args'][0] if d.get('args') else d.get('kwargs')
+    promocode = await PromoDAO.add(**data)
+    return promocode
+    
