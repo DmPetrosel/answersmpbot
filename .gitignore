@@ -1,3 +1,4 @@
-./answers-data
-./venv
-./volumes
+answers-data/
+volumes/
+app/db/models/__pycache__
+venv

@@ -10,15 +10,18 @@ from db.dao import *
     
 @connection
 async def add_user(user_data : dict = None, **kwargs):
-    d = locals()
-    data = d['user_data'] if d['user_data'] else d['kwargs']
-    user = await UserDAO.add(**data)
+    data = user_data if user_data else kwargs
+    user = await UserDAO.add(data)
     return user
 
 @connection
-async def add_promocode(*args , **kwargs):
-    d = locals()
-    data = d['args'][0] if d.get('args') else d.get('kwargs')
-    promocode = await PromoDAO.add(**data)
+async def add_promocode(promocode_data : dict = None, **kwargs):
+    # data = promocode_data if promocode_data else kwargs
+    promocode = await PromoDAO.add(promocode_data, **kwargs)
     return promocode
-    
+
+@connection
+async def update_promo(promocode_data : dict = None, **kwargs):
+    # data = promocode_data if promocode_data else kwargs
+    promocode = await PromoDAO.update_by_id(promocode_data, **kwargs)
+    return promocode
