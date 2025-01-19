@@ -10,8 +10,7 @@ from db.dao import *
     
 @connection
 async def add_user(user_data : dict = None, **kwargs):
-    data = user_data if user_data else kwargs
-    user = await UserDAO.add(data)
+    user = await UserDAO.add(user_data, **kwargs)
     return user
 
 @connection

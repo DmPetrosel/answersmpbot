@@ -2,7 +2,7 @@ from create_bot import dp, bot
 from aiogram import types,  Dispatcher, handlers, F
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command, StateFilter
-from varname.helpers import Wrapper
+from aiogram.filters.command import CommandObject
 import configparser
 from db.set import *
 from db.get import *
@@ -12,27 +12,58 @@ import logging
 from keyboard.basic_kb import *
 from func.marketer import *
 from func.states import *
+from db.session import Base
 
 
 usr = {}
 user_obj = {}
 
-async def start(message: types.Message, state: FSMContext):
-    await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
-    if(await get_user(chat_id=message.from_user.id)):
-        await bot.send_message(message.from_user.id, "Вы уже зарегистрированы! Здесь будут кнопки с меню. ")
-        user_obj[message.from_user.id] = await get_user(message.from_user.id)
-        if user_obj[message.from_user.id].marketer == True:
-            print('Condition with is marketer passed ==============')
-            await marketer(message.from_user.id)
-    else:
-        usr[message.from_user.id] = {}
-        await registration(message, state)
+async def start(message: types.Message, command: CommandObject, state: FSMContext):
+    try:
+        await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
+        if(await get_user(chat_id=message.from_user.id)):
+            await bot.send_message(message.from_user.id, "Вы уже зарегистрированы! Здесь будут кнопки с меню. ")
+            user_obj[message.from_user.id] = await get_user(message.from_user.id)
+            if user_obj[message.from_user.id].marketer == True:
+                print('Condition with is marketer passed ==============')
+                await marketer(message.from_user.id)
+        else:
 
+            usr[message.from_user.id] = {}
+            usr[message.from_user.id]['promocode'] = None
+            promo_obj = None
+            try:
+                arg = command.args
+                print('=====', arg)
+                if arg is not None:
+                    promo_obj = await get_promo_by_kwargs(referal=arg)
+            except Exception as e:
+                print("Exception ", e)
+            if promo_obj:
+                usr[message.from_user.id]['referal'] = promo_obj.referal
+                usr[message.from_user.id]['expire_date'] = promo_obj.expire_date
+                usr[message.from_user.id]['promocode'] = promo_obj.promocode
+                usr[message.from_user.id]['price'] = promo_obj.price
+                print("Промокод найден")
+            if promo_obj == None and arg is not None:
+                await bot.send_message(message.from_user.id, "Промокод не найден! Вы сможете ввести его после имени.")
+                usr[message.from_user.id]['referal'] = None
+                usr[message.from_user.id]['expire_date'] = None
+                usr[message.from_user.id]['promocode'] = None  
+                usr[message.from_user.id]['price'] = None
+            if promo_obj and promo_obj.expire_date != None and datetime.strptime(usr[message.from_user.id]['expire_date'], '%d.%m.%Y') < datetime.now():
+                await bot.send_message(message.from_user.id, "Ваш промокод просрочен!")
+                usr[message.from_user.id]['referal'] = None
+                usr[message.from_user.id]['expire_date'] = None
+                usr[message.from_user.id]['promocode'] = None
+                usr[message.from_user.id]['price'] = None
+
+            await registration(message, state)
+    except Exception as e:
+        logging.error(f"При запуске бота ошибка {e}")
 async def registration(message: types.Message, state: FSMContext):
     await bot.send_message(message.from_user.id, "Давайте зарегистрируемся!")
     usr[message.from_user.id]['marketer'] = False
-    usr[message.from_user.id]['promocode'] = None
 
     usr[message.from_user.id]['username'] = message.from_user.username
     if usr[message.from_user.id]['username'] == None: 
@@ -51,27 +82,36 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
         await state.set_state("name")
     elif await state.get_state() == 'first_name':
         usr[message.from_user.id]['first_name'] = var
-        try:
-            await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
-            await state.set_state("promocode")
-        except Exception as e:
-            logging.error(f"{e}")
+        if usr[message.from_user.id]['promocode'] == None:
+            try:
+                await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
+                await state.set_state("promocode")
+            except Exception as e:
+                logging.error(f"{e}")
+        else:
+            await state.clear()
+            await write_registration(message.from_user.id)
+
     elif await state.get_state() == 'promocode':   
         usr[message.from_user.id]['promocode'] = var.lower().strip()
+        reg_success = False
         try:
             if var.lower().strip() == 'ямаркетолог' or var.lower().strip() == 'я маркетолог':
                 usr[message.from_user.id]['marketer'] = True
                 usr[message.from_user.id]['promocode'] = 'ямаркетолог'
-                await write_registration(message.from_user.id)
                 await state.clear()
             else:
-                usr[message.from_user.id]['price'] = await errh.handle_errors(partial(get_bot_price, usr[message.from_user.id]['promocode']))
+                promo_obj = await get_promo_by_kwargs(promocode=usr[message.from_user.id]['promocode'])
+                
+                usr[message.from_user.id]['price'] = promo_obj.price
+
                 if usr[message.from_user.id]['price'] == None:
                     await bot.send_message(message.from_user.id, 'Промокод не найден, попробуйте ещё раз: /start')
                     await state.set_state("promocode")
                 else:
-                    await write_registration(message.from_user.id)
                     await state.clear()
+            await write_registration(message.from_user.id)
+            
         except Exception as e:
             logging.error(f"{e}")
     else:
@@ -80,16 +120,17 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
 
 async def write_registration(chat_id):
     logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['first_name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
-    if await errh.handle_errors(partial(add_user,chat_id=chat_id, username=usr[chat_id]['username'], first_name=usr[chat_id]['first_name'], promocode=usr[chat_id]['promocode'], marketer=usr[chat_id]['marketer'])):
+    if await add_user(chat_id=chat_id, username=usr[chat_id]['username'], first_name=usr[chat_id]['first_name'], promocode=usr[chat_id]['promocode'], marketer=usr[chat_id]['marketer']):
         await bot.send_message(chat_id, 'Регистрация прошла успешно')
     else:
         await bot.send_message(chat_id, str('Регистрация не удалась: \nВозможно, вы уже зарегистрированы'))
+        return False
     user_obj[chat_id] = await get_user(chat_id)
     if user_obj[chat_id].marketer == True:
         await marketer(chat_id)
     else:
-        print("FAAAAAAAAAAAALESEEEEEEEEEEEE=====================")
-    return
+        await promo_continue(chat_id, usr[chat_id]['price'])
+    return True
 async def callback_selling(callback: types.CallbackQuery):
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -100,7 +141,6 @@ async def callback_selling(callback: types.CallbackQuery):
     elif callback.data == 'pay_call':
         await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
 async def promo_continue(chat_id, price):
-    await write_registration(chat_id)
     await bot.send_message(chat_id, f'Ваша цена: {price}', reply_markup=promo_continue_kb())
 
 def register_selling_handlers(dp):

@@ -8,7 +8,7 @@ class BaseDAO:
 
     @classmethod
     async def add(cls, *args, session:AsyncSession, **kwargs):
-        if args:
+        if args and args[0]:
             kwargs.update(args[0])
         new_instance = cls.model(**kwargs)
         session.add(new_instance)
@@ -59,6 +59,15 @@ class BaseDAO:
         result = await session.execute(query)
         records = result.scalar_one_or_none()
         return records
+    @classmethod
+    async def get_by_kwarg_one(cls, *args, session:AsyncSession, **kwargs):
+        query =select(cls.model)
+        for key, value in kwargs.items():
+            query = query.where(getattr(cls.model, key)== value)
+        result = await session.execute(query)
+        records = result.scalar_one_or_none()
+        return records
+        
 class UserDAO(BaseDAO):
     model = User
 

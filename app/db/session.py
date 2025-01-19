@@ -3,7 +3,7 @@ config = configparser.ConfigParser()
 config.read('config.ini', encoding='utf-8')
 
 
-
+from sqlalchemy.orm import class_mapper
 
 dbname = config.get('db', 'dbname')
 user = config.get('db', 'user')
@@ -39,6 +39,13 @@ class Base(AsyncAttrs, DeclarativeBase):
 
     # here we can write some fields witch would exist 
     # in every table in database
+
+    def to_dict(self) -> dict:
+        """Универсальный метод для конвертации объекта SQLAlchemy в словарь"""
+        # Получаем маппер для текущей модели
+        columns = class_mapper(self.__class__).columns
+        # Возвращаем словарь всех колонок и их значений
+        return {column.key: getattr(self, column.key) for column in columns}
     
     @declared_attr.directive
     def __tablename__(cls) -> str:

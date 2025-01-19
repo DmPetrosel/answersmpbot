@@ -1,8 +1,8 @@
 """init
 
-Revision ID: c2a2a6941547
+Revision ID: ab808988d0fc
 Revises: 
-Create Date: 2025-01-10 13:53:12.954423
+Create Date: 2025-01-19 10:09:51.404403
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "c2a2a6941547"
+revision: str = "ab808988d0fc"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -32,18 +32,18 @@ def upgrade() -> None:
             "marketer", sa.Boolean(), server_default="false", nullable=False
         ),
         sa.Column(
-            "balance", sa.BigInteger(), server_default="0", nullable=False
+            "balance", sa.BigInteger(), server_default="0", nullable=True
         ),
-        sa.PrimaryKeyConstraint("chat_id"),
-        sa.UniqueConstraint("id"),
+        sa.PrimaryKeyConstraint("id"),
+        sa.UniqueConstraint("chat_id"),
     )
     op.create_table(
         "infobots",
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
-        sa.Column("chat_id", sa.BigInteger(), nullable=False),
+        sa.Column("chat_id", sa.BigInteger(), nullable=True),
         sa.Column("token", sa.String(length=256), nullable=False),
         sa.Column("botlink", sa.String(length=256), nullable=False),
-        sa.Column("payedtill", sa.DateTime(), nullable=False),
+        sa.Column("payedtill", sa.String(length=256), nullable=False),
         sa.Column("company_name", sa.String(length=256), nullable=True),
         sa.ForeignKeyConstraint(
             ["chat_id"],
@@ -60,7 +60,7 @@ def upgrade() -> None:
         sa.Column("quantity", sa.Integer(), nullable=False),
         sa.Column("referal", sa.String(length=256), nullable=False),
         sa.Column("chat_id", sa.BigInteger(), nullable=False),
-        sa.Column("expire_date", sa.DateTime(), nullable=True),
+        sa.Column("expire_date", sa.String(length=20), nullable=True),
         sa.ForeignKeyConstraint(
             ["chat_id"],
             ["users.chat_id"],

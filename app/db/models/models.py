@@ -3,8 +3,8 @@ from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, B
 from sqlalchemy.orm import relationship, backref
 import sqlalchemy as sa
 class User(Base):
-    # id = Column(BigInteger, unique=False, autoincrement=True, default=id_seq.next_value(), server_default=id_seq.next_value())
-    chat_id = Column(BigInteger, primary_key=True, nullable=False)
+    id = Column(BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    chat_id = Column(BigInteger, unique=True, nullable=False)
     username = Column(String(256), nullable=False)
     first_name = Column(String(256), nullable=False)
     promocode = Column(String(256), nullable=True)
