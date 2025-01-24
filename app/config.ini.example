@@ -1,0 +1,15 @@
+[db]
+dbname = answers-db
+user = dbuser
+pass = strongpassword
+host = localhost
+port = 5430
+driver = postgresql+asyncpg
+[bot]
+token = 777:AAHTRDsdaf
+owner_id = 00000000
+link = botlink
+[price]
+default = 140000
+[support]
+support = @username
