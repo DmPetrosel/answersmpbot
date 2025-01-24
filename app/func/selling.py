@@ -16,10 +16,9 @@ from func.states import *
 from db.session import Base
 import aiogram
 
-
 usr = {}
 user_obj = {}
-
+new_bots = {}
 async def start(message: types.Message, command: CommandObject, state: FSMContext):
     try:
         await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
@@ -133,7 +132,7 @@ async def write_registration(chat_id):
     else:
         await promo_continue(chat_id, usr[chat_id]['price'])
     return True
-async def callback_selling(callback: types.CallbackQuery):
+async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
     config = configparser.ConfigParser()
     config.read('config.ini')
     if callback.data == 'no_promo_call':
@@ -142,11 +141,30 @@ async def callback_selling(callback: types.CallbackQuery):
         await promo_continue(callback.from_user.id, price)
     elif callback.data == 'pay_call':
         await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
+        await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
+    elif callback.data == 'no_pay_call':
+        await bot.send_message(callback.from_user.id, f"Без оплаты ботом можно пользоваться 7 дней.")
+        await bot.send_message(callback.from_user.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
+        await state.set_state("get_bot_token")
+    elif callback.data == 'how_to_create_bot_call':
+        await bot.send_message(callback.from_user.id, 'https://core.telegram.org/bots')
+        await state.set_state("get_bot_token")
+    else:
+        await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
+    
 async def promo_continue(chat_id, price):
     await bot.send_message(chat_id, f'Ваша цена: {price}', reply_markup=promo_continue_kb())
 
+async def get_bot_token(message: types.Message, state: FSMContext):
+    new_bots[message.from_user.id] = {}
+    new_bots[message.from_user.id]['token'] = message.text.strip()
+    list_n = await bot_init(event_loop=event_loop, token=message.text.strip(), chat_id=message.from_user.id)
+    await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}')
+    
+    await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
 def register_selling_handlers(dp):
-    dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call'))
+    dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call', 'no_pay_call', 'how_to_create_bot_call'))
     dp.message.register(start, Command(commands=("start", "restart", "help")), State(state="*"))
     dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
+    dp.message.register(get_bot_token, StateFilter('get_bot_token'))
     # dp.callback_query.register(callback_selling, StateFilter('no_promo_call', 'pay_call' ))

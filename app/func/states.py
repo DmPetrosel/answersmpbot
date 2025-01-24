@@ -9,3 +9,6 @@ class NewPromo(StatesGroup):
     promo_name_state = State()
     expiering_date_state = State()
     price_state = State()
+
+class NewBot(StatesGroup):
+    get_bot_token = State()
