@@ -19,7 +19,7 @@ class InfoBot(Base):
     botlink = Column(String(256), nullable=False)
     payedtill = Column(String(256), nullable=False)
     company_name = Column(String(256), nullable=True)
-    user = relationship("User", backref='users', lazy='joined', uselist=False)
+    user = relationship("User", backref='infobots', lazy='joined', uselist=False)
 
 class Promo(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)

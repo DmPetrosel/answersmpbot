@@ -39,10 +39,10 @@ class BaseDAO:
         query = select(cls.model)
         if(kwargs):
             for key, value in kwargs.items():
-                query.join(User, cls.model.chat_id == User.chat_id)
+                # query.join(User, cls.model.chat_id == User.chat_id)
                 query = query.where(getattr(cls.model, key) == value)
         if(args):
-            query.join(User, cls.model.chat_id == User.chat_id)
+            # query.join(User, cls.model.chat_id == User.chat_id)
             query = query.where(args[0] == cls.model.chat_id)
         result = await session.execute(query)
         records = result.scalars().all()

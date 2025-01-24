@@ -1,3 +1,4 @@
+import aiogram.filters
 from create_bot import dp, bot
 from aiogram import types,  Dispatcher, handlers, F
 from aiogram.fsm.context import FSMContext
@@ -13,6 +14,7 @@ from keyboard.basic_kb import *
 from func.marketer import *
 from func.states import *
 from db.session import Base
+import aiogram
 
 
 usr = {}
