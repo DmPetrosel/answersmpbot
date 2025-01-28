@@ -9,18 +9,18 @@ from db.dao import *
 #     return user
     
 @connection
-async def add_user(user_data : dict = None, **kwargs):
-    user = await UserDAO.add(user_data, **kwargs)
+async def add_user(*args, **kwargs):
+    user = await UserDAO.add(*args, **kwargs)
     return user
 
 @connection
-async def add_promocode(promocode_data : dict = None, **kwargs):
+async def add_promocode(*args, **kwargs):
     # data = promocode_data if promocode_data else kwargs
-    promocode = await PromoDAO.add(promocode_data, **kwargs)
+    promocode = await PromoDAO.add(*args, **kwargs)
     return promocode
 
 @connection
-async def update_promo(promocode_data : dict = None, **kwargs):
+async def update_promo(*args, **kwargs):
     # data = promocode_data if promocode_data else kwargs
-    promocode = await PromoDAO.update_by_id(promocode_data, **kwargs)
+    promocode = await PromoDAO.update_by_id(*args, **kwargs)
     return promocode

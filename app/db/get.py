@@ -9,7 +9,7 @@ async def get_all_promos(chat_id, session:AsyncSession, **kwargs):
     return await PromoDAO.get_all(chat_id, session=session)
 
 async def get_all_bot(chat_id, session: AsyncSession, **kwargs):
-    return await BotDAO.get_all(chat_id, session=session)
+    return await InfoBotDAO.get_all(chat_id, session=session)
 
 @connection
 async def get_promo_by_id(promo_id, session:AsyncSession, **kwargs):

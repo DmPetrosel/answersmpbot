@@ -19,6 +19,8 @@ async def bot_init(event_loop, token, chat_id):
     dp = Dispatcher(bot=bot)
     bot_info = await bot.get_me()
     bot_name = bot_info.username
+    if bot_info == None:
+        return None
 
     bot_list.append({'bot':bot, 'dp':dp, 'username':bot_name, 'chat_id':chat_id})    
     @dp.message(Command('start'))
@@ -27,3 +29,11 @@ async def bot_init(event_loop, token, chat_id):
     
     await start_bot(dp)
     return len(bot_list)-1
+
+async def get_bot_row(chat_id : int = None, dp : Dispatcher = None):
+    '''This method return int number of row of bot_list : list where bot[i]['chat_id'] == chat_id or bot[i]['dp'] == dp'''
+    for i in range(len(bot_list)):
+        if bot[i]['chat_id'] == chat_id or bot[i]['dp'] == dp:
+            return i
+    return None
+    

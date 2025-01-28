@@ -136,6 +136,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
     config = configparser.ConfigParser()
     config.read('config.ini')
     if callback.data == 'no_promo_call':
+        await write_registration(callback.from_user.id)
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = price
         await promo_continue(callback.from_user.id, price)
@@ -158,13 +159,31 @@ async def promo_continue(chat_id, price):
 async def get_bot_token(message: types.Message, state: FSMContext):
     new_bots[message.from_user.id] = {}
     new_bots[message.from_user.id]['token'] = message.text.strip()
-    list_n = await bot_init(event_loop=event_loop, token=message.text.strip(), chat_id=message.from_user.id)
-    await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}')
-    
-    await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+    list_n = await bot_init(event_loop=event_loop, token=message.text.strip(), chat_id=int(message.from_user.id))
+    if list_n != None:
+        await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы.')
+        state.set_state('get_wb_token')
+        await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+    else:
+        await bot.send_message(message.from_user.id, f'Бот не подключён. Попробуйте ещё раз. \n\nВведите токен бота: ')
+        state.set_state("get_bot_token")
+async def get_wb_token(message: types.Message, state: FSMContext):
+    new_bots[message.from_user.id]['wb_token'] = message.text.strip()
+    list_n = await get_bot_row(chat_id=int(message.from_user.id))
+    await bot.send_message(message.from_user.id, f'API-токен WB: {message.text.strip()}')
+    wb_token = message.text.strip()
+    if wb_token:
+        await bot.send_message(message.from_user.id, f'API-токен WB: {message.text.strip()}')
+        await bot.send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+        bot_list[list_n]['wb_token'] = wb_token
+    else:
+        await bot.send_message(message.from_user.id, f'Что-то пошло не так, возможно, проблема с токеном.')
+
+
 def register_selling_handlers(dp):
     dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call', 'no_pay_call', 'how_to_create_bot_call'))
     dp.message.register(start, Command(commands=("start", "restart", "help")), State(state="*"))
     dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
     dp.message.register(get_bot_token, StateFilter('get_bot_token'))
+    dp.message.register(get_wb_token, StateFilter('get_wb_token'))
     # dp.callback_query.register(callback_selling, StateFilter('no_promo_call', 'pay_call' ))
