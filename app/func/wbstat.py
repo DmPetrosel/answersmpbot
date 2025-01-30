@@ -5,13 +5,16 @@ import requests
 import time
 import logging
 from  threading import Thread
-
+import random as rand
 class WBStat(Thread):
-    def __init__(self, wb_token, bot_username, daemon = True):
+    def __init__(self, wb_token, bot_username, 
+                 samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличие есть: ", "Смотрите, что у нас есть ещё: "], 
+                  daemon = True):
+        super().__init__()
         self.token = wb_token
         self.bot_username = bot_username
         self.daemon = daemon
-
+        self.samples_ans = samples_ans
     def request_for_stocks(self):
         url = "https://seller-analytics-api.wildberries.ru/api/v1/warehouse_remains"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
@@ -49,6 +52,39 @@ class WBStat(Thread):
         with open(f"{self.bot_username}_stocks.json", 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         return None
+    
+    def get_from_file(self):
+        with open(f"{self.bot_username}_stocks.json", 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data
+        return None
+    def get_random_three_str(self, data):
+        rand_data = []
+        for i in range(3):
+            j = 7
+            while j > 0 and len(data) > 0:
+                j -= 1
+                r = rand.randint(0, len(data)-1)
+                if data[r]["quantityWarehousesFull"] > 0:
+                    break
+                else:
+                    continue
+            if data[r]["quantityWarehousesFull"] == 0:
+                break
+            rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmId"]}')
+            del data[r]
+        random_three_str = self.samples_ans[rand.randint(0, len(self.samples_ans)-1)]
+        random_three_str+=", ".join(rand_data)
+        return random_three_str
+    def get_list_of_products(self, data):
+        list_of_products = []
+        for i in range(len(data)):
+            if data[i]["quantityWarehousesFull"] > 0:
+                list_of_products.append(f'{data[i]["subjectName"]} Арт. {data[i]["nmId"]}')
+        
+        prod = ", ".join(list_of_products)
+        return prod
+        
 
     def run(self):
         taskId = self.request_for_stocks()
@@ -58,4 +94,188 @@ class WBStat(Thread):
         else:
             logging.error(f'Stock data in bot {self.bot_username} was not obtained.')
         return None
+
+'''
         
+        Примеры ответа data от сервера
+
+            Content type
+            application/json
+
+            Копировать
+            Показать все
+            [
+            {
+            "brand": "Wonderful",
+            "subjectName": "Фотоальбомы",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 183804172,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 134,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 134
+            }
+            ]
+            }
+            ]
+        
+        '''
+if __name__ == '__main__':
+    data =            [
+            {
+            "brand": "Wonderful",
+            "subjectName": "Картинки",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 183804172,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 134,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 134
+            }
+            ]
+            },
+                       {
+            "brand": "Wonderful",
+            "subjectName": "Колонки",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 183804172,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 134,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 134
+            }
+            ]
+            }, 
+          {
+            "brand": "Wonderful",
+            "subjectName": "Нулевое количесвтво",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 183804172,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 0,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 0
+            }
+            ]
+            }
+ ,           {
+            "brand": "Wonderful",
+            "subjectName": "Краски",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 183804172,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 134,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 134
+            }
+            ]
+            }
+,
+            {
+            "brand": "Wonderful",
+            "subjectName": "Наушники",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 11112222,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 134,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 134
+            }
+            ]
+            },
+                       {
+            "brand": "Wonderful",
+            "subjectName": "Клавиатура",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 4445555,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 134,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 134
+            }
+            ]
+            }
+ ,           {
+            "brand": "Wonderful",
+            "subjectName": "Компьютер",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 77770000,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 0,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 0
+            }
+            ]
+            }
+ ,           {
+            "brand": "Wonderful",
+            "subjectName": "Мышь красная",
+            "vendorCode": "41058/прозрачный",
+            "nmId": 99998888,
+            "barcode": "2037031652319",
+            "techSize": "0",
+            "volume": 1.33,
+            "inWayToClient": 31,
+            "inWayFromClient": 24,
+            "quantityWarehousesFull": 134,
+            "warehouses": [
+            {
+            "warehouseName": "Невинномысск",
+            "quantity": 134
+            }
+            ]
+            }
+ 
+            ]
+ 
+    wb = WBStat("dafsadfs", "booooooooot_bot", daemon=False)
+    r3 = wb.get_random_three_str(data)
+    print(r3)

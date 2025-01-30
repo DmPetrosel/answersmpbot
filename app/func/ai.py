@@ -4,15 +4,15 @@ from configparser import ConfigParser
 config = ConfigParser()
 config.read('app/config.ini', encoding='utf-8')
 access_token = config['gigachat']['access_token']
-def generate_answer_for_feedback(company, company_description, articuls, feedback):
+def generate_answer_for_feedback(company, company_description, articuls_str, feedback):
     payload = Chat(
         messages=[
             Messages(
                 role=MessagesRole.SYSTEM,
-                content="Ты хороший в внимательный продавец в компании" + company + ", с таким описанием: " + company_description + ". Также, иногда ты предлагаешь приобрести дополнительные товары, которая предлагает компания из этого списка артикулов (не больше трёх и если у артикула нет наименования, даже если ты знаешь, чем компания занимается, пишешь просто предложение обратить внимание на артикул и его номер без привязки к товару. Например, также предлагаю обратить на товары с арт. и номер артикула): "+ articuls,
+                content="Ты хороший в внимательный продавец в компании" + company + ", с таким описанием: " + company_description 
             )
         ],
-        temperature=0.7,
+        temperature=1,
         max_tokens=100,
     )
 
@@ -30,7 +30,8 @@ def generate_answer_for_feedback(company, company_description, articuls, feedbac
 
 company = input("Введите название компании: ")
 company_description = input("Введите описание компании: ")
-articuls = input("Введите список артикулов: ")
+# articuls = input("Введите список артикулов: ")
+articuls = "Краски - Арт 183804171, Колонки - Арт 183804172, Картинки - Арт 183804173, Клавиатура - Арт 111804171, Мышь - Арт 112804172, Наушники - Арт 113804173"
 while True:
     feedback = input("Введите отзыв: ")
     generate_answer_for_feedback(company, company_description, articuls, feedback)
