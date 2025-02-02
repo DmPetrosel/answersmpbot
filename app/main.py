@@ -12,8 +12,8 @@ register_selling_handlers(dp)
 
 async def main():
     await init_when_restart()
-    tasks.append(asyncio.create_task(main_bot()))
-    await asyncio.gather(*tasks)
+    task = asyncio.create_task(main_bot())
+    await asyncio.gather(task)
 
 asyncio.run(main())
 

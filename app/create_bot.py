@@ -25,10 +25,12 @@ async def init_when_restart():
     bot_from_db = await get_all_bots()
     for ibot in bot_from_db:
         list_n = await bot_init(tasks, ibot.token, ibot.chat_id)
-        bot_list[list_n]['dp'].message.register(nstart, Command('start'))
+        
 
 async def start_bot(dp: Dispatcher, bot : Bot):
-    tasks.append(asyncio.create_task(dp.start_polling(bot)))
+    task = asyncio.create_task(dp.start_polling(bot))
+    asyncio.gather(task)
+    dp.message.register(nstart, Command('start'))
 
 async def bot_init(tasks, token, chat_id):
     nbot = Bot(token)

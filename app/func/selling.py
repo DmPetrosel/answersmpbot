@@ -158,7 +158,7 @@ async def promo_continue(chat_id, price):
     await bot.send_message(chat_id, f'Ваша цена: {price}', reply_markup=promo_continue_kb())
 
 async def get_bot_token(message: types.Message, state: FSMContext):
-    list_n = await bot_init(event_loop=my_event_loop, token=message.text.strip(), chat_id=int(message.from_user.id))
+    list_n = await bot_init(tasks, token=message.text.strip(), chat_id=int(message.from_user.id))
     new_bot[message.from_user.id] = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
