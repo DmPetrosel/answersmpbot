@@ -28,10 +28,8 @@ async def init_when_restart():
         
 
 async def start_bot(dp: Dispatcher, bot : Bot):
-    task = asyncio.create_task(dp.start_polling(bot))
-    asyncio.gather(task)
+    tasks.append(asyncio.create_task(dp.start_polling(bot)))
     dp.message.register(nstart, Command('start'))
-
 async def bot_init(tasks, token, chat_id):
     nbot = Bot(token)
     ndp = Dispatcher(bot=nbot)
