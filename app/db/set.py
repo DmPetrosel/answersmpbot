@@ -20,6 +20,11 @@ async def add_promocode(*args, **kwargs):
     return promocode
 
 @connection
+async def add_bot_info(*args, **kwargs):
+    bot_info = await InfoBotDAO.add(*args, **kwargs)
+    return bot_info
+
+@connection
 async def update_promo(*args, **kwargs):
     # data = promocode_data if promocode_data else kwargs
     promocode = await PromoDAO.update_by_id(*args, **kwargs)

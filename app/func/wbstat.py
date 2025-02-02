@@ -8,7 +8,6 @@ from  threading import Thread
 import random as rand
 class WBStat(Thread):
     def __init__(self, wb_token, bot_username, 
-                 samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличие есть: ", "Смотрите, что у нас есть ещё: "], 
                   daemon = True):
         super().__init__()
         self.token = wb_token
@@ -58,24 +57,7 @@ class WBStat(Thread):
             data = json.load(f)
             return data
         return None
-    def get_random_three_str(self, data):
-        rand_data = []
-        for i in range(3):
-            j = 7
-            while j > 0 and len(data) > 0:
-                j -= 1
-                r = rand.randint(0, len(data)-1)
-                if data[r]["quantityWarehousesFull"] > 0:
-                    break
-                else:
-                    continue
-            if data[r]["quantityWarehousesFull"] == 0:
-                break
-            rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmId"]}')
-            del data[r]
-        random_three_str = self.samples_ans[rand.randint(0, len(self.samples_ans)-1)]
-        random_three_str+=", ".join(rand_data)
-        return random_three_str
+    
     def get_list_of_products(self, data):
         list_of_products = []
         for i in range(len(data)):
@@ -94,6 +76,36 @@ class WBStat(Thread):
         else:
             logging.error(f'Stock data in bot {self.bot_username} was not obtained.')
         return None
+
+def get_random_three_str( 
+    bot_info,
+    number_of_art :int = 3,
+    samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличие есть: ", "Смотрите, что у нас есть ещё: "]
+    ):
+    bot_username = bot_info['username']
+    number_of_art = bot_info['number_of_art'] if bot_info['number_of_art'] != 0 else number_of_art
+    samples_ans = bot_info['samples_ans'] if bot_info['samples_ans'] else samples_ans
+    
+    with open(f"{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    rand_data = []
+    for i in range(number_of_art):
+        j = 7
+        while j > 0 and len(data) > 0:
+            j -= 1
+            r = rand.randint(0, len(data)-1)
+            if data[r]["quantityWarehousesFull"] > 0:
+                break
+            else:
+                continue
+        if data[r]["quantityWarehousesFull"] == 0:
+            break
+        rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmId"]}')
+        del data[r]
+    random_three_str = samples_ans[rand.randint(0, len(samples_ans)-1)]
+    random_three_str+=", ".join(rand_data)
+    return random_three_str
 
 '''
         

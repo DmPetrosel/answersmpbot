@@ -1,8 +1,8 @@
 """init
 
-Revision ID: ab808988d0fc
+Revision ID: 7b6523a5ccf5
 Revises: 
-Create Date: 2025-01-19 10:09:51.404403
+Create Date: 2025-02-02 07:49:13.035847
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "ab808988d0fc"
+revision: str = "7b6523a5ccf5"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -43,8 +43,10 @@ def upgrade() -> None:
         sa.Column("chat_id", sa.BigInteger(), nullable=True),
         sa.Column("token", sa.String(length=256), nullable=False),
         sa.Column("botlink", sa.String(length=256), nullable=False),
-        sa.Column("payedtill", sa.String(length=256), nullable=False),
         sa.Column("company_name", sa.String(length=256), nullable=True),
+        sa.Column(
+            "samples_ans", sa.ARRAY(sa.String(length=400)), nullable=True
+        ),
         sa.ForeignKeyConstraint(
             ["chat_id"],
             ["users.chat_id"],
@@ -60,7 +62,6 @@ def upgrade() -> None:
         sa.Column("quantity", sa.Integer(), nullable=False),
         sa.Column("referal", sa.String(length=256), nullable=False),
         sa.Column("chat_id", sa.BigInteger(), nullable=False),
-        sa.Column("expire_date", sa.String(length=20), nullable=True),
         sa.ForeignKeyConstraint(
             ["chat_id"],
             ["users.chat_id"],

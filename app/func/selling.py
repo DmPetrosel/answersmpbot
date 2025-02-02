@@ -1,11 +1,12 @@
 import aiogram.filters
-from create_bot import dp, bot
+from create_bot import *
 from aiogram import types,  Dispatcher, handlers, F
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command, StateFilter
 from aiogram.filters.command import CommandObject
 import configparser
 from db.set import *
+from db.update import *
 from db.get import *
 import errh
 from functools import partial
@@ -18,7 +19,8 @@ import aiogram
 
 usr = {}
 user_obj = {}
-new_bots = {}
+new_bot = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
+
 async def start(message: types.Message, command: CommandObject, state: FSMContext):
     try:
         await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
@@ -136,10 +138,9 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
     config = configparser.ConfigParser()
     config.read('config.ini')
     if callback.data == 'no_promo_call':
-        await write_registration(callback.from_user.id)
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = price
-        await promo_continue(callback.from_user.id, price)
+        await write_registration(callback.from_user.id)
     elif callback.data == 'pay_call':
         await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
         await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
@@ -157,25 +158,28 @@ async def promo_continue(chat_id, price):
     await bot.send_message(chat_id, f'Ваша цена: {price}', reply_markup=promo_continue_kb())
 
 async def get_bot_token(message: types.Message, state: FSMContext):
-    new_bots[message.from_user.id] = {}
-    new_bots[message.from_user.id]['token'] = message.text.strip()
     list_n = await bot_init(event_loop=event_loop, token=message.text.strip(), chat_id=int(message.from_user.id))
+    new_bot[message.from_user.id] = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
+
+    new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
+    new_bot[message.from_user.id]['token'] = message.text.strip()
     if list_n != None:
         await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы.')
-        state.set_state('get_wb_token')
         await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+        await add_bot_info(new_bot[message.from_user.id])
+        await state.set_state('get_wb_token')
     else:
         await bot.send_message(message.from_user.id, f'Бот не подключён. Попробуйте ещё раз. \n\nВведите токен бота: ')
-        state.set_state("get_bot_token")
+        await state.set_state("get_bot_token")
 async def get_wb_token(message: types.Message, state: FSMContext):
-    new_bots[message.from_user.id]['wb_token'] = message.text.strip()
     list_n = await get_bot_row(chat_id=int(message.from_user.id))
-    await bot.send_message(message.from_user.id, f'API-токен WB: {message.text.strip()}')
+    new_bot[message.from_user.id]['wb_token'] = message.text.strip()
     wb_token = message.text.strip()
     if wb_token:
         await bot.send_message(message.from_user.id, f'API-токен WB: {message.text.strip()}')
         await bot.send_message(message.from_user.id, f'Поздравляем, бот подключён!')
         bot_list[list_n]['wb_token'] = wb_token
+        await update_bot_info(new_bot[message.from_user.id], chat_id=int(message.from_user.id))
     else:
         await bot.send_message(message.from_user.id, f'Что-то пошло не так, возможно, проблема с токеном.')
 

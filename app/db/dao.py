@@ -8,6 +8,7 @@ class BaseDAO:
 
     @classmethod
     async def add(cls, *args, session:AsyncSession, **kwargs):
+        '''*args can get a dict in first parameter, other args parameters ignored. kwargs parameter work in all case.'''
         if args and args[0]:
             kwargs.update(args[0])
         new_instance = cls.model(**kwargs)
@@ -34,6 +35,24 @@ class BaseDAO:
             await session.rollback()
             raise e
         return instance
+    
+    @classmethod
+    async def update_dict_where_kwarg(cls, *args, session:AsyncSession, **kwargs):
+        instance = select(cls.model)
+        for key, value in kwargs.items():
+            instance.where(value==getattr(cls.model, key))
+        result = await session.execute(instance)
+        query = result.scalar_one_or_none()
+        for key, value in args[0].items():
+            setattr(query, key, value)
+        session.add(query)
+        try:
+            await session.commit()
+        except SQLAlchemyError as e:
+            await session.rollback()
+            raise e
+        return instance
+
     @classmethod
     async def get_all(cls, *args, session:AsyncSession, **kwargs):
         query = select(cls.model)

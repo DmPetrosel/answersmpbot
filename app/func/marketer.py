@@ -70,12 +70,12 @@ async def new_promo(message:types.Message, state: FSMContext):
     elif await state.get_state() == 'promo_expire_date_state':
         promos_dict[message.from_user.id]['expire_date'] = var
         if var == '0':
-            promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=365)).strftime("%d.%m.%Y")
+            promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=365)).date()
             await create_promo(message)
         else:
             try: 
                 date_var = datetime.strptime(var, '%d.%m.%Y')
-                promos_dict[message.from_user.id]['expire_date'] = date_var.strftime('%d.%m.%Y')
+                promos_dict[message.from_user.id]['expire_date'] = date_var.date()
             except Exception as e: 
                 await bot.send_message(message.from_user.id, text= f'Дата должна быть в формате дд.мм.гггг.')
                 state.set_state('expiering_date_state')

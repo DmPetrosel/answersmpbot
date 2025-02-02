@@ -14,6 +14,7 @@ register_selling_handlers(dp)
 
 async def main():
     await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')
+    await init_when_restart()
     await dp.start_polling(bot, skip_updates=False)
 
 

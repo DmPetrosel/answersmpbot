@@ -1,5 +1,5 @@
 from db.session import Base
-from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, BigInteger
+from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, BigInteger, ARRAY, Date
 from sqlalchemy.orm import relationship, backref
 import sqlalchemy as sa
 class User(Base):
@@ -14,11 +14,13 @@ class User(Base):
 
 class InfoBot(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
-    chat_id = Column(BigInteger, ForeignKey('users.chat_id'))
+    chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
     token = Column(String(256), nullable=False)
-    botlink = Column(String(256), nullable=False)
-    payedtill = Column(String(256), nullable=False)
+    bot_username = Column(String(256), nullable=True)
+    # payedtill = Column(Date, nullable=False)
     company_name = Column(String(256), nullable=True)
+    samples_ans = Column(ARRAY(String(400)), nullable=True)
+    wb_token = Column(String(256), nullable=True)
     user = relationship("User", backref='infobots', lazy='joined', uselist=False)
 
 class Promo(Base):
@@ -28,5 +30,5 @@ class Promo(Base):
     quantity = Column(Integer, nullable=False, default=0)
     referal = Column(String(256), nullable=False)
     chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
-    expire_date = Column(String(20), nullable=True)
+    expire_date = Column(Date, nullable=True)
     user = relationship("User", backref="promos", lazy='joined', uselist=False)

@@ -21197,3 +21197,1142 @@ Traceback (most recent call last):
 ValueError: At least one bot instance is required to start polling
 2025-01-24, Fri, 13:40:29,109 asyncio ERROR Unclosed client session
 client_session: <aiohttp.client.ClientSession object at 0x7d7bc1b12ad0>
+2025-02-02, Sun, 08:21:54,284 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x71d872d2d540>
+2025-02-02, Sun, 08:21:54,285 asyncio ERROR Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x71d872fb2e00>, 84521.546352658)])']
+connector: <aiohttp.connector.TCPConnector object at 0x71d872d2d5a0>
+2025-02-02, Sun, 08:25:12,788 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x736e1fa81780>
+2025-02-02, Sun, 08:25:12,789 asyncio ERROR Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x736e1fa13340>, 84720.012734472)])']
+connector: <aiohttp.connector.TCPConnector object at 0x736e1fa81720>
+2025-02-02, Sun, 08:25:41,176 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 08:25:41,177 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:25:41,181 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 08:25:41,181 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:25:41,184 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 08:25:41,184 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:25:41,186 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:25:41,209 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.botlink, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 08:25:41,209 sqlalchemy.engine.Engine INFO [generated in 0.00052s] ()
+2025-02-02, Sun, 08:25:41,214 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:25:41,550 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x72d9a59856c0>
+2025-02-02, Sun, 08:25:41,550 asyncio ERROR Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x72d9a5965de0>, 84748.727957407)])']
+connector: <aiohttp.connector.TCPConnector object at 0x72d9a5985660>
+2025-02-02, Sun, 08:27:05,664 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 08:27:05,664 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:27:05,668 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 08:27:05,668 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:27:05,671 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 08:27:05,671 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:27:05,674 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:27:05,694 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.botlink, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 08:27:05,695 sqlalchemy.engine.Engine INFO [generated in 0.00065s] ()
+2025-02-02, Sun, 08:27:05,719 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:27:05,721 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 08:27:06,46 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 08:27:30,703 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:27:30,712 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:27:30,712 sqlalchemy.engine.Engine INFO [generated in 0.00099s] (7675368439,)
+2025-02-02, Sun, 08:27:30,717 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:27:31,176 aiogram.event INFO Update id=450710611 is handled. Duration 980 ms by bot id=7771835226
+2025-02-02, Sun, 08:27:35,39 aiogram.event INFO Update id=450710612 is handled. Duration 215 ms by bot id=7771835226
+2025-02-02, Sun, 08:27:37,667 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 08:27:37,668 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:27:37,671 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 08:27:37,671 sqlalchemy.engine.Engine INFO [generated in 0.00034s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 08:27:37,675 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 08:27:37,951 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:27:37,951 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:27:37,952 sqlalchemy.engine.Engine INFO [cached since 7.24s ago] (7675368439,)
+2025-02-02, Sun, 08:27:37,955 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:27:37,957 aiogram.event INFO Update id=450710613 is not handled. Duration 291 ms by bot id=7771835226
+2025-02-02, Sun, 08:27:37,957 aiogram.event ERROR Cause exception while process update id=450710613 by bot id=7771835226
+KeyError: 'price'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 140, in callback_selling
+    await write_registration(callback.from_user.id)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 134, in write_registration
+    await promo_continue(chat_id, usr[chat_id]['price'])
+KeyError: 'price'
+2025-02-02, Sun, 08:37:25,22 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 08:37:25,22 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 08:37:25,23 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 08:37:31,416 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 08:37:31,417 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:37:31,421 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 08:37:31,421 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:37:31,424 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 08:37:31,424 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:37:31,427 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:37:31,447 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.botlink, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 08:37:31,448 sqlalchemy.engine.Engine INFO [generated in 0.00043s] ()
+2025-02-02, Sun, 08:37:31,469 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:37:31,471 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 08:37:31,517 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 08:37:37,574 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:37:37,581 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:37:37,581 sqlalchemy.engine.Engine INFO [generated in 0.00085s] (7675368439,)
+2025-02-02, Sun, 08:37:37,584 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:37:37,847 aiogram.event INFO Update id=450710614 is handled. Duration 634 ms by bot id=7771835226
+2025-02-02, Sun, 08:37:41,261 aiogram.event INFO Update id=450710615 is handled. Duration 85 ms by bot id=7771835226
+2025-02-02, Sun, 08:37:43,137 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 08:37:43,138 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:37:43,140 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 08:37:43,140 sqlalchemy.engine.Engine INFO [generated in 0.00033s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 08:37:43,144 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 08:37:43,204 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:37:43,204 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:37:43,204 sqlalchemy.engine.Engine INFO [cached since 5.624s ago] (7675368439,)
+2025-02-02, Sun, 08:37:43,207 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:37:43,404 aiogram.event INFO Update id=450710616 is handled. Duration 268 ms by bot id=7771835226
+2025-02-02, Sun, 08:37:46,499 aiogram.event INFO Update id=450710617 is handled. Duration 139 ms by bot id=7771835226
+2025-02-02, Sun, 08:37:48,766 aiogram.event INFO Update id=450710618 is handled. Duration 550 ms by bot id=7771835226
+2025-02-02, Sun, 08:38:16,177 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:38:16,179 sqlalchemy.engine.Engine INFO INSERT INTO infobots (chat_id, token, botlink, company_name, samples_ans, wb_token) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR(400)[], $6::VARCHAR) RETURNING infobots.id
+2025-02-02, Sun, 08:38:16,180 sqlalchemy.engine.Engine INFO [generated in 0.00047s] (None, '7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY', None, None, None, None)
+2025-02-02, Sun, 08:38:16,182 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:38:16,184 aiogram.event INFO Update id=450710619 is not handled. Duration 1047 ms by bot id=7771835226
+2025-02-02, Sun, 08:38:16,184 aiogram.event ERROR Cause exception while process update id=450710619 by bot id=7771835226
+IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "botlink" of relation "infobots" violates not-null constraint
+DETAIL:  Failing row contains (1, null, 7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY, null, null, null, null).
+[SQL: INSERT INTO infobots (chat_id, token, botlink, company_name, samples_ans, wb_token) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR(400)[], $6::VARCHAR) RETURNING infobots.id]
+[parameters: (None, '7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY', None, None, None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 545, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 176, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 267, in __bind_execute
+    data, status, _ = await self.__do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/asyncpg/prepared_stmt.py", line 256, in __do_execute
+    return await executor(protocol)
+  File "asyncpg/protocol/protocol.pyx", line 206, in bind_execute
+asyncpg.exceptions.NotNullViolationError: null value in column "botlink" of relation "infobots" violates not-null constraint
+DETAIL:  Failing row contains (1, null, 7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY, null, null, null, null).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "botlink" of relation "infobots" violates not-null constraint
+DETAIL:  Failing row contains (1, null, 7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY, null, null, null, null).
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 167, in get_bot_token
+    await add_bot_info(new_bots[message.from_user.id])
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 24, in add_bot_info
+    bot_info = await InfoBotDAO.add(*args, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 20, in add
+    raise e
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 17, in add
+    await session.commit()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/ext/asyncio/session.py", line 1011, in commit
+    await greenlet_spawn(self.sync_session.commit)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 580, in execute
+    self._adapt_connection.await_(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 558, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 508, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 792, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.NotNullViolationError'>: null value in column "botlink" of relation "infobots" violates not-null constraint
+DETAIL:  Failing row contains (1, null, 7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY, null, null, null, null).
+[SQL: INSERT INTO infobots (chat_id, token, botlink, company_name, samples_ans, wb_token) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR(400)[], $6::VARCHAR) RETURNING infobots.id]
+[parameters: (None, '7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY', None, None, None, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-02-02, Sun, 08:38:37,97 aiogram.event INFO Update id=450710620 is not handled. Duration 1 ms by bot id=7771835226
+2025-02-02, Sun, 08:38:37,97 aiogram.event ERROR Cause exception while process update id=450710620 by bot id=7771835226
+TokenValidationError: Token is invalid!
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 162, in get_bot_token
+    list_n = await bot_init(event_loop=event_loop, token=message.text.strip(), chat_id=int(message.from_user.id))
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/create_bot.py", line 25, in bot_init
+    bot = Bot(token)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 286, in __init__
+    validate_token(token)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/utils/token.py", line 27, in validate_token
+    raise TokenValidationError("Token is invalid!")
+aiogram.utils.token.TokenValidationError: Token is invalid!
+2025-02-02, Sun, 08:47:29,12 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 08:47:29,12 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 08:47:29,13 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 08:47:29,265 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-42' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 08:47:29,502 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x71162ffc2530>
+2025-02-02, Sun, 08:51:21,5 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 08:51:21,6 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:51:21,10 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 08:51:21,10 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:51:21,12 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 08:51:21,13 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:51:21,15 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:51:21,36 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 08:51:21,36 sqlalchemy.engine.Engine INFO [generated in 0.00047s] ()
+2025-02-02, Sun, 08:51:21,57 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:51:21,59 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 08:51:21,187 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 08:51:28,304 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:51:28,310 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:51:28,310 sqlalchemy.engine.Engine INFO [generated in 0.00078s] (7675368439,)
+2025-02-02, Sun, 08:51:28,313 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:51:28,708 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:51:28,708 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:51:28,709 sqlalchemy.engine.Engine INFO [cached since 0.3994s ago] (7675368439,)
+2025-02-02, Sun, 08:51:28,711 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:51:28,712 aiogram.event INFO Update id=450710621 is handled. Duration 1098 ms by bot id=7771835226
+2025-02-02, Sun, 08:51:48,66 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:51:48,66 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:51:48,66 sqlalchemy.engine.Engine INFO [cached since 19.76s ago] (7675368439,)
+2025-02-02, Sun, 08:51:48,69 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:51:48,884 aiogram.event INFO Update id=450710622 is handled. Duration 1222 ms by bot id=7771835226
+2025-02-02, Sun, 08:51:51,263 aiogram.event INFO Update id=450710623 is handled. Duration 62 ms by bot id=7771835226
+2025-02-02, Sun, 08:51:53,192 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 08:51:53,193 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:51:53,196 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 08:51:53,196 sqlalchemy.engine.Engine INFO [generated in 0.00050s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 08:51:53,200 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 08:51:53,265 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:51:53,265 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:51:53,266 sqlalchemy.engine.Engine INFO [cached since 24.96s ago] (7675368439,)
+2025-02-02, Sun, 08:51:53,267 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:51:53,349 aiogram.event INFO Update id=450710624 is handled. Duration 158 ms by bot id=7771835226
+2025-02-02, Sun, 08:51:55,36 aiogram.event INFO Update id=450710625 is handled. Duration 134 ms by bot id=7771835226
+2025-02-02, Sun, 08:51:56,638 aiogram.event INFO Update id=450710626 is handled. Duration 372 ms by bot id=7771835226
+2025-02-02, Sun, 08:52:08,244 aiogram.event INFO Update id=450710627 is not handled. Duration 922 ms by bot id=7771835226
+2025-02-02, Sun, 08:52:08,244 aiogram.event ERROR Cause exception while process update id=450710627 by bot id=7771835226
+KeyError: 0
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 166, in get_bot_token
+    await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+KeyError: 0
+2025-02-02, Sun, 08:55:02,350 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 08:55:02,351 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 08:55:02,351 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 08:55:02,604 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-49' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 08:55:03,251 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x737aee69a8f0>
+2025-02-02, Sun, 08:55:19,466 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 08:55:19,466 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:55:19,469 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 08:55:19,470 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:55:19,472 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 08:55:19,472 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 08:55:19,474 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:55:19,491 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 08:55:19,491 sqlalchemy.engine.Engine INFO [generated in 0.00041s] ()
+2025-02-02, Sun, 08:55:19,511 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:55:19,513 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 08:55:19,850 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 08:55:23,375 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:55:23,381 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:55:23,381 sqlalchemy.engine.Engine INFO [generated in 0.00081s] (7675368439,)
+2025-02-02, Sun, 08:55:23,384 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:55:23,581 aiogram.event INFO Update id=450710628 is handled. Duration 685 ms by bot id=7771835226
+2025-02-02, Sun, 08:55:26,213 aiogram.event INFO Update id=450710629 is handled. Duration 163 ms by bot id=7771835226
+2025-02-02, Sun, 08:55:27,949 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 08:55:27,950 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:55:27,952 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 08:55:27,952 sqlalchemy.engine.Engine INFO [generated in 0.00036s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 08:55:27,956 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 08:55:28,94 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 08:55:28,95 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 08:55:28,95 sqlalchemy.engine.Engine INFO [cached since 4.715s ago] (7675368439,)
+2025-02-02, Sun, 08:55:28,98 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 08:55:28,348 aiogram.event INFO Update id=450710630 is handled. Duration 400 ms by bot id=7771835226
+2025-02-02, Sun, 08:55:29,977 aiogram.event INFO Update id=450710631 is handled. Duration 603 ms by bot id=7771835226
+2025-02-02, Sun, 08:55:31,373 aiogram.event INFO Update id=450710632 is handled. Duration 274 ms by bot id=7771835226
+2025-02-02, Sun, 08:55:49,151 aiogram.event INFO Update id=450710633 is not handled. Duration 672 ms by bot id=7771835226
+2025-02-02, Sun, 08:55:49,151 aiogram.event ERROR Cause exception while process update id=450710633 by bot id=7771835226
+KeyError: 0
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 164, in get_bot_token
+    await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+KeyError: 0
+2025-02-02, Sun, 09:04:06,541 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:04:06,542 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:04:06,542 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:04:06,795 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-42' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:04:07,358 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7e18d95dab60>
+2025-02-02, Sun, 09:04:12,583 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 09:04:12,583 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:04:12,587 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 09:04:12,587 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:04:12,590 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 09:04:12,590 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:04:12,592 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:04:12,612 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:04:12,612 sqlalchemy.engine.Engine INFO [generated in 0.00033s] ()
+2025-02-02, Sun, 09:04:12,634 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:04:12,636 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 09:04:12,752 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:04:37,278 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:04:37,285 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:04:37,285 sqlalchemy.engine.Engine INFO [generated in 0.00107s] (7675368439,)
+2025-02-02, Sun, 09:04:37,289 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:04:37,994 aiogram.event INFO Update id=450710634 is handled. Duration 1330 ms by bot id=7771835226
+2025-02-02, Sun, 09:04:40,382 aiogram.event INFO Update id=450710635 is handled. Duration 212 ms by bot id=7771835226
+2025-02-02, Sun, 09:04:42,705 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 09:04:42,706 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:04:42,709 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 09:04:42,709 sqlalchemy.engine.Engine INFO [generated in 0.00040s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 09:04:42,713 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:04:42,773 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:04:42,774 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:04:42,774 sqlalchemy.engine.Engine INFO [cached since 5.489s ago] (7675368439,)
+2025-02-02, Sun, 09:04:42,776 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:04:43,16 aiogram.event INFO Update id=450710636 is handled. Duration 312 ms by bot id=7771835226
+2025-02-02, Sun, 09:04:44,638 aiogram.event INFO Update id=450710637 is handled. Duration 392 ms by bot id=7771835226
+2025-02-02, Sun, 09:04:46,430 aiogram.event INFO Update id=450710638 is handled. Duration 137 ms by bot id=7771835226
+2025-02-02, Sun, 09:04:49,568 aiogram.event INFO Update id=450710639 is not handled. Duration 510 ms by bot id=7771835226
+2025-02-02, Sun, 09:04:49,568 aiogram.event ERROR Cause exception while process update id=450710639 by bot id=7771835226
+KeyError: 0
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 163, in get_bot_token
+    await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+KeyError: 0
+2025-02-02, Sun, 09:06:31,4 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:06:31,5 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:06:31,5 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:06:31,259 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-42' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:06:31,641 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x739dd291eb30>
+2025-02-02, Sun, 09:09:39,341 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 09:09:39,342 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:09:39,346 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 09:09:39,346 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:09:39,349 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 09:09:39,349 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:09:39,352 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:09:39,371 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:09:39,372 sqlalchemy.engine.Engine INFO [generated in 0.00039s] ()
+2025-02-02, Sun, 09:09:39,393 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:09:39,395 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 09:09:39,576 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:10:18,863 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:10:18,870 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:10:18,870 sqlalchemy.engine.Engine INFO [generated in 0.00103s] (7675368439,)
+2025-02-02, Sun, 09:10:18,874 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:10:19,233 aiogram.event INFO Update id=450710640 is handled. Duration 1082 ms by bot id=7771835226
+2025-02-02, Sun, 09:10:21,103 aiogram.event INFO Update id=450710641 is handled. Duration 65 ms by bot id=7771835226
+2025-02-02, Sun, 09:10:23,579 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 09:10:23,580 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:10:23,583 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 09:10:23,583 sqlalchemy.engine.Engine INFO [generated in 0.00037s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 09:10:23,586 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:10:23,647 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:10:23,648 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:10:23,648 sqlalchemy.engine.Engine INFO [cached since 4.779s ago] (7675368439,)
+2025-02-02, Sun, 09:10:23,652 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:10:23,934 aiogram.event INFO Update id=450710642 is handled. Duration 357 ms by bot id=7771835226
+2025-02-02, Sun, 09:10:25,520 aiogram.event INFO Update id=450710643 is handled. Duration 510 ms by bot id=7771835226
+2025-02-02, Sun, 09:10:27,971 aiogram.event INFO Update id=450710644 is handled. Duration 402 ms by bot id=7771835226
+2025-02-02, Sun, 09:10:31,373 aiogram.event INFO Update id=450710645 is not handled. Duration 998 ms by bot id=7771835226
+2025-02-02, Sun, 09:10:31,374 aiogram.event ERROR Cause exception while process update id=450710645 by bot id=7771835226
+KeyError: 0
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 163, in get_bot_token
+    await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+KeyError: 0
+2025-02-02, Sun, 09:17:08,999 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:17:08,999 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:17:09,0 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:17:09,253 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-44' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:17:10,162 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7042f54967d0>
+2025-02-02, Sun, 09:17:16,463 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 09:17:16,463 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:17:16,467 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 09:17:16,467 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:17:16,469 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 09:17:16,470 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:17:16,472 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:17:16,490 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:17:16,490 sqlalchemy.engine.Engine INFO [generated in 0.00049s] ()
+2025-02-02, Sun, 09:17:16,512 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:17:16,514 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 09:17:16,560 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:17:42,89 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:17:42,95 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:17:42,96 sqlalchemy.engine.Engine INFO [generated in 0.00103s] (7675368439,)
+2025-02-02, Sun, 09:17:42,99 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:17:42,373 aiogram.event INFO Update id=450710646 is handled. Duration 689 ms by bot id=7771835226
+2025-02-02, Sun, 09:17:45,142 aiogram.event INFO Update id=450710647 is handled. Duration 190 ms by bot id=7771835226
+2025-02-02, Sun, 09:17:48,35 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 09:17:48,36 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:17:48,38 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 09:17:48,38 sqlalchemy.engine.Engine INFO [generated in 0.00039s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 09:17:48,41 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:17:48,101 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:17:48,101 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:17:48,101 sqlalchemy.engine.Engine INFO [cached since 6.007s ago] (7675368439,)
+2025-02-02, Sun, 09:17:48,104 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:17:48,294 aiogram.event INFO Update id=450710648 is handled. Duration 260 ms by bot id=7771835226
+2025-02-02, Sun, 09:17:50,76 aiogram.event INFO Update id=450710649 is handled. Duration 403 ms by bot id=7771835226
+2025-02-02, Sun, 09:17:51,373 aiogram.event INFO Update id=450710650 is handled. Duration 173 ms by bot id=7771835226
+2025-02-02, Sun, 09:17:53,879 aiogram.event INFO Update id=450710651 is not handled. Duration 275 ms by bot id=7771835226
+2025-02-02, Sun, 09:17:53,879 aiogram.event ERROR Cause exception while process update id=450710651 by bot id=7771835226
+KeyError: 0
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 163, in get_bot_token
+    await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+KeyError: 0
+2025-02-02, Sun, 09:21:24,148 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:21:24,149 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:21:24,149 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:21:24,402 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-42' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:21:24,840 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7db9c7ebe860>
+2025-02-02, Sun, 09:24:33,654 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 09:24:33,654 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:24:33,657 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 09:24:33,658 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:24:33,660 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 09:24:33,661 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:24:33,662 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:24:33,686 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:24:33,687 sqlalchemy.engine.Engine INFO [generated in 0.00045s] ()
+2025-02-02, Sun, 09:24:33,710 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:24:33,712 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 09:24:33,762 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:24:48,729 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:24:48,736 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:24:48,736 sqlalchemy.engine.Engine INFO [generated in 0.00091s] (7675368439,)
+2025-02-02, Sun, 09:24:48,739 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:24:49,184 aiogram.event INFO Update id=450710652 is handled. Duration 1576 ms by bot id=7771835226
+2025-02-02, Sun, 09:24:51,934 aiogram.event INFO Update id=450710653 is handled. Duration 204 ms by bot id=7771835226
+2025-02-02, Sun, 09:24:53,754 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 09:24:53,755 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:24:53,757 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 09:24:53,757 sqlalchemy.engine.Engine INFO [generated in 0.00036s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 09:24:53,761 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:24:53,871 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:24:53,872 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:24:53,872 sqlalchemy.engine.Engine INFO [cached since 5.137s ago] (7675368439,)
+2025-02-02, Sun, 09:24:53,875 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:24:54,80 aiogram.event INFO Update id=450710654 is handled. Duration 327 ms by bot id=7771835226
+2025-02-02, Sun, 09:24:55,262 aiogram.event INFO Update id=450710655 is handled. Duration 233 ms by bot id=7771835226
+2025-02-02, Sun, 09:24:57,118 aiogram.event INFO Update id=450710656 is handled. Duration 395 ms by bot id=7771835226
+2025-02-02, Sun, 09:24:59,754 aiogram.event INFO Update id=450710657 is not handled. Duration 681 ms by bot id=7771835226
+2025-02-02, Sun, 09:24:59,754 aiogram.event ERROR Cause exception while process update id=450710657 by bot id=7771835226
+IndexError: list index out of range
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 164, in get_bot_token
+    await add_bot_info(bot_list[message.from_user.id])
+IndexError: list index out of range
+2025-02-02, Sun, 09:25:16,831 aiogram.event INFO Update id=450710658 is not handled. Duration 1 ms by bot id=7771835226
+2025-02-02, Sun, 09:25:16,832 aiogram.event ERROR Cause exception while process update id=450710658 by bot id=7771835226
+TokenValidationError: Token is invalid!
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 160, in get_bot_token
+    list_n = await bot_init(event_loop=event_loop, token=message.text.strip(), chat_id=int(message.from_user.id))
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/create_bot.py", line 25, in bot_init
+    bot = Bot(token)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 286, in __init__
+    validate_token(token)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/utils/token.py", line 27, in validate_token
+    raise TokenValidationError("Token is invalid!")
+aiogram.utils.token.TokenValidationError: Token is invalid!
+2025-02-02, Sun, 09:28:17,991 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:28:17,992 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:28:17,992 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:28:18,246 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-41' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:28:18,794 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7713834da560>
+2025-02-02, Sun, 09:28:40,460 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 09:28:40,460 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:28:40,463 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 09:28:40,464 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:28:40,466 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 09:28:40,466 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:28:40,469 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:28:40,487 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:28:40,487 sqlalchemy.engine.Engine INFO [generated in 0.00042s] ()
+2025-02-02, Sun, 09:28:40,510 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:28:40,511 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 09:28:40,564 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:28:48,479 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:28:48,485 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:28:48,486 sqlalchemy.engine.Engine INFO [generated in 0.00119s] (7675368439,)
+2025-02-02, Sun, 09:28:48,489 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:28:48,990 aiogram.event INFO Update id=450710659 is handled. Duration 946 ms by bot id=7771835226
+2025-02-02, Sun, 09:28:51,708 aiogram.event INFO Update id=450710660 is handled. Duration 309 ms by bot id=7771835226
+2025-02-02, Sun, 09:28:54,130 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 09:28:54,131 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:28:54,134 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 09:28:54,134 sqlalchemy.engine.Engine INFO [generated in 0.00034s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 09:28:54,137 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:28:54,374 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:28:54,375 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:28:54,375 sqlalchemy.engine.Engine INFO [cached since 5.89s ago] (7675368439,)
+2025-02-02, Sun, 09:28:54,377 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:28:54,444 aiogram.event INFO Update id=450710661 is handled. Duration 315 ms by bot id=7771835226
+2025-02-02, Sun, 09:28:56,134 aiogram.event INFO Update id=450710662 is handled. Duration 639 ms by bot id=7771835226
+2025-02-02, Sun, 09:28:58,250 aiogram.event INFO Update id=450710663 is handled. Duration 496 ms by bot id=7771835226
+2025-02-02, Sun, 09:29:02,50 aiogram.event INFO Update id=450710664 is not handled. Duration 1325 ms by bot id=7771835226
+2025-02-02, Sun, 09:29:02,50 aiogram.event ERROR Cause exception while process update id=450710664 by bot id=7771835226
+TypeError: 'bot' is an invalid keyword argument for InfoBot
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 164, in get_bot_token
+    await add_bot_info(bot_list[list_n])
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 31, in wrapper
+    raise e  # Поднимаем исключение дальше
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/session.py", line 28, in wrapper
+    return await method(*args, session=session, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/set.py", line 24, in add_bot_info
+    bot_info = await InfoBotDAO.add(*args, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/db/dao.py", line 14, in add
+    new_instance = cls.model(**kwargs)
+  File "<string>", line 4, in __init__
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 571, in _initialize_instance
+    with util.safe_reraise():
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 569, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/sqlalchemy/orm/decl_base.py", line 2175, in _declarative_constructor
+    raise TypeError(
+TypeError: 'bot' is an invalid keyword argument for InfoBot
+2025-02-02, Sun, 09:29:13,497 aiogram.event INFO Update id=450710665 is not handled. Duration 0 ms by bot id=7771835226
+2025-02-02, Sun, 09:29:13,497 aiogram.event ERROR Cause exception while process update id=450710665 by bot id=7771835226
+TokenValidationError: Token is invalid!
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 160, in get_bot_token
+    list_n = await bot_init(event_loop=event_loop, token=message.text.strip(), chat_id=int(message.from_user.id))
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/create_bot.py", line 25, in bot_init
+    bot = Bot(token)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 286, in __init__
+    validate_token(token)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/utils/token.py", line 27, in validate_token
+    raise TokenValidationError("Token is invalid!")
+aiogram.utils.token.TokenValidationError: Token is invalid!
+2025-02-02, Sun, 09:33:16,863 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:33:16,864 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:33:16,864 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:33:17,117 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-42' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:33:17,495 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7b08cc46e920>
+2025-02-02, Sun, 09:39:53,598 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 09:39:53,598 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:39:53,602 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 09:39:53,602 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:39:53,604 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 09:39:53,604 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:39:53,606 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:39:53,625 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:39:53,625 sqlalchemy.engine.Engine INFO [generated in 0.00046s] ()
+2025-02-02, Sun, 09:39:53,648 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:39:53,649 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 09:39:53,932 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:40:21,143 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:40:21,149 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:40:21,149 sqlalchemy.engine.Engine INFO [generated in 0.00106s] (7675368439,)
+2025-02-02, Sun, 09:40:21,153 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:40:21,373 aiogram.event INFO Update id=450710666 is handled. Duration 524 ms by bot id=7771835226
+2025-02-02, Sun, 09:40:23,822 aiogram.event INFO Update id=450710667 is handled. Duration 178 ms by bot id=7771835226
+2025-02-02, Sun, 09:40:26,282 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 09:40:26,283 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:40:26,285 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 09:40:26,285 sqlalchemy.engine.Engine INFO [generated in 0.00049s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 09:40:26,288 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:40:26,377 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:40:26,377 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:40:26,378 sqlalchemy.engine.Engine INFO [cached since 5.229s ago] (7675368439,)
+2025-02-02, Sun, 09:40:26,381 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:40:26,584 aiogram.event INFO Update id=450710668 is handled. Duration 304 ms by bot id=7771835226
+2025-02-02, Sun, 09:40:28,117 aiogram.event INFO Update id=450710669 is handled. Duration 403 ms by bot id=7771835226
+2025-02-02, Sun, 09:40:29,555 aiogram.event INFO Update id=450710670 is handled. Duration 307 ms by bot id=7771835226
+2025-02-02, Sun, 09:40:37,945 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:40:38,57 sqlalchemy.engine.Engine INFO INSERT INTO infobots (chat_id, token, bot_username, company_name, samples_ans, wb_token) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR(400)[], $6::VARCHAR) RETURNING infobots.id
+2025-02-02, Sun, 09:40:38,57 sqlalchemy.engine.Engine INFO [generated in 0.00047s] (7675368439, '7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY', None, None, None, None)
+2025-02-02, Sun, 09:40:38,61 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:40:38,64 aiogram.event INFO Update id=450710671 is handled. Duration 1689 ms by bot id=7771835226
+2025-02-02, Sun, 09:40:44,403 aiogram.event INFO Update id=450710672 is not handled. Duration 0 ms by bot id=7771835226
+2025-02-02, Sun, 09:40:44,403 aiogram.event ERROR Cause exception while process update id=450710672 by bot id=7771835226
+TypeError: 'Bot' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 175, in get_wb_token
+    list_n = await get_bot_row(chat_id=int(message.from_user.id))
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/create_bot.py", line 43, in get_bot_row
+    if bot[i]['chat_id'] == chat_id or bot[i]['dp'] == dp:
+TypeError: 'Bot' object is not subscriptable
+2025-02-02, Sun, 09:44:29,972 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:44:29,973 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:44:29,973 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:44:30,225 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-43' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:44:32,693 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7f65f57a6860>
+2025-02-02, Sun, 09:45:17,485 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-02, Sun, 09:45:17,485 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:45:17,491 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-02, Sun, 09:45:17,492 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:45:17,496 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-02, Sun, 09:45:17,497 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-02, Sun, 09:45:17,500 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:45:17,528 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:45:17,528 sqlalchemy.engine.Engine INFO [generated in 0.00055s] ()
+2025-02-02, Sun, 09:45:17,558 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:45:17,560 aiogram.dispatcher INFO Start polling
+2025-02-02, Sun, 09:45:17,861 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:45:32,192 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:45:32,201 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:45:32,202 sqlalchemy.engine.Engine INFO [generated in 0.00127s] (7675368439,)
+2025-02-02, Sun, 09:45:32,206 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:45:32,604 aiogram.event INFO Update id=450710673 is handled. Duration 814 ms by bot id=7771835226
+2025-02-02, Sun, 09:45:35,267 aiogram.event INFO Update id=450710674 is handled. Duration 69 ms by bot id=7771835226
+2025-02-02, Sun, 09:45:37,449 root INFO REGISTRATION DATA: Dm_dev_acc, Devid, None, False
+2025-02-02, Sun, 09:45:37,451 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:45:37,455 sqlalchemy.engine.Engine INFO INSERT INTO users (chat_id, username, first_name, promocode, marketer, balance) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::BOOLEAN, $6::BIGINT) RETURNING users.id
+2025-02-02, Sun, 09:45:37,455 sqlalchemy.engine.Engine INFO [generated in 0.00080s] (7675368439, 'Dm_dev_acc', 'Devid', None, False, 0)
+2025-02-02, Sun, 09:45:37,460 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:45:37,525 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:45:37,526 sqlalchemy.engine.Engine INFO SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.chat_id = $1::BIGINT
+2025-02-02, Sun, 09:45:37,526 sqlalchemy.engine.Engine INFO [cached since 5.326s ago] (7675368439,)
+2025-02-02, Sun, 09:45:37,529 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-02, Sun, 09:45:37,798 aiogram.event INFO Update id=450710675 is handled. Duration 350 ms by bot id=7771835226
+2025-02-02, Sun, 09:45:39,54 aiogram.event INFO Update id=450710676 is handled. Duration 408 ms by bot id=7771835226
+2025-02-02, Sun, 09:45:40,615 aiogram.event INFO Update id=450710677 is handled. Duration 409 ms by bot id=7771835226
+2025-02-02, Sun, 09:45:42,703 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:45:42,927 sqlalchemy.engine.Engine INFO INSERT INTO infobots (chat_id, token, bot_username, company_name, samples_ans, wb_token) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR(400)[], $6::VARCHAR) RETURNING infobots.id
+2025-02-02, Sun, 09:45:42,928 sqlalchemy.engine.Engine INFO [generated in 0.00083s] (7675368439, '7688878272:AAHz4kpGsx1Q8nq5PZ9NVYm-6XvIlmevWpY', None, None, None, None)
+2025-02-02, Sun, 09:45:42,933 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:45:42,936 aiogram.event INFO Update id=450710678 is handled. Duration 696 ms by bot id=7771835226
+2025-02-02, Sun, 09:45:47,966 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-02, Sun, 09:45:47,967 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-02, Sun, 09:45:47,967 sqlalchemy.engine.Engine INFO [cached since 30.44s ago] ()
+2025-02-02, Sun, 09:45:47,973 sqlalchemy.engine.Engine INFO UPDATE infobots SET wb_token=$1::VARCHAR WHERE infobots.id = $2::BIGINT
+2025-02-02, Sun, 09:45:47,973 sqlalchemy.engine.Engine INFO [generated in 0.00045s] ('TOKENWB', 3)
+2025-02-02, Sun, 09:45:47,976 sqlalchemy.engine.Engine INFO COMMIT
+2025-02-02, Sun, 09:45:47,980 aiogram.event INFO Update id=450710679 is handled. Duration 792 ms by bot id=7771835226
+2025-02-02, Sun, 09:46:49,828 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-02, Sun, 09:46:49,829 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-02, Sun, 09:46:49,830 aiogram.dispatcher INFO Polling stopped
+2025-02-02, Sun, 09:46:50,84 asyncio ERROR Task exception was never retrieved
+future: <Task finished name='Task-41' coro=<Dispatcher.start_polling() done, defined at /home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py:460> exception=ValueError('At least one bot instance is required to start polling')>
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 486, in start_polling
+    raise ValueError("At least one bot instance is required to start polling")
+ValueError: At least one bot instance is required to start polling
+2025-02-02, Sun, 09:46:50,670 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7a3bc159ead0>
