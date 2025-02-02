@@ -4,6 +4,7 @@ import configparser
 from aiogram.filters import Command
 from db.get import *
 bot_list = []
+tasks = []
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -11,30 +12,39 @@ print(config['bot']['token'])
 bot = Bot(token=config['bot']['token'])
 dp = Dispatcher(bot=bot)
 
-event_loop = asyncio.get_event_loop()
+
+async def nstart(message: types.Message):
+    list_n = await get_bot_row(message.chat.id)
+    await bot_list[list_n]['bot'].send_message(message.from_user.id, "Ну, что, начнём? ")
+
+async def main_bot():
+    await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')
+    await dp.start_polling(bot, skip_updates=False)
 
 async def init_when_restart():
-    bot_list = await get_all_bots()
-    for bot in bot_list:
-        await bot_init(event_loop, bot['token'], bot['chat_id'])
+    bot_from_db = await get_all_bots()
+    for ibot in bot_from_db:
+        list_n = await bot_init(tasks, ibot.token, ibot.chat_id)
+        bot_list[list_n]['dp'].message.register(nstart, Command('start'))
 
-async def start_bot(dp):
-    event_loop.create_task(dp.start_polling())
-    
-async def bot_init(event_loop, token, chat_id):
-    bot = Bot(token)
-    dp = Dispatcher(bot=bot)
-    bot_info = await bot.get_me()
+async def start_bot(dp: Dispatcher, bot : Bot):
+    tasks.append(asyncio.create_task(dp.start_polling(bot)))
+
+async def bot_init(tasks, token, chat_id):
+    nbot = Bot(token)
+    ndp = Dispatcher(bot=nbot)
+    bot_info = await nbot.get_me()
     bot_name = bot_info.username
     if bot_info == None:
         return None
 
-    bot_list.append({'bot':bot, 'dp':dp, 'bot_username':bot_name, 'chat_id':chat_id})    
-    @dp.message(Command('start'))
-    async def process_start_command(message: types.Message):
-        await message.reply("Привет!\nНапиши мне что-нибудь!")
-    
-    await start_bot(dp)
+    bot_list.append({'bot':nbot, 'dp':ndp, 'bot_username':bot_name, 'chat_id':chat_id})    
+    n = await get_bot_row(chat_id)
+
+    await bot_list[n]['bot'].send_message(chat_id, 'Сообщение работает!')
+       
+    await start_bot(ndp, nbot)
+
     return int(len(bot_list)-1)
 
 async def get_bot_row(chat_id : int = None, dp : Dispatcher = None):
@@ -43,4 +53,6 @@ async def get_bot_row(chat_id : int = None, dp : Dispatcher = None):
         if bot_list[i]['chat_id'] == chat_id or bot_list[i]['dp'] == dp:
             return i
     return None
-    
+
+
+

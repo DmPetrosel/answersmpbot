@@ -4,19 +4,25 @@ from func.selling import register_selling_handlers
 from create_bot import *
 from func.selling import *
 import logging
+import threading
 logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', encoding='utf-8', filemode='a', filename='data/log.log')
 config = configparser.ConfigParser()
 config.read('config.ini')
 register_selling_handlers(dp)
 
-
-
-
 async def main():
-    await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')
     await init_when_restart()
-    await dp.start_polling(bot, skip_updates=False)
-
+    tasks.append(asyncio.create_task(main_bot()))
+    await asyncio.gather(*tasks)
 
 asyncio.run(main())
-event_loop.run_forever()
+
+
+# def run_event_loop(loop):
+#     asyncio.set_event_loop(loop)
+#     loop.run_forever()
+
+
+
+# thread = threading.Thread(target=my_event_loop.run_forever, daemon=False)
+# thread.start()
