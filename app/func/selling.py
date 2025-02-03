@@ -158,11 +158,12 @@ async def promo_continue(chat_id, price):
     await bot.send_message(chat_id, f'Ваша цена: {price}', reply_markup=promo_continue_kb())
 
 async def get_bot_token(message: types.Message, state: FSMContext):
-    list_n = await bot_init(tasks, token=message.text.strip(), chat_id=int(message.from_user.id))
+    list_n = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
     new_bot[message.from_user.id] = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
     new_bot[message.from_user.id]['token'] = message.text.strip()
+    new_bot[message.from_user.id]['managers'] = [message.from_user.id]
     if list_n != None:
         await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы.')
         await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
@@ -186,7 +187,7 @@ async def get_wb_token(message: types.Message, state: FSMContext):
 
 def register_selling_handlers(dp):
     dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call', 'no_pay_call', 'how_to_create_bot_call'))
-    dp.message.register(start, Command(commands=("start", "restart", "help")), State(state="*"))
+    dp.message.register(start, Command(commands=("start", "restart")), State(state="*"))
     dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
     dp.message.register(get_bot_token, StateFilter('get_bot_token'))
     dp.message.register(get_wb_token, StateFilter('get_wb_token'))

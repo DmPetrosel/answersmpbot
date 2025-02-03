@@ -21,6 +21,7 @@ class InfoBot(Base):
     company_name = Column(String(256), nullable=True)
     samples_ans = Column(ARRAY(String(400)), nullable=True)
     wb_token = Column(String(256), nullable=True)
+    managers = Column(ARRAY(BigInteger), nullable=True)
     user = relationship("User", backref='infobots', lazy='joined', uselist=False)
 
 class Promo(Base):
