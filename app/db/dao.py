@@ -86,6 +86,19 @@ class BaseDAO:
         result = await session.execute(query)
         records = result.scalar_one_or_none()
         return records
+    @classmethod
+    async def delete_by_id(cls, *args, session:AsyncSession, **kwargs):
+        instance = select(cls.model).where(args[0] == cls.model.id)
+        result = await session.execute(instance)
+        query = result.scalar_one_or_none()
+        session.delete(query)
+        try:
+            await session.commit()
+        except SQLAlchemyError as e:
+            await session.rollback()
+            raise e
+        return instance
+        
         
 class UserDAO(BaseDAO):
     model = User

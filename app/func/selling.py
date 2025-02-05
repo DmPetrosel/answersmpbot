@@ -151,6 +151,15 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
     elif callback.data == 'how_to_create_bot_call':
         await bot.send_message(callback.from_user.id, 'https://core.telegram.org/bots')
         await state.set_state("get_bot_token")
+    elif callback.data == 'cancel_call':
+        await callback.message.edit_text('Действие отменено.\n\nДля управления воспользуйтесь командами')
+    elif callback.data.startswith('del_bot_next_'):
+        await callback.message.edit_text('Вы уверены, что хотите удалить бота?', reply_markup=del_bot_kb(int(callback.data.split('_')[-1])))
+    elif callback.data.startswith('del_bot_yes_'):
+        this_bot = get_one_bot(id=int(callback.data.split('_')[-1]))
+        await delete_bot(int(callback.data.split('_')[-1]))
+        await bot.send_message(callback.from_user.id, 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
+        
     else:
         await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     

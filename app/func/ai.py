@@ -1,19 +1,19 @@
 from gigachat import GigaChat
 from gigachat.models import Chat, Messages, MessagesRole
 from configparser import ConfigParser
-from .wbstat import *
+from wbstat import *
 config = ConfigParser()
-config.read('app/config.ini', encoding='utf-8')
-access_token = config['gigachat']['access_token']
+config.read('config.ini', encoding='utf-8')
+access_token = config.get('gigachat','access_token')
 def generate_answer_for_feedback_ai(company, company_description, feedback):
     payload = Chat(
         messages=[
             Messages(
                 role=MessagesRole.SYSTEM,
-                content="Ты хороший в внимательный продавец в компании" + company + ", с таким описанием: " + company_description 
+                content="Ты хороший в внимательный продавец в компании" + company + ", с таким описанием: " + company_description +"\nНапиши вежливый ответ на отзыв покупателя в итернете."
             )
         ],
-        temperature=1,
+        temperature=0,
         max_tokens=100,
     )
 
@@ -39,4 +39,4 @@ if __name__ == '__main__':
     articuls = "Краски - Арт 183804171, Колонки - Арт 183804172, Картинки - Арт 183804173, Клавиатура - Арт 111804171, Мышь - Арт 112804172, Наушники - Арт 113804173"
     while True:
         feedback = input("Введите отзыв: ")
-        generate_answer_for_feedback_ai(company, company_description, articuls, feedback)
+        print(generate_answer_for_feedback_ai(company, company_description, feedback))

@@ -13,3 +13,5 @@ link = botlink
 default = 140000
 [support]
 support = @username
+[gigachat]
+access_token=234234432AccessTokenGottenInAccount242332324adsfadfsdafs

@@ -13,6 +13,10 @@ async def get_all_bots(*args, session: AsyncSession, **kwargs):
     return await InfoBotDAO.get_all(*args, session=session, **kwargs)
 
 @connection
+async def get_one_bot(*args, session: AsyncSession, **kwargs):
+    return await InfoBotDAO.get_by_kwarg_one(*args, session=session, **kwargs)
+
+@connection
 async def get_promo_by_id(promo_id, session:AsyncSession, **kwargs):
     return await PromoDAO.get_by_id(promo_id, session=session)
 @connection

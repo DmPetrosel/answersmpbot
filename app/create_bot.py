@@ -17,8 +17,8 @@ dp = Dispatcher(bot=bot)
 async def set_commands_main(bot: Bot):
     await bot(SetMyCommands(commands=[types.BotCommand(command='start', description='Начать работу'),
                                types.BotCommand(command='help', description='Поддержка'),
-                               types.BotCommand(command='add', description='Добавить новый'),
-                               types.BotCommand(command='del', description='Удалить бот'),
+                               types.BotCommand(command='add', description='Новый бот'),
+                               types.BotCommand(command='delb', description='Удалить бот'),
                                types.BotCommand(command='addm', description='Добавить менеджера'),
                                types.BotCommand(command='delm', description='Удалить менеджера')
                                ]))
@@ -26,6 +26,10 @@ async def set_commands_main(bot: Bot):
 async def main_bot():
     await set_commands_main(bot)
     dp.message.register(help, Command('help'))
+    dp.message.register(add_bot, Command('add'))
+    dp.message.register(delete_bot, Command('delb'))                    
+    dp.message.register(add_manager, Command('addm'))                    
+    dp.message.register(delete_manager, Command('delm'))                    
     await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')
     await dp.start_polling(bot, skip_updates=False)
 

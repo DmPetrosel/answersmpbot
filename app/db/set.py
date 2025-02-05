@@ -29,3 +29,9 @@ async def update_promo(*args, **kwargs):
     # data = promocode_data if promocode_data else kwargs
     promocode = await PromoDAO.update_by_id(*args, **kwargs)
     return promocode
+
+@connection
+async def delete_bot(*args, **kwargs):
+    bot_info = await InfoBotDAO.delete_by_id(*args, **kwargs)
+    return bot_info
+    
