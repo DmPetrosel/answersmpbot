@@ -156,10 +156,18 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
     elif callback.data.startswith('del_bot_next_'):
         await callback.message.edit_text('Вы уверены, что хотите удалить бота?', reply_markup=del_bot_kb(int(callback.data.split('_')[-1])))
     elif callback.data.startswith('del_bot_yes_'):
-        this_bot = get_one_bot(id=int(callback.data.split('_')[-1]))
         await delete_bot(int(callback.data.split('_')[-1]))
         await bot.send_message(callback.from_user.id, 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
-        
+    elif callback.data.startswith('add_manager_choose_them_'):
+        tbot_data = get_one_bot(chat_id = int(callback.data.split('_')[-1]))
+        await bot.send_message(callback.from_user.id, f'Выберете менеджера из списка. Если его в списке нет, вероятно, он не нажал кнопу старт в боте {tbot_data.bot_username}', reply_markup=add_manager_list_kb(tbot_data.bot_username))    
+    elif callback.data.startswith('add_manager_next_'):
+        success = await update_register(id=callback.data.split('_')[-1], approved = True)
+        if success:
+            await bot.send_message(callback.from_user.id, 'Менеджер добавлен.')
+        else:
+            await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')
+            
     else:
         await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     
@@ -172,11 +180,12 @@ async def get_bot_token(message: types.Message, state: FSMContext):
 
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
     new_bot[message.from_user.id]['token'] = message.text.strip()
-    new_bot[message.from_user.id]['managers'] = [message.from_user.id]
     if list_n != None:
         await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы.')
         await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
         await add_bot_info(new_bot[message.from_user.id])
+        # TODO check if it correct and all fields exists
+        await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[n]['bot_username'])
         await state.set_state('get_wb_token')
     else:
         await bot.send_message(message.from_user.id, f'Бот не подключён. Попробуйте ещё раз. \n\nВведите токен бота: ')

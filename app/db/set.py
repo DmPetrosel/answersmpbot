@@ -14,6 +14,11 @@ async def add_user(*args, **kwargs):
     return user
 
 @connection
+async def add_register(*args, **kwargs):
+    register = await RegisterDAO.add(*args, **kwargs)
+    return register
+
+@connection
 async def add_promocode(*args, **kwargs):
     # data = promocode_data if promocode_data else kwargs
     promocode = await PromoDAO.add(*args, **kwargs)
@@ -29,6 +34,15 @@ async def update_promo(*args, **kwargs):
     # data = promocode_data if promocode_data else kwargs
     promocode = await PromoDAO.update_by_id(*args, **kwargs)
     return promocode
+@connection
+async def update_register(*args, **kwargs):
+    # data = promocode_data if promocode_data else kwargs
+    register = await RegisterDAO.update_by_id(*args, **kwargs)
+    return register
+@connection
+async def update_register_dict_where_kwarg(*args, **kwargs):
+    register = await RegisterDAO.update_dict_where_kwarg(*args, **kwargs)
+    return register
 
 @connection
 async def delete_bot(*args, **kwargs):

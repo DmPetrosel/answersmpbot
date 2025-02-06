@@ -12,16 +12,23 @@ class User(Base):
     balance = Column(BigInteger, nullable=True, default=0, server_default='0')
     # promos = relationship("Promo", back_populates="user", lazy='joined', cascade='all, delete-orphan', uselist=True)
 
+class Register(Base):
+    id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
+    chat_id = Column(BigInteger, nullable=False)
+    usernname = Column(String(256), nullable=False)
+    name = Column(String(256), nullable=False)
+    bot_username = Column(String(256), ForeignKey('infobots.bot_username'), nullable=False)
+    approve = Column(Boolean, nullable=False, default=False)
+
 class InfoBot(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
     chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
     token = Column(String(256), nullable=False)
-    bot_username = Column(String(256), nullable=True)
+    bot_username = Column(String(256), nullable=True, unique=True)
     # payedtill = Column(Date, nullable=False)
     company_name = Column(String(256), nullable=True)
     samples_ans = Column(ARRAY(String(400)), nullable=True)
     wb_token = Column(String(256), nullable=True)
-    managers = Column(ARRAY(BigInteger), nullable=True)
     user = relationship("User", backref='infobots', lazy='joined', uselist=False)
 
 class Promo(Base):

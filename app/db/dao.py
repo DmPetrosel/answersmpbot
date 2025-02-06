@@ -108,3 +108,6 @@ class PromoDAO(BaseDAO):
 
 class InfoBotDAO(BaseDAO):
     model = InfoBot
+
+class RegisterDAO(BaseDAO):
+    model = Register
