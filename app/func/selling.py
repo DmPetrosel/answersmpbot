@@ -142,7 +142,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
     if callback.data == 'no_promo_call':
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = price
-        await write_registration()
+        await write_registration(callback.from_user.id)
     elif callback.data == 'pay_call':
         await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
         await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
