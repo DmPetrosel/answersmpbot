@@ -16,6 +16,8 @@ from func.marketer import *
 from func.states import *
 from db.session import Base
 import aiogram
+from middleware import *
+import traceback
 
 usr = {}
 user_obj = {}
@@ -140,7 +142,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
     if callback.data == 'no_promo_call':
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = price
-        await write_registration(callback.from_user.id)
+        await write_registration()
     elif callback.data == 'pay_call':
         await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
         await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
@@ -167,6 +169,21 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
             await bot.send_message(callback.from_user.id, 'Менеджер добавлен.')
         else:
             await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')
+    elif callback.data.startswith('del_manager_choose_them_'):
+        tbot = get_one_bot(id=int(callback.data.split('_')[-1]))
+        managers = await get_all_register(bot_username=tbot.bot_username)
+        if managers:
+            await bot.send_message(callback.from_user.id, 'Выберете менеджера для удаления', reply_markup=await del_manager_list_kb(tbot.bot_username))
+        else:
+            await bot.send_message(callback.from_user.id, 'Менеджеров нет.')
+            
+    elif callback.data.startswith('del_manager_next_'):
+        success = await update_register(id=callback.data.split('_')[-1], approved = False)
+        if success:
+            await bot.send_message(callback.from_user.id, 'Менеджер удалён.')
+        else:
+            await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')
+            
             
     else:
         await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
@@ -181,12 +198,17 @@ async def get_bot_token(message: types.Message, state: FSMContext):
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
     new_bot[message.from_user.id]['token'] = message.text.strip()
     if list_n != None:
-        await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы.')
-        await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
-        await add_bot_info(new_bot[message.from_user.id])
-        # TODO check if it correct and all fields exists
-        await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[n]['bot_username'])
-        await state.set_state('get_wb_token')
+        try:
+            new_bot[message.from_user.id]['bot_username'] = bot_list[list_n]['bot_username']
+            await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы.')
+            await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+            await add_bot_info(new_bot[message.from_user.id])
+            # TODO check if it correct and all fields exists
+            await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'])
+            await state.set_state('get_wb_token')
+        except Exception as e:
+            await bot.send_message(message.from_user.id, f'Бот не подключён. \n\n{e}\n\n{traceback.print_tb()}\n\nПопробуйте ещё раз. \n\nВведите токен бота: ')
+            await state.set_state("get_bot_token")    
     else:
         await bot.send_message(message.from_user.id, f'Бот не подключён. Попробуйте ещё раз. \n\nВведите токен бота: ')
         await state.set_state("get_bot_token")
@@ -204,9 +226,21 @@ async def get_wb_token(message: types.Message, state: FSMContext):
 
 
 def register_selling_handlers(dp):
-    dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call', 'no_pay_call', 'how_to_create_bot_call'))
+    dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call', 'no_pay_call', 'how_to_create_bot_call', 'cancel_call'))
     dp.message.register(start, Command(commands=("start", "restart")), State(state="*"))
     dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
     dp.message.register(get_bot_token, StateFilter('get_bot_token'))
     dp.message.register(get_wb_token, StateFilter('get_wb_token'))
     # dp.callback_query.register(callback_selling, StateFilter('no_promo_call', 'pay_call' ))
+
+async def main_bot():
+    await set_commands_main(bot)
+    # dp.message.register(help, Command('help'), StateFilter('*'))
+    dp.message.register(add_bot, Command('add'), StateFilter('*'))
+    dp.message.register(delete_bot_ask, Command('delb'), StateFilter('*'))                    
+    dp.message.register(add_manager, Command('addm'), StateFilter('*'))                    
+    dp.message.register(delete_manager, Command('delm'), StateFilter('*'))  
+    register_selling_handlers(dp)
+    dp.message.outer_middleware(MyMiddleware(bot))
+    await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')
+    await dp.start_polling(bot, skip_updates=False)

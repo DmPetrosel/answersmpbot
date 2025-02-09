@@ -20,13 +20,13 @@ def how_to_create_bot_kb():
         [InlineKeyboardButton(text='Назад', callback_data='pay_call')]
     ])
 
-def delete_bot_list_kb(chat_id: int):
-    user_bots = get_all_bots(chat_id=chat_id)
+async def delete_bot_list_kb(chat_id: int):
+    user_bots = await get_all_bots(chat_id=chat_id)
     if user_bots:
         kb = InlineKeyboardMarkup(inline_keyboard=[])
         for bot in user_bots:
-            kb.add(InlineKeyboardButton(text=bot.bot_username, callback_data=f'del_bot_next_{bot.id}'))
-        kb.add(InlineKeyboardButton(text='Отмена', callback_data='cancel_call'))
+            kb.inline_keyboard.append([InlineKeyboardButton(text=bot.bot_username, callback_data=f'del_bot_next_{bot.id}')])
+        kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='cancel_call')])
         return kb
     else:
         return InlineKeyboardMarkup(inline_keyboard=[
@@ -37,5 +37,27 @@ def del_bot_kb(bot_id: int):
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text='Да, я хочу удалить', callback_data=f'del_bot_yes_{bot_id}'),
         InlineKeyboardButton(text='Нет, я передумал', callback_data=f'cancel_call')]
+    ])
+    
+async def delete_manager_choose_bot_list_kb(chat_id: int):
+    user_bots = await get_all_bots(chat_id=chat_id)
+    kb = InlineKeyboardMarkup(inline_keyboard=[])
+    for bot in user_bots:
+        kb.inline_keyboard.append([InlineKeyboardButton(text=f'{bot.bot_username}', callback_data=f'del_manager_choose_them_{bot.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='cancel_call')])
+    return kb
+
+async def del_manager_list_kb(bot_username: str):
+    user_managers = await get_all_register(bot_username=bot_username)
+    kb = InlineKeyboardMarkup(inline_keyboard=[])
+    for manager in user_managers:
+        kb.inline_keyboard.append([InlineKeyboardButton(text=manager.username, callback_data=f'del_manager_next_{manager.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='cancel_call')])
+    return kb
+    
+def send_to_owner_kb(owner_chat_id: int):
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text='Отправить', callback_data=f'send_to_owner_yes_{owner_chat_id}')],
+        [InlineKeyboardButton(text='Отмена', callback_data='subcancel_call')]
     ])
     

@@ -8,7 +8,6 @@ import threading
 logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', encoding='utf-8', filemode='a', filename='data/log.log')
 config = configparser.ConfigParser()
 config.read('config.ini')
-register_selling_handlers(dp)
 
 async def main():
     await init_when_restart()

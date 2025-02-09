@@ -4,6 +4,7 @@ from configparser import ConfigParser
 from aiogram.methods import SetMyCommands
 from db.get import *
 from db.set import *
+import logging
 bot_list = []
 
 async def set_subbot_commands(bot: MyBot):
@@ -24,11 +25,22 @@ async def nstart(message: types.Message, bot: MyBot):
     config.read('config.ini')
     await bot.send_message(message.from_user.id, f"Привет, {message.from_user.first_name}! Я бот АОтветы. \n\nЗдесь буду присылать сообщения с отзывами, а также генерировать ответ на них. Вы можете включить автоматическую отправку сгенерированных сообщений. \n\nА также можете отвечать на сообщения самостоятельно. Когда вы отвечаете самостоятельно, средства с баланса не списываются.\n\nЕсли какие-то вопросы или что-то случилось, напишите нам в поддержку {config.get('support', 'support')}")
     register = await get_register_by_kwargs(chat_id=int(message.from_user.id))
-    if register and register.approve == False:
-        await bot.send_message(message.from_user.id, f'Вас ещё не подтвердили как менеджера.\n\nОбратитесь к владельцу бота.\n\nИз главного бота можно выбрать команду "Добавить менеджера".')
+    logging.info(f"Register: {register}")
+    if message.from_user.username == None:
+        await bot.send_message(message.from_user.id, "Перед началом работы, пожалуйста, добавьте username. \n\nЭто можно сделать в настройках.")
+    elif register == None:
+        bot_username = (await bot.get_me()).username
+        logging.info("add_register: " + str(bot_username))
+        await add_register(chat_id=int(message.from_user.id), username=message.from_user.username, name=message.from_user.first_name, bot_username=bot_username, approve=False)
+    # if register and register.approve == False:
+    #     await bot.send_message(message.from_user.id, f'Вас ещё не подтвердили как менеджера.\n\nОбратитесь к владельцу бота.\n\nИз главного бота можно выбрать команду "Добавить менеджера".')
 
 async def help(message: types.Message, bot: MyBot):
     config = ConfigParser()
     config.read('config.ini')
 
     await bot.send_message(message.from_user.id, f"Если что-то случилось или есть вопросы, \n\nнапишите {config.get('support', 'support')}")
+
+async def callbacks(callback: types.CallbackQuery, bot: MyBot):
+    if callback.data == 'sbb_cancel_call':
+        await callback.message.edit_text('Действие отменено.\n\nДля управления воспользуйтесь командами')

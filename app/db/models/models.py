@@ -15,7 +15,7 @@ class User(Base):
 class Register(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
     chat_id = Column(BigInteger, nullable=False)
-    usernname = Column(String(256), nullable=False)
+    username = Column(String(256), nullable=False)
     name = Column(String(256), nullable=False)
     bot_username = Column(String(256), ForeignKey('infobots.bot_username'), nullable=False)
     approve = Column(Boolean, nullable=False, default=False)
