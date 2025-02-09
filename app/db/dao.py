@@ -91,7 +91,7 @@ class BaseDAO:
         instance = select(cls.model).where(args[0] == cls.model.id)
         result = await session.execute(instance)
         query = result.scalar_one_or_none()
-        session.delete(query)
+        await session.delete(query)
         try:
             await session.commit()
         except SQLAlchemyError as e:

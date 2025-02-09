@@ -34,7 +34,9 @@ class NMiddlewareMessage(BaseMiddleware):
         event: types.Message,
         data: Dict[str, Any],
     ):
-        if event.text == '/help':
+        if event.text == '/start':
+            pass
+        elif event.text == '/help':
             config.read('config.ini')
             await self.bot.send_message(event.from_user.id, f"Если что-то случилось или есть вопросы, \n\nнапишите {config.get('support', 'support')}")
         else:
