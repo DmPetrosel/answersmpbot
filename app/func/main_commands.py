@@ -16,7 +16,7 @@ async def delete_bot_ask(message: types.Message, state: FSMContext, bot: MyBot):
 
 
 async def add_manager(message: types.Message, state: FSMContext, bot: MyBot):
-    await bot.send_message(message.from_user.id, 'Выберете бота для добавления менеджера', reply_markup=choose_bot_for_add_manager_kb(int(message.from_user.id)))
+    await bot.send_message(message.from_user.id, 'Выберете бота для добавления менеджера', reply_markup=await choose_bot_for_add_manager_kb(int(message.from_user.id)))
 
 async def delete_manager(message: types.Message, state: FSMContext, bot: MyBot):
     await bot.send_message(message.from_user.id, 'Выберете бота для удаления менеджера', reply_markup=await delete_manager_choose_bot_list_kb(int(message.from_user.id)))

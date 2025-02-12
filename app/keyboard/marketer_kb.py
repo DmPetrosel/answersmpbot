@@ -8,12 +8,13 @@ def marketer_menu_kb():
         [InlineKeyboardButton(text='Создать новый', callback_data='create_promo')],
     ])
 
-def add_manager_list_kb(bot_username :str):
+async def add_manager_list_kb(bot_username :str):
+    bt = await get_one_bot(bot_username=bot_username)
     not_approved_managers = get_all_register(bot_username=bot_username, approved=False)
     kb = InlineKeyboardMarkup(inline_keyboard=[])
     for manager in not_approved_managers:
-        kb.add(InlineKeyboardButton(text=manager.username, callback_data=f'add_manager_next_{manager.id}'))
-    kb.add(InlineKeyboardButton(text='Отмена', callback_data='cancel_call'))
+        kb.add(InlineKeyboardButton(text=manager.username, callback_data=f'mcadd_manager_next_{bt.id}_{manager.id}'))
+    kb.add(InlineKeyboardButton(text='Отмена', callback_data='mccancel_call'))
     return kb        
 
 def choose_bot_for_add_manager_kb(chat_id:str):

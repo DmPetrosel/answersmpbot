@@ -162,10 +162,13 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
         await bot.send_message(callback.from_user.id, 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
     elif callback.data.startswith('mcadd_manager_choose_them_'):
         tbot_data = get_one_bot(chat_id = int(callback.data.split('_')[-1]))
-        await bot.send_message(callback.from_user.id, f'Выберете менеджера из списка. Если его в списке нет, вероятно, он не нажал кнопу старт в боте {tbot_data.bot_username}', reply_markup=add_manager_list_kb(tbot_data.bot_username))    
+        await bot.send_message(callback.from_user.id, f'Выберете менеджера из списка. Если его в списке нет, вероятно, он не нажал кнопу старт в боте {tbot_data.bot_username}', reply_markup=await add_manager_list_kb(tbot_data.bot_username))    
     elif callback.data.startswith('mcadd_manager_next_'):
+        bt = get_one_bot(id=int(callback.data.split('_')[-2])
+        n = await get_bot_row(bot_username=bt.bot_username)
         success = await update_register(id=callback.data.split('_')[-1], approved = True)
         if success:
+            bot_list[n]['managers'].append(int(callback.data.split('_')[-1]))
             await bot.send_message(callback.from_user.id, 'Менеджер добавлен.')
         else:
             await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')
@@ -178,8 +181,12 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
             await bot.send_message(callback.from_user.id, 'Менеджеров нет.')
             
     elif callback.data.startswith('mcdel_manager_next_'):
+        '''We get bot.id and then manager.id'''
+        bt = await get_one_bot(id=int(callback.data.split('_')[-2]))
+        n = await get_bot_row(bot_username=bt.bot_username)
         success = await update_register(id=callback.data.split('_')[-1], approved = False)
         if success:
+            bot_list[n]['managers'].remove(int(callback.data.split('_')[-1]))
             await bot.send_message(callback.from_user.id, 'Менеджер удалён.')
         else:
             await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')

@@ -43,15 +43,16 @@ async def delete_manager_choose_bot_list_kb(chat_id: int):
     user_bots = await get_all_bots(chat_id=chat_id)
     kb = InlineKeyboardMarkup(inline_keyboard=[])
     for bot in user_bots:
-        kb.inline_keyboard.append([InlineKeyboardButton(text=f'{bot.bot_username}', callback_data=f'del_manager_choose_them_{bot.id}')])
+        kb.inline_keyboard.append([InlineKeyboardButton(text=f'{bot.bot_username}', callback_data=f'mcdel_manager_choose_them_{bot.id}')])
     kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
     return kb
 
 async def del_manager_list_kb(bot_username: str):
     user_managers = await get_all_register(bot_username=bot_username)
+    bt = get_one_bot(bot_username=bot_username)
     kb = InlineKeyboardMarkup(inline_keyboard=[])
     for manager in user_managers:
-        kb.inline_keyboard.append([InlineKeyboardButton(text=manager.username, callback_data=f'del_manager_next_{manager.id}')])
+        kb.inline_keyboard.append([InlineKeyboardButton(text=manager.username, callback_data=f'mcdel_manager_next_{bt.id}_{manager.id}')])
     kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
     return kb
     
@@ -61,3 +62,10 @@ def send_to_owner_kb(owner_chat_id: int):
         [InlineKeyboardButton(text='Отмена', callback_data='subcancel_call')]
     ])
     
+async def choose_bot_for_add_manager_kb(chat_id: int):
+    user_bots = await get_all_bots(chat_id=chat_id)
+    kb = InlineKeyboardMarkup(inline_keyboard=[])
+    for bot in user_bots:
+        kb.inline_keyboard.append([InlineKeyboardButton(text=f'{bot.bot_username}', callback_data=f'mcadd_manager_choose_them_{bot.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
+    return kb
