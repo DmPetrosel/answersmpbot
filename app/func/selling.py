@@ -161,10 +161,10 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
         await delete_bot(int(callback.data.split('_')[-1]))
         await bot.send_message(callback.from_user.id, 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
     elif callback.data.startswith('mcadd_manager_choose_them_'):
-        tbot_data = get_one_bot(chat_id = int(callback.data.split('_')[-1]))
+        tbot_data = await get_one_bot(chat_id = int(callback.data.split('_')[-1]))
         await bot.send_message(callback.from_user.id, f'Выберете менеджера из списка. Если его в списке нет, вероятно, он не нажал кнопу старт в боте {tbot_data.bot_username}', reply_markup=await add_manager_list_kb(tbot_data.bot_username))    
     elif callback.data.startswith('mcadd_manager_next_'):
-        bt = get_one_bot(id=int(callback.data.split('_')[-2])
+        bt = await get_one_bot(id=int(callback.data.split('_')[-2]))
         n = await get_bot_row(bot_username=bt.bot_username)
         success = await update_register(id=callback.data.split('_')[-1], approved = True)
         if success:
@@ -173,7 +173,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
         else:
             await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')
     elif callback.data.startswith('mcdel_manager_choose_them_'):
-        tbot = get_one_bot(id=int(callback.data.split('_')[-1]))
+        tbot = await get_one_bot(id=int(callback.data.split('_')[-1]))
         managers = await get_all_register(bot_username=tbot.bot_username)
         if managers:
             await bot.send_message(callback.from_user.id, 'Выберете менеджера для удаления', reply_markup=await del_manager_list_kb(tbot.bot_username))

@@ -49,7 +49,7 @@ async def delete_manager_choose_bot_list_kb(chat_id: int):
 
 async def del_manager_list_kb(bot_username: str):
     user_managers = await get_all_register(bot_username=bot_username)
-    bt = get_one_bot(bot_username=bot_username)
+    bt = await get_one_bot(bot_username=bot_username)
     kb = InlineKeyboardMarkup(inline_keyboard=[])
     for manager in user_managers:
         kb.inline_keyboard.append([InlineKeyboardButton(text=manager.username, callback_data=f'mcdel_manager_next_{bt.id}_{manager.id}')])
