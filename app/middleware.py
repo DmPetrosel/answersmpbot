@@ -5,6 +5,7 @@ from aide import MyBot
 from configparser import ConfigParser
 from keyboard.basic_kb import *
 from typing import Any, Callable, Dict, Awaitable
+import logging
 
 msg_send_data = {}
 
@@ -66,13 +67,15 @@ class NMiddlewareCallback(BaseMiddleware):
         user = await get_one_register(chat_id=callback.from_user.id)
         config.read('config.ini')
         if callback.data.startswith("send_to_owner_yes_"):
-            await self.mbot.send_message(callback.data.split('_')[1], msg_send_data[callback.from_user.id])
+            await self.mbot.send_message(callback.data.split('_')[-1], msg_send_data[callback.from_user.id])
+            await callback.message.edit_text("Отправлено!")
         elif callback.data == 'subcancel_call':
             callback.message.edit_text("Отмена")
 
         elif user and user.approve == False:
             bot_username = (await self.nbot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
+            logging.info(bot_info)
             await self.nbot.send_message(callback.from_user.id, f"Вас не добавили как менеджера в основном боте. Пожалуйста, дождитесь, когда владелец добавит вас в боте {config.get('bot','link')}. Вы можете отправить ему следующее сообщение: ")
             await self.nbot.send_message(callback.from_user.id, f"Привет, добавьте меня в бот {bot_username} как менеджера с помощью команды /addm . Мой username -- {callback.from_user.username} ")
             await self.nbot.send_message(callback.from_user.id, "Отправить владельцу бота.", reply_markup=send_to_owner_kb(bot_info.chat_id))

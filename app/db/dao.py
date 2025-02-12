@@ -23,6 +23,7 @@ class BaseDAO:
     async def update_by_id(cls, *args, session:AsyncSession, **kwargs):
         if args:
             kwargs.update(args[0])
+        kwargs['id']=int(kwargs['id'])
         instance = select(cls.model).where(kwargs['id']==cls.model.id)
         result = await session.execute(instance)
         query = result.scalar_one_or_none()

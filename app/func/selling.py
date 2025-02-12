@@ -154,6 +154,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
         await bot.send_message(callback.from_user.id, 'https://core.telegram.org/bots')
         await state.set_state("get_bot_token")
     elif callback.data == 'mccancel_call':
+        await state.clear()
         await callback.message.edit_text('Действие отменено.\n\nДля управления воспользуйтесь командами')
     elif callback.data.startswith('mcdel_bot_next_'):
         await callback.message.edit_text('Вы уверены, что хотите удалить бота?', reply_markup=del_bot_kb(int(callback.data.split('_')[-1])))
@@ -161,13 +162,13 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
         await delete_bot(int(callback.data.split('_')[-1]))
         await bot.send_message(callback.from_user.id, 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
     elif callback.data.startswith('mcadd_manager_choose_them_'):
-        tbot_data = await get_one_bot(chat_id = int(callback.data.split('_')[-1]))
-        await bot.send_message(callback.from_user.id, f'Выберете менеджера из списка. Если его в списке нет, вероятно, он не нажал кнопу старт в боте {tbot_data.bot_username}', reply_markup=await add_manager_list_kb(tbot_data.bot_username))    
+        tbot_data = await get_one_bot(id = int(callback.data.split('_')[-1]))
+        await callback.message.edit_text(f'Выберете менеджера из списка. Если его в списке нет, вероятно, он не нажал кнопу старт в боте {tbot_data.bot_username}', reply_markup=await add_manager_list_kb(tbot_data.bot_username))    
     elif callback.data.startswith('mcadd_manager_next_'):
         bt = await get_one_bot(id=int(callback.data.split('_')[-2]))
         n = await get_bot_row(bot_username=bt.bot_username)
-        success = await update_register(id=callback.data.split('_')[-1], approved = True)
-        if success:
+        success = await update_register(id=callback.data.split('_')[-1], approve = True)
+        if success is not None:
             bot_list[n]['managers'].append(int(callback.data.split('_')[-1]))
             await bot.send_message(callback.from_user.id, 'Менеджер добавлен.')
         else:
@@ -184,8 +185,9 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
         '''We get bot.id and then manager.id'''
         bt = await get_one_bot(id=int(callback.data.split('_')[-2]))
         n = await get_bot_row(bot_username=bt.bot_username)
-        success = await update_register(id=callback.data.split('_')[-1], approved = False)
-        if success:
+        success = await update_register(id=callback.data.split('_')[-1], approve = False)
+        if success is not None:
+            logging.info(bot_list[n]['managers'])
             bot_list[n]['managers'].remove(int(callback.data.split('_')[-1]))
             await bot.send_message(callback.from_user.id, 'Менеджер удалён.')
         else:
@@ -210,8 +212,10 @@ async def get_bot_token(message: types.Message, state: FSMContext):
             await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы.')
             await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
             await add_bot_info(new_bot[message.from_user.id])
-            # TODO check if it correct and all fields exists
-            await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'])
+            if await get_one_register(chat_id=int(message.from_user.id)):
+                await update_register(chat_id=int(message.from_user.id), approve=True)
+            else: 
+                await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'], approve=True)
             await state.set_state('get_wb_token')
         except Exception as e:
             await bot.send_message(message.from_user.id, f'Бот не подключён. \n\n{e}\n\n{traceback.print_tb()}\n\nПопробуйте ещё раз. \n\nВведите токен бота: ')

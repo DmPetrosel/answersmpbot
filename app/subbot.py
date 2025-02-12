@@ -31,7 +31,7 @@ async def nstart(message: types.Message, bot: MyBot):
     elif register == None:
         bot_username = (await bot.get_me()).username
         logging.info("add_register: " + str(bot_username))
-        await add_register(chat_id=int(message.from_user.id), username=message.from_user.username, name=message.from_user.first_name, bot_username=bot_username, approve=False)
+        await add_register(chat_id=int(message.from_user.id), username=message.from_user.username, name=message.from_user.first_name, bot_username=bot_username)
     # if register and register.approve == False:
     #     await bot.send_message(message.from_user.id, f'Вас ещё не подтвердили как менеджера.\n\nОбратитесь к владельцу бота.\n\nИз главного бота можно выбрать команду "Добавить менеджера".')
 

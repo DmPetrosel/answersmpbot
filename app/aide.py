@@ -5,7 +5,7 @@ from db.get import *
 
 
 class MyBot(Bot):
-    async def send_messages(
+    async def send_messages(self,
                             text,
                                 user_list = None,
                             parse_mode = None,
@@ -24,7 +24,7 @@ class MyBot(Bot):
         if user_list:
             for user in user_list:
                 try:
-                    await super.send_message(chat_id=user, text=text, parse_mode = parse_mode,
+                    await self.send_message(chat_id=user, text=text, parse_mode = parse_mode,
                                     entities = entities,
                                     disable_web_page_preview = disable_web_page_preview,
                                     message_thread_id = message_thread_id,
@@ -36,7 +36,8 @@ class MyBot(Bot):
                 except Exception as e:
                     logging.error(f"Error when sending a message to multiple users. {e}")
 
-    async def send_messages_beside(user_beside,
+    async def send_messages_beside(self,
+                                   user_beside,
                             text,
                                 user_list = None,
                             parse_mode = None,
@@ -59,7 +60,7 @@ class MyBot(Bot):
                     if user == user_beside:
                         continue
                         
-                    await super.send_message(chat_id=user, text=text, parse_mode = parse_mode,
+                    await self.send_message(chat_id=user, text=text, parse_mode = parse_mode,
                                     entities = entities,
                                     disable_web_page_preview = disable_web_page_preview,
                                     message_thread_id = message_thread_id,

@@ -17,7 +17,7 @@ def without_payment_kb():
 def how_to_create_bot_kb():
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text='Как создать бота?', callback_data='how_to_create_bot_call')],
-        [InlineKeyboardButton(text='Назад', callback_data='pay_call')]
+        [InlineKeyboardButton(text='Назад', callback_data='mccancel_call')]
     ])
 
 async def delete_bot_list_kb(chat_id: int):
@@ -48,7 +48,7 @@ async def delete_manager_choose_bot_list_kb(chat_id: int):
     return kb
 
 async def del_manager_list_kb(bot_username: str):
-    user_managers = await get_all_register(bot_username=bot_username)
+    user_managers = await get_all_register(bot_username=bot_username, approve=True)
     bt = await get_one_bot(bot_username=bot_username)
     kb = InlineKeyboardMarkup(inline_keyboard=[])
     for manager in user_managers:

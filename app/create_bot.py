@@ -33,10 +33,11 @@ async def set_commands_main(bot: MyBot):
 async def init_when_restart():
     bot_from_db = await get_all_bots()
     for ibot in bot_from_db:
-        mn = await get_register_by_kwargs(bot_username=ibot.bot_username, approve=True)
+        mn = await get_all_register(bot_username=ibot.bot_username, approve=True)
         managers = None
         if mn:
             managers = [i.chat_id for i in mn]
+            logging.info(f"======Bot {ibot.bot_username} managers are {managers}========")
         list_n = await bot_init(ibot.token, ibot.chat_id, managers)
         
 
@@ -64,7 +65,7 @@ async def bot_init(token:str, chat_id, managers : list):
     bot_list.append({'bot':nbot, 'dp':ndp, 'bot_username':bot_name, 'chat_id':chat_id, 'managers':managers})    
     n = await get_bot_row(bot_username=bot_name)
 
-    await nbot.send_messages(managers, 'Сообщение работает!')
+    await nbot.send_messages('Сообщение работает!', managers)
        
     await start_bot(ndp, nbot)
 
