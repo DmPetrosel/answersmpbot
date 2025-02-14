@@ -11,3 +11,8 @@ async def update_bot_info(*args, **kwargs):
 async def update_register(*args, **kwargs):
     register = await RegisterDAO.update_by_id(*args, **kwargs)
     return register
+
+@connection
+async def update_wbfeed(*args, **kwargs):
+    register = await WBFeedDataDAO.update_by_id(*args, **kwargs)
+    return register

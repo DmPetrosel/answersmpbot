@@ -1,6 +1,15 @@
 from db.models.models import *
 from db.session import *
 from db.dao import *
+
+@connection
+async def get_one_wbfeed(*args, session:AsyncSession, **kwargs):
+    return await WBFeedDataDAO.get_by_kwarg_one(*args, session=session, **kwargs)
+
+@connection
+async def get_all_wbfeed(*args, session:AsyncSession, **kwargs):
+    return await WBFeedDataDAO.get_all(*args, session=session, **kwargs)
+
 @connection
 async def get_one_register(*args, session:AsyncSession, **kwargs):
     return await RegisterDAO.get_by_kwarg_one(*args, session=session, **kwargs)

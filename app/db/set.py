@@ -7,7 +7,12 @@ from db.dao import *
 #     session.add(user)
 #     await session.commit()    
 #     return user
-    
+
+@connection
+async def add_wbfeed(*args, **kwargs):
+    user = await WBFeedDataDAO.add(*args, **kwargs)
+    return user
+
 @connection
 async def add_user(*args, **kwargs):
     user = await UserDAO.add(*args, **kwargs)

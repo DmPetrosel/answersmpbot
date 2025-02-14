@@ -57,13 +57,12 @@ class BaseDAO:
     @classmethod
     async def get_all(cls, *args, session:AsyncSession, **kwargs):
         query = select(cls.model)
+        if args and args[0]:
+            kwargs.update(args[0])
         if(kwargs):
             for key, value in kwargs.items():
                 # query.join(User, cls.model.chat_id == User.chat_id)
                 query = query.where(getattr(cls.model, key) == value)
-        if(args):
-            # query.join(User, cls.model.chat_id == User.chat_id)
-            query = query.where(args[0] == cls.model.chat_id)
         result = await session.execute(query)
         records = result.scalars().all()
         return records    
@@ -112,3 +111,6 @@ class InfoBotDAO(BaseDAO):
 
 class RegisterDAO(BaseDAO):
     model = Register
+
+class WBFeedDataDAO(BaseDAO):
+    model = WBFeedData

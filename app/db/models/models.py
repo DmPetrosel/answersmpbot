@@ -40,3 +40,10 @@ class Promo(Base):
     chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
     expire_date = Column(Date, nullable=True)
     user = relationship("User", backref="promos", lazy='joined', uselist=False)
+
+class WBFeedData(Base):
+    id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
+    mess_ids = Column(ARRAY(BigInteger), nullable=True)
+    feed_id = Column(BigInteger, nullable=False)
+    feed_mess = Column(String(1024), nullable=True)
+    feed_ans = Column(String(1024), nullable=True)
