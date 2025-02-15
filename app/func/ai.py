@@ -5,7 +5,7 @@ from wbstat import *
 config = ConfigParser()
 config.read('config.ini', encoding='utf-8')
 access_token = config.get('gigachat','access_token')
-def generate_answer_for_feedback_ai(company, company_description, feedback):
+async def generate_answer_for_feedback_ai(company, company_description, feedback):
     payload = Chat(
         messages=[
             Messages(
@@ -18,20 +18,22 @@ def generate_answer_for_feedback_ai(company, company_description, feedback):
     )
 
     # Используйте токен, полученный в личном кабинете из поля Авторизационные данные
-    with GigaChat(credentials=access_token,
+    async with GigaChat(credentials=access_token,
     scope='GIGACHAT_API_CORP',
     model='GigaChat', 
     verify_ssl_certs=False) as giga:
         user_input = feedback
         payload.messages.append(Messages(role=MessagesRole.USER, content=user_input))
-        response = giga.chat(payload)
+        response = await giga.chat(payload)
         # payload.messages.append(response.choices[0].message)
         return  response.choices[0].message.content
     
-def generate_answer(company, company_description, feedback, bot_info):
-    str_answer = generate_answer_for_feedback_ai(company, company_description, feedback)
+async def generate_answer(company, company_description, feedback, bot_info):
+    str_answer = await generate_answer_for_feedback_ai(company, company_description, feedback)
     str_answer = str_answer + "\n" + get_random_three_str(bot_info)
     return str_answer
+
+
 if __name__ == '__main__':
     company = input("Введите название компании: ")
     company_description = input("Введите описание компании: ")

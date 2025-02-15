@@ -1,5 +1,5 @@
 from db.session import Base
-from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, BigInteger, ARRAY, Date
+from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, BigInteger, ARRAY, Date, Float
 from sqlalchemy.orm import relationship, backref
 import sqlalchemy as sa
 class User(Base):
@@ -47,3 +47,16 @@ class WBFeedData(Base):
     feed_id = Column(BigInteger, nullable=False)
     feed_mess = Column(String(1024), nullable=True)
     feed_ans = Column(String(1024), nullable=True)
+    createdDate = Column(DateTime, nullable=False)
+    time_now = Column(DateTime, nullable=False)
+    bot_username = Column(String(256), nullable=False)
+    valuation = Column(Float, nullable=True)
+    materials_links = Column(String(1024), nullable=True)
+    is_new = Column(Boolean, nullable=False, default=True)
+
+class WBFeedAnswer(Base):
+    id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
+    mess_id = Column(BigInteger, nullable=False)
+    chat_id = Column(BigInteger)
+    question_id = Column(BigInteger, ForeignKey('wbfeeddatas.id'), nullable=False)
+    text = Column(String(1024), nullable=False)

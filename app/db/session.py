@@ -49,5 +49,5 @@ class Base(AsyncAttrs, DeclarativeBase):
     
     @declared_attr.directive
     def __tablename__(cls) -> str:
-        return cls.__name__.lower() + 's'
+        return cls.__name__.lower() + 's'   
     

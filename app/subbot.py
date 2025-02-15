@@ -4,7 +4,10 @@ from configparser import ConfigParser
 from aiogram.methods import SetMyCommands
 from db.get import *
 from db.set import *
+from db.update import *
 import logging
+from keyboard.managers_kb import *
+from func.ai import *
 bot_list = []
 
 async def set_subbot_commands(bot: MyBot):
@@ -41,6 +44,29 @@ async def help(message: types.Message, bot: MyBot):
 
     await bot.send_message(message.from_user.id, f"Если что-то случилось или есть вопросы, \n\nнапишите {config.get('support', 'support')}")
 
+# TODO Make this func 
+async def get_messages_with_btn ():
+    pass
+
+
 async def callbacks(callback: types.CallbackQuery, bot: MyBot):
     if callback.data == 'sbb_cancel_call':
         await callback.message.edit_text('Действие отменено.\n\nДля управления воспользуйтесь командами')
+    elif callback.data == 'sbb_wbfeedsent_yes':
+        pass 
+    elif callback.data == 'sbb_wbfeedsent_gen':
+        pass 
+    elif callback.data == 'sbb_wbfeedsent_oneself':
+        pass 
+
+async def nmain_loop(bot: MyBot):
+    bot_username = (await bot.get_me()).username
+    n = await get_bot_row(bot_username=bot_username)
+    bot_info = get_one_bot(bot_username=bot_username)
+    while True:
+        new_messages = await get_all_wbfeed(bot_username=bot_username, is_new=False)
+        for mess in new_messages:
+            whole_msg = mess.feed_mess + '\n\n'+ mess.materials_links + '\n\n'+ mess.createDate + '\n\nОценка: ' + mess.valuation
+            await generate_answer
+            sent_mess_list = await bot.send_messages(whole_msg, *bot_list[n]['managers'], reply_markup=await wbfeedsent_kb())
+            await update_wbfeed(mess_ids=[sm.id for sm in sent_mess_list], is_new = False)

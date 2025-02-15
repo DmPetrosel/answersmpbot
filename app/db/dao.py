@@ -114,3 +114,6 @@ class RegisterDAO(BaseDAO):
 
 class WBFeedDataDAO(BaseDAO):
     model = WBFeedData
+
+class WBFeedAnswerDAO(BaseDAO):
+    model = WBFeedAnswer

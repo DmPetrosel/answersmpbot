@@ -82,7 +82,7 @@ def get_random_three_str(
     number_of_art :int = 3,
     samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличие есть: ", "Смотрите, что у нас есть ещё: "]
     ):
-    bot_username = bot_info['username']
+    bot_username = bot_info['bot_username']
     number_of_art = bot_info['number_of_art'] if bot_info['number_of_art'] != 0 else number_of_art
     samples_ans = bot_info['samples_ans'] if bot_info['samples_ans'] else samples_ans
     
