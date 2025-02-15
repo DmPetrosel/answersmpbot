@@ -6,6 +6,7 @@ from configparser import ConfigParser
 from keyboard.basic_kb import *
 from typing import Any, Callable, Dict, Awaitable
 import logging
+from aiogram.fsm.context import FSMContext
 
 msg_send_data = {}
 
@@ -39,6 +40,8 @@ class NMiddlewareMessage(BaseMiddleware):
             pass
         elif event.text == '/help':
             config.read('config.ini')
+            state :FSMContext = data['state', FSMContext]
+            await state.clear()
             await self.bot.send_message(event.from_user.id, f"Если что-то случилось или есть вопросы, \n\nнапишите {config.get('support', 'support')}")
         else:
             user = await get_one_register(chat_id=event.from_user.id)

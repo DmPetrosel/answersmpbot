@@ -28,7 +28,9 @@ class InfoBot(Base):
     # payedtill = Column(Date, nullable=False)
     company_name = Column(String(256), nullable=True)
     samples_ans = Column(ARRAY(String(400)), nullable=True)
+    number_of_art = Column(Integer, nullable=True)
     wb_token = Column(String(256), nullable=True)
+    company_description = Column(String(1024), nullable=True)
     user = relationship("User", backref='infobots', lazy='joined', uselist=False)
 
 class Promo(Base):
@@ -53,6 +55,8 @@ class WBFeedData(Base):
     valuation = Column(Float, nullable=True)
     materials_links = Column(String(1024), nullable=True)
     is_new = Column(Boolean, nullable=False, default=True)
+    is_answering = Column(Boolean, nullable=False, default=False)
+    answering_chat_id = Column(BigInteger, nullable=True)
 
 class WBFeedAnswer(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)

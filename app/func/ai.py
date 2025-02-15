@@ -28,8 +28,8 @@ async def generate_answer_for_feedback_ai(company, company_description, feedback
         # payload.messages.append(response.choices[0].message)
         return  response.choices[0].message.content
     
-async def generate_answer(company, company_description, feedback, bot_info):
-    str_answer = await generate_answer_for_feedback_ai(company, company_description, feedback)
+async def generate_answer(feedback, bot_info):
+    str_answer = await generate_answer_for_feedback_ai(bot_info.company_name, bot_info.company_description, feedback)
     str_answer = str_answer + "\n" + get_random_three_str(bot_info)
     return str_answer
 

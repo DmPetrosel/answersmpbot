@@ -13,3 +13,6 @@ class NewPromo(StatesGroup):
 class NewBot(StatesGroup):
     get_bot_token = State()
     get_wb_token = State()
+
+class FeedState(StatesGroup):
+    mess_answering = State()

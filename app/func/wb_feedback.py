@@ -11,6 +11,7 @@ import random as rd
 from db.get import *
 from db.set import *
 from db.update import *
+import aiohttp
 
 # handle_errors.logger_params()
 # with open("data/config.json", "r", encoding="UTF-8") as config_file:
@@ -148,17 +149,20 @@ class WBFeedback(Thread):
         self.new_feedbacks_to_file(datetime.now())
 
 
-def answer_for_feedback(feedback_id, text, wb_token):
+async def answer_for_feedback(feedback_id, text, wb_token):
     url = "https://feedbacks-api.wildberries.ru/api/v1/feedbacks/answer"
     header = {"Authorization": wb_token}
     body = {"id": feedback_id, "text": text}
-    with requests.post(url, headers=header, json=body) as response:
-        if response.status_code == 204:
-            logging.info(f"feedback {feedback_id} was answered with text: {text}")
-        else:
-            logging.error(
-                f"Error answer feedback {feedback_id} with status: {response.status_code}"
-            )
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, headers=header, json=body) as response:
+            if response.status == 204:
+                logging.info(f"feedback {feedback_id} was answered with text: {text}")
+                return True
+            else:
+                logging.error(
+                    f"Error answer feedback {feedback_id} with status: {response.status}"
+                )
+                return False
     return
 
 
