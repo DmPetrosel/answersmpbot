@@ -8,6 +8,7 @@ from aiogram.methods import SetMyCommands
 from func.main_commands import *
 from aide import *
 from middleware import *
+from func.wb_feedback import *
 
 tasks = []
 
@@ -43,6 +44,10 @@ async def init_when_restart():
 
 async def start_bot(dp: Dispatcher, nbot : MyBot):
     tasks.append(asyncio.create_task(dp.start_polling(nbot)))
+    nbot_username = (await nbot.get_me()).username
+    bot_info = await get_one_bot(bot_username=nbot_username)
+    stat_o = WBStat(wb_token=bot_info.wb_token, bot_username=nbot_username)
+    asyncio.to_thread(stat_o.run())
     await set_subbot_commands(nbot)
     dp.message.register(nstart, Command('start'))
     # dp.message.register(help, Command('help'))

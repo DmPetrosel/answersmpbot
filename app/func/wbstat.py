@@ -6,14 +6,13 @@ import time
 import logging
 from  threading import Thread
 import random as rand
-class WBStat(Thread):
+class WBStat:
     def __init__(self, wb_token, bot_username, 
                   daemon = True):
         super().__init__()
         self.token = wb_token
         self.bot_username = bot_username
         self.daemon = daemon
-        self.samples_ans = samples_ans
     def request_for_stocks(self):
         url = "https://seller-analytics-api.wildberries.ru/api/v1/warehouse_remains"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
@@ -52,20 +51,20 @@ class WBStat(Thread):
             json.dump(data, f, ensure_ascii=False, indent=4)
         return None
     
-    def get_from_file(self):
-        with open(f"{self.bot_username}_stocks.json", 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            return data
-        return None
+    # def get_from_file(self):
+    #     with open(f"{self.bot_username}_stocks.json", 'r', encoding='utf-8') as f:
+    #         data = json.load(f)
+    #         return data
+    #     return None
     
-    def get_list_of_products(self, data):
-        list_of_products = []
-        for i in range(len(data)):
-            if data[i]["quantityWarehousesFull"] > 0:
-                list_of_products.append(f'{data[i]["subjectName"]} Арт. {data[i]["nmId"]}')
+    # def get_list_of_products(self, data):
+    #     list_of_products = []
+    #     for i in range(len(data)):
+    #         if data[i]["quantityWarehousesFull"] > 0:
+    #             list_of_products.append(f'{data[i]["subjectName"]} Арт. {data[i]["nmId"]}')
         
-        prod = ", ".join(list_of_products)
-        return prod
+    #     prod = ", ".join(list_of_products)
+    #     return prod
         
 
     def run(self):
