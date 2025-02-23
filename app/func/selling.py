@@ -18,10 +18,16 @@ from db.session import Base
 import aiogram
 from middleware import *
 import traceback
+from aiogram.types.message import ContentType
+from configparser import ConfigParser
+import yookassa
+
+config = ConfigParser()
 
 usr = {}
 user_obj = {}
 new_bot = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
+
 
 async def start(message: types.Message, command: CommandObject, state: FSMContext):
     try:
@@ -136,16 +142,16 @@ async def write_registration(chat_id):
     else:
         await promo_continue(chat_id, usr[chat_id]['price'])
     return True
-async def callback_selling(callback: types.CallbackQuery, state: FSMContext):
-    config = configparser.ConfigParser()
+async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot: MyBot):
     config.read('config.ini')
     if callback.data == 'no_promo_call':
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = price
         await write_registration(callback.from_user.id)
     elif callback.data == 'pay_call':
-        await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
-        await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
+        # await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
+        # await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
+        await pay_start(callback=callback, state=state, sum=usr[callback.from_user.id]['price'], bot=bot)
     elif callback.data == 'no_pay_call':
         await bot.send_message(callback.from_user.id, f"Без оплаты ботом можно пользоваться 7 дней.")
         await bot.send_message(callback.from_user.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
@@ -235,22 +241,169 @@ async def get_wb_token(message: types.Message, state: FSMContext):
     else:
         await bot.send_message(message.from_user.id, f'Что-то пошло не так, возможно, проблема с токеном.')
 
+async def pay_command(message: types.Message, state: FSMContext, bot :MyBot):
+    await state.clear()
+    await bot.send_message(message.from_user.id, "Введите суму в рублях, например: 2 000 или 2000")
+    await state.set_state(PayState.enter_sum)
 
-def register_selling_handlers(dp):
+def payment(value,description):
+	provider_data = {
+          "receipt": {
+            "items": [
+              {
+                "description": description,
+                "quantity": "1.00",
+                "amount": {
+                  "value": f"{value:.2f}",
+                  "currency": 'RUB'
+                },
+                "vat_code": 1
+              }
+            ]
+          }
+        }
+
+	return json.dumps(provider_data)
+
+async def pay_start(callback: types.Message, state: FSMContext, amount: int, bot: MyBot):
+    await state.clear()
+    amount_cop = amount * 100
+    config.read('config.ini')
+    try:
+            # Проверка состояния и его очистка
+            current_state = await state.get_state()
+            if current_state is not None:
+                await state.clear()  # чтобы свободно перейти сюда из любого другого состояния
+
+            if config.get('payment', 'yookassa').split(':')[1] == "TEST":
+                await bot.send_message(callback.from_user.id, "Для оплаты используйте данные тестовой карты: 1111 1111 1111 1026, 12/22, CVC 000.")
+
+            prices = [types.LabeledPrice(label='Оплата заказа', amount=amount_cop)]
+            await state.set_state(PayState.buying)
+            await bot.send_invoice(
+                chat_id=callback.from_user.id,
+                title='Пополнение баланса',
+                description='Пополнение баланса',
+                payload='bot_paid',
+                provider_token=config.get('payment', 'yookassa'),
+                currency='RUB',
+                prices=prices,
+                need_phone_number=True,
+                send_phone_number_to_provider=True,
+                provider_data=payment(amount, f'Пополнение баланса на сумму {amount_cop} Р.')
+            )
+    except Exception as e:
+        logging.error(f"Ошибка при выполнении команды /buy: {e}")
+        await bot.send_message(callback.from_user.id, "Произошла ошибка при обработке команды!")
+        current_state = await state.get_state()
+        if current_state is not None:
+            await state.clear()
+
+
+
+async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
+    await state.clear()
+    amount = int(message.text.strip().replace(' ', '').replace('.', '').replace(',', ''))
+    amount_cop = amount * 100
+    config.read('config.ini')
+    try:
+            # Проверка состояния и его очистка
+            current_state = await state.get_state()
+            if current_state is not None:
+                await state.clear()  # чтобы свободно перейти сюда из любого другого состояния
+
+            if config.get('payment', 'yookassa').split(':')[1] == "TEST":
+                await message.reply("Для оплаты используйте данные тестовой карты: 1111 1111 1111 1026, 12/22, CVC 000.")
+
+            prices = [types.LabeledPrice(label='Оплата заказа', amount=amount_cop)]
+            await state.set_state(PayState.buying)
+            await bot.send_invoice(
+                chat_id=message.chat.id,
+                title='Пополнение баланса',
+                description='Пополнение баланса',
+                payload='bot_paid',
+                provider_token=config.get('payment', 'yookassa'),
+                currency='RUB',
+                prices=prices,
+                need_phone_number=True,
+                send_phone_number_to_provider=True,
+                provider_data=payment(amount, f'Пополнение баланса на сумму {amount_cop} Р.')
+            )
+    except Exception as e:
+        logging.error(f"Ошибка при выполнении команды /buy: {e}")
+        await message.answer("Произошла ошибка при обработке команды!")
+        current_state = await state.get_state()
+        if current_state is not None:
+            await state.clear()
+async def process_pre_checkout_query(pre_checkout_query: types.PreCheckoutQuery, bot: MyBot):
+    try:
+        await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)  # всегда отвечаем утвердительно
+        logging.info('precheckout processing')
+    except Exception as e:
+        logging.error(f"Ошибка при обработке апдейта типа PreCheckoutQuery: {e}")
+
+async def process_successful_payment(message: types.Message, state: FSMContext, bot :MyBot):
+        await message.reply(f"Платеж на сумму {message.successful_payment.total_amount // 100} "
+                            f"{message.successful_payment.currency} прошел успешно!")
+        # await db.update_payment(message.from_user.id) TODO Сделать запись в БД
+        logging.info(f"Получен платеж от {message.from_user.id}")
+        current_state = await state.get_state()
+        if current_state is not None:
+            await state.clear()  # чтобы свободно перейти сюда из любого другого состояния
+async def process_unsuccessful_payment(message: types.Message, state: FSMContext):
+        await message.reply("Не удалось выполнить платеж!")
+        current_state = await state.get_state()
+        if current_state is not None:
+            await state.clear()  # чтобы свободно перейти сюда из любого другого состояния
+# async def check_payment(payment_id):
+#      # Загружаем json текущим статусом
+# 	payment = json.loads((Payment.find_one(payment_id)).json())
+#     # Пингуем статус
+# 	while payment['status'] == 'pending':
+# 		payment = json.loads((Payment.find_one(payment_id)).json())
+# 		await asyncio.sleep(3)
+#         # Проверяем статус, если прошла то тру, иначе фолс
+#         if payment['status']=='succeeded':
+#             print("SUCCSESS RETURN")
+#             print(payment)
+            
+#             return True
+#         else:
+#             print("BAD RETURN")
+#             print(payment)
+		
+#             return False
+# successful payment
+# async def successful_payment(message: types.Message):
+#     print("SUCCESSFUL PAYMENT:")
+#     payment_info = message.successful_payment.to_python()
+#     for k, v in payment_info.items():
+#         print(f"{k} = {v}")
+
+#     await bot.send_message(message.chat.id,
+#                            f"Платеж на сумму {message.successful_payment.total_amount // 100} {message.successful_payment.currency} прошел успешно!!!")
+
+def register_selling_handlers(dp: Dispatcher):
     dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call', 'no_pay_call', 'how_to_create_bot_call', 'cancel_call') or c.data.startswith("mc"))
     dp.message.register(start, Command(commands=("start", "restart")), State(state="*"))
     dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
     dp.message.register(get_bot_token, StateFilter('get_bot_token'))
     dp.message.register(get_wb_token, StateFilter('get_wb_token'))
     # dp.callback_query.register(callback_selling, StateFilter('no_promo_call', 'pay_call' ))
+    dp.message.register(pay_sum, StateFilter(PayState.enter_sum))
+    dp.pre_checkout_query.register(process_pre_checkout_query)
+    dp.message.register(process_successful_payment, F.successful_payment)
+    dp.message.register(process_unsuccessful_payment, StateFilter(PayState.buying))
 
 async def main_bot():
+    config.read('config.ini')
     await set_commands_main(bot)
     # dp.message.register(help, Command('help'), StateFilter('*'))
     dp.message.register(add_bot, Command('add'), StateFilter('*'))
     dp.message.register(delete_bot_ask, Command('delb'), StateFilter('*'))                    
     dp.message.register(add_manager, Command('addm'), StateFilter('*'))                    
     dp.message.register(delete_manager, Command('delm'), StateFilter('*'))  
+    dp.message.register(pay_command, Command('pay'), StateFilter('*'))
     register_selling_handlers(dp)
     dp.message.outer_middleware(MyMiddleware(bot))
     await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')

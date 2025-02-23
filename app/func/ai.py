@@ -5,7 +5,7 @@ from wbstat import *
 config = ConfigParser()
 config.read('config.ini', encoding='utf-8')
 access_token = config.get('gigachat','access_token')
-def generate_answer_for_feedback_ai(company, company_description, feedback):
+def generate_answer_for_feedback_ai(company, company_description, feedback, bot_info):
     payload = Chat(
         messages=[
             Messages(

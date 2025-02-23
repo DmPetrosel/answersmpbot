@@ -13,3 +13,9 @@ class NewPromo(StatesGroup):
 class NewBot(StatesGroup):
     get_bot_token = State()
     get_wb_token = State()
+
+class PayState(StatesGroup):
+    enter_sum = State()
+    successful_payment = State()
+    buying = State()
+    precheckout = State()

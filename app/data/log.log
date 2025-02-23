@@ -30844,3 +30844,783 @@ WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
 2025-02-12, Wed, 09:24:33,602 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
 2025-02-12, Wed, 09:24:34,16 aiogram.dispatcher INFO Start polling
 2025-02-12, Wed, 09:24:34,161 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 05:47:35,876 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 05:47:35,876 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 05:47:35,879 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 05:47:35,879 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 05:47:35,880 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 05:47:35,880 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 05:47:35,882 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 05:47:35,893 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 05:47:35,893 sqlalchemy.engine.Engine INFO [generated in 0.00026s] ()
+2025-02-16, Sun, 05:47:35,915 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 05:47:35,916 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 05:47:35,917 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 05:47:35,918 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ('testconnectwb_bot',)
+2025-02-16, Sun, 05:47:35,920 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 05:47:35,921 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 05:47:38,254 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 05:47:38,585 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 05:47:39,173 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 05:47:39,262 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 05:48:33,574 aiogram.dispatcher WARNING Received SIGINT signal
+2025-02-16, Sun, 05:48:33,575 aiogram.dispatcher INFO Polling stopped for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 05:48:33,575 aiogram.dispatcher INFO Polling stopped
+2025-02-16, Sun, 07:08:32,169 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:08:32,169 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:08:32,171 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:08:32,171 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:08:32,172 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:08:32,172 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:08:32,173 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:08:32,183 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:08:32,183 sqlalchemy.engine.Engine INFO [generated in 0.00028s] ()
+2025-02-16, Sun, 07:08:32,193 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:08:32,194 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:08:32,196 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:08:32,196 sqlalchemy.engine.Engine INFO [generated in 0.00019s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:08:32,197 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:08:32,197 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:08:32,573 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:08:32,700 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:08:32,803 aiogram.dispatcher INFO Polling stopped
+2025-02-16, Sun, 07:08:32,803 aiogram.dispatcher INFO Polling stopped for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:08:33,209 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x78f077f32c50>
+2025-02-16, Sun, 07:08:33,209 asyncio ERROR Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x78f078076ce0>, 159541.330243688)])']
+connector: <aiohttp.connector.TCPConnector object at 0x78f077f32b60>
+2025-02-16, Sun, 07:14:20,213 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:14:20,213 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:14:20,215 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:14:20,215 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:14:20,215 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:14:20,215 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:14:20,216 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:14:20,226 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:14:20,226 sqlalchemy.engine.Engine INFO [generated in 0.00028s] ()
+2025-02-16, Sun, 07:14:20,236 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:14:20,237 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:14:20,238 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:14:20,238 sqlalchemy.engine.Engine INFO [generated in 0.00017s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:14:20,240 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:14:20,240 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:14:20,806 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:14:21,246 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:14:21,293 aiogram.dispatcher INFO Polling stopped
+2025-02-16, Sun, 07:14:21,293 aiogram.dispatcher INFO Polling stopped for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:14:21,700 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7a00514f6c80>
+2025-02-16, Sun, 07:14:21,701 asyncio ERROR Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7a005168e0e0>, 159889.820208576)])']
+connector: <aiohttp.connector.TCPConnector object at 0x7a00514f5e10>
+2025-02-16, Sun, 07:15:47,830 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:15:47,830 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:15:47,831 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:15:47,831 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:15:47,832 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:15:47,832 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:15:47,833 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:15:47,843 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:15:47,843 sqlalchemy.engine.Engine INFO [generated in 0.00027s] ()
+2025-02-16, Sun, 07:15:47,853 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:15:47,854 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:15:47,856 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:15:47,856 sqlalchemy.engine.Engine INFO [generated in 0.00019s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:15:47,857 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:15:47,858 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:15:48,701 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:15:49,246 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:15:49,293 aiogram.dispatcher INFO Polling stopped
+2025-02-16, Sun, 07:15:49,294 aiogram.dispatcher INFO Polling stopped for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:15:49,711 asyncio ERROR Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7dac06356050>
+2025-02-16, Sun, 07:15:49,711 asyncio ERROR Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x7dac06dd42e0>, 159977.82067002)])']
+connector: <aiohttp.connector.TCPConnector object at 0x7dac06356b30>
+2025-02-16, Sun, 07:16:46,132 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:16:46,132 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:16:46,134 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:16:46,134 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:16:46,134 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:16:46,135 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:16:46,135 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:16:46,144 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:16:46,145 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ()
+2025-02-16, Sun, 07:16:46,155 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:16:46,156 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:16:46,158 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:16:46,158 sqlalchemy.engine.Engine INFO [generated in 0.00018s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:16:46,159 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:16:46,160 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:16:46,459 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:16:46,578 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:16:46,683 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:16:46,720 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 07:17:02,694 aiogram.event INFO Update id=450710912 is handled. Duration 130 ms by bot id=7771835226
+2025-02-16, Sun, 07:17:13,26 aiogram.event INFO Update id=450710913 is not handled. Duration 1 ms by bot id=7771835226
+2025-02-16, Sun, 07:19:54,154 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:19:54,154 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:19:54,156 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:19:54,156 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:19:54,156 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:19:54,156 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:19:54,157 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:19:54,167 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:19:54,168 sqlalchemy.engine.Engine INFO [generated in 0.00040s] ()
+2025-02-16, Sun, 07:19:54,178 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:19:54,179 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:19:54,181 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:19:54,181 sqlalchemy.engine.Engine INFO [generated in 0.00019s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:19:54,182 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:19:54,183 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:19:55,263 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:19:55,650 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:19:56,225 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:19:56,279 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 07:20:00,309 aiogram.event INFO Update id=450710914 is handled. Duration 207 ms by bot id=7771835226
+2025-02-16, Sun, 07:20:02,705 aiogram.event INFO Update id=450710915 is not handled. Duration 0 ms by bot id=7771835226
+2025-02-16, Sun, 07:22:26,969 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:22:26,970 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:22:26,971 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:22:26,971 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:22:26,972 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:22:26,972 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:22:26,972 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:22:26,982 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:22:26,982 sqlalchemy.engine.Engine INFO [generated in 0.00024s] ()
+2025-02-16, Sun, 07:22:26,993 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:22:26,994 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:22:26,995 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:22:26,995 sqlalchemy.engine.Engine INFO [generated in 0.00021s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:22:26,997 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:22:26,997 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:22:27,338 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:22:27,465 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:22:27,565 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:22:27,600 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 07:22:30,115 aiogram.event INFO Update id=450710916 is handled. Duration 131 ms by bot id=7771835226
+2025-02-16, Sun, 07:22:32,758 aiogram.event INFO Update id=450710917 is not handled. Duration 115 ms by bot id=7771835226
+2025-02-16, Sun, 07:22:32,758 aiogram.event ERROR Cause exception while process update id=450710917 by bot id=7771835226
+TelegramBadRequest: Telegram server says - Bad Request: PAYMENT_PROVIDER_INVALID
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/middleware.py", line 26, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 253, in pay_sum
+    await bot.send_invoice(message.chat.id,
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 2775, in send_invoice
+    return await self(call, request_timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 498, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/aiohttp.py", line 189, in make_request
+    response = self.check_response(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: PAYMENT_PROVIDER_INVALID
+2025-02-16, Sun, 07:22:53,493 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:22:53,493 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:22:53,495 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:22:53,495 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:22:53,495 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:22:53,495 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:22:53,496 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:22:53,505 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:22:53,505 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ()
+2025-02-16, Sun, 07:22:53,515 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:22:53,517 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:22:53,518 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:22:53,518 sqlalchemy.engine.Engine INFO [generated in 0.00017s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:22:53,520 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:22:53,520 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:22:54,480 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:22:54,945 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:22:55,273 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:22:55,309 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 07:22:59,57 aiogram.event INFO Update id=450710918 is handled. Duration 930 ms by bot id=7771835226
+2025-02-16, Sun, 07:23:01,645 aiogram.event INFO Update id=450710919 is not handled. Duration 43 ms by bot id=7771835226
+2025-02-16, Sun, 07:23:01,646 aiogram.event ERROR Cause exception while process update id=450710919 by bot id=7771835226
+TelegramBadRequest: Telegram server says - Bad Request: PAYMENT_PROVIDER_INVALID
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/middleware.py", line 26, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 253, in pay_sum
+    await bot.send_invoice(message.chat.id,
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 2775, in send_invoice
+    return await self(call, request_timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/bot.py", line 498, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/aiohttp.py", line 189, in make_request
+    response = self.check_response(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: PAYMENT_PROVIDER_INVALID
+2025-02-16, Sun, 07:26:33,44 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-16, Sun, 07:26:33,45 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:26:33,46 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-16, Sun, 07:26:33,46 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:26:33,47 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-16, Sun, 07:26:33,47 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-16, Sun, 07:26:33,47 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:26:33,57 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-16, Sun, 07:26:33,57 sqlalchemy.engine.Engine INFO [generated in 0.00024s] ()
+2025-02-16, Sun, 07:26:33,67 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:26:33,68 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-16, Sun, 07:26:33,69 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-16, Sun, 07:26:33,69 sqlalchemy.engine.Engine INFO [generated in 0.00015s] ('testconnectwb_bot',)
+2025-02-16, Sun, 07:26:33,71 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-16, Sun, 07:26:33,71 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-16, Sun, 07:26:33,358 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:26:33,472 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-16, Sun, 07:26:33,592 aiogram.dispatcher INFO Start polling
+2025-02-16, Sun, 07:26:33,627 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-16, Sun, 07:26:36,816 aiogram.event INFO Update id=450710920 is handled. Duration 134 ms by bot id=7771835226
+2025-02-16, Sun, 07:26:38,950 aiogram.event INFO Update id=450710921 is not handled. Duration 1 ms by bot id=7771835226
+2025-02-16, Sun, 07:26:38,951 aiogram.event ERROR Cause exception while process update id=450710921 by bot id=7771835226
+TypeError: Bot.send_invoice() missing 1 required positional argument: 'payload'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/middleware.py", line 26, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/selling.py", line 253, in pay_sum
+    await bot.send_invoice(message.from_user.id,
+TypeError: Bot.send_invoice() missing 1 required positional argument: 'payload'
+2025-02-16, Sun, 10:10:45,229 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-16, Sun, 10:10:45,229 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-16, Sun, 10:10:50,190 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-16, Sun, 10:10:50,190 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-16, Sun, 10:10:57,133 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-16, Sun, 10:11:01,941 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-16, Sun, 16:41:12,595 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-16, Sun, 16:41:12,596 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-16, Sun, 16:41:12,598 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-16, Sun, 16:41:12,598 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-16, Sun, 16:41:24,479 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-16, Sun, 16:41:24,479 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-16, Sun, 18:50:55,812 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-16, Sun, 18:50:55,813 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-16, Sun, 18:50:55,813 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-16, Sun, 18:50:55,813 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-16, Sun, 18:51:07,186 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-16, Sun, 18:51:07,189 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-17, Mon, 09:52:25,563 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 09:52:25,563 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-17, Mon, 09:52:26,509 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 09:52:26,510 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-17, Mon, 09:52:36,883 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-17, Mon, 09:52:38,11 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-17, Mon, 11:37:54,109 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 11:37:54,110 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-17, Mon, 11:38:05,914 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-17, Mon, 12:35:34,950 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 12:35:34,952 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-17, Mon, 12:35:46,703 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-17, Mon, 16:10:17,531 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 16:10:17,531 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-17, Mon, 16:10:22,519 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 16:10:22,519 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-17, Mon, 16:10:28,863 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-17, Mon, 16:10:33,809 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-17, Mon, 18:32:36,373 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 18:32:36,374 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-17, Mon, 18:32:41,330 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-17, Mon, 18:32:41,330 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-17, Mon, 18:32:47,656 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-17, Mon, 18:32:52,561 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-18, Tue, 10:18:02,114 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-18, Tue, 10:18:02,116 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-18, Tue, 10:18:05,60 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-18, Tue, 10:18:05,61 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-18, Tue, 10:18:13,429 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-18, Tue, 10:18:16,178 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-18, Tue, 11:39:54,435 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-18, Tue, 11:39:54,438 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-18, Tue, 11:40:01,399 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-18, Tue, 11:40:01,399 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-18, Tue, 11:40:06,235 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-18, Tue, 11:40:12,988 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-20, Thu, 07:27:42,787 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:27:42,787 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:27:42,789 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:27:42,789 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:27:42,789 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:27:42,789 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:27:42,790 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:27:42,799 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:27:42,800 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ()
+2025-02-20, Thu, 07:27:42,813 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:27:42,814 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:27:42,816 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:27:42,816 sqlalchemy.engine.Engine INFO [generated in 0.00017s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:27:42,818 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:27:42,818 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:27:43,901 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:27:44,446 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:27:44,615 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:27:44,653 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:28:02,331 aiogram.event INFO Update id=450710922 is handled. Duration 619 ms by bot id=7771835226
+2025-02-20, Thu, 07:28:13,186 root ERROR Ошибка при выполнении команды /buy: list index out of range
+2025-02-20, Thu, 07:28:13,289 aiogram.event INFO Update id=450710923 is handled. Duration 104 ms by bot id=7771835226
+2025-02-20, Thu, 07:34:05,267 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:34:05,267 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:34:05,269 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:34:05,269 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:34:05,270 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:34:05,270 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:34:05,271 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:34:05,280 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:34:05,280 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ()
+2025-02-20, Thu, 07:34:05,291 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:34:05,292 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:34:05,293 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:34:05,293 sqlalchemy.engine.Engine INFO [generated in 0.00021s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:34:05,295 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:34:05,296 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:34:05,652 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:34:05,767 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:34:05,891 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:34:05,929 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:34:09,482 aiogram.event INFO Update id=450710924 is handled. Duration 163 ms by bot id=7771835226
+2025-02-20, Thu, 07:34:12,82 root ERROR Ошибка при выполнении команды /buy: 1 validation error for SendInvoice
+provider_data
+  Input should be a valid string [type=string_type, input_value={'receipt': {'items': [{'...RUB'}, 'vat_code': 1}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/string_type
+2025-02-20, Thu, 07:34:12,337 aiogram.event INFO Update id=450710925 is handled. Duration 338 ms by bot id=7771835226
+2025-02-20, Thu, 07:35:27,301 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:35:27,301 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:35:27,303 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:35:27,303 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:35:27,303 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:35:27,303 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:35:27,304 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:35:27,313 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:35:27,314 sqlalchemy.engine.Engine INFO [generated in 0.00028s] ()
+2025-02-20, Thu, 07:35:27,323 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:35:27,324 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:35:27,326 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:35:27,326 sqlalchemy.engine.Engine INFO [generated in 0.00016s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:35:27,327 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:35:27,328 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:35:27,774 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:35:27,893 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:35:28,19 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:35:28,58 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:35:33,920 aiogram.event INFO Update id=450710926 is handled. Duration 293 ms by bot id=7771835226
+2025-02-20, Thu, 07:35:36,553 root ERROR Ошибка при выполнении команды /buy: Telegram server says - Bad Request: PAYMENT_PROVIDER_INVALID
+2025-02-20, Thu, 07:35:36,889 aiogram.event INFO Update id=450710927 is handled. Duration 510 ms by bot id=7771835226
+2025-02-20, Thu, 07:43:46,835 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:43:46,836 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:43:46,837 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:43:46,837 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:43:46,838 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:43:46,838 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:43:46,839 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:43:46,848 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:43:46,848 sqlalchemy.engine.Engine INFO [generated in 0.00025s] ()
+2025-02-20, Thu, 07:43:46,859 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:43:46,860 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:43:46,861 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:43:46,862 sqlalchemy.engine.Engine INFO [generated in 0.00015s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:43:46,863 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:43:46,863 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:43:47,458 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:43:47,645 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:43:47,951 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:43:47,996 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:43:57,963 aiogram.event INFO Update id=450710928 is handled. Duration 472 ms by bot id=7771835226
+2025-02-20, Thu, 07:43:59,816 root ERROR Ошибка при выполнении команды /buy: Telegram server says - Bad Request: DATA_JSON_INVALID
+2025-02-20, Thu, 07:43:59,910 aiogram.event INFO Update id=450710929 is handled. Duration 288 ms by bot id=7771835226
+2025-02-20, Thu, 07:44:26,742 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:44:26,742 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:44:26,744 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:44:26,744 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:44:26,744 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:44:26,745 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:44:26,745 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:44:26,755 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:44:26,755 sqlalchemy.engine.Engine INFO [generated in 0.00027s] ()
+2025-02-20, Thu, 07:44:26,765 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:44:26,766 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:44:26,768 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:44:26,768 sqlalchemy.engine.Engine INFO [generated in 0.00026s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:44:26,770 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:44:26,771 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:44:27,431 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:44:27,654 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:44:28,10 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:44:28,77 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:44:31,670 aiogram.event INFO Update id=450710930 is handled. Duration 504 ms by bot id=7771835226
+2025-02-20, Thu, 07:44:33,802 root ERROR Ошибка при выполнении команды /buy: 1 validation error for SendInvoice
+provider_data
+  Input should be a valid string [type=string_type, input_value={'receipt': {'items': [{'...RUB'}, 'vat_code': 1}]}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/string_type
+2025-02-20, Thu, 07:44:34,12 aiogram.event INFO Update id=450710931 is handled. Duration 311 ms by bot id=7771835226
+2025-02-20, Thu, 07:46:47,127 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:46:47,128 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:46:47,129 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:46:47,129 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:46:47,130 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:46:47,130 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:46:47,130 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:46:47,140 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:46:47,140 sqlalchemy.engine.Engine INFO [generated in 0.00035s] ()
+2025-02-20, Thu, 07:46:47,152 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:46:47,153 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:46:47,154 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:46:47,154 sqlalchemy.engine.Engine INFO [generated in 0.00017s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:46:47,156 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:46:47,157 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:46:47,602 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:46:47,952 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:46:48,138 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:46:48,175 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:46:52,415 aiogram.event INFO Update id=450710932 is handled. Duration 158 ms by bot id=7771835226
+2025-02-20, Thu, 07:46:55,761 aiogram.event INFO Update id=450710933 is handled. Duration 888 ms by bot id=7771835226
+2025-02-20, Thu, 07:54:45,681 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:54:45,682 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:54:45,683 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:54:45,683 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:54:45,684 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:54:45,684 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:54:45,685 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:54:45,695 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:54:45,695 sqlalchemy.engine.Engine INFO [generated in 0.00034s] ()
+2025-02-20, Thu, 07:54:45,705 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:54:45,706 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:54:45,708 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:54:45,708 sqlalchemy.engine.Engine INFO [generated in 0.00021s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:54:45,710 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:54:45,711 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:54:46,162 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:54:46,276 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:54:46,407 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:54:46,442 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:54:56,360 aiogram.event INFO Update id=450710934 is handled. Duration 466 ms by bot id=7771835226
+2025-02-20, Thu, 07:54:59,146 aiogram.event INFO Update id=450710935 is handled. Duration 223 ms by bot id=7771835226
+2025-02-20, Thu, 07:57:24,75 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:57:24,75 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:57:24,76 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:57:24,76 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:57:24,77 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:57:24,77 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:57:24,78 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:57:24,86 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:57:24,86 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ()
+2025-02-20, Thu, 07:57:24,96 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:57:24,98 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:57:24,99 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:57:24,99 sqlalchemy.engine.Engine INFO [generated in 0.00022s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:57:24,101 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:57:24,101 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:57:24,859 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:57:25,106 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:57:25,546 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:57:25,805 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:59:09,456 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 07:59:09,456 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:59:09,458 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 07:59:09,458 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:59:09,458 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 07:59:09,458 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 07:59:09,459 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:59:09,469 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 07:59:09,469 sqlalchemy.engine.Engine INFO [generated in 0.00024s] ()
+2025-02-20, Thu, 07:59:09,478 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:59:09,479 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 07:59:09,481 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 07:59:09,481 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ('testconnectwb_bot',)
+2025-02-20, Thu, 07:59:09,483 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 07:59:09,483 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 07:59:11,48 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:59:11,534 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 07:59:11,730 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 07:59:11,775 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 07:59:50,79 aiogram.event INFO Update id=450710936 is handled. Duration 1252 ms by bot id=7771835226
+2025-02-20, Thu, 07:59:52,412 aiogram.event INFO Update id=450710937 is handled. Duration 512 ms by bot id=7771835226
+2025-02-20, Thu, 08:04:00,973 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 08:04:00,973 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:04:00,975 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 08:04:00,975 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:04:00,975 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 08:04:00,976 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:04:00,976 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 08:04:00,986 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 08:04:00,987 sqlalchemy.engine.Engine INFO [generated in 0.00028s] ()
+2025-02-20, Thu, 08:04:00,997 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 08:04:00,998 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 08:04:00,999 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 08:04:00,999 sqlalchemy.engine.Engine INFO [generated in 0.00024s] ('testconnectwb_bot',)
+2025-02-20, Thu, 08:04:01,1 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 08:04:01,2 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 08:04:01,434 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 08:04:01,557 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 08:04:01,662 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 08:04:01,700 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 08:04:08,754 aiogram.event INFO Update id=450710938 is handled. Duration 326 ms by bot id=7771835226
+2025-02-20, Thu, 08:04:11,307 root ERROR Ошибка при выполнении команды /buy: type object 'PayState' has no attribute 'buying'
+2025-02-20, Thu, 08:04:11,428 aiogram.event INFO Update id=450710939 is handled. Duration 253 ms by bot id=7771835226
+2025-02-20, Thu, 08:04:55,975 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 08:04:55,975 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:04:55,976 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 08:04:55,976 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:04:55,977 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 08:04:55,977 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:04:55,978 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 08:04:55,988 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 08:04:55,988 sqlalchemy.engine.Engine INFO [generated in 0.00023s] ()
+2025-02-20, Thu, 08:04:56,4 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 08:04:56,5 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 08:04:56,7 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 08:04:56,7 sqlalchemy.engine.Engine INFO [generated in 0.00033s] ('testconnectwb_bot',)
+2025-02-20, Thu, 08:04:56,12 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 08:04:56,13 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 08:04:57,152 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 08:04:57,394 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 08:04:57,658 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 08:04:57,919 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 08:05:01,401 aiogram.event INFO Update id=450710940 is handled. Duration 655 ms by bot id=7771835226
+2025-02-20, Thu, 08:05:04,218 aiogram.event INFO Update id=450710941 is handled. Duration 686 ms by bot id=7771835226
+2025-02-20, Thu, 08:09:00,583 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 08:09:00,583 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:09:00,585 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 08:09:00,585 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:09:00,586 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 08:09:00,586 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 08:09:00,587 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 08:09:00,598 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 08:09:00,598 sqlalchemy.engine.Engine INFO [generated in 0.00025s] ()
+2025-02-20, Thu, 08:09:00,608 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 08:09:00,610 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 08:09:00,611 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 08:09:00,611 sqlalchemy.engine.Engine INFO [generated in 0.00018s] ('testconnectwb_bot',)
+2025-02-20, Thu, 08:09:00,612 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 08:09:00,613 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 08:09:02,459 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 08:09:02,771 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 08:09:03,524 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 08:09:03,795 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 08:09:05,673 aiogram.event INFO Update id=450710942 is handled. Duration 161 ms by bot id=7771835226
+2025-02-20, Thu, 08:09:08,131 aiogram.event INFO Update id=450710943 is handled. Duration 233 ms by bot id=7771835226
+2025-02-20, Thu, 09:16:23,411 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-20, Thu, 09:16:23,412 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-20, Thu, 09:16:29,367 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-20, Thu, 09:16:29,367 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-20, Thu, 09:16:34,602 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
+2025-02-20, Thu, 09:16:40,806 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-20, Thu, 09:19:11,269 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+2025-02-20, Thu, 09:19:11,269 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 09:19:11,270 sqlalchemy.engine.Engine INFO select current_schema()
+2025-02-20, Thu, 09:19:11,270 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 09:19:11,271 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+2025-02-20, Thu, 09:19:11,271 sqlalchemy.engine.Engine INFO [raw sql] ()
+2025-02-20, Thu, 09:19:11,272 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 09:19:11,280 sqlalchemy.engine.Engine INFO SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.wb_token, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id
+2025-02-20, Thu, 09:19:11,280 sqlalchemy.engine.Engine INFO [generated in 0.00022s] ()
+2025-02-20, Thu, 09:19:11,291 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 09:19:11,293 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+2025-02-20, Thu, 09:19:11,294 sqlalchemy.engine.Engine INFO SELECT registers.id, registers.chat_id, registers.username, registers.name, registers.bot_username, registers.approve 
+FROM registers 
+WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
+2025-02-20, Thu, 09:19:11,294 sqlalchemy.engine.Engine INFO [generated in 0.00015s] ('testconnectwb_bot',)
+2025-02-20, Thu, 09:19:11,295 sqlalchemy.engine.Engine INFO ROLLBACK
+2025-02-20, Thu, 09:19:11,296 root INFO ======Bot testconnectwb_bot managers are [7675368439, 2142024077]========
+2025-02-20, Thu, 09:19:11,674 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 09:19:11,790 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
+2025-02-20, Thu, 09:19:11,929 aiogram.dispatcher INFO Start polling
+2025-02-20, Thu, 09:19:11,971 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-20, Thu, 09:19:20,187 aiogram.event INFO Update id=450710944 is handled. Duration 515 ms by bot id=7771835226
+2025-02-20, Thu, 09:19:22,630 aiogram.event INFO Update id=450710945 is handled. Duration 441 ms by bot id=7771835226
+2025-02-20, Thu, 09:19:52,811 root INFO precheckout processing
+2025-02-20, Thu, 09:19:52,812 aiogram.event INFO Update id=450710946 is handled. Duration 103 ms by bot id=7771835226
+2025-02-20, Thu, 09:20:12,47 aiogram.event INFO Update id=450710947 is not handled. Duration 0 ms by bot id=7771835226
+2025-02-20, Thu, 09:20:12,47 aiogram.event ERROR Cause exception while process update id=450710947 by bot id=7771835226
+AttributeError: 'NoneType' object has no attribute 'startswith'
+Traceback (most recent call last):
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/middleware.py", line 26, in __call__
+    return await handler(event, data)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 113, in trigger
+    result, data = await handler.check(event, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 94, in check
+    check = await event_filter.call(*args, **kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/venv/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 48, in call
+    return await loop.run_in_executor(None, wrapped)
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/dm/dev/TGbots/AnswerMPbot/app/func/marketer.py", line 139, in <lambda>
+    dp.message.register(edit_promo, lambda c: c.text.startswith('/edit_promo'))
+AttributeError: 'NoneType' object has no attribute 'startswith'
+2025-02-20, Thu, 10:02:26,407 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-20, Thu, 10:02:26,407 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-20, Thu, 10:02:38,201 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-20, Thu, 11:26:42,416 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-20, Thu, 11:26:42,416 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7688878272)
+2025-02-20, Thu, 11:26:46,415 aiogram.dispatcher ERROR Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-02-20, Thu, 11:26:46,415 aiogram.dispatcher WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7771835226)
+2025-02-20, Thu, 11:26:53,976 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7688878272)
+2025-02-20, Thu, 11:26:58,84 aiogram.dispatcher INFO Connection established (tryings = 1, bot id = 7771835226)
