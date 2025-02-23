@@ -15,3 +15,7 @@ default = 140000
 support = @username
 [gigachat]
 access_token=234234432AccessTokenGottenInAccount242332324adsfadfsdafs
+ratio=20
+[payment]
+yookassa=381764678:TEST:112517
+REDIRECT_LINK=https://t.me/autoanswersmpbot

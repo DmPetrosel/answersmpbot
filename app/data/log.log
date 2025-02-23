@@ -30844,3 +30844,83 @@ WHERE registers.bot_username = $1::VARCHAR AND registers.approve = true
 2025-02-12, Wed, 09:24:33,602 aiogram.dispatcher INFO Run polling for bot @testconnectwb_bot id=7688878272 - 'WB test connect'
 2025-02-12, Wed, 09:24:34,16 aiogram.dispatcher INFO Start polling
 2025-02-12, Wed, 09:24:34,161 aiogram.dispatcher INFO Run polling for bot @autoanswersmpbot id=7771835226 - 'SSet АОтветы'
+2025-02-23 14:52:39,345 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2025-02-23 14:52:39,345 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 14:52:39,347 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2025-02-23 14:52:39,347 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 14:52:39,348 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2025-02-23 14:52:39,348 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 14:52:39,349 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-02-23 14:52:39,358 - sqlalchemy.engine.Engine - INFO - SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.number_of_art, infobots.wb_token, infobots.company_description, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id 
+WHERE infobots.bot_username = $1::VARCHAR
+2025-02-23 14:52:39,358 - sqlalchemy.engine.Engine - INFO - [generated in 0.00024s] ('testconnectwb_bot',)
+2025-02-23 14:52:39,368 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-02-23 14:52:52,263 - httpx - INFO - HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2025-02-23 14:52:53,193 - httpx - INFO - HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-23 14:52:53,193 - root - INFO - testconnectwb_bot use 131 wich cost 0.0262 for user it cost 0.524 as feedback
+2025-02-23 14:52:53,194 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-02-23 14:52:53,196 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.id = $1::BIGINT
+2025-02-23 14:52:53,196 - sqlalchemy.engine.Engine - INFO - [generated in 0.00022s] (20,)
+2025-02-23 14:52:53,200 - sqlalchemy.engine.Engine - INFO - UPDATE users SET balance=$1::FLOAT WHERE users.id = $2::BIGINT
+2025-02-23 14:52:53,200 - sqlalchemy.engine.Engine - INFO - [generated in 0.00023s] (998.992, 20)
+2025-02-23 14:52:53,201 - sqlalchemy.engine.Engine - INFO - COMMIT
+2025-02-23 14:55:22,781 - httpx - INFO - HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2025-02-23 14:55:23,594 - httpx - INFO - HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-23 14:55:23,595 - root - INFO - testconnectwb_bot use 197 wich cost 0.0394 for user it cost 0.7879999999999999 as feedback
+2025-02-23 14:55:23,596 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-02-23 14:55:23,596 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.id = $1::BIGINT
+2025-02-23 14:55:23,596 - sqlalchemy.engine.Engine - INFO - [cached since 150.4s ago] (20,)
+2025-02-23 14:55:23,598 - sqlalchemy.engine.Engine - INFO - UPDATE users SET balance=$1::FLOAT WHERE users.id = $2::BIGINT
+2025-02-23 14:55:23,599 - sqlalchemy.engine.Engine - INFO - [cached since 150.4s ago] (998.728, 20)
+2025-02-23 14:55:23,599 - sqlalchemy.engine.Engine - INFO - COMMIT
+2025-02-23 14:57:57,066 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2025-02-23 14:57:57,067 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 14:57:57,068 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2025-02-23 14:57:57,068 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 14:57:57,069 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2025-02-23 14:57:57,069 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 14:57:57,070 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-02-23 14:57:57,080 - sqlalchemy.engine.Engine - INFO - SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.number_of_art, infobots.wb_token, infobots.company_description, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id 
+WHERE infobots.bot_username = $1::VARCHAR
+2025-02-23 14:57:57,080 - sqlalchemy.engine.Engine - INFO - [generated in 0.00026s] ('testconnectwb_bot',)
+2025-02-23 14:57:57,091 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-02-23 14:58:19,609 - httpx - INFO - HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2025-02-23 14:58:20,630 - httpx - INFO - HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-23 14:58:20,630 - root - INFO - testconnectwb_bot use 197 wich cost 0.0394 for user it cost 1.97 as feedback
+2025-02-23 14:58:20,632 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-02-23 14:58:20,633 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.id = $1::BIGINT
+2025-02-23 14:58:20,633 - sqlalchemy.engine.Engine - INFO - [generated in 0.00022s] (20,)
+2025-02-23 14:58:20,637 - sqlalchemy.engine.Engine - INFO - UPDATE users SET balance=$1::FLOAT WHERE users.id = $2::BIGINT
+2025-02-23 14:58:20,637 - sqlalchemy.engine.Engine - INFO - [generated in 0.00021s] (996.7579999999999, 20)
+2025-02-23 14:58:20,639 - sqlalchemy.engine.Engine - INFO - COMMIT
+2025-02-23 15:01:43,690 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2025-02-23 15:01:43,690 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 15:01:43,691 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2025-02-23 15:01:43,692 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 15:01:43,693 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2025-02-23 15:01:43,693 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2025-02-23 15:01:43,693 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-02-23 15:01:43,703 - sqlalchemy.engine.Engine - INFO - SELECT infobots.id, infobots.chat_id, infobots.token, infobots.bot_username, infobots.company_name, infobots.samples_ans, infobots.number_of_art, infobots.wb_token, infobots.company_description, users_1.id AS id_1, users_1.chat_id AS chat_id_1, users_1.username, users_1.first_name, users_1.promocode, users_1.marketer, users_1.balance 
+FROM infobots LEFT OUTER JOIN users AS users_1 ON users_1.chat_id = infobots.chat_id 
+WHERE infobots.bot_username = $1::VARCHAR
+2025-02-23 15:01:43,703 - sqlalchemy.engine.Engine - INFO - [generated in 0.00026s] ('testconnectwb_bot',)
+2025-02-23 15:01:43,714 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2025-02-23 15:02:04,313 - httpx - INFO - HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2025-02-23 15:02:05,166 - httpx - INFO - HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-23 15:02:05,166 - root - INFO - testconnectwb_bot use 205 wich cost 0.041 for user it cost 2.87 as feedback
+2025-02-23 15:02:05,168 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2025-02-23 15:02:05,169 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.chat_id, users.username, users.first_name, users.promocode, users.marketer, users.balance 
+FROM users 
+WHERE users.id = $1::BIGINT
+2025-02-23 15:02:05,169 - sqlalchemy.engine.Engine - INFO - [generated in 0.00027s] (20,)
+2025-02-23 15:02:05,174 - sqlalchemy.engine.Engine - INFO - UPDATE users SET balance=$1::FLOAT WHERE users.id = $2::BIGINT
+2025-02-23 15:02:05,174 - sqlalchemy.engine.Engine - INFO - [generated in 0.00029s] (993.8879999999999, 20)
+2025-02-23 15:02:05,176 - sqlalchemy.engine.Engine - INFO - COMMIT

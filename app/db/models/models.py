@@ -1,5 +1,5 @@
 from db.session import Base
-from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, BigInteger, ARRAY, Date, Float
+from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Column, BigInteger, ARRAY, Date, Float, Double
 from sqlalchemy.orm import relationship, backref
 import sqlalchemy as sa
 class User(Base):
@@ -9,7 +9,7 @@ class User(Base):
     first_name = Column(String(256), nullable=False)
     promocode = Column(String(256), nullable=True)
     marketer = Column(Boolean, default=False, server_default="false", nullable=False)
-    balance = Column(BigInteger, nullable=True, default=0, server_default='0')
+    balance = Column(Float, nullable=True, default=0, server_default='0')
     # promos = relationship("Promo", back_populates="user", lazy='joined', cascade='all, delete-orphan', uselist=True)
 
 class Register(Base):
@@ -30,7 +30,7 @@ class InfoBot(Base):
     samples_ans = Column(ARRAY(String(400)), nullable=True)
     number_of_art = Column(Integer, nullable=True)
     wb_token = Column(String(256), nullable=True)
-    company_description = Column(String(1024), nullable=True)
+    company_description = Column(String(1024), nullable=True) 
     user = relationship("User", backref='infobots', lazy='joined', uselist=False)
 
 class Promo(Base):
