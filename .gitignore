@@ -2,5 +2,5 @@ answers-data/
 volumes/
 venv/
 app/config.ini
-*/__pycache__/
+__pycache__/
 app/alembic/versions/
