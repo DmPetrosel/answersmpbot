@@ -171,5 +171,5 @@ if __name__ == "__main__":
     # wb_feedback.new_feedbacks_to_file(time_now=datetime.now())
     # wb_stocks = WBStocks()
     # wb_stocks.update_stocks(wb_token)
-    print(random_answer_text(128122716))
+    # print(random_answer_text(128122716))
     # print(check_product_sells(215225682))

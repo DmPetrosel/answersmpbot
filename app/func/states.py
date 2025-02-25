@@ -16,3 +16,8 @@ class NewBot(StatesGroup):
 
 class FeedState(StatesGroup):
     mess_answering = State()
+class PayState(StatesGroup):
+    enter_sum = State()
+    successful_payment = State()
+    buying = State()
+    precheckout = State()
