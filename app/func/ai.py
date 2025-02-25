@@ -8,16 +8,13 @@ import logging
 config = ConfigParser()
 config.read('config.ini', encoding='utf-8')
 access_token = config.get('gigachat','access_token')
-<<<<<<< HEAD
 ratio = int(config.get('gigachat','ratio'))
 async def generate_answer_for_feedback_ai(feedback, bot_info):
     company=bot_info.company_name
     company_description=bot_info.company_description
     balance = bot_info.user.balance
     user_id = bot_info.user.id
-=======
-def generate_answer_for_feedback_ai(company, company_description, feedback, bot_info):
->>>>>>> main
+
     payload = Chat(
         messages=[
             Messages(
