@@ -9,10 +9,10 @@ import random as rand
 class WBStat:
     def __init__(self, wb_token, bot_username, 
                   daemon = True):
-        super().__init__()
         self.token = wb_token
         self.bot_username = bot_username
         self.daemon = daemon
+        self.interval = 30
     def request_for_stocks(self):
         url = "https://seller-analytics-api.wildberries.ru/api/v1/warehouse_remains"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
@@ -67,14 +67,16 @@ class WBStat:
     #     return prod
         
 
-    def run(self):
+    async def run(self):
         taskId = self.request_for_stocks()
-        if self.check_status(taskId):
-            data = self.get_stocks(taskId)
-            self.write_to_file(data)
-        else:
-            logging.error(f'Stock data in bot {self.bot_username} was not obtained.')
-        return None
+        while True:
+            logging.info('STOCKS UPDATING...')
+            if self.check_status(taskId):
+                data = self.get_stocks(taskId)
+                self.write_to_file(data)
+            else:
+                logging.error(f'Stock data in bot {self.bot_username} was not obtained.')
+            await asyncio.sleep(self.interval * 60)    
 
 def get_random_three_str( 
     bot_info,

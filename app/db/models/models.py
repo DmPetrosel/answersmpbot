@@ -32,7 +32,7 @@ class InfoBot(Base):
     company_name = Column(String(256), nullable=True)
     samples_ans = Column(ARRAY(String(400)), nullable=True)
     number_of_art = Column(Integer, nullable=True)
-    wb_token = Column(String(256), nullable=True)
+    wb_token = Column(String(1024), nullable=True)
     company_description = Column(String(1024), nullable=True) 
     user = relationship("User", backref='infobots', lazy='joined', uselist=False)
 

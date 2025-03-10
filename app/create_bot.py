@@ -9,6 +9,7 @@ from func.main_commands import *
 from aide import *
 from middleware import *
 from func.wb_feedback import *
+from classes.taskmanager import *
 
 tasks = []
 
@@ -42,20 +43,30 @@ async def init_when_restart():
             logging.info(f"======Bot {ibot.bot_username} managers are {managers}========")
         list_n = await bot_init(ibot.token, ibot.chat_id, managers)
         
-
+async def bot_registration(dp :Dispatcher, nbot: MyBot):
+    try:
+        dp.message.register(nstart, Command('start'))
+        # dp.message.register(help, Command('help'))
+        dp.callback_query.register(callbacks, lambda c: c.data.startswith('sbb'))
+        dp.message.outer_middleware(NMiddlewareMessage(nbot))
+        dp.callback_query.outer_middleware(NMiddlewareCallback(bot, nbot))
+        await dp.start_polling(nbot)
+    finally:
+        print("NBOT CLOSE ========")
 async def start_bot(dp: Dispatcher, nbot : MyBot):
-    tasks.append(asyncio.create_task(dp.start_polling(nbot)))
+    tasks.append(asyncio.create_task((bot_registration(dp, nbot))))
     nbot_username = (await nbot.get_me()).username
     bot_info = await get_one_bot(bot_username=nbot_username)
+    wb_feed = WBFeedback(wb_token=bot_info.wb_token, bot_username=nbot_username, bot=nbot)
+    tasks.append(asyncio.create_task((wb_feed.run())))
+    logging.info('AFTER task')
     stat_o = WBStat(wb_token=bot_info.wb_token, bot_username=nbot_username)
-    asyncio.to_thread(stat_o.run())
+    tasks.append(asyncio.create_task((stat_o.run())))
+    logging.info('AFTER task STOCKS ')
     await set_subbot_commands(nbot)
-    dp.message.register(nstart, Command('start'))
-    # dp.message.register(help, Command('help'))
-    dp.callback_query.register(callbacks, lambda c: c.data.startswith('sbb'))
-    dp.message.outer_middleware(NMiddlewareMessage(nbot))
-    dp.callback_query.outer_middleware(NMiddlewareCallback(bot, nbot))
-
+    tasks.append(asyncio.create_task((nmain_loop(nbot))))
+    
+    
 async def bot_init(token:str, chat_id, managers : list):
     try:
         nbot = MyBot(token)

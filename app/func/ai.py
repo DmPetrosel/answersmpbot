@@ -1,7 +1,7 @@
 from gigachat import GigaChat
 from gigachat.models import Chat, Messages, MessagesRole
 from configparser import ConfigParser
-from wbstat import *
+from func.wbstat import *
 from db.update import *
 from db.get import get_one_bot
 import logging

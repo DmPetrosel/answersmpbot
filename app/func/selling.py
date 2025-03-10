@@ -236,10 +236,23 @@ async def get_wb_token(message: types.Message, state: FSMContext):
     if wb_token:
         await bot.send_message(message.from_user.id, f'API-токен WB: {message.text.strip()}')
         await bot.send_message(message.from_user.id, f'Поздравляем, бот подключён!')
+        await bot.send_message("Теперь введите название компании (магазина).")
         bot_list[list_n]['wb_token'] = wb_token
         await update_bot_info(new_bot[message.from_user.id], chat_id=int(message.from_user.id))
+        await state.set_state(Form.company_name)
     else:
         await bot.send_message(message.from_user.id, f'Что-то пошло не так, возможно, проблема с токеном.')
+async def get_company_name(message: types.Message, state: FSMContext, bot: MyBot):
+    new_bot[message.from_user.id]['company_name'] = message.text
+    await update_bot_info(id=new_bot[message.from_user.id]['id'], company_name=message.text)
+    await bot.send_message(message.from_user.id, 'Введите описание и чем занимаетесь')
+    await state.set_state(Form.description)
+
+async def get_description(message: types.Message, state: FSMContext, bot: MyBot):
+    new_bot[message.from_user.id]['description']= message.text
+    await update_bot_info(new_bot)
+    await bot.send_message(message.from_user.id, "Описание и компания добавлены! Не забудьте добавить менеджеров в бота /add_m . Менеждер, предварительно, должен нажать /start в Вашем боте.")
+
 
 async def pay_command(message: types.Message, state: FSMContext, bot :MyBot):
     await state.clear()
@@ -394,17 +407,25 @@ def register_selling_handlers(dp: Dispatcher):
     dp.pre_checkout_query.register(process_pre_checkout_query)
     dp.message.register(process_successful_payment, F.successful_payment)
     dp.message.register(process_unsuccessful_payment, StateFilter(PayState.buying))
+    dp.message.register(get_description, StateFilter(Form.description))
+    dp.message.register(get_company_name, StateFilter(Form.company_name))
 
 async def main_bot():
-    config.read('config.ini')
-    await set_commands_main(bot)
-    # dp.message.register(help, Command('help'), StateFilter('*'))
-    dp.message.register(add_bot, Command('add'), StateFilter('*'))
-    dp.message.register(delete_bot_ask, Command('delb'), StateFilter('*'))                    
-    dp.message.register(add_manager, Command('addm'), StateFilter('*'))                    
-    dp.message.register(delete_manager, Command('delm'), StateFilter('*'))  
-    dp.message.register(pay_command, Command('pay'), StateFilter('*'))
-    register_selling_handlers(dp)
-    dp.message.outer_middleware(MyMiddleware(bot))
-    await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')
-    await dp.start_polling(bot, skip_updates=False)
+    try:
+        config.read('config.ini')
+        await set_commands_main(bot)
+        # dp.message.register(help, Command('help'), StateFilter('*'))
+        dp.message.register(add_bot, Command('add'), StateFilter('*'))
+        dp.message.register(delete_bot_ask, Command('delb'), StateFilter('*'))                    
+        dp.message.register(add_manager, Command('addm'), StateFilter('*'))                    
+        dp.message.register(delete_manager, Command('delm'), StateFilter('*'))  
+        dp.message.register(pay_command, Command('pay'), StateFilter('*'))
+        register_selling_handlers(dp)
+        dp.message.outer_middleware(MyMiddleware(bot))
+        await bot.send_message(chat_id=config['bot']['owner_id'],text='Bot started')
+        await dp.start_polling(bot, skip_updates=False)
+    except KeyboardInterrupt:
+        logging.info('Bot stopped')
+        print('SIGNAL Bot stopped. Goodbye!')
+    finally:
+        print("Main bot close")

@@ -4,6 +4,8 @@ class Form(StatesGroup):
     first_name = State()
     username = State()
     promocode = State()
+    description = State()
+    company_name = State()
 
 class NewPromo(StatesGroup):
     promo_name_state = State()

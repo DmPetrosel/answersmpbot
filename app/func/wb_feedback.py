@@ -26,19 +26,21 @@ import aiohttp
 
 # gc = gspread.authorize(credentials)
 
-
-class WBFeedback(Thread):
-    def __init__(self, wb_token, bot_username, bot, interval=15, quantity_of_cards=100):
-        super().__init__()
-        self.daemon = False
+wb_feedbacks_link = 'https://feedbacks-api-sandbox.wildberries.ru'
+# wb_feedbacks_link ='https://feedbacks-api.wildberries.ru' # Original
+class WBFeedback:
+    def __init__(self, wb_token, bot_username, bot, interval=1, quantity_of_cards=100):
+        # super().__init__()
+        # self.daemon = True
         self.interval = interval
         self.quantity_of_cards = quantity_of_cards
         self.wb_token = wb_token
         self.bot_username = bot_username
         self.bot = bot
+        self.loop = asyncio.new_event_loop()
 
-    def get_feedback_wb(self, wb_token, time_now: datetime):
-        url = f"https://feedbacks-api.wildberries.ru/api/v1/feedbacks?isAnswered=false&take={self.quantity_of_cards}&skip=0"
+    async def get_feedback_wb(self, wb_token, time_now: datetime):
+        url = f"{wb_feedbacks_link}/api/v1/feedbacks?isAnswered=false&take={self.quantity_of_cards}&skip=0"
         header = {"Authorization": self.wb_token}
         with requests.get(url, headers=header) as response:
             response.encoding = "utf-8"
@@ -56,36 +58,36 @@ class WBFeedback(Thread):
                     feedback_cons = data["data"]["feedbacks"][i]["cons"]
                     fb_video = data["data"]["feedbacks"][i]["video"]
                     fb_photoLinks = data["data"]["feedbacks"][i]["photoLinks"]
-                    if (
-                        datetime.strptime(feedback_date, "%Y-%m-%dT%H:%M:%SZ")
-                        > last_munutes
-                    ):
-                        feedback_id = data["data"]["feedbacks"][i]["id"]
-                        feedback_valuation = data["data"]["feedbacks"][i][
-                            "productValuation"
-                        ]
-                        product_nmId = data["data"]["feedbacks"][i]["productDetails"][
-                            "nmId"
-                        ]
-                        product_name = data["data"]["feedbacks"][i]["productDetails"][
-                            "productName"
-                        ]
-                        username = data["data"]["feedbacks"][i]["userName"]
-                        feedback_list.append(
-                            {
-                                "id": feedback_id,
-                                "text": feedback_text,
-                                "pros": feedback_pros,
-                                "cons": feedback_cons,
-                                "valuation": feedback_valuation,
-                                "date": feedback_date,
-                                "product_nmId": product_nmId,
-                                "product_name": product_name,
-                                "username": username,
-                            }
-                        )
+                    # if (
+                    #     datetime.strptime(feedback_date, "%Y-%m-%dT%H:%M:%SZ")
+                    #     > last_munutes
+                    # ):
+                    feedback_id = data["data"]["feedbacks"][i]["id"]
+                    feedback_valuation = data["data"]["feedbacks"][i][
+                        "productValuation"
+                    ]
+                    product_nmId = data["data"]["feedbacks"][i]["productDetails"][
+                        "nmId"
+                    ]
+                    product_name = data["data"]["feedbacks"][i]["productDetails"][
+                        "productName"
+                    ]
+                    username = data["data"]["feedbacks"][i]["userName"]
+                    feedback_list.append(
+                        {
+                            "id": feedback_id,
+                            "text": feedback_text,
+                            "pros": feedback_pros,
+                            "cons": feedback_cons,
+                            "valuation": feedback_valuation,
+                            "date": feedback_date,
+                            "product_nmId": product_nmId,
+                            "product_name": product_name,
+                            "username": username,
+                        }
+                    )
                     i += 1
-                # print(feedback_list)
+                print('------------------------==========================-----------------',feedback_list)
                 return feedback_list
             else:
                 logging.error(f"Error: {response.status_code}")
@@ -93,10 +95,9 @@ class WBFeedback(Thread):
 
                 return data["errorText"]
 
-    def write_to_db(self, feedbacks_list):
-        fb_db_feedids = asyncio.run(
-            [fb.feed_id for fb in get_all_wbfeed(bot_username=self.bot_username)]
-        )
+    async def write_to_db(self, feedbacks_list):
+        fb_db_feedids = [fb.feed_id for fb in await get_all_wbfeed(bot_username=self.bot_username)]        
+
         for fb in feedbacks_list:
             if fb["id"] not in fb_db_feedids:
                 text = fb["text"] + "\n\n" if fb["text"] else ""
@@ -108,18 +109,16 @@ class WBFeedback(Thread):
                 createdDate = datetime.strptime(
                     fb["createdDate"], "%Y-%m-%dT%H:%M:%SZ"
                 ) + timedelta(hours=3)
-
-                asyncio.run(add_wbfeed(
+                await add_wbfeed(
                     feed_id=fb["id"],
                     valuation=valuation,
                     material_links=material_links,
                     bot_username=self.bot_username,
                     feed_mess=mess,
                     createdDate=createdDate,
-                    time_now=datetime.now(),
-                    material_links=material_links
+                    time_now=datetime.now()
                 )
-                )
+                
 
     # def new_feedbacks_to_file(self, time_now: datetime):
     #     old_feedbacks = []
@@ -144,26 +143,28 @@ class WBFeedback(Thread):
     #         json.dump(res, new_messages_file, ensure_ascii=False, indent=4)
     #     return feedbacks_wb
 
-    def run(self):
-        logging.info("update feedback wb")
-        self.new_feedbacks_to_file(datetime.now())
+    async def run(self):
+        while True:
+            logging.info("UPDATE FEEDBACKS wb")
+            data = await self.get_feedback_wb(self.wb_token, datetime.now())
+            await self.write_to_db(data)
+            await asyncio.sleep(self.interval * 60)
 
-
-async def answer_for_feedback(feedback_id, text, wb_token):
-    url = "https://feedbacks-api.wildberries.ru/api/v1/feedbacks/answer"
-    header = {"Authorization": wb_token}
-    body = {"id": feedback_id, "text": text}
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, headers=header, json=body) as response:
-            if response.status == 204:
-                logging.info(f"feedback {feedback_id} was answered with text: {text}")
-                return True
-            else:
-                logging.error(
-                    f"Error answer feedback {feedback_id} with status: {response.status}"
-                )
-                return False
-    return
+# async def answer_for_feedback(feedback_id, text, wb_token):
+#     url = f"{wb_feedbacks_link}/api/v1/feedbacks/answer"
+#     header = {"Authorization": wb_token}
+#     body = {"id": feedback_id, "text": text}
+#     async with aiohttp.ClientSession() as session:
+#         async with session.post(url, headers=header, json=body) as response:
+#             if response.status == 204:
+#                 logging.info(f"feedback {feedback_id} was answered with text: {text}")
+#                 return True
+#             else:
+#                 logging.error(
+#                     f"Error answer feedback {feedback_id} with status: {response.status}"
+#                 )
+#                 return False
+#     return
 
 
 if __name__ == "__main__":

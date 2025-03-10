@@ -111,7 +111,7 @@ async def nmain_loop(bot: MyBot):
     n = await get_bot_row(bot_username=bot_username)
     bot_info = await get_one_bot(bot_username=bot_username)
     while True:
-        new_messages = await get_all_wbfeed(bot_username=bot_username, is_new=False)
+        new_messages = await get_all_wbfeed(bot_username=bot_username, is_new=True)
         for mess in new_messages:
             whole_msg = mess.feed_mess + '\n\n'+ mess.materials_links + '\n\n'+ mess.createDate + '\n\nОценка: ' + mess.valuation
             generated = await generate_answer(bot_info, whole_msg)
@@ -121,3 +121,4 @@ async def nmain_loop(bot: MyBot):
                 await update_wbfeedanswer(id=added_data.id, mess_id= msg.id)
 
             await update_wbfeed(id=mess.id, is_new = False)
+        await asyncio.sleep(60)
