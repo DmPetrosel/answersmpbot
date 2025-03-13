@@ -106,13 +106,13 @@ class MyBot(Bot):
         if messages_list:
             for mess_id in messages_list:
                 try:
-                    if mess_id == message_beside:
+                    if mess_id[1] == message_beside:
                         continue
                     result.append(   
                     await self.edit_message_text(text = text,
                                 business_connection_id  = business_connection_id,
-                                chat_id = chat_id,
-                                message_id = mess_id, # Choosing mess_id instead of message_id
+                                chat_id = int(mess_id[0]),
+                                message_id = int(mess_id[1]), # Choosing mess_id instead of message_id
                                 inline_message_id = inline_message_id,
                                 parse_mode = parse_mode,
                                 entities = entities,

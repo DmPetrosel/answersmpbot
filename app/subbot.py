@@ -70,11 +70,16 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             if success:
                 await callback.message.edit_text('Ответ отправлен')
                 await update_wbfeed(id=question.id, is_answering=False, feed_ans=ans.text)
+                mess_ids = []
+                mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
+                print("MESS_IDS\n\n"+str(mess_ids)+"\n\n")
+        
+                await bot.edit_messages_beside("На сообщение уже дан ответ.", callback.message.message_id, mess_ids) 
+       
             else:
                 await bot.send_message(callback.from_user.id, 'Что-то пошло не так. Попробуйте ещё раз.')
             
-            mess_ids = [m.id for m in await get_all_wbfeedanswer(question_id=question_id)] if await get_all_wbfeedanswer(question_id=question_id) else mess.mess_ids
-            bot.edit_messages_beside("На сообщение уже дан ответ.", callback.id, mess_ids) 
+            # mess_ids = ([m.mess_id for m in await get_all_wbfeedanswer(question_id=question_id)] if (len(await get_all_wbfeedanswer(question_id=question_id)) > 0) else mess.mess_ids)
         except Exception as e:
             print(f"subbot:sbb_wbfeedsend_yes: {e}\n\n{traceback.format_exc()}")
             logging.error(f"subbot:sbb_wbfeedsend_yes: {e}\n\n{traceback.format_exc()}")
@@ -101,8 +106,8 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
         mess = await get_one_wbfeed(id=question_id)
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
-        mess_ids = [m.id for m in await get_all_wbfeedanswer(question_id=question_id)] if await get_all_wbfeedanswer(question_id=question_id) else mess.mess_ids
-        await bot.edit_messages_beside("Другой менеджер уже отвечает на сообщение", callback.id, mess_ids)
+        mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
+        await bot.edit_messages_beside("Другой менеджер уже отвечает на сообщение", callback.message.message_id, mess_ids)
         await bot.send_message(callback.from_user.id, text='Введите ответ на сообщение.\n\nПодсказка: могут приходить другие сообщения, но бот будет ожидать ответ на этот отзыв, пока вы не ответите или не нажмёте "Отмена" или выберете какую-нибудь команду.', reply_markup=await cancel_sbb_kb())
         await state.set_state(FeedState.mess_answering)
         pass 
@@ -114,6 +119,10 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
     if success:
         await bot.send_message(message.from_user.id, 'Ответ отправлен')
         await update_wbfeed(id=question.id, is_answering=False, feed_ans=message.text)
+        mess_ids= []
+        mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]    
+        await bot.edit_messages_beside("На сообщение уже дан ответ.", message.message_id, mess_ids) 
+        
         await state.clear()
     else:
         await bot.send_message(message.from_user.id, 'Что-то пошло не так. Попробуйте ещё раз.\n\nВведите сообщение:')
@@ -131,13 +140,14 @@ async def nmain_loop(bot: MyBot):
             try:
                 whole_msg = str(mess.feed_mess) + '\n\n'+ str(mess.materials_links) + '\n\n'+ str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
                 generated = await generate_answer(whole_msg, bot_info)
+                mess_ids = []
                 for manag in bot_list[n]['managers']:
                     mess_id = mess.id
                     added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess_id)).id
-                    msg = await bot.send_message(manag, text=whole_msg+'\n\n===Ответ может быть:===\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=mess.id))
+                    msg = await bot.send_message(manag, text=whole_msg+'\n\n===Ответ может быть:===\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))
                     await update_wbfeedanswer(id=added_data_id, mess_id= msg.message_id)
-
-                await update_wbfeed(id=mess.id, is_new = False)
+                    mess_ids.append(int(msg.message_id))
+                await update_wbfeed(id=mess.id, is_new = False, mess_ids=mess_ids)
             except Exception as e:
                 print(f'Ошибка в main_loop: {e}\n\n{traceback.print_exc()}\n')
                 logging.error(f"nmain_loop: {e}\n\n{traceback.print_exc()}\n")

@@ -29,7 +29,7 @@ import aiohttp
 wb_feedbacks_link = 'https://feedbacks-api-sandbox.wildberries.ru'
 # wb_feedbacks_link ='https://feedbacks-api.wildberries.ru' # Original
 class WBFeedback:
-    def __init__(self, wb_token, bot_username, bot, interval=1, quantity_of_cards=5):
+    def __init__(self, wb_token, bot_username, bot, interval=1, quantity_of_cards=3):
         # super().__init__()
         # self.daemon = True
         self.interval = interval
