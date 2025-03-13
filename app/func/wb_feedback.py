@@ -29,7 +29,7 @@ import aiohttp
 wb_feedbacks_link = 'https://feedbacks-api-sandbox.wildberries.ru'
 # wb_feedbacks_link ='https://feedbacks-api.wildberries.ru' # Original
 class WBFeedback:
-    def __init__(self, wb_token, bot_username, bot, interval=1, quantity_of_cards=100):
+    def __init__(self, wb_token, bot_username, bot, interval=1, quantity_of_cards=5):
         # super().__init__()
         # self.daemon = True
         self.interval = interval
@@ -67,7 +67,7 @@ class WBFeedback:
                         "productValuation"
                     ]
                     product_nmId = data["data"]["feedbacks"][i]["productDetails"][
-                        "nmId"
+                        "nmID"
                     ]
                     product_name = data["data"]["feedbacks"][i]["productDetails"][
                         "productName"
@@ -80,6 +80,9 @@ class WBFeedback:
                             "pros": feedback_pros,
                             "cons": feedback_cons,
                             "valuation": feedback_valuation,
+                            "photoLinks": fb_photoLinks,
+                            "video": fb_video,
+                            "createdDate":data["data"]["feedbacks"][i]["createdDate"],
                             "date": feedback_date,
                             "product_nmId": product_nmId,
                             "product_name": product_name,
@@ -97,27 +100,39 @@ class WBFeedback:
 
     async def write_to_db(self, feedbacks_list):
         fb_db_feedids = [fb.feed_id for fb in await get_all_wbfeed(bot_username=self.bot_username)]        
-
+        print("\n\nfb_db_feeds===================", fb_db_feedids)
+        print("\n\n=================== ", len(feedbacks_list))
         for fb in feedbacks_list:
-            if fb["id"] not in fb_db_feedids:
-                text = fb["text"] + "\n\n" if fb["text"] else ""
-                pros = str("Плюсы: " + fb["pros"] + "\n\n") if fb["pros"] else ""
-                cons = str("Минусы: " + fb["cons"] + "\n\n") if fb["cons"] else ""
-                mess = str(text + pros + cons)
-                valuation = fb["valuation"]
-                material_links = str(fb["photoLinks"] + "\n\n" + fb["video"])
-                createdDate = datetime.strptime(
-                    fb["createdDate"], "%Y-%m-%dT%H:%M:%SZ"
-                ) + timedelta(hours=3)
-                await add_wbfeed(
-                    feed_id=fb["id"],
-                    valuation=valuation,
-                    material_links=material_links,
-                    bot_username=self.bot_username,
-                    feed_mess=mess,
-                    createdDate=createdDate,
-                    time_now=datetime.now()
-                )
+            print("\n\nPLAIN ")
+            try:
+                if fb["id"] not in fb_db_feedids:
+                    print("NOT IN\n\n")
+                    text = (fb["text"] + "\n\n" if fb["text"] else "")
+                    pros = (str("Плюсы: " + fb["pros"] + "\n\n") if fb["pros"] else "")
+                    cons = (str("Минусы: " + fb["cons"] + "\n\n") if fb["cons"] else "")
+                    mess = str(text + pros + cons)
+                    valuation = fb["valuation"]
+                    material_links = str((fb["photoLinks"] if fb["photoLinks"] else "")  + "\n\n" + (fb["video"] if fb["video"] else ""))
+                    createdDate = datetime.strptime(
+                        fb["createdDate"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                    ) + timedelta(hours=3)
+                    print("before add\n")
+                    await add_wbfeed(
+                        feed_id=fb["id"],
+                        valuation=valuation,
+                        materials_links=material_links,
+                        bot_username=self.bot_username,
+                        feed_mess=mess,
+                        createdDate=createdDate,
+                        time_now=datetime.now()
+                    )
+                    print("\n\n=================ADD TO DB Feedback=======================", fb)
+                else:
+                    print("\n\nDo not Write To DB Feedback=======================", fb)
+            except Exception as e:
+                logging.error(f"{e}")
+                print("\nERROR: ", e)
+        return
                 
 
     # def new_feedbacks_to_file(self, time_now: datetime):
@@ -148,23 +163,24 @@ class WBFeedback:
             logging.info("UPDATE FEEDBACKS wb")
             data = await self.get_feedback_wb(self.wb_token, datetime.now())
             await self.write_to_db(data)
+            print("\nSLEEPING\n")
             await asyncio.sleep(self.interval * 60)
 
-# async def answer_for_feedback(feedback_id, text, wb_token):
-#     url = f"{wb_feedbacks_link}/api/v1/feedbacks/answer"
-#     header = {"Authorization": wb_token}
-#     body = {"id": feedback_id, "text": text}
-#     async with aiohttp.ClientSession() as session:
-#         async with session.post(url, headers=header, json=body) as response:
-#             if response.status == 204:
-#                 logging.info(f"feedback {feedback_id} was answered with text: {text}")
-#                 return True
-#             else:
-#                 logging.error(
-#                     f"Error answer feedback {feedback_id} with status: {response.status}"
-#                 )
-#                 return False
-#     return
+async def answer_for_feedback(feedback_id, text, wb_token):
+    url = f"{wb_feedbacks_link}/api/v1/feedbacks/answer"
+    header = {"Authorization": wb_token}
+    body = {"id": feedback_id, "text": text}
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, headers=header, json=body) as response:
+            if response.status == 204:
+                logging.info(f"feedback {feedback_id} was answered with text: {text}")
+                return True
+            else:
+                logging.error(
+                    f"Error answer feedback {feedback_id} with status: {response.status}"
+                )
+                return False
+    return
 
 
 if __name__ == "__main__":

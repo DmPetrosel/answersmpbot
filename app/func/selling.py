@@ -256,7 +256,7 @@ async def get_description(message: types.Message, state: FSMContext, bot: MyBot)
 
 async def pay_command(message: types.Message, state: FSMContext, bot :MyBot):
     await state.clear()
-    await bot.send_message(message.from_user.id, "Введите суму в рублях, например: 2 000 или 2000")
+    await bot.send_message(message.from_user.id, "Введите StartCommandFilter()суму в рублях, например: 2 000 или 2000")
     await state.set_state(PayState.enter_sum)
 
 def payment(value,description):

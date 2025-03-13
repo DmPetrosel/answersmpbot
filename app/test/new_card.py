@@ -4,6 +4,9 @@ from configparser import ConfigParser
 import sys
 sys.path.append(".")
 from db.get import get_all_bots
+import logging
+from datetime import datetime, timedelta
+import requests
 source_link = "https://content-api-sandbox.wildberries.ru"
 # source_link = "https://content-api.wildberries.ru"
 async def new_cards(cards_list : list):
@@ -95,12 +98,76 @@ async def get_feedbacks():
             else: print('\n\nStatus code: '+str(r.status)+'\n\n')
             return await r.json()
 
+
+async def get_feedback_data(time_now: datetime = datetime.now()):
+    wb_feedbacks_link = 'https://feedbacks-api-sandbox.wildberries.ru'
+
+    infobots = await get_all_bots()
+    wb_token = infobots[0].wb_token
+
+    url = f"{wb_feedbacks_link}/api/v1/feedbacks?isAnswered=false&take=5&skip=0"
+    header = {"Authorization": wb_token}
+    with requests.get(url, headers=header) as response:
+        response.encoding = "utf-8"
+        # last_munutes = time_now - timedelta(minutes=self.interval, hours=3, days=3)
+        if response.status_code == 200:
+            data = response.json()
+            return data
+            feedback_list = []
+            i = 0
+            # while i < len(
+            #     data["data"]["feedbacks"]
+            # ):  # i < data['data']['countUnanswered']
+            #     feedback_date = data["data"]["feedbacks"][i]["createdDate"]
+            #     feedback_text = data["data"]["feedbacks"][i]["text"]
+            #     feedback_pros = data["data"]["feedbacks"][i]["pros"]
+            #     feedback_cons = data["data"]["feedbacks"][i]["cons"]
+            #     fb_video = data["data"]["feedbacks"][i]["video"]
+            #     fb_photoLinks = data["data"]["feedbacks"][i]["photoLinks"]
+            #     # if (
+            #     #     datetime.strptime(feedback_date, "%Y-%m-%dT%H:%M:%SZ")
+            #     #     > last_munutes
+            #     # ):
+            #     feedback_id = data["data"]["feedbacks"][i]["id"]
+            #     feedback_valuation = data["data"]["feedbacks"][i][
+            #         "productValuation"
+            #     ]
+            #     product_nmId = data["data"]["feedbacks"][i]["productDetails"][
+            #         "nmId"
+            #     ]
+            #     product_name = data["data"]["feedbacks"][i]["productDetails"][
+            #         "productName"
+            #     ]
+            #     username = data["data"]["feedbacks"][i]["userName"]
+            #     feedback_list.append(
+            #         {
+            #             "id": feedback_id,
+            #             "text": feedback_text,
+            #             "pros": feedback_pros,
+            #             "cons": feedback_cons,
+            #             "valuation": feedback_valuation,
+            #             "date": feedback_date,
+            #             "product_nmId": product_nmId,
+            #             "product_name": product_name,
+            #             "username": username,
+            #         }
+            #     )
+            #     i += 1
+            # print('------------------------==========================-----------------',feedback_list)
+            # return feedback_list
+        else:
+            logging.error(f"Error: {response.status_code}")
+            data = response.json()
+
+            return data["errorText"]
+
+
 if __name__=="__main__":
     card_list = [{"subjectID":744, "variants":[{"brand":"SSet WrmStone","title": "Candles - Свечи","description": "Свечи гладкие круглые","vendorCode":"cnd0001", "sizes":[{"price": 3000,"skus": ["sku333333"]}], "characteristics":[{"id":3, "value":"vax"}, {"id":4, "value":"paraphine"}]}]},
                  {"subjectID":744, "variants":[{"brand":"SSet Craft","title": "Свечи","description": "Свечи маленькие круглые","vendorCode":"cnd-crt-0001", "sizes":[{"price": 200,"skus": ["sku001111"]}], "characteristics":[{"id":1, "value":"vax"}, {"id":2, "value":"paraphine"}]}]}
                  ]
     # data = asyncio.run(new_cards(card_list))
-    # data = asyncio.run(object_query())
+    data = asyncio.run(object_query())
     # data = asyncio.run(Get())
-    data = asyncio.run(get_feedbacks())
+    # data = asyncio.run(get_feedback_data())
     print(data)

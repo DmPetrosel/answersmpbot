@@ -87,11 +87,11 @@ def get_random_three_str(
     number_of_art = bot_info.number_of_art if bot_info.number_of_art != 0 else number_of_art
     samples_ans = bot_info.samples_ans if bot_info.samples_ans else samples_ans
     
-    with open(f"{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
+    with open(f"data/{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     rand_data = []
-    for i in range(number_of_art):
+    for i in range(min(number_of_art, len(data))):
         j = 7
         while j > 0 and len(data) > 0:
             j -= 1
@@ -102,7 +102,7 @@ def get_random_three_str(
                 continue
         if data[r]["quantityWarehousesFull"] == 0:
             break
-        rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmId"]}')
+        rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmID"]}')
         del data[r]
     random_three_str = samples_ans[rand.randint(0, len(samples_ans)-1)]
     random_three_str+=", ".join(rand_data)
