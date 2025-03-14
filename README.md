@@ -52,7 +52,7 @@ Structure of the application must consist of the next blocks:
         1. Commands
 
             [ ] agen -- Set autogenerattion. Autogeneration settiongs must be for individual user.
-            - Generate
+            - Generate and answer
             - Not generate
             - Generate and check
 
