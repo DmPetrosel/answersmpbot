@@ -53,23 +53,29 @@ async def help(message: types.Message, state: FSMContext, bot: MyBot):
     await bot.send_message(message.from_user.id, f"Если что-то случилось или есть вопросы, \n\nнапишите {config.get('support', 'support')}")
 
 async def agen(message: types.Message, state: FSMContext, bot: MyBot):
-    await state.clear()
-    is_paused[message.from_user.id] = True
-    info_bot = await get_one_bot(bot_username=(await bot.get_me()).username)
-    temp_state_str = ""
-    if info_bot.automated_type == "auto":
-        temp_state_str = "автоматическая"
-    elif info_bot.automated_type == "manual":
-        temp_state_str = "ручная"
-    else:
-        temp_state_str = "полуавтоматическая"
-    await bot.send_message(message.from_user.id, f"Сейчас у вас включена {temp_state_str} обработка отзывов.\n\n Выберете способ обработки отзывов.", reply_markup=await agen_kb(info_bot.automated_type))
+    try:
+        await state.clear()
+        is_paused[message.from_user.id] = True
+        manager = await get_register_by_kwargs(chat_id=int(message.from_user.id))
+        temp_state_str = ""
+        if manager.automated_type == "auto":
+            temp_state_str = "автоматическая"
+        elif manager.automated_type == "manual":
+            temp_state_str = "ручная"
+        else:
+            temp_state_str = "полуавтоматическая"
+        await bot.send_message(message.from_user.id, f"Сейчас у вас включена {temp_state_str} обработка отзывов.\n\n Выберете способ обработки отзывов.", reply_markup=await agen_kb(manager.automated_type))
+    except Exception as e:
+        print(f"agen: {e}\n\n{traceback.format_exc()}")
+        logging.error(f"agen: {e}\n\n{traceback.format_exc()}")
 # TODO Make this func 
 async def get_messages_with_btn ():
     pass
 
 
 async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: MyBot):
+    print("\nsbb_callbacks\n")
+    print(callback.data)
     if callback.data == 'sbb_cancel_call':
         await state.clear()
         await callback.message.edit_text('Действие отменено.\n\nДля управления воспользуйтесь командами')
@@ -132,22 +138,27 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         await bot.send_message(callback.from_user.id, text='Введите ответ на сообщение.\n\nПодсказка: могут приходить другие сообщения, но бот будет ожидать ответ на этот отзыв, пока вы не ответите или не нажмёте "Отмена" или выберете какую-нибудь команду.', reply_markup=await cancel_sbb_kb())
         await state.set_state(FeedState.mess_answering)
     elif callback.data.startswith('sbb_handle_'):
-        print(f"\n{callback.data}\n============")
-        agen_type = callback.data.split('_')[-1]
-        prefix = ""
-        if callback.data.split('_')[-2] == 'current':
-            prefix = "Оставили как было: "
-        else: 
-            prefix = "Изменили на: "
-            await update_register(chat_id=callback.from_user.id, automated_type=agen_type)
-        if agen_type == 'auto':
-            await callback.message.edit_text(prefix+'автоматическая обработка.')
-        elif agen_type == 'manual':
-            await callback.message.edit_text(prefix+'ручная обработка.')
-        elif agen_type == 'half-auto':
-            await callback.message.edit_text(prefix+'полуавтоматическая обработка.')
-        is_paused[callback.from_user.id]= False
-
+        print("=================================RRRRRRRRRRRRRRRRRRRRRRRRRr\n\n\n")
+        try:
+            agen_type = callback.data.split('_')[-1]
+            prefix = ""
+            if callback.data.split('_')[-2] == 'current':
+                prefix = "Оставили как было: "
+            else: 
+                prefix = "Обработка сообщений изменена: "
+                reg_id = (await get_register_by_kwargs(chat_id=int(callback.from_user.id))).id
+                await update_register(id=reg_id, automated_type=agen_type)
+            if agen_type == 'auto':
+                await callback.message.edit_text(f'{prefix} 🚀 автоматическая обработка.')
+            elif agen_type == 'manual':
+                await callback.message.edit_text(f'{prefix} ✍️ ручная обработка.')
+            elif agen_type == 'half-auto':
+                await callback.message.edit_text(f'{prefix} 📝 полуавтоматическая обработка.')
+            is_paused[callback.from_user.id]= False
+        except Exception as e:
+            print(f"subbot:sbb_handle_: {e}\n\n{traceback.format_exc()}")
+            logging.error(f"subbot:sbb_handle_: {e}\n\n{traceback.format_exc()}")
+            
 
 async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
     question = await get_one_wbfeed(is_answering=True, answering_chat_id=message.from_user.id)
@@ -173,9 +184,12 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
     bot_info = await get_one_bot(bot_username=bot_username)
     is_notified_auth_list[bot_info.chat_id] = False
     while True:
-        if len(bot_list[n]['managers'])<=1 and is_paused[bot_list[n]['managers'][0]]==True:
-            await asyncio.sleep(60)
-            continue
+        try:
+            if len(bot_list[n]['managers'])<=1 and is_paused[bot_list[n]['managers'][0]]==True:
+                print('ALL MANAGERS PAUSED\n\n')
+                await asyncio.sleep(60)
+                continue
+        except: pass
         ping = await get_ping(bot_info.wb_token)
         if is_notified_auth_list[bot_info.chat_id] == False and ping == 401:
             await main_bot.send_message(bot_info.chat_id, 'Токен ВБ не авторизован. Поменяйте токен. Не забудьте дать разрешения на запись и категории: "Отзывы" и "Аналитика".\n')       
@@ -212,8 +226,14 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                         await bot.send_messages(user_list=bot_list[n]['managers'], text='Что-то пошло не так. Попробуйте ещё раз.')
                 else:    
                     for manag in bot_list[n]['managers']:
-                        if len(bot_list[n]['managers'])>1 and is_paused[manag]==True:
-                            continue        
+                        try:
+                            print('\n\nis paused: '+str(is_paused[manag])+'\n\n')
+                        except: print('is paused array empty\n\n')
+                        try:
+                            if len(bot_list[n]['managers'])>1 and is_paused[manag]==True:
+                                print(f"{manag} {automated_type[manag]} PAUSED\n\n")
+                                continue        
+                        except: pass
                         mess_id = mess.id
                         if automated_type[manag] == 'half-auto' or automated_type[manag] == 'auto':
                             added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess_id)).id

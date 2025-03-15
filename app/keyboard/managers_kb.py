@@ -21,11 +21,13 @@ async def wb_ans_manual_kb(question_id):
     return kb
 
 async def agen_kb(temporaty_type):
-    agen_types = [['Авто-обработка','auto'], ['С подтверждением','half-auto'], ['Ручная обработка','manual']]
+    agen_types = [['🚀 Авто-обработка','auto'], ['📝 С подтверждением','half-auto'], ['✍️ Ручная обработка','manual']]
     kb = InlineKeyboardMarkup(inline_keyboard=[])
     for atype in agen_types:
         if temporaty_type == atype[1]:
+            tt_name = atype[0]
             continue
+        print(f"\nKEYBOARD {atype[1]}")
         kb.inline_keyboard.append([InlineKeyboardButton(text=atype[0], callback_data=f'sbb_handle_{atype[1]}')])
-    kb.inline_keyboard.append(text=f"Оставить как есть.", callback_data=f'sbb_handle_current_{temporaty_type}')
+    kb.inline_keyboard.append([InlineKeyboardButton(text=f"Оставить: {tt_name}", callback_data=f'sbb_handle_current_{temporaty_type}')])
     return kb

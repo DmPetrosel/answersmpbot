@@ -22,6 +22,7 @@ class MyMiddleware(BaseMiddleware):
         event: types.Message,
         data: Dict[str, Any],
     ) -> Any:  # pragma: no cover
+        print(f"\n{event.text}\n")
         if event.text == '/help':
             await self.help(event)
         return await handler(event, data)
@@ -36,6 +37,7 @@ class NMiddlewareMessage(BaseMiddleware):
         event: types.Message,
         data: Dict[str, Any],
     ):
+        print(f"\n{event.text}\n")
         if event.text == '/start':
             pass
         elif event.text == '/help':
@@ -67,6 +69,8 @@ class NMiddlewareCallback(BaseMiddleware):
         callback: types.CallbackQuery,
         data: Dict[str, Any],
     ):
+        print(f"\n{callback.data}\n")
+        
         user = await get_one_register(chat_id=callback.from_user.id)
         config.read('config.ini')
         if callback.data.startswith("send_to_owner_yes_"):
