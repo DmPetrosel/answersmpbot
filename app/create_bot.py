@@ -65,7 +65,7 @@ async def start_bot(dp: Dispatcher, nbot : MyBot):
     # tasks.append(asyncio.create_task((stat_o.run())))
     logging.info('AFTER task STOCKS ')
     await set_subbot_commands(nbot)
-    tasks.append(asyncio.create_task((nmain_loop(nbot))))
+    tasks.append(asyncio.create_task((nmain_loop(nbot, main_bot=bot))))
     
     
 async def bot_init(token:str, chat_id, managers : list):

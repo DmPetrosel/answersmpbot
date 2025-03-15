@@ -11,6 +11,7 @@ from func.ai import *
 from aiogram.fsm.context import FSMContext
 from func.states import *
 from func.wb_feedback import *
+from func.ping import *
 import traceback
 bot_list = []
 
@@ -128,12 +129,24 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
         await bot.send_message(message.from_user.id, 'Что-то пошло не так. Попробуйте ещё раз.\n\nВведите сообщение:')
         await state.set_state(FeedState.mess_answering)
         
+is_notified_auth_list = {}
 
-async def nmain_loop(bot: MyBot):
+async def nmain_loop(bot: MyBot, main_bot: MyBot):
     bot_username = (await bot.get_me()).username
     n = await get_bot_row(bot_username=bot_username)
     bot_info = await get_one_bot(bot_username=bot_username)
+    is_notified_auth_list[bot_info.chat_id] = False
     while True:
+        ping = await get_ping(bot_info.wb_token)
+        if is_notified_auth_list[bot_info.chat_id] == False and ping == 401:
+            await main_bot.send_message(bot_info.chat_id, 'Токен ВБ не авторизован. Поменяйте токен. Не забудьте дать разрешения на запись и категории: "Отзывы" и "Аналитика".\n')       
+            is_notified_auth_list[bot_info.chat_id] = True
+        elif is_notified_auth_list == True and ping == 200:
+            await main_bot.send_message(bot_info.chat_id, 'Токен ВБ авторизован.\n')
+            is_notified_auth_list[bot_info.chat_id] = False
+        if ping == 401:
+            await asyncio.sleep(60)
+            continue
         new_messages = await get_all_wbfeed(bot_username=bot_username, is_new=True)
         print("\nnNMAIN LOOP: " + str(len(new_messages)))
         for mess in new_messages:
