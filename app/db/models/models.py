@@ -13,6 +13,7 @@ class User(Base):
     balance = Column(BigInteger, nullable=True, default=0, server_default='0')
     registration_day = Column(Date, nullable=False, default=datetime.today().date, server_default=f"{datetime.today().strftime('%Y-%m-%d')}")
     is_payed_first_time = Column(Boolean, nullable=False, default=False, server_default='false')
+    automated_type = Column(String(256), nullable=True, default="half-auto", server_default='half-auto')
     # promos = relationship("Promo", back_populates="user", lazy='joined', cascade='all, delete-orphan', uselist=True)
 
 class Register(Base):

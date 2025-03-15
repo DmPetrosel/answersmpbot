@@ -87,8 +87,11 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
     elif callback.data.startswith('sbb_wbfeedsent_gen'):
         print(f"\n{callback.data}\n============")
         try:
-            answer_id = int(callback.data.split('_')[-1])
-            question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
+            if callback.data.split('_')[-2] == 'manual':
+                question_id = int(callback.data.split('_')[-1])
+            else:
+                answer_id = int(callback.data.split('_')[-1])
+                question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
             mess = await get_one_wbfeed(id=question_id)
             whole_msg = str(mess.feed_mess) + '\n\n'+ str(mess.materials_links) + '\n\n'+ str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
             bot_username = (await bot.get_me()).username
@@ -103,8 +106,11 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         pass 
     elif callback.data.startswith('sbb_wbfeedsent_oneself'):
         print(f"\n{callback.data}\n============")
-        answer_id = int(callback.data.split('_')[-1])
-        question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
+        if callback.data.split('_')[-2] == 'manual':
+                question_id = int(callback.data.split('_')[-1])
+        else:    
+            answer_id = int(callback.data.split('_')[-1])
+            question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
         mess = await get_one_wbfeed(id=question_id)
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
@@ -149,18 +155,41 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
             continue
         new_messages = await get_all_wbfeed(bot_username=bot_username, is_new=True)
         print("\nnNMAIN LOOP: " + str(len(new_messages)))
+        automated_type = {}
+        automated_type['all'] = 'manual'
+        for manag in bot_list[n]['managers']:
+            automated_type[manag] = (await get_user(manag)).automated_type
+            if automated_type[manag] == 'auto':
+                automated_type['all'] = 'auto'
+                break
+            elif automated_type[manag] == 'half-auto':
+                automated_type['all'] = 'half-auto'
         for mess in new_messages:
             try:
                 whole_msg = str(mess.feed_mess) + '\n\n'+ str(mess.materials_links) + '\n\n'+ str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
-                generated = await generate_answer(whole_msg, bot_info)
+                if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
+                    generated = await generate_answer(whole_msg, bot_info)
                 mess_ids = []
-                for manag in bot_list[n]['managers']:
-                    mess_id = mess.id
-                    added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess_id)).id
-                    msg = await bot.send_message(manag, text=whole_msg+'\n\n===Ответ может быть:===\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))
-                    await update_wbfeedanswer(id=added_data_id, mess_id= msg.message_id)
-                    mess_ids.append(int(msg.message_id))
-                await update_wbfeed(id=mess.id, is_new = False, mess_ids=mess_ids)
+                if automated_type[manag] == 'auto':
+                    msg = await bot.send_messages(user_list=bot_list[n]['managers'], text=whole_msg+'\n\n===Ответ: \n'+generated)
+                    success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=mess.feed_id, text=generated)
+                    if success:
+                        await update_wbfeed(id=mess.id, is_answering=False, feed_ans=generated)
+                    else:
+                        await bot.send_messages(user_list=bot_list[n]['managers'], text='Что-то пошло не так. Попробуйте ещё раз.')
+                else:    
+                    for manag in bot_list[n]['managers']:
+                        mess_id = mess.id
+                        if automated_type[manag] == 'half-auto' or automated_type[manag] == 'auto':
+                            added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess_id)).id
+                        if automated_type[manag]== 'half-auto':
+                            msg = await bot.send_message(manag, text=whole_msg+'\n\n===Ответ может быть:===\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
+                        else:
+                            msg = await bot.send_message(manag, text=whole_msg, reply_markup=await wb_ans_manual_kb(question_id=mess.id))
+
+                        await update_wbfeedanswer(id=added_data_id, mess_id= msg.message_id)
+                        mess_ids.append(int(msg.message_id))
+                    await update_wbfeed(id=mess.id, is_new = False, mess_ids=mess_ids)
             except Exception as e:
                 print(f'Ошибка в main_loop: {e}\n\n{traceback.print_exc()}\n')
                 logging.error(f"nmain_loop: {e}\n\n{traceback.print_exc()}\n")
