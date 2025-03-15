@@ -13,7 +13,6 @@ class User(Base):
     balance = Column(BigInteger, nullable=True, default=0, server_default='0')
     registration_day = Column(Date, nullable=False, default=datetime.today().date, server_default=f"{datetime.today().strftime('%Y-%m-%d')}")
     is_payed_first_time = Column(Boolean, nullable=False, default=False, server_default='false')
-    automated_type = Column(String(256), nullable=True, default="half-auto", server_default='half-auto')
     # promos = relationship("Promo", back_populates="user", lazy='joined', cascade='all, delete-orphan', uselist=True)
 
 class Register(Base):
@@ -23,6 +22,7 @@ class Register(Base):
     name = Column(String(256), nullable=False)
     bot_username = Column(String(256), ForeignKey('infobots.bot_username', ondelete='cascade'), nullable=False)
     approve = Column(Boolean, nullable=False, default=False)
+    automated_type = Column(String(256), nullable=True, default="half-auto", server_default='half-auto')
 
 class InfoBot(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)

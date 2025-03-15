@@ -46,6 +46,7 @@ async def init_when_restart():
 async def bot_registration(dp :Dispatcher, nbot: MyBot):
     try:
         dp.message.register(nstart, Command('start'))
+        dp.message.register(agen, Command('agen'))
         # dp.message.register(help, Command('help'))
         dp.callback_query.register(sbb_callbacks, lambda c: c.data.startswith('sbb'))
         dp.message.register(mess_answering, StateFilter(FeedState.mess_answering))

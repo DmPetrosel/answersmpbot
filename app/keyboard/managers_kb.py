@@ -19,3 +19,13 @@ async def wb_ans_manual_kb(question_id):
     kb.inline_keyboard.append([InlineKeyboardButton(text='Сгенерировать ответ', callback_data=f'sbb_wbfeedsent_gen_manual_{question_id}')])
     kb.inline_keyboard.append([InlineKeyboardButton(text='Свой ответ', callback_data=f'sbb_wbfeedsent_oneself_manual_{question_id}')])
     return kb
+
+async def agen_kb(temporaty_type):
+    agen_types = [['Авто-обработка','auto'], ['С подтверждением','half-auto'], ['Ручная обработка','manual']]
+    kb = InlineKeyboardMarkup(inline_keyboard=[])
+    for atype in agen_types:
+        if temporaty_type == atype[1]:
+            continue
+        kb.inline_keyboard.append([InlineKeyboardButton(text=atype[0], callback_data=f'sbb_handle_{atype[1]}')])
+    kb.inline_keyboard.append(text=f"Оставить как есть.", callback_data=f'sbb_handle_current_{temporaty_type}')
+    return kb
