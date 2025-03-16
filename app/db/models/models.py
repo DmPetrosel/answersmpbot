@@ -61,6 +61,7 @@ class WBFeedData(Base):
     is_new = Column(Boolean, nullable=False, default=True)
     is_answering = Column(Boolean, nullable=False, default=False)
     answering_chat_id = Column(BigInteger, nullable=True)
+    customer_name = Column(String(256), nullable=True)
     ai_usage = Column(String(256), nullable=True, default="ai", server_default="ai")
 
 class WBFeedAnswer(Base):

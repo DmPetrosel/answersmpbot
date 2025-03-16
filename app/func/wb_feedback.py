@@ -108,11 +108,11 @@ class WBFeedback:
                 if fb["id"] not in fb_db_feedids:
                     print("NOT IN\n\n")
                     text = (fb["text"] + "\n\n" if fb["text"] else "")
-                    pros = (str("Плюсы: " + fb["pros"] + "\n\n") if fb["pros"] else "")
-                    cons = (str("Минусы: " + fb["cons"] + "\n\n") if fb["cons"] else "")
+                    pros = (str("Плюсы: " + fb["pros"] + "\n\n") if fb["pros"]!="" else "")
+                    cons = (str("Минусы: " + fb["cons"] + "\n\n") if fb["cons"]!="" else "")
                     mess = str(text + pros + cons)
                     valuation = fb["valuation"]
-                    material_links = str((fb["photoLinks"] if fb["photoLinks"] else "")  + "\n\n" + (fb["video"] if fb["video"] else ""))
+                    material_links = str((f"{fb['photoLinks']}\n\n" if fb["photoLinks"] is not None else "") + (f"{fb['video']}\n\n" if fb["video"] is not None else ""))
                     createdDate = datetime.strptime(
                         fb["createdDate"], "%Y-%m-%dT%H:%M:%S.%fZ"
                     ) + timedelta(hours=3)
@@ -124,7 +124,8 @@ class WBFeedback:
                         bot_username=self.bot_username,
                         feed_mess=mess,
                         createdDate=createdDate,
-                        time_now=datetime.now()
+                        time_now=datetime.now(),
+                        customer_name=fb["username"]
                     )
                     print("\n\n=================ADD TO DB Feedback=======================", fb)
                 else:
