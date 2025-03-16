@@ -95,7 +95,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
                 print("MESS_IDS\n\n"+str(mess_ids)+"\n\n")
         
-                await bot.edit_messages_beside("На сообщение уже дан ответ.", callback.message.message_id, mess_ids) 
+                await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}", callback.message.message_id, mess_ids) 
        
             else:
                 await bot.send_message(callback.from_user.id, 'Что-то пошло не так. Попробуйте ещё раз.')
@@ -113,13 +113,22 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 answer_id = int(callback.data.split('_')[-1])
                 question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
             mess = await get_one_wbfeed(id=question_id)
-            whole_msg = str(mess.feed_mess) + '\n\n'+ str(mess.materials_links) + '\n\n'+ str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
+            whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
             bot_username = (await bot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
             generated = await generate_answer(whole_msg, bot_info)
-            added_data = await add_answer_data(chat_id=callback.from_user.id, text=generated, question_id=mess.id)
-            msg = await bot.send_message(callback.from_user.id, text=whole_msg+'\n\n===Ответ может быть:===\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=mess.id))
-            update_wbfeedanswer(id=added_data.id, mess_id= msg.id)
+            ex_message = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), question_id=mess.id)
+            try:
+                added_data = await update_wbfeedanswer(id=ex_message.id, text=generated)
+                print(f"\nupdate last {added_data}\n")
+            except AttributeError:
+                added_data = await add_answer_data(question_id=mess.id, chat_id=int(callback.from_user.id), text=generated)
+                print(f"\nadd new{added_data}\n")
+            except Exception as e:
+                print(f"subbot:sbb_wbfeedsend_yes: {e}\n\n{traceback.format_exc()}")
+                logging.error(f"subbot:sbb_wbfeedsend_yes: {e}\n\n{traceback.format_exc()}")
+            msg = await callback.message.edit_text( text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data.id))
+            await update_wbfeedanswer(id=added_data.id, mess_id= msg.message_id)
         except Exception as e:
             print(f"subbot:sbb_wbfeedsend_yes: {e}\n\n{traceback.format_exc()}")
             logging.error(f"subbot:sbb_wbfeedsend_yes: {e}\n\n{traceback.format_exc()}")
@@ -134,7 +143,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         mess = await get_one_wbfeed(id=question_id)
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
-        await bot.edit_messages_beside("Другой менеджер уже отвечает на сообщение", callback.message.message_id, mess_ids)
+        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}", callback.message.message_id, mess_ids)
         await bot.send_message(callback.from_user.id, text='Введите ответ на сообщение.\n\nПодсказка: могут приходить другие сообщения, но бот будет ожидать ответ на этот отзыв, пока вы не ответите или не нажмёте "Отмена" или выберете какую-нибудь команду.', reply_markup=await cancel_sbb_kb())
         await state.set_state(FeedState.mess_answering)
     elif callback.data.startswith('sbb_handle_'):
@@ -165,11 +174,11 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
     bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=message.text)
     if success:
-        await bot.send_message(message.from_user.id, 'Ответ отправлен')
+        await bot.send_message(message.from_user.id, f'✅ Ответ на это сообщение отправлен:\n\n{question.feed_mess}')
         await update_wbfeed(id=question.id, is_answering=False, feed_ans=message.text)
         mess_ids= []
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]    
-        await bot.edit_messages_beside("На сообщение уже дан ответ.", message.message_id, mess_ids) 
+        await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}", None, mess_ids) 
         
         await state.clear()
     else:
@@ -213,7 +222,8 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                 automated_type['all'] = 'half-auto'
         for mess in new_messages:
             try:
-                whole_msg = str(mess.feed_mess) + '\n\n'+ str(mess.materials_links) + '\n\n'+ str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
+                generated = ""
+                whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
                 if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
                     generated = await generate_answer(whole_msg, bot_info)
                 mess_ids = []
@@ -234,11 +244,10 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                                 print(f"{manag} {automated_type[manag]} PAUSED\n\n")
                                 continue        
                         except: pass
-                        mess_id = mess.id
-                        if automated_type[manag] == 'half-auto' or automated_type[manag] == 'auto':
-                            added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess_id)).id
+                        
+                        added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id)).id
                         if automated_type[manag]== 'half-auto':
-                            msg = await bot.send_message(manag, text=whole_msg+'\n\n===Ответ может быть:===\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
+                            msg = await bot.send_message(manag, text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
                         else:
                             msg = await bot.send_message(manag, text=whole_msg, reply_markup=await wb_ans_manual_kb(question_id=mess.id))
 

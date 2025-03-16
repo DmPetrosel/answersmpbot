@@ -35,7 +35,7 @@ class BaseDAO:
         except SQLAlchemyError as e:
             await session.rollback()
             raise e
-        return instance
+        return query
     
     @classmethod
     async def update_dict_where_kwarg(cls, *args, session:AsyncSession, **kwargs):
@@ -52,7 +52,7 @@ class BaseDAO:
         except SQLAlchemyError as e:
             await session.rollback()
             raise e
-        return instance
+        return query
 
     @classmethod
     async def get_all(cls, *args, session:AsyncSession, **kwargs):
@@ -83,6 +83,15 @@ class BaseDAO:
         query =select(cls.model)
         for key, value in kwargs.items():
             query = query.where(getattr(cls.model, key)== value)
+        result = await session.execute(query)
+        records = result.scalar_one_or_none()
+        return records
+    @classmethod
+    async def get_by_kwarg_last_id(cls, *args, session:AsyncSession, **kwargs):
+        query =select(cls.model)
+        for key, value in kwargs.items():
+            query = query.where(getattr(cls.model, key)== value)
+        query = query.order_by(cls.model.id.desc()).limit(1)
         result = await session.execute(query)
         records = result.scalar_one_or_none()
         return records

@@ -3,6 +3,11 @@ from db.session import *
 from db.dao import *
 
 @connection
+async def get_one_wbfeedanswer_last(*args, session:AsyncSession, **kwargs):
+    return await WBFeedAnswerDAO.get_by_kwarg_last_id(*args, session=session, **kwargs)
+
+
+@connection
 async def get_one_wbfeedanswer(*args, session:AsyncSession, **kwargs):
     return await WBFeedAnswerDAO.get_by_kwarg_one(*args, session=session, **kwargs)
 
