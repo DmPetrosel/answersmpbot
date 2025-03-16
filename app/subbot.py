@@ -95,7 +95,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
                 print("MESS_IDS\n\n"+str(mess_ids)+"\n\n")
         
-                await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}", callback.message.message_id, mess_ids) 
+                await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\n✉️ {question.feed_ans}", callback.message.message_id, mess_ids) 
        
             else:
                 await bot.send_message(callback.from_user.id, 'Что-то пошло не так. Попробуйте ещё раз.')
@@ -174,11 +174,11 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
     bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=message.text)
     if success:
-        await bot.send_message(message.from_user.id, f'✅ Ответ на это сообщение отправлен:\n\n{question.feed_mess}')
-        await update_wbfeed(id=question.id, is_answering=False, feed_ans=message.text)
+        await bot.send_message(message.from_user.id, f'✅ Ответ на это сообщение отправлен:\n\n{question.feed_mess}\n\n✉️ {question.feed_ans}')
+        await update_wbfeed(id=question.id, is_answering=False, feed_ans=message.text, ai_usage='manual')
         mess_ids= []
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]    
-        await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}", None, mess_ids) 
+        await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\n✉️ {question.feed_ans}", None, mess_ids) 
         
         await state.clear()
     else:
