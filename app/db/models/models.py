@@ -70,6 +70,7 @@ class WBFeedAnswer(Base):
     chat_id = Column(BigInteger)
     question_id = Column(BigInteger, ForeignKey('wbfeeddatas.id'), nullable=False)
     text = Column(String(1024), nullable=False)
+    total_tokens = Column(BigInteger, nullable=True)
 
 class MoneyStat(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)

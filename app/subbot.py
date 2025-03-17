@@ -247,7 +247,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                 whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
                 if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
                     if user.balance>0:
-                        generated = await generate_answer(whole_msg, bot_info, mess.customer_name)
+                        generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name)
                 mess_ids = []
                 if automated_type[manag] == 'auto' and user.balance>0:
                     msg = await bot.send_messages(user_list=bot_list[n]['managers'], text=BALANCE_IS_OVER+whole_msg+'\n\n===Ответ: \n'+generated)
@@ -266,7 +266,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                                 print(f"{manag} {automated_type[manag]} PAUSED\n\n")
                                 continue        
                         except: pass
-                        added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id)).id
+                        added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id, total_tokens=total_tokens)).id
                         if automated_type[manag]== 'half-auto' and user.balance>0:
                             msg = await bot.send_message(manag, text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
                         else:
@@ -278,4 +278,9 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
             except Exception as e:
                 print(f'Ошибка в main_loop: {e}\n\n{traceback.print_exc()}\n')
                 logging.error(f"nmain_loop: {e}\n\n{traceback.print_exc()}\n")
+        if await get_one_bot(bot_username=bot_username) is None:
+            logging.info(f"Bot {bot_username} not found in db. Exiting...")
+            bot.session.close()
+            break
+            
         await asyncio.sleep(60)

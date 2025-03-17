@@ -21,7 +21,7 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
         messages=[
             Messages(
                 role=MessagesRole.SYSTEM,
-                content="Ты хороший в внимательный продавец в компании" + company + ", с таким описанием: " + company_description +f"\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}."
+                content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}."
             )
         ],
         temperature=0,
@@ -41,11 +41,11 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
         logging.info(f"{bot_info.bot_username} use {total_tokens} wich cost {total_tokens*2/10000} for user it cost {user_cost} as feedback")
         content=   response.choices[0].message.content
     await update_user_by_id(id=user_id, balance=balance-user_cost)
-    return content
+    return content, total_tokens
 async def generate_answer(feedback, bot_info, customer_name):
-    str_answer = await generate_answer_for_feedback_ai(feedback, bot_info, customer_name)
+    str_answer, tokens = await generate_answer_for_feedback_ai(feedback, bot_info, customer_name)
     str_answer = str_answer + "\n" + get_random_three_str(bot_info)
-    return str_answer
+    return str_answer, tokens
 
 async def ai_main():
     bot_info = await get_one_bot(bot_username="testconnectwb_bot")

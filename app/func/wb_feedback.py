@@ -29,13 +29,13 @@ import aiohttp
 wb_feedbacks_link = 'https://feedbacks-api-sandbox.wildberries.ru'
 # wb_feedbacks_link ='https://feedbacks-api.wildberries.ru' # Original
 class WBFeedback:
-    def __init__(self, wb_token, bot_username, bot, interval=1, quantity_of_cards=3):
+    def __init__(self, bot_username, bot, interval=1, quantity_of_cards=3):
         # super().__init__()
         # self.daemon = True
         self.interval = interval
         self.quantity_of_cards = quantity_of_cards
-        self.wb_token = wb_token
         self.bot_username = bot_username
+        self.wb_token = ""
         self.bot = bot
         self.loop = asyncio.new_event_loop()
 
@@ -162,8 +162,10 @@ class WBFeedback:
     async def run(self):
         while True:
             logging.info("UPDATE FEEDBACKS wb")
-            data = await self.get_feedback_wb(self.wb_token, datetime.now())
-            await self.write_to_db(data)
+            self.wb_token = (await get_one_bot(bot_username=self.bot_username)).wb_token
+            if self.wb_token:
+                data = await self.get_feedback_wb(self.wb_token, datetime.now())
+                await self.write_to_db(data)
             print("\nSLEEPING\n")
             await asyncio.sleep(self.interval * 60)
 

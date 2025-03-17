@@ -8,7 +8,7 @@ async def update_user_by_id(*args, **kwargs):
     user = await UserDAO.update_by_id(*args, **kwargs)
     return user
 @connection
-async def update_bot_info(*args, **kwargs):
+async def update_bot_info_dict_by_kw(*args, **kwargs):
     bot_info = await InfoBotDAO.update_dict_where_kwarg(*args, **kwargs)
     return bot_info
 

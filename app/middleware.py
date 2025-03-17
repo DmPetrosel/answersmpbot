@@ -42,7 +42,7 @@ class NMiddlewareMessage(BaseMiddleware):
             pass
         elif event.text == '/help':
             config.read('config.ini')
-            state :FSMContext = data['state', FSMContext]
+            state :FSMContext = data.get('state', FSMContext)
             await state.clear()
             await self.bot.send_message(event.from_user.id, f"Если что-то случилось или есть вопросы, \n\nнапишите {config.get('support', 'support')}")
         else:
