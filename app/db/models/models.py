@@ -70,3 +70,10 @@ class WBFeedAnswer(Base):
     chat_id = Column(BigInteger)
     question_id = Column(BigInteger, ForeignKey('wbfeeddatas.id'), nullable=False)
     text = Column(String(1024), nullable=False)
+
+class MoneyStat(Base):
+    id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
+    chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
+    invoice_id = Column(String(256), nullable=True)
+    amount = Column(BigInteger, nullable=False)
+    invoice_payload = Column(String(256), nullable=False, default="income", server_default='income')

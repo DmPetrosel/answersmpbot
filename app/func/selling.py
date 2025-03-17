@@ -151,9 +151,13 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
     elif callback.data == 'pay_call':
         # await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
         # await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
+        await state.update_data(bonus = True)
         await pay_start(callback=callback, state=state, sum=usr[callback.from_user.id]['price'], bot=bot)
     elif callback.data == 'no_pay_call':
-        await bot.send_message(callback.from_user.id, f"Без оплаты ботом можно пользоваться 7 дней.")
+        await state.update_data(bonus = False)
+        await bot.send_message(callback.from_user.id, f"Вы получили 300 бонусных рублей, для того, чтобы могли опробовать функции бота.")
+        user = await get_user(callback.from_user.id)
+        await update_user_by_id(id=user.id, balance=300)
         await bot.send_message(callback.from_user.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
         await state.set_state("get_bot_token")
     elif callback.data == 'how_to_create_bot_call':
@@ -204,7 +208,12 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     
 async def promo_continue(chat_id, price):
-    await bot.send_message(chat_id, f'Ваша цена: {price}', reply_markup=promo_continue_kb())
+    await bot.send_message(chat_id, f'Ваша цена: {price}\n'
+                           f"Вы можете продолжить без оплаты. У вас будет 300 бонусных рублей, чтобы попробовать функции. 😊\n"
+                           f"✅ Но только при оплате сейчас вы получите в подарок 20% от оплаты.\n"
+                           f"✅ Выгода +{price*0.2})"
+                           f"✅ Итого у вас будет: 💵 {price*1.2} руб", reply_markup=promo_continue_kb())
+
 
 async def get_bot_token(message: types.Message, state: FSMContext):
     list_n = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
@@ -256,7 +265,7 @@ async def get_description(message: types.Message, state: FSMContext, bot: MyBot)
 
 async def pay_command(message: types.Message, state: FSMContext, bot :MyBot):
     await state.clear()
-    await bot.send_message(message.from_user.id, "Введите StartCommandFilter()суму в рублях, например: 2 000 или 2000")
+    await bot.send_message(message.from_user.id, "💵 Введите суму в рублях, например: 3 000 или 2500")
     await state.set_state(PayState.enter_sum)
 
 def payment(value,description):
@@ -356,10 +365,16 @@ async def process_pre_checkout_query(pre_checkout_query: types.PreCheckoutQuery,
         logging.error(f"Ошибка при обработке апдейта типа PreCheckoutQuery: {e}")
 
 async def process_successful_payment(message: types.Message, state: FSMContext, bot :MyBot):
-        await message.reply(f"Платеж на сумму {message.successful_payment.total_amount // 100} "
+        await message.reply(f"Платеж на сумму {message.successful_payment.total_amount / 100} "
                             f"{message.successful_payment.currency} прошел успешно!")
         # await db.update_payment(message.from_user.id) TODO Сделать запись в БД
         logging.info(f"Получен платеж от {message.from_user.id}")
+        await add_money_stat(chat_id = message.from_user.id, amount=(message.successful_payment.total_amount / 100), invoice_payload=message.successful_payment.invoice_payload)
+        user = await get_user(message.from_user.id)
+        data = await state.get_data()
+        ratio = 1
+        if data.get("bonus") == True: ratio = 1.2
+        await update_user_by_id(id=user.id, balance = user.balance + (message.successful_payment.total_amount / 100)*ratio)
         current_state = await state.get_state()
         if current_state is not None:
             await state.clear()  # чтобы свободно перейти сюда из любого другого состояния

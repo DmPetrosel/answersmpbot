@@ -126,3 +126,6 @@ class WBFeedDataDAO(BaseDAO):
 
 class WBFeedAnswerDAO(BaseDAO):
     model = WBFeedAnswer
+
+class MoneyStatDAO(BaseDAO):
+    model = MoneyStat

@@ -197,13 +197,21 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
         await state.set_state(FeedState.mess_answering)
         
 is_notified_auth_list = {}
+is_notified_balance_list = {}
 
 async def nmain_loop(bot: MyBot, main_bot: MyBot):
     bot_username = (await bot.get_me()).username
     n = await get_bot_row(bot_username=bot_username)
     bot_info = await get_one_bot(bot_username=bot_username)
     is_notified_auth_list[bot_info.chat_id] = False
+    is_notified_balance_list[bot_info.chat_id] = False
     while True:
+        user = await get_user(bot_info.chat_id)
+        if not is_notified_balance_list[bot_info.chat_id] and user.balance < 100:
+            is_notified_balance_list[bot_info.chat_id] = True
+            main_bot.send_message(bot_info.chat_id, '❗️❗️❗️Баланс менее 100 р. Для продолжения пользования платными функциями бота, пополните баланс. 💵 Воспользуйтесь командой /pay')
+        elif user.balance >= 100:
+            is_notified_balance_list[bot_info.chat_id] = False        
         try:
             if len(bot_list[n]['managers'])<=1 and is_paused[bot_list[n]['managers'][0]]==True:
                 print('ALL MANAGERS PAUSED\n\n')
@@ -234,12 +242,15 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
         for mess in new_messages:
             try:
                 generated = ""
+                BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
+                BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! У вас нет средств на балансе. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=0 else "")
                 whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
                 if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
-                    generated = await generate_answer(whole_msg, bot_info, mess.customer_name)
+                    if user.balance>0:
+                        generated = await generate_answer(whole_msg, bot_info, mess.customer_name)
                 mess_ids = []
-                if automated_type[manag] == 'auto':
-                    msg = await bot.send_messages(user_list=bot_list[n]['managers'], text=whole_msg+'\n\n===Ответ: \n'+generated)
+                if automated_type[manag] == 'auto' and user.balance>0:
+                    msg = await bot.send_messages(user_list=bot_list[n]['managers'], text=BALANCE_IS_OVER+whole_msg+'\n\n===Ответ: \n'+generated)
                     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=mess.feed_id, text=generated)
                     if success:
                         await update_wbfeed(id=mess.id, is_answering=False, feed_ans=generated)
@@ -255,9 +266,8 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                                 print(f"{manag} {automated_type[manag]} PAUSED\n\n")
                                 continue        
                         except: pass
-                        
                         added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id)).id
-                        if automated_type[manag]== 'half-auto':
+                        if automated_type[manag]== 'half-auto' and user.balance>0:
                             msg = await bot.send_message(manag, text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
                         else:
                             msg = await bot.send_message(manag, text=whole_msg, reply_markup=await wb_ans_manual_kb(question_id=mess.id))

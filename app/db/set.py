@@ -10,6 +10,10 @@ from db.dao import *
 
 
 @connection
+async def add_money_stat(*args, session: AsyncSession, **kwargs):
+    mn = await MoneyStatDAO.add(*args, session=session, **kwargs)
+    return mn
+@connection
 async def add_answer_data(*args, session: AsyncSession, **kwargs):
     user = await WBFeedAnswerDAO.add(*args, session=session, **kwargs)
     return user
