@@ -173,9 +173,9 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
     url = f"{wb_feedbacks_link}/api/v1/feedbacks/answer"
     header = {"Authorization": wb_token}
     body = {"id": feedback_id, "text": text}
+    await asyncio.sleep(1)
     async with aiohttp.ClientSession() as session:
         async with session.post(url, headers=header, json=body) as response:
-            await asyncio.sleep(1)
             if response.status == 204:
                 logging.info(f"feedback {feedback_id} was answered with text: {text}")
                 return True
