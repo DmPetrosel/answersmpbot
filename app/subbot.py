@@ -201,7 +201,7 @@ is_notified_balance_list = {}
 
 async def nmain_loop(bot: MyBot, main_bot: MyBot):
     bot_username = (await bot.get_me()).username
-    n = await get_bot_row(bot_username=bot_username)await
+    n = await get_bot_row(bot_username=bot_username)
     bot_info = await get_one_bot(bot_username=bot_username)
     is_notified_auth_list[bot_info.chat_id] = False
     is_notified_balance_list[bot_info.chat_id] = False
