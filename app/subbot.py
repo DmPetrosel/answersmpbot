@@ -127,10 +127,10 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
             bot_username = (await bot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
-            generated = await generate_answer(whole_msg, bot_info, mess.customer_name)
+            generated, total_tokens  = await generate_answer(whole_msg, bot_info, mess.customer_name)
             ex_message = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), question_id=mess.id)
             try:
-                added_data = await update_wbfeedanswer(id=ex_message.id, text=generated)
+                added_data = await update_wbfeedanswer(id=ex_message.id, text=generated, total_tokens=ex_message.total_tokens+total_tokens)
                 print(f"\nupdate last {added_data}\n")
             except AttributeError:
                 added_data = await add_answer_data(question_id=mess.id, chat_id=int(callback.from_user.id), text=generated)
