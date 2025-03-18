@@ -142,6 +142,6 @@ async def create_promo(message : types.Message, bot :MyBot):
         await add_promocode(promos_dict[message.from_user.id])
         await message.answer(f'Промокод создан\nСсылка на промокод: <code>https://t.me/{bot_link}?start={promos_dict[message.from_user.id]["referal"]}</code>', parse_mode='html')
         return
-    await marketer(message.from_user.id, bot)
+    await marketer(message, bot)
     
 
