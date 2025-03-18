@@ -109,7 +109,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\n✉️ {ans.text}", callback.message.message_id, mess_ids) 
        
             else:
-                await bot.send_message(callback.from_user.id, f'Что-то пошло не так. На сообщение: \n{question.feed_mess}\n\n Ответить не получилось. Попробуйте ещё раз.', await wbfeedsent_kb(answer_id=answer_id))
+                await bot.send_message(callback.from_user.id, f'Что-то пошло не так. На сообщение: \n{question.feed_mess}\n\n Ответить не получилось. Попробуйте ещё раз.\n\n🚀Ответ:\n{ans.text}', await wbfeedsent_kb(answer_id=answer_id))
             
             # mess_ids = ([m.mess_id for m in await get_all_wbfeedanswer(question_id=question_id)] if (len(await get_all_wbfeedanswer(question_id=question_id)) > 0) else mess.mess_ids)
         except Exception as e:
@@ -257,7 +257,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                     if success:
                         await update_wbfeed(id=mess.id, is_answering=False, feed_ans=generated)
                     else:
-                        await bot.send_messages(user_list=bot_list[n]['managers'], text=f'Что-то пошло не так. На сообщение: \n{whole_msg}\n\n Ответить не получилось. Попробуйте ещё раз.', reply_markup=await wbfeedsent_kb(answer_id=added_data.id))
+                        await bot.send_messages(user_list=bot_list[n]['managers'], text=f'Что-то пошло не так. На сообщение: \n{whole_msg}\n\n Ответить не получилось. Попробуйте ещё раз. \n\n🚀 Ответ:\n{added_data.text}', reply_markup=await wbfeedsent_kb(answer_id=added_data.id))
                 else:    
                     for manag in bot_list[n]['managers']:
                         try:
