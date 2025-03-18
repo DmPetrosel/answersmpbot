@@ -40,10 +40,10 @@ async def marketer(message: types.Message, bot: MyBot):
     balance = user_obj[chat_id].balance
     await bot.send_message(chat_id,  f"Ваш баланс: {balance}", reply_markup=marketer_menu_kb())
     msg = await bot.send_message(chat_id, f"Ваш промокод ниже. Также вы можете создать промокоды на другую сумму.")
-    if not await get_promo_by_kwargs(chat_id=chat_id):
+    if not await get_promo_by_kwargs(chat_id=chat_id, promocode=default_promo_name):
         await default_promo(message, bot)
     def_promo = await get_promo_by_kwargs(chat_id=chat_id, promocode=default_promo_name)
-    await bot.send_message(chat_id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{def_promo.promocode}</code>\n💵 Цена: <code>6 000 к</code>\n📅 Дата окончания: <code>{(def_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={def_promo.referal}</code>", parse_mode='html')
+    await bot.send_message(chat_id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{def_promo.promocode}</code>\n💵 Цена: <code>{def_promo.price} Р</code>\n📅 Дата окончания: <code>{(def_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={def_promo.referal}</code>", parse_mode='html')
     await asyncio.sleep(12)
     await msg.delete()
 async def default_promo(message : types.Message, bot):
@@ -81,7 +81,7 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
             await bot.send_message(message.from_user.id, text= 'Промокод должен состоять из латинских букв, цифр и символа подчеркивания')
             await state.set_state('promo_name_state')
     elif await state.get_state() == 'promo_price_state':
-        promos_dict[message.from_user.id]['price'] = int(var.replace(' ','').replace('.','').replace(',',''))
+        promos_dict[message.from_user.id]['price'] = int(var.replace(' ','').replace('.','').replace(',','').strip())
         await bot.send_message(message.from_user.id, text= 'Введите дату окончания в формате dd.mm.yyyy\n По умолчанию, промокод делается на год. Чтобы оставить значение по умолчанию, напишите 0')
         await state.set_state('promo_expire_date_state')
     elif await state.get_state() == 'promo_expire_date_state':
@@ -139,8 +139,9 @@ async def create_promo(message : types.Message, bot :MyBot):
         promo_temp[message.from_user.id]['is_updating'] = False
         await update_promo(promos_dict[message.from_user.id])
     else:
-        await add_promocode(promos_dict[message.from_user.id])
-        await message.answer(f'Промокод создан\nСсылка на промокод: <code>https://t.me/{bot_link}?start={promos_dict[message.from_user.id]["referal"]}</code>', parse_mode='html')
+        n_promo = await add_promocode(promos_dict[message.from_user.id])
+        await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
+
         return
     await marketer(message, bot)
     
