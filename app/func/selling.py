@@ -285,7 +285,7 @@ async def get_company_name(message: types.Message, state: FSMContext, bot: MyBot
 async def get_description(message: types.Message, state: FSMContext, bot: MyBot):
     new_bot[message.from_user.id]['company_description']= message.text
     await update_bot_info_dict_by_kw(new_bot[message.from_user.id], bot_username=new_bot[message.from_user.id]['bot_username'])
-    await bot.send_message(message.from_user.id, "Описание и компания добавлены! Не забудьте добавить менеджеров в бота /add_m . Менеждер, предварительно, должен нажать /start в Вашем боте.")
+    await bot.send_message(message.from_user.id, "Описание и компания добавлены! Не забудьте добавить менеджеров в бота /addm . Менеждер, предварительно, должен нажать /start в Вашем боте.")
     await state.clear()
 
 async def pay_command(message: types.Message, state: FSMContext, bot :MyBot):
