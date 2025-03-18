@@ -242,6 +242,10 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                 automated_type['all'] = 'half-auto'
         for mess in new_messages:
             try:
+                if len(bot_list[n]['managers'])<=1 and is_paused[bot_list[n]['managers'][0]]==True:
+                    print('ALL MANAGERS PAUSED\n\n')
+                    await asyncio.sleep(60)
+                    break
                 generated = ""
                 BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
                 BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! У вас нет средств на балансе. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=0 else "")
@@ -260,6 +264,9 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                         await bot.send_messages(user_list=bot_list[n]['managers'], text=f'Что-то пошло не так. На сообщение: \n{whole_msg}\n\n Ответить не получилось. Попробуйте ещё раз. \n\n🚀 Ответ:\n{added_data.text}', reply_markup=await wbfeedsent_kb(answer_id=added_data.id))
                 else:    
                     for manag in bot_list[n]['managers']:
+                        if len(bot_list[n]['managers'])>1 and is_paused[manag]==True:
+                            print(f'{manag} PAUSED\n\n')
+                            continue
                         try:
                             print('\n\nis paused: '+str(is_paused[manag])+'\n\n')
                         except: print('is paused array empty\n\n')
