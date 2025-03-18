@@ -27,10 +27,11 @@ config = ConfigParser()
 usr = {}
 user_obj = {}
 new_bot = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
-
+cast_state = {}
 
 async def start(message: types.Message, command: CommandObject, state: FSMContext):
     try:
+        cast_state[message.chat.id] = {}
         await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
         if(await get_user(chat_id=message.from_user.id)):
             await bot.send_message(message.from_user.id, "Вы уже зарегистрированы! Здесь будут кнопки с меню. ")
@@ -148,17 +149,17 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
     config.read('config.ini')
     if callback.data == 'no_promo_call':
         price = config.get('price', 'default')
-        usr[callback.from_user.id]['price'] = price
+        usr[callback.from_user.id]['price'] = int(price)
         print("\n\n",callback.message.chat.id,"CB\n\n")
         await write_registration(callback.message)
 
     elif callback.data == 'pay_call':
         # await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
         # await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
-        await state.update_data(bonus = True)
-        await pay_start(callback=callback, state=state, sum=usr[callback.from_user.id]['price'], bot=bot)
+        cast_state[callback.message.chat.id]['bonus'] = True
+        await pay_start(callback=callback, state=state, amount=usr[callback.message.chat.id]['price'], bot=bot)
     elif callback.data == 'no_pay_call':
-        await state.update_data(bonus = False)
+        cast_state[callback.message.chat.id]['bonus'] = False
         await bot.send_message(callback.from_user.id, f"Вы получили 300 бонусных рублей, для того, чтобы могли опробовать функции бота.")
         user = await get_user(callback.from_user.id)
         await update_user_by_id(id=user.id, balance=300)
@@ -220,7 +221,11 @@ async def promo_continue(chat_id, price):
 
 
 async def get_bot_token(message: types.Message, state: FSMContext):
-    list_n, msgs = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
+    result = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
+    try:
+        list_n, msgs = result
+    except:
+        list_n = result[0]
     new_bot[message.from_user.id] = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
@@ -228,7 +233,7 @@ async def get_bot_token(message: types.Message, state: FSMContext):
     if list_n != None:
         try:
             new_bot[message.from_user.id]['bot_username'] = bot_list[list_n]['bot_username']
-            await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы. Должны быть подключены категории "Отзывы" и "Аналитика".')
+            if list_n is not None: await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы. Должны быть подключены категории "Отзывы" и "Аналитика".')
             await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
             await add_bot_info(new_bot[message.from_user.id])
             try:
@@ -239,13 +244,15 @@ async def get_bot_token(message: types.Message, state: FSMContext):
                     await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'], approve=True)
                     bot_list[list_n]['managers'].append(message.from_user.id)                    
                 await asyncio.sleep(10)
-                for m in msgs: m.delete()
+                if msgs is not None: 
+                    for m in msgs: m.delete()
             except Exception as e:
                 logging.error(f"{e}")
-            await state.set_state('get_wb_token')
         except Exception as e:
-            await bot.send_message(message.from_user.id, f'Бот не подключён. \n\n{e}\n\n{traceback.print_exc()}\n\nПопробуйте ещё раз. \n\nВведите токен бота: ')
-            await state.set_state("get_bot_token")    
+            if list_n is None:
+                await bot.send_message(message.from_user.id, f'Бот не подключён. \n\n{e}\n\n{traceback.print_exc()}\n\nПопробуйте ещё раз. \n\nВведите токен бота: ')
+                await state.set_state("get_bot_token")    
+        await state.set_state('get_wb_token')
     else:
         await bot.send_message(message.from_user.id, f'Бот не подключён. Попробуйте ещё раз. \n\nВведите токен бота: ')
         await state.set_state("get_bot_token")
@@ -253,6 +260,7 @@ async def get_wb_token(message: types.Message, state: FSMContext):
     list_n = await get_bot_row(chat_id=int(message.from_user.id))
     new_bot[message.from_user.id]['wb_token'] = message.text.strip()
     wb_token = message.text.strip()
+    msg = await bot.send_message(message.chat.id, "Проверка токена, подождите.")
     ping = await get_ping(message.text.strip())
     if ping != 200:
         await bot.send_message(message.from_user.id, 'Токен ВБ не авторизован. Поменяйте токен или попробуйте ещё раз. Не забудьте дать разрешения на запись и категории: "Отзывы" и "Аналитика". Введите токен ещё раз.\n')       
@@ -267,6 +275,7 @@ async def get_wb_token(message: types.Message, state: FSMContext):
         await state.set_state(Form.company_name)
     else:
         await bot.send_message(message.from_user.id, f'Что-то пошло не так, возможно, проблема с токеном.')
+    await msg.delete()
 async def get_company_name(message: types.Message, state: FSMContext, bot: MyBot):
     new_bot[message.from_user.id]['company_name'] = message.text
     await update_bot_info_dict_by_kw(new_bot[message.from_user.id], bot_username=new_bot[message.from_user.id]['bot_username'])
@@ -281,11 +290,13 @@ async def get_description(message: types.Message, state: FSMContext, bot: MyBot)
 
 async def pay_command(message: types.Message, state: FSMContext, bot :MyBot):
     await state.clear()
+
     await bot.send_message(message.from_user.id, "💵 Введите суму в рублях, например: 3 000 или 2500")
     await state.set_state(PayState.enter_sum)
 
-def payment(value,description):
-	provider_data = {
+def payment(value:int,description:str):
+    value = int(value)
+    provider_data = {
           "receipt": {
             "items": [
               {
@@ -296,16 +307,16 @@ def payment(value,description):
                   "currency": 'RUB'
                 },
                 "vat_code": 1
+
               }
             ]
           }
         }
 
-	return json.dumps(provider_data)
+    return json.dumps(provider_data)
 
 async def pay_start(callback: types.Message, state: FSMContext, amount: int, bot: MyBot):
-    await state.clear()
-    amount_cop = amount * 100
+    amount_cop = int(amount * 100)
     config.read('config.ini')
     try:
             # Проверка состояния и его очистка
@@ -328,10 +339,10 @@ async def pay_start(callback: types.Message, state: FSMContext, amount: int, bot
                 prices=prices,
                 need_phone_number=True,
                 send_phone_number_to_provider=True,
-                provider_data=payment(amount, f'Пополнение баланса на сумму {amount_cop} Р.')
+                provider_data=payment(amount, f'Пополнение баланса на сумму {amount} Р.')
             )
     except Exception as e:
-        logging.error(f"Ошибка при выполнении команды /buy: {e}")
+        logging.error(f"pay_start: Ошибка при выполнении команды /buy: {e}\n{traceback.print_exc()}")
         await bot.send_message(callback.from_user.id, "Произошла ошибка при обработке команды!")
         current_state = await state.get_state()
         if current_state is not None:
@@ -340,16 +351,13 @@ async def pay_start(callback: types.Message, state: FSMContext, amount: int, bot
 
 
 async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
-    await state.clear()
-    amount = int(message.text.strip().replace(' ', '').replace('.', '').replace(',', ''))
-    amount_cop = amount * 100
+    if message.text is None:
+        amount = int(usr[message.chat.id]['price'])
+    else:
+        amount = int(message.text.strip().replace(' ', '').replace('.', '').replace(',', ''))
+    amount_cop = int(amount * 100)
     config.read('config.ini')
     try:
-            # Проверка состояния и его очистка
-            current_state = await state.get_state()
-            if current_state is not None:
-                await state.clear()  # чтобы свободно перейти сюда из любого другого состояния
-
             if config.get('payment', 'yookassa').split(':')[1] == "TEST":
                 await message.reply("Для оплаты используйте данные тестовой карты: 1111 1111 1111 1026, 12/22, CVC 000.")
 
@@ -365,7 +373,7 @@ async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
                 prices=prices,
                 need_phone_number=True,
                 send_phone_number_to_provider=True,
-                provider_data=payment(amount, f'Пополнение баланса на сумму {amount_cop} Р.')
+                provider_data=payment(amount, f'Пополнение баланса на сумму {amount} Р.')
             )
     except Exception as e:
         logging.error(f"Ошибка при выполнении команды /buy: {e}")
@@ -385,15 +393,18 @@ async def process_successful_payment(message: types.Message, state: FSMContext, 
                             f"{message.successful_payment.currency} прошел успешно!")
         # await db.update_payment(message.from_user.id) TODO Сделать запись в БД
         logging.info(f"Получен платеж от {message.from_user.id}")
-        await add_money_stat(chat_id = message.from_user.id, amount=(message.successful_payment.total_amount / 100), invoice_payload=message.successful_payment.invoice_payload)
+        await add_money_stat(chat_id = message.from_user.id, amount=(message.successful_payment.total_amount / 100), invoice_id=message.successful_payment.telegram_payment_charge_id, invoice_payload=message.successful_payment.invoice_payload)
         user = await get_user(message.from_user.id)
-        data = await state.get_data()
+        data = cast_state.get(message.chat.id)
         ratio = 1
         if data.get("bonus") == True: ratio = 1.2
         await update_user_by_id(id=user.id, balance = user.balance + (message.successful_payment.total_amount / 100)*ratio)
         current_state = await state.get_state()
         if current_state is not None:
             await state.clear()  # чтобы свободно перейти сюда из любого другого состояния
+        if len(await get_all_bots(chat_id=message.chat.id)) == 0:
+            await bot.send_message(message.chat.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
+            await state.set_state("get_bot_token")
 async def process_unsuccessful_payment(message: types.Message, state: FSMContext):
         await message.reply("Не удалось выполнить платеж!")
         current_state = await state.get_state()

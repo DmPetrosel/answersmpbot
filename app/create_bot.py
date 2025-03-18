@@ -42,9 +42,14 @@ async def init_when_restart():
         if mn:
             managers = [i.chat_id for i in mn]
             logging.info(f"======Bot {ibot.bot_username} managers are {managers}========")
-        list_n, msgs = await bot_init(ibot.token, ibot.chat_id, managers)
+        result = await bot_init(ibot.token, ibot.chat_id, managers)
+        try:
+            list_n, msgs = result
+        except:
+            list_n = result
         await asyncio.sleep(10)
-        for m in msgs: await m.delete()
+        if msgs != None:
+            for m in msgs: await m.delete()
 async def bot_registration(dp :Dispatcher, nbot: MyBot):
     try:
         dp.message.register(nstart, Command('start'))
@@ -92,7 +97,8 @@ async def bot_init(token:str, chat_id, managers : list):
     n = await get_bot_row(bot_username=bot_name)
 
     msg = await nbot.send_messages('Бот подключён и обновлён.', managers)
-       
+    if not msg:
+        msg = None   
     await start_bot(ndp, nbot)
 
     return int(len(bot_list)-1), msg
