@@ -47,7 +47,7 @@ class WBStat:
         return None
 
     def write_to_file(self, data):
-        with open(f"{self.bot_username}_stocks.json", 'w', encoding='utf-8') as f:
+        with open(f"data/{self.bot_username}_stocks.json", 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         return None
     
