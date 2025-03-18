@@ -184,8 +184,8 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
                     f"Error answer feedback {feedback_id} with status: {response.status}"
                 )
                 if count < 3: 
-                    await answer_for_feedback(feedback_id, text, wb_token, count+1)
                     await asyncio.sleep(2)
+                    await answer_for_feedback(feedback_id, text, wb_token, count+1)
                 else:
                     return False
     return
