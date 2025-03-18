@@ -277,6 +277,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                         await update_wbfeedanswer(id=added_data_id, mess_id= msg.message_id)
                         mess_ids.append(int(msg.message_id))
                     await update_wbfeed(id=mess.id, is_new = False, mess_ids=mess_ids)
+                await asyncio.sleep(1)
             except Exception as e:
                 print(f'Ошибка в main_loop: {e}\n\n{traceback.print_exc()}\n')
                 logging.error(f"nmain_loop: {e}\n\n{traceback.print_exc()}\n")
