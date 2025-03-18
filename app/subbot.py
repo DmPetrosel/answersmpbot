@@ -55,7 +55,7 @@ async def help(message: types.Message, state: FSMContext, bot: MyBot):
 async def agen(message: types.Message, state: FSMContext, bot: MyBot):
     try:
         await state.clear()
-        is_paused[message.from_user.id] = True
+        is_paused[message.chat.id] = True
         manager = await get_register_by_kwargs(chat_id=int(message.from_user.id))
         temp_state_str = ""
         if manager.automated_type == "auto":
@@ -174,7 +174,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 await callback.message.edit_text(f'{prefix} ✍️ ручная обработка.')
             elif agen_type == 'half-auto':
                 await callback.message.edit_text(f'{prefix} 📝 полуавтоматическая обработка.')
-            is_paused[callback.from_user.id]= False
+            is_paused[callback.message.chat.id]= False
         except Exception as e:
             print(f"subbot:sbb_handle_: {e}\n\n{traceback.format_exc()}")
             logging.error(f"subbot:sbb_handle_: {e}\n\n{traceback.format_exc()}")
