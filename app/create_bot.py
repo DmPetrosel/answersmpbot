@@ -9,7 +9,7 @@ from func.main_commands import *
 from aide import *
 from middleware import *
 from func.wb_feedback import *
-from classes.taskmanager import *
+
 
 tasks = []
 
