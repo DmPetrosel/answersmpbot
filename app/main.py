@@ -16,10 +16,8 @@ async def main():
         await asyncio.gather(*tasks)
     except TypeError:
         print("GoodBye")
-    
-    except ExceptionGroup as e:
-        print(f"SIGNAL Keyboard interrupt. The end. Goodbye!\n\n\n\n") 
-        logging.info(f"END OF LOOP. THE END: {e}") 
+    except Exception as e:
+        logging.error(f'Main {e}')
     finally:
         # for t in tasks:
         #     await t.cancel()
