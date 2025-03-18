@@ -105,24 +105,6 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
     else:
         await message.answer('Что-то пошло не так')
         
-async def create_promo(message : types.Message, bot :MyBot):
-    promos_dict[message.from_user.id]['chat_id'] = message.from_user.id  
-    promos_dict[message.from_user.id]['referal'] = f'{message.from_user.id}_{promos_dict[message.from_user.id]["promocode"]}'.replace(' ', '_')
-    try:
-       promo_temp[message.from_user.id]['is_updating']
-    except:
-        promo_temp = {}
-        promo_temp[message.from_user.id] = {}
-        promo_temp[message.from_user.id]['is_updating'] = False 
-    if promo_temp[message.from_user.id]['is_updating']:
-        promo_temp[message.from_user.id]['is_updating'] = False
-        await update_promo(promos_dict[message.from_user.id])
-    else:
-        await add_promocode(promos_dict[message.from_user.id])
-        await message.answer(f'Промокод создан\nСсылка на промокод: <code>https://t.me/{bot_link}?start={promos_dict[message.from_user.id]["referal"]}</code>', parse_mode='html')
-        return
-    await marketer(message.from_user.id, bot)
-    
 async def edit_promo(message : types.Message, state: FSMContext, bot: MyBot):
 
     promocode_id = message.text.split('_')[-1]
@@ -149,4 +131,17 @@ async def edit_promo(message : types.Message, state: FSMContext, bot: MyBot):
         else:
             await message.answer('Промокод не найден')
             
+async def create_promo(message : types.Message, bot :MyBot):
+    promos_dict[message.from_user.id]['chat_id'] = message.from_user.id  
+    promos_dict[message.from_user.id]['referal'] = f'{message.from_user.id}_{promos_dict[message.from_user.id]["promocode"]}'.replace(' ', '_')
+    promo_temp[message.from_user.id]['is_updating']
+    if promo_temp.get(message.chat.id) and promo_temp[message.from_user.id].get('is_updating'):
+        promo_temp[message.from_user.id]['is_updating'] = False
+        await update_promo(promos_dict[message.from_user.id])
+    else:
+        await add_promocode(promos_dict[message.from_user.id])
+        await message.answer(f'Промокод создан\nСсылка на промокод: <code>https://t.me/{bot_link}?start={promos_dict[message.from_user.id]["referal"]}</code>', parse_mode='html')
+        return
+    await marketer(message.from_user.id, bot)
+    
 
