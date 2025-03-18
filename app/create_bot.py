@@ -23,6 +23,7 @@ async def set_commands_main(bot: MyBot):
     await bot(SetMyCommands(commands=[types.BotCommand(command='start', description='Начать работу'),
                                types.BotCommand(command='help', description='Поддержка'),
                                types.BotCommand(command='pay', description='Пополнить баланс'),
+                               types.BotCommand(command='share', description='Пригласить'),
                                types.BotCommand(command='add', description='Новый бот'),
                                types.BotCommand(command='delb', description='Удалить бот'),
                                types.BotCommand(command='addm', description='Добавить менеджера'),
@@ -41,8 +42,9 @@ async def init_when_restart():
         if mn:
             managers = [i.chat_id for i in mn]
             logging.info(f"======Bot {ibot.bot_username} managers are {managers}========")
-        list_n = await bot_init(ibot.token, ibot.chat_id, managers)
-        
+        list_n, msgs = await bot_init(ibot.token, ibot.chat_id, managers)
+        await asyncio.sleep(10)
+        for m in msgs: await m.delete()
 async def bot_registration(dp :Dispatcher, nbot: MyBot):
     try:
         dp.message.register(nstart, Command('start'))
@@ -52,6 +54,11 @@ async def bot_registration(dp :Dispatcher, nbot: MyBot):
         dp.message.register(mess_answering, StateFilter(FeedState.mess_answering))
         dp.message.outer_middleware(NMiddlewareMessage(nbot))
         dp.callback_query.outer_middleware(NMiddlewareCallback(bot, nbot))
+
+        dp.message.register(new_promo, StateFilter('promo_name_state', 'promo_price_state', 'promo_expire_date_state'))
+
+        dp.callback_query.register(callback_marketer, lambda c: c.data in ('my_promos', 'create_promo'))
+        dp.message.register(edit_promo, lambda c: c.text.startswith('/edit_promo'))
         await dp.start_polling(nbot)
     finally:
         print("NBOT CLOSE ========")
@@ -84,11 +91,11 @@ async def bot_init(token:str, chat_id, managers : list):
     bot_list.append({'bot':nbot, 'dp':ndp, 'bot_username':bot_name, 'chat_id':chat_id, 'managers':managers})    
     n = await get_bot_row(bot_username=bot_name)
 
-    await nbot.send_messages('Сообщение работает!', managers)
+    msg = await nbot.send_messages('Бот подключён и обновлён.', managers)
        
     await start_bot(ndp, nbot)
 
-    return int(len(bot_list)-1)
+    return int(len(bot_list)-1), msg
 
 
 

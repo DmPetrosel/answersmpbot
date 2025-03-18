@@ -250,7 +250,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                         generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name)
                 mess_ids = []
                 if automated_type[manag] == 'auto' and user.balance>0:
-                    msg = await bot.send_messages(user_list=bot_list[n]['managers'], text=BALANCE_IS_OVER+whole_msg+'\n\n===Ответ: \n'+generated)
+                    msg = await bot.send_messages(user_list=bot_list[n]['managers'], text=BALANCE_IS_OVER+whole_msg+'\n\n🚀 Ответ: \n'+generated)
                     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=mess.feed_id, text=generated)
                     if success:
                         await update_wbfeed(id=mess.id, is_answering=False, feed_ans=generated)

@@ -1,10 +1,9 @@
-from create_bot import *
 from aiogram.fsm.context import FSMContext
 from aiogram import F
 from aiogram.filters import StateFilter
 from db.get import *
 from keyboard.marketer_kb import *
-import aiogram
+from aiogram import types
 from func.states import *
 from datetime import datetime, timedelta
 from db.set import *
@@ -12,13 +11,17 @@ import configparser
 from aiogram.filters.command import Command
 import configparser
 import re
+from aide import MyBot
+import asyncio
 user_obj = {}
 promos_dict = {}
 promo_temp = {}
 config = configparser.ConfigParser()
 config.read('config.ini') 
 bot_link = config.get('bot', 'link')
-async def marketer(chat_id: int):
+default_promo_name = "good_start"
+DESCRIPTION = "🚀 Будьте эффективней. Отвечайте на отзывы быстрее и легче. \n\n💪 SSet АОтветы - бот для автоответов на ВБ"
+async def marketer(message: types.Message, bot: MyBot):
     '''Маркетолог должен быть самозанятым и оформлять получение средств как продажа.
     У марктолога будет в главном меню:
         - текущий баланс. 
@@ -32,11 +35,25 @@ async def marketer(chat_id: int):
         2.устанавливать конечную дату, 
         3.будет создана реферальная ссылка на промокод
     '''
+    chat_id = message.chat.id
     user_obj[chat_id] = await get_user(chat_id)
     balance = user_obj[chat_id].balance
     await bot.send_message(chat_id,  f"Ваш баланс: {balance}", reply_markup=marketer_menu_kb())
-
-async def callback_marketer(call: types.CallbackQuery, state: FSMContext):
+    msg = await bot.send_message(chat_id, f"Ваш промокод ниже. Также вы можете создать промокоды на другую сумму.")
+    if not await get_promo_by_kwargs(chat_id=chat_id):
+        await default_promo(message, bot)
+    def_promo = await get_promo_by_kwargs(chat_id=chat_id, promocode=default_promo_name)
+    await bot.send_message(chat_id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{def_promo.promocode}</code>\n💵 Цена: <code>6 000 к</code>\n📅 Дата окончания: <code>{(def_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={def_promo.referal}</code>", parse_mode='html')
+    await asyncio.sleep(12)
+    await msg.delete()
+async def default_promo(message : types.Message, bot):
+    promos_dict[message.from_user.id] = {}
+    promos_dict[message.from_user.id]['promocode'] = default_promo_name
+    promos_dict[message.from_user.id]['price'] = int(("6 000").replace(' ','').replace('.','').replace(',',''))
+    promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=14)).date()
+    await create_promo(message, bot)
+    return
+async def callback_marketer(call: types.CallbackQuery, state: FSMContext, bot: MyBot):
     # await call.answer(cache_time=60)
     print('callback marketer')
     if call.data == 'my_promos':
@@ -53,10 +70,10 @@ async def callback_marketer(call: types.CallbackQuery, state: FSMContext):
     #     if promocodes:
     #         await call.message.edit_text(f"Ваши промокоды: \n{promocodes}", reply_markup=marketer_menu_kb)
 
-async def new_promo(message:types.Message, state: FSMContext):
+async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
     var = message.text
     if await state.get_state() == 'promo_name_state':
-        if re.match('[a-z0-9_]', var.lower()):
+        if re.match('[a-z0-9_ ]', var.lower()):
             promos_dict[message.from_user.id]['promocode'] = var.lower()
             await bot.send_message(message.from_user.id, text= 'Введите цену')
             await state.set_state('promo_price_state')
@@ -71,7 +88,7 @@ async def new_promo(message:types.Message, state: FSMContext):
         promos_dict[message.from_user.id]['expire_date'] = var
         if var == '0':
             promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=365)).date()
-            await create_promo(message)
+            await create_promo(message, bot)
         else:
             try: 
                 date_var = datetime.strptime(var, '%d.%m.%Y')
@@ -83,14 +100,14 @@ async def new_promo(message:types.Message, state: FSMContext):
                 await bot.send_message(message.from_user.id, text= 'Дата окончания не может быть меньше текущей даты')
                 await state.set_state('promo_expire_date_state')
             else:
-                await create_promo(message)
+                await create_promo(message, bot)
             
     else:
         await message.answer('Что-то пошло не так')
         
-async def create_promo(message : types.Message):
+async def create_promo(message : types.Message, bot :MyBot):
     promos_dict[message.from_user.id]['chat_id'] = message.from_user.id  
-    promos_dict[message.from_user.id]['referal'] = f'{message.from_user.id}_{promos_dict[message.from_user.id]["promocode"]}'
+    promos_dict[message.from_user.id]['referal'] = f'{message.from_user.id}_{promos_dict[message.from_user.id]["promocode"]}'.replace(' ', '_')
     try:
        promo_temp[message.from_user.id]['is_updating']
     except:
@@ -103,9 +120,10 @@ async def create_promo(message : types.Message):
     else:
         await add_promocode(promos_dict[message.from_user.id])
         await message.answer(f'Промокод создан\nСсылка на промокод: <code>https://t.me/{bot_link}?start={promos_dict[message.from_user.id]["referal"]}</code>', parse_mode='html')
-    await marketer(message.from_user.id)
+        return
+    await marketer(message.from_user.id, bot)
     
-async def edit_promo(message : types.Message, state: FSMContext):
+async def edit_promo(message : types.Message, state: FSMContext, bot: MyBot):
 
     promocode_id = message.text.split('_')[-1]
     promocode_id = int(promocode_id)
@@ -132,8 +150,3 @@ async def edit_promo(message : types.Message, state: FSMContext):
             await message.answer('Промокод не найден')
             
 
-
-dp.message.register(new_promo, StateFilter('promo_name_state', 'promo_price_state', 'promo_expire_date_state'))
-
-dp.callback_query.register(callback_marketer, lambda c: c.data in ('my_promos', 'create_promo'))
-dp.message.register(edit_promo, lambda c: c.text.startswith('/edit_promo'))

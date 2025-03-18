@@ -12,7 +12,7 @@ import errh
 from functools import partial
 import logging
 from keyboard.basic_kb import *
-from func.marketer import *
+from func.marketer_module import *
 from func.states import *
 from db.session import Base
 import aiogram
@@ -37,10 +37,11 @@ async def start(message: types.Message, command: CommandObject, state: FSMContex
             user_obj[message.from_user.id] = await get_user(message.from_user.id)
             if user_obj[message.from_user.id].marketer == True:
                 print('Condition with is marketer passed ==============')
-                await marketer(message.from_user.id)
+                await marketer(message, bot)
         else:
 
             usr[message.from_user.id] = {}
+            print(f"=====\n\n{message.from_user.id} user id\n\n")
             usr[message.from_user.id]['promocode'] = None
             promo_obj = None
             try:
@@ -101,7 +102,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
                 logging.error(f"{e}")
         else:
             await state.clear()
-            await write_registration(message.from_user.id)
+            await write_registration(message)
 
     elif await state.get_state() == 'promocode':   
         usr[message.from_user.id]['promocode'] = var.lower().strip()
@@ -121,7 +122,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
                     await state.set_state("promocode")
                 else:
                     await state.clear()
-            await write_registration(message.from_user.id)
+            await write_registration(message)
             
         except Exception as e:
             logging.error(f"{e}")
@@ -129,7 +130,8 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
         await bot.send_message(message.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     
 
-async def write_registration(chat_id):
+async def write_registration(message :types.Message):
+    chat_id = message.chat.id 
     logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['first_name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
     if await add_user(chat_id=chat_id, username=usr[chat_id]['username'], first_name=usr[chat_id]['first_name'], promocode=usr[chat_id]['promocode'], marketer=usr[chat_id]['marketer']):
         await bot.send_message(chat_id, 'Регистрация прошла успешно')
@@ -138,7 +140,7 @@ async def write_registration(chat_id):
         return False
     user_obj[chat_id] = await get_user(chat_id)
     if user_obj[chat_id].marketer == True:
-        await marketer(chat_id)
+        await marketer(message, bot)
     else:
         await promo_continue(chat_id, usr[chat_id]['price'])
     return True
@@ -147,7 +149,9 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
     if callback.data == 'no_promo_call':
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = price
-        await write_registration(callback.from_user.id)
+        print("\n\n",callback.message.chat.id,"CB\n\n")
+        await write_registration(callback.message)
+
     elif callback.data == 'pay_call':
         # await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
         # await bot.send_message(callback.from_user.id, f"Продолжить без оплаты.", reply_markup=without_payment_kb())
@@ -208,7 +212,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     
 async def promo_continue(chat_id, price):
-    await bot.send_message(chat_id, f'Ваша цена: {price}\n'
+    await bot.send_message(chat_id, f'💵 Ваша цена: {price}\n'
                            f"Вы можете продолжить без оплаты. У вас будет 💵 300 бонусных рублей, чтобы попробовать функции. 😊\n\n"
                            f"✅ Но только при оплате сейчас вы получите в подарок 20% от оплаты.\n"
                            f"✅ Выгода +{float(price)*0.2}\n\n"
@@ -216,7 +220,7 @@ async def promo_continue(chat_id, price):
 
 
 async def get_bot_token(message: types.Message, state: FSMContext):
-    list_n = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
+    list_n, msgs = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
     new_bot[message.from_user.id] = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
@@ -234,6 +238,8 @@ async def get_bot_token(message: types.Message, state: FSMContext):
                 else: 
                     await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'], approve=True)
                     bot_list[list_n]['managers'].append(message.from_user.id)                    
+                await asyncio.sleep(10)
+                for m in msgs: m.delete()
             except Exception as e:
                 logging.error(f"{e}")
             await state.set_state('get_wb_token')
@@ -434,7 +440,12 @@ def register_selling_handlers(dp: Dispatcher):
     dp.message.register(process_unsuccessful_payment, StateFilter(PayState.buying))
     dp.message.register(get_description, StateFilter(Form.description))
     dp.message.register(get_company_name, StateFilter(Form.company_name))
+    # Marketer
 
+    dp.message.register(new_promo, StateFilter('promo_name_state', 'promo_price_state', 'promo_expire_date_state'))
+
+    dp.callback_query.register(callback_marketer, lambda c: c.data in ('my_promos', 'create_promo'))
+    dp.message.register(edit_promo, lambda c: c.text.startswith('/edit_promo'))
 async def main_bot():
     try:
         config.read('config.ini')
@@ -444,6 +455,7 @@ async def main_bot():
         dp.message.register(delete_bot_ask, Command('delb'), StateFilter('*'))                    
         dp.message.register(add_manager, Command('addm'))                    
         dp.message.register(delete_manager, Command('delm'), StateFilter('*'))  
+        dp.message.register(share_command, Command('share'), StateFilter('*'))
         dp.message.register(pay_command, Command('pay'), StateFilter('*'))
         register_selling_handlers(dp)
         dp.message.outer_middleware(MyMiddleware(bot))
