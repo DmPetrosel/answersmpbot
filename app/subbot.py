@@ -100,7 +100,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
             success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=ans.text)
             if success:
-                await callback.message.edit_text(f'✅ Ответ отправлен\n\n{question.feed_mess}\n\n✉️ {question.feed_ans}')
+                await callback.message.edit_text(f'✅ Ответ отправлен\n\n{question.feed_mess}\n\n✉️ {ans.feed_ans}')
                 await update_wbfeed(id=question.id, is_answering=False, feed_ans=ans.text)
                 mess_ids = []
                 mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
