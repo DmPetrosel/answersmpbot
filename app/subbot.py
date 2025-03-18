@@ -185,7 +185,7 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
     bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=message.text)
     if success:
-        await bot.send_message(message.from_user.id, f'✅ Ответ на это сообщение отправлен:\n\n{question.feed_mess}\n\n✉️ {question.feed_ans}')
+        await bot.send_message(message.from_user.id, f'✅ Ответ на это сообщение отправлен:\n\n{question.feed_mess}\n\n✉️ {message.text}')
         await update_wbfeed(id=question.id, is_answering=False, feed_ans=message.text, ai_usage='manual')
         mess_ids= []
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]    
