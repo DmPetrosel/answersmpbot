@@ -24,6 +24,6 @@ async def choose_bot_for_add_manager_kb(chat_id:str):
     kb = InlineKeyboardMarkup(inline_keyboard=[])
     if user_bot_list:
         for ibot in user_bot_list:
-            kb.inline_keyboard.append([InlineKeyboardButton(text=ibot.username, callback_data=f'mcadd_manager_choose_them_{ibot.id}')])
+            kb.inline_keyboard.append([InlineKeyboardButton(text=ibot.bot_username, callback_data=f'mcadd_manager_choose_them_{ibot.id}')])
     kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
     return kb        
