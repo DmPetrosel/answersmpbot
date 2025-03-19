@@ -338,7 +338,7 @@ async def pay_start(callback: types.Message, state: FSMContext, amount: int, bot
             await bot.send_invoice(
                 chat_id=callback.from_user.id,
                 title='Пополнение баланса',
-                description=f'Пополнение баланса.\nЭтой суммы примерно хватит для генерации {math.floor(amount/user_cost)} сообщений.',
+                description=f'Пополнение баланса.\n\n✅ Этой суммы примерно хватит для генерации {math.floor(amount/user_cost)} сообщений.\n🎁 Подарок: примерно {math.floor((amount*0.2)/user_cost)} сообщений.',
                 payload='bot_paid',
                 provider_token=config.get('payment', 'yookassa'),
                 currency='RUB',
@@ -472,7 +472,7 @@ async def main_bot():
         dp.message.register(delete_bot_ask, Command('delb'), StateFilter('*'))                    
         dp.message.register(add_manager, Command('addm'))                    
         dp.message.register(delete_manager, Command('delm'), StateFilter('*'))  
-        dp.message.register(share_command, Command('bal-n-share'), StateFilter('*'))
+        dp.message.register(share_command, Command('balnshare'), StateFilter('*'))
         dp.message.register(pay_command, Command('pay'), StateFilter('*'))
         register_selling_handlers(dp)
         dp.message.outer_middleware(MyMiddleware(bot))
