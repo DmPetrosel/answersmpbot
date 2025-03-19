@@ -372,7 +372,7 @@ async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
             await bot.send_invoice(
                 chat_id=message.chat.id,
                 title='Пополнение баланса',
-                description=f'Пополнение баланса.\nЭтой суммы примерно хватит для генерации {math.floor(amount/user_cost)} сообщений.',
+                description=f'Пополнение баланса.\n ✅ Этой суммы примерно хватит для генерации {math.floor(amount/user_cost)} сообщений.',
                 payload='bot_paid',
                 provider_token=config.get('payment', 'yookassa'),
                 currency='RUB',
