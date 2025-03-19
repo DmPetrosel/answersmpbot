@@ -23,7 +23,7 @@ async def set_commands_main(bot: MyBot):
     await bot(SetMyCommands(commands=[types.BotCommand(command='start', description='Начать работу'),
                                types.BotCommand(command='help', description='Поддержка'),
                                types.BotCommand(command='pay', description='Пополнить баланс'),
-                               types.BotCommand(command='share', description='Пригласить'),
+                               types.BotCommand(command='bal-n-share', description='->Баланс или ->пригласить'),
                                types.BotCommand(command='add', description='Новый бот'),
                                types.BotCommand(command='delb', description='Удалить бот'),
                                types.BotCommand(command='addm', description='Добавить менеджера'),
@@ -31,6 +31,12 @@ async def set_commands_main(bot: MyBot):
                                ]))
 
 
+async def set_commands_marketer(bot: MyBot):
+    await bot(SetMyCommands(commands=[types.BotCommand(command='start', description='Начать работу'),
+                               types.BotCommand(command='help', description='Поддержка'),
+                               types.BotCommand(command='pay', description='Пополнить баланс'),
+                               types.BotCommand(command='bal-n-share', description='->Баланс или ->пригласить'),
+                               ]))
 
 
 

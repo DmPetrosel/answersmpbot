@@ -39,7 +39,7 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
         total_tokens = int(response.usage.total_tokens)
         user_cost = total_tokens*2/10000*ratio
         logging.info(f"{bot_info.bot_username} use {total_tokens} wich cost {total_tokens*2/10000} for user it cost {user_cost} as feedback")
-        content=   response.choices[0].message.content
+        content=response.choices[0].message.content
     await update_user_by_id(id=user_id, balance=balance-user_cost)
     return content, total_tokens
 async def generate_answer(feedback, bot_info, customer_name):

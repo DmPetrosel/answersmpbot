@@ -21,13 +21,14 @@ import traceback
 from aiogram.types.message import ContentType
 from configparser import ConfigParser
 import yookassa
-
+import math
 config = ConfigParser()
 
 usr = {}
 user_obj = {}
 new_bot = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 cast_state = {}
+user_cost = 176*2/10000*config.get('gigachat', 'ratio')
 
 async def start(message: types.Message, command: CommandObject, state: FSMContext):
     try:
@@ -141,6 +142,7 @@ async def write_registration(message :types.Message):
         return False
     user_obj[chat_id] = await get_user(chat_id)
     if user_obj[chat_id].marketer == True:
+        await set_commands_marketer()
         await marketer(message, bot)
     else:
         await promo_continue(chat_id, usr[chat_id]['price'])
@@ -213,11 +215,15 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     
 async def promo_continue(chat_id, price):
-    await bot.send_message(chat_id, f'💵 Ваша цена: {price}\n'
+    await bot.send_message(chat_id, f'💵 Сумма пополнения: {price}\n'
                            f"Вы можете продолжить без оплаты. У вас будет 💵 300 бонусных рублей, чтобы попробовать функции. 😊\n\n"
                            f"✅ Но только при оплате сейчас вы получите в подарок 20% от оплаты.\n"
                            f"✅ Выгода +{float(price)*0.2}\n\n"
-                           f"✅ Итого у вас будет: 💵 {float(price)*1.2} руб", reply_markup=promo_continue_kb())
+                           f"✅ Итого у вас будет: 💵 {float(price)*1.2} руб\n\n"
+                           f"ℹ️ Оплата берётся за генерацию сообщения. Его стоимость зависит от длины сообщения.\n"
+                           f"ℹ️ Средняя стоимость сообщения 2,5 Р\n"
+                           f"ℹ️ 1 000 сообщений будут стоить около 2 500 рублей\n\n"
+                           , reply_markup=promo_continue_kb())
 
 
 async def get_bot_token(message: types.Message, state: FSMContext):
@@ -326,13 +332,12 @@ async def pay_start(callback: types.Message, state: FSMContext, amount: int, bot
 
             if config.get('payment', 'yookassa').split(':')[1] == "TEST":
                 await bot.send_message(callback.from_user.id, "Для оплаты используйте данные тестовой карты: 1111 1111 1111 1026, 12/22, CVC 000.")
-
             prices = [types.LabeledPrice(label='Оплата заказа', amount=amount_cop)]
             await state.set_state(PayState.buying)
             await bot.send_invoice(
                 chat_id=callback.from_user.id,
                 title='Пополнение баланса',
-                description='Пополнение баланса',
+                description=f'Пополнение баланса.\nЭтой суммы примерно хватит для генерации {math.floor(amount/user_cost)} сообщений.',
                 payload='bot_paid',
                 provider_token=config.get('payment', 'yookassa'),
                 currency='RUB',
@@ -342,7 +347,7 @@ async def pay_start(callback: types.Message, state: FSMContext, amount: int, bot
                 provider_data=payment(amount, f'Пополнение баланса на сумму {amount} Р.')
             )
     except Exception as e:
-        logging.error(f"pay_start: Ошибка при выполнении команды /buy: {e}\n{traceback.print_exc()}")
+        logging.error(f"pay_start: Ошибка при выполнении команды /pay: {e}\n{traceback.print_exc()}")
         await bot.send_message(callback.from_user.id, "Произошла ошибка при обработке команды!")
         current_state = await state.get_state()
         if current_state is not None:
@@ -367,6 +372,7 @@ async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
                 chat_id=message.chat.id,
                 title='Пополнение баланса',
                 description='Пополнение баланса',
+                description=f'Пополнение баланса.\nЭтой суммы примерно хватит для генерации {math.floor(amount/user_cost)} сообщений.',
                 payload='bot_paid',
                 provider_token=config.get('payment', 'yookassa'),
                 currency='RUB',
@@ -376,7 +382,7 @@ async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
                 provider_data=payment(amount, f'Пополнение баланса на сумму {amount} Р.')
             )
     except Exception as e:
-        logging.error(f"Ошибка при выполнении команды /buy: {e}")
+        logging.error(f"Ошибка при выполнении команды /pay: {e}")
         await message.answer("Произошла ошибка при обработке команды!")
         current_state = await state.get_state()
         if current_state is not None:
@@ -466,7 +472,7 @@ async def main_bot():
         dp.message.register(delete_bot_ask, Command('delb'), StateFilter('*'))                    
         dp.message.register(add_manager, Command('addm'))                    
         dp.message.register(delete_manager, Command('delm'), StateFilter('*'))  
-        dp.message.register(share_command, Command('share'), StateFilter('*'))
+        dp.message.register(share_command, Command('bal-n-share'), StateFilter('*'))
         dp.message.register(pay_command, Command('pay'), StateFilter('*'))
         register_selling_handlers(dp)
         dp.message.outer_middleware(MyMiddleware(bot))
