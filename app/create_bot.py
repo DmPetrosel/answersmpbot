@@ -73,6 +73,7 @@ async def bot_registration(dp :Dispatcher, nbot: MyBot):
         await dp.start_polling(nbot)
     finally:
         print("NBOT CLOSE ========")
+        await nbot.session.close()
 async def start_bot(dp: Dispatcher, nbot : MyBot):
     tasks.append(asyncio.create_task((bot_registration(dp, nbot))))
     nbot_username = (await nbot.get_me()).username

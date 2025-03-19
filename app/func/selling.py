@@ -28,7 +28,8 @@ usr = {}
 user_obj = {}
 new_bot = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 cast_state = {}
-user_cost = 176*2/10000*config.get('gigachat', 'ratio')
+config.read('config.ini')
+user_cost = 176*2/10000*int(config.get('gigachat', 'ratio'))
 
 async def start(message: types.Message, command: CommandObject, state: FSMContext):
     try:
@@ -371,7 +372,6 @@ async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
             await bot.send_invoice(
                 chat_id=message.chat.id,
                 title='Пополнение баланса',
-                description='Пополнение баланса',
                 description=f'Пополнение баланса.\nЭтой суммы примерно хватит для генерации {math.floor(amount/user_cost)} сообщений.',
                 payload='bot_paid',
                 provider_token=config.get('payment', 'yookassa'),
@@ -482,4 +482,5 @@ async def main_bot():
         logging.info('Bot stopped')
         print('SIGNAL Bot stopped. Goodbye!')
     finally:
+        await bot.session.close()
         print("Main bot close")

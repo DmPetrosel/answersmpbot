@@ -18,7 +18,7 @@ DATABASE_URL = f"{driver}://{user}:{password}@{host}:{port}/{dbname}"
 # DATABASE_URL = f"postgresql+asyncpg://{user}:{password}@0.0.0.0:5430/{dbname}"
 print('DATABASE URL = ',DATABASE_URL)
 
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(DATABASE_URL, echo=False)
 
 def connection(method):
     async def wrapper(*args, **kwargs):
