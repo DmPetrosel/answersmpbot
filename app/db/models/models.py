@@ -20,13 +20,14 @@ class Register(Base):
     chat_id = Column(BigInteger, nullable=False)
     username = Column(String(256), nullable=False)
     name = Column(String(256), nullable=False)
+    principal_chat_id = Column(BigInteger, ForeignKey('users.chat_id', ondelete='cascade'), nullable=True)
     bot_username = Column(String(256), ForeignKey('infobots.bot_username', ondelete='cascade'), nullable=False)
     approve = Column(Boolean, nullable=False, default=False)
     automated_type = Column(String(256), nullable=True, default="half-auto", server_default='half-auto')
-
+    user = relationship("User", backref='registers', lazy=True, uselist=False)
 class InfoBot(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
-    chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
+    chat_id = Column(BigInteger, ForeignKey('users.chat_id', ondelete='cascade'), nullable=False)
     token = Column(String(256), nullable=False)
     bot_username = Column(String(256), nullable=True, unique=True)
     # payedtill = Column(Date, nullable=False)
@@ -43,7 +44,7 @@ class Promo(Base):
     price = Column(BigInteger, nullable=False)
     quantity = Column(Integer, nullable=False, default=0)
     referal = Column(String(256), nullable=False)
-    chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
+    chat_id = Column(BigInteger, ForeignKey('users.chat_id', ondelete='cascade'), nullable=False)
     expire_date = Column(Date, nullable=True)
     user = relationship("User", backref="promos", lazy='joined', uselist=False)
 
@@ -68,13 +69,13 @@ class WBFeedAnswer(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
     mess_id = Column(BigInteger, nullable=True, autoincrement=True)
     chat_id = Column(BigInteger)
-    question_id = Column(BigInteger, ForeignKey('wbfeeddatas.id'), nullable=False)
+    question_id = Column(BigInteger, ForeignKey('wbfeeddatas.id', ondelete='cascade'), nullable=False)
     text = Column(String(1024), nullable=False)
     total_tokens = Column(BigInteger, nullable=True)
 
 class MoneyStat(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
-    chat_id = Column(BigInteger, ForeignKey('users.chat_id'), nullable=False)
+    chat_id = Column(BigInteger, nullable=False)
     invoice_id = Column(String(256), nullable=True)
     amount = Column(BigInteger, nullable=False)
     invoice_payload = Column(String(256), nullable=False, default="income", server_default='income')

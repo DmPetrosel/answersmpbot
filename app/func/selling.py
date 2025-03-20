@@ -185,7 +185,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
     elif callback.data.startswith('mcadd_manager_next_'):
         bt = await get_one_bot(id=int(callback.data.split('_')[-2]))
         n = await get_bot_row(bot_username=bt.bot_username)
-        success = await update_register(id=callback.data.split('_')[-1], approve = True)
+        success = await update_register(id=callback.data.split('_')[-1], approve = True, principal_chat_id=int(callback.message.chat.id))
         if success is not None:
             bot_list[n]['managers'].append(int(success.chat_id))
             await bot.send_message(callback.from_user.id, 'Менеджер добавлен.')
@@ -246,7 +246,7 @@ async def get_bot_token(message: types.Message, state: FSMContext):
             try:
                 reg = await get_one_register(chat_id=int(message.from_user.id))
                 if reg is not None:
-                    await update_register(id=reg.id, chat_id=int(message.from_user.id), approve=True)
+                    await update_register(id=reg.id, chat_id=int(message.from_user.id), approve=True, principal_chat_id=int(message.chat.id))
                 else: 
                     await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'], approve=True)
                     bot_list[list_n]['managers'].append(message.from_user.id)                    

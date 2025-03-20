@@ -19,7 +19,7 @@ is_paused = {}
 async def set_subbot_commands(bot: MyBot):
     await bot(SetMyCommands(commands=[types.BotCommand(command='start', description='Начать работу'),
                                types.BotCommand(command='help', description='Поддержка'),
-                               types.BotCommand(command='agen', description='Авто/Вручную')]))
+                               types.BotCommand(command='agen', description='->Авто/Вручную ->Баланс')]))
 
 
 async def get_bot_row(chat_id : int = None, dp : Dispatcher = None, bot_username: str = None, bot: MyBot = None):
@@ -57,6 +57,10 @@ async def agen(message: types.Message, state: FSMContext, bot: MyBot):
         await state.clear()
         is_paused[message.chat.id] = True
         manager = await get_register_by_kwargs(chat_id=int(message.from_user.id))
+        if manager.principal_chat_id is None:
+            bot_info = await get_one_bot(bot_username=manager.bot_username)
+            await update_register(id=manager.id, principal_chat_id=bot_info.chat_id)
+            manager = await get_register_by_kwargs(chat_id=int(message.from_user.id))
         temp_state_str = ""
         if manager.automated_type == "auto":
             temp_state_str = "автоматическая"
@@ -64,7 +68,7 @@ async def agen(message: types.Message, state: FSMContext, bot: MyBot):
             temp_state_str = "ручная"
         else:
             temp_state_str = "полуавтоматическая"
-        await bot.send_message(message.from_user.id, f"Сейчас у вас включена {temp_state_str} обработка отзывов.\n\n Выберете способ обработки отзывов.", reply_markup=await agen_kb(manager.automated_type))
+        await bot.send_message(message.from_user.id, f"ℹ️💵 Сейчас на вашем счету {manager.user.balance} Р\n\nℹ️Сейчас у вас включена {temp_state_str} обработка отзывов.\n\n Выберете способ обработки отзывов.\n\nℹ️ Пока вы не ответили на это сообщение, вам не будет приходить что-то ещё.", reply_markup=await agen_kb(manager.automated_type))
     except Exception as e:
         print(f"agen: {e}\n\n{traceback.format_exc()}")
         logging.error(f"agen: {e}\n\n{traceback.format_exc()}")
@@ -155,7 +159,10 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
         await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}", callback.message.message_id, mess_ids)
-        await bot.send_message(callback.from_user.id, text='✍️ Введите ответ на сообщение.\n\nПодсказка: могут приходить другие сообщения, но бот будет ожидать ответ на этот отзыв, пока вы не ответите или не нажмёте "Отмена" или выберете какую-нибудь команду.', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
+        temp_answer = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), mess_id=callback.message.message_id)
+        await callback.message.delete()
+        request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}\n\nℹ️ Подсказка: могут приходить другие сообщения, но бот будет ожидать ответ на этот отзыв, пока вы не ответите или не нажмёте "Отмена" или выберете какую-нибудь команду.', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
+        await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
         await state.set_state(FeedState.mess_answering)
     elif callback.data.startswith('sbb_handle_'):
         print("=================================RRRRRRRRRRRRRRRRRRRRRRRRRr\n\n\n")
