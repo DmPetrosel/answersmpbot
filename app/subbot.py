@@ -91,6 +91,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             await callback.message.edit_text(f'Действие отменено.\n\nДля управления воспользуйтесь командами. Или можете ответить на сообщение по-другому.\n\n{question.feed_mess}', reply_markup=await wb_ans_manual_kb(question_id))
             mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
             await bot.edit_messages_beside(f"Другой менеджер отменил ответ на этот отзыв: {question.feed_mess}", callback.message.message_id, mess_ids, reply_markup=await wb_ans_manual_kb(question_id))
+            is_paused[callback.message.chat.id]= False
         except Exception as e:
             print(f"subbot:sbb_cancel_answer_call: {e}\n\n{traceback.format_exc()}")
             logging.error(f"subbot:sbb_cancel_answer_call: {e}\n\n{traceback.format_exc()}")
@@ -161,7 +162,8 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}", callback.message.message_id, mess_ids)
         temp_answer = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), mess_id=callback.message.message_id)
         await callback.message.delete()
-        request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}\n\nℹ️ Подсказка: могут приходить другие сообщения, но бот будет ожидать ответ на этот отзыв, пока вы не ответите или не нажмёте "Отмена" или выберете какую-нибудь команду.', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
+        request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
+        is_paused[callback.message.chat.id] = True
         await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
         await state.set_state(FeedState.mess_answering)
     elif callback.data.startswith('sbb_handle_'):
@@ -197,7 +199,7 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
         mess_ids= []
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]    
         await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\n✉️ {message.text}", None, mess_ids) 
-        
+        is_paused[message.chat.id] = False
         await state.clear()
     else:
         
