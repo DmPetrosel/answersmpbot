@@ -1,5 +1,6 @@
 from aiogram.types.inline_keyboard_button import InlineKeyboardButton
 from aiogram.types.inline_keyboard_markup import InlineKeyboardMarkup
+from aiogram import types
 from db.get import *
 
 def marketer_menu_kb():

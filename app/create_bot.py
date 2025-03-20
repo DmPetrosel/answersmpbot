@@ -1,4 +1,4 @@
-from aiogram import Dispatcher, types
+from aiogram import Dispatcher, types, F
 import asyncio
 import configparser
 from aiogram.filters import Command
@@ -9,7 +9,6 @@ from func.main_commands import *
 from aide import *
 from middleware import *
 from func.wb_feedback import *
-
 
 tasks = []
 
@@ -64,6 +63,8 @@ async def bot_registration(dp :Dispatcher, nbot: MyBot):
         dp.callback_query.register(sbb_callbacks, lambda c: c.data.startswith('sbb'))
         dp.message.register(mess_answering, StateFilter(FeedState.mess_answering))
         dp.message.outer_middleware(NMiddlewareMessage(nbot))
+        dp.message.register(share_promo, F.contains(types.ContentType.USERS_SHARED))
+
         dp.callback_query.outer_middleware(NMiddlewareCallback(bot, nbot))
 
         dp.message.register(new_promo, StateFilter('promo_name_state', 'promo_price_state', 'promo_expire_date_state'))
