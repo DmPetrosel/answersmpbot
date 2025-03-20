@@ -15,7 +15,7 @@ async def add_manager_list_kb(bot_username :str):
     if not_approved_managers:
         for manager in not_approved_managers:
             kb.inline_keyboard.append([InlineKeyboardButton(text=manager.username, callback_data=f'mcadd_manager_next_{bt.id}_{manager.id}')])
-        kb.inline_keyboard.append([InlineKeyboardButton(text='Обновить список', callback_data=f'mcadd_manager_choose_them_{bt.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Обновить список', callback_data=f'mcadd_manager_choose_them_{bt.id}')])
     kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
     return kb        
 

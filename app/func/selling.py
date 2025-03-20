@@ -169,7 +169,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         await bot.send_message(callback.from_user.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
         await state.set_state("get_bot_token")
     elif callback.data == 'how_to_create_bot_call':
-        await bot.send_message(callback.from_user.id, 'https://core.telegram.org/bots')
+        await bot.send_message(callback.from_user.id, '1. Переходим в @botfather.\n2. Вводим команду <code>/newbot</code>.\n3. Вводим имя бота и никнейм.\n4. Под этим текстом: "Use this token to access the HTTP API:" будет токен.\n5. Вставляем токен в бота АОтветы.',parse_mode='html')
         await state.set_state("get_bot_token")
     elif callback.data == 'mccancel_call':
         await state.clear()

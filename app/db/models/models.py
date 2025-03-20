@@ -24,7 +24,8 @@ class Register(Base):
     bot_username = Column(String(256), ForeignKey('infobots.bot_username', ondelete='cascade'), nullable=False)
     approve = Column(Boolean, nullable=False, default=False)
     automated_type = Column(String(256), nullable=True, default="half-auto", server_default='half-auto')
-    user = relationship("User", backref='registers', lazy=True, uselist=False)
+    user = relationship("User", backref='registers', lazy="joined", uselist=False)
+
 class InfoBot(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
     chat_id = Column(BigInteger, ForeignKey('users.chat_id', ondelete='cascade'), nullable=False)
