@@ -250,20 +250,19 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
             elif automated_type[manag] == 'half-auto':
                 automated_type['all'] = 'half-auto'
         for mess in new_messages:
+            not_paused_managers = []
             try:
-                try:
-                    if len(bot_list[n]['managers'])<=1 and is_paused[bot_list[n]['managers'][0]]==True:
-                        print('ALL MANAGERS PAUSED\n\n')
-                        await asyncio.sleep(60)
-                        break
-                    count_paused = 0
-                    for manag in bot_list[n]['managers']:
-                        if is_paused[manag]==True
+                count_paused = 0
+                for manag in bot_list[n]['managers']:
+                    try:
+                        if is_paused[manag]==True:
                             count_paused+=1
-                    if count_paused >= len(bot_list[n]['managers']):
-                        await asyncio.sleep(60)
-                        break
-                except KeyError: logging.info('subbot:nmain_loop:253 KeyError(is_paused empty)')
+                        else:
+                            not_paused_managers.append(manag)
+                    except:not_paused_managers.append(manag)
+                if count_paused >= len(bot_list[n]['managers']):
+                    await asyncio.sleep(60)
+                    break
                 generated = ""
                 BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
                 BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! У вас нет средств на балансе. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=0 else "")
@@ -272,8 +271,8 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                     if user.balance>0:
                         generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name)
                 mess_ids = []
-                if automated_type[manag] == 'auto' and user.balance>0:
-                    msg = await bot.send_messages(user_list=bot_list[n]['managers'], text=BALANCE_IS_OVER+whole_msg+'\n\n🚀 Ответ: \n'+generated)
+                if automated_type['all'] == 'auto' and user.balance>0:
+                    msg = await bot.send_messages(user_list=not_paused_managers, text=BALANCE_IS_OVER+whole_msg+'\n\n🚀 Ответ: \n'+generated)
                     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=mess.feed_id, text=generated)
                     added_data = await add_answer_data(chat_id=bot_list[n]['managers'][0], text=generated, question_id=mess.id, total_tokens=total_tokens)
                     if success:
@@ -294,7 +293,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                         except KeyError: logging.info(f'subbot:nmain_loop:319 KeyError({manag}) (is_paused empty){is_paused}')
                         try:
                             print('\n\nis paused: '+str(is_paused[manag])+'\n\n')
-                        except: print('is paused array empty\n\n')
+                        except: print(f'is paused {is_paused}\n\n')
                         added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id, total_tokens=total_tokens)).id
                         if automated_type[manag]== 'half-auto' and user.balance>0:
                             msg = await bot.send_message(manag, text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
