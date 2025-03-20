@@ -26,17 +26,17 @@ async def delete_bot_list_kb(chat_id: int):
         kb = InlineKeyboardMarkup(inline_keyboard=[])
         for bot in user_bots:
             kb.inline_keyboard.append([InlineKeyboardButton(text=bot.bot_username, callback_data=f'mcdel_bot_next_{bot.id}')])
-        kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='cancel_call')])
+        kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
         return kb
     else:
         return InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text='Отмена', callback_data='cancel_call')]
+            [InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')]
         ])
         
 def del_bot_kb(bot_id: int):
     return InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text='Да, я хочу удалить', callback_data=f'mcdel_bot_yes_{bot_id}'),
-        InlineKeyboardButton(text='Нет, я передумал', callback_data=f'cancel_call')]
+        InlineKeyboardButton(text='Нет, я передумал', callback_data=f'mccancel_call')]
     ])
     
 async def delete_manager_choose_bot_list_kb(chat_id: int):

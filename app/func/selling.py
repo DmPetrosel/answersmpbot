@@ -169,7 +169,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         await bot.send_message(callback.from_user.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
         await state.set_state("get_bot_token")
     elif callback.data == 'how_to_create_bot_call':
-        await callback.message.edit_text(callback.from_user.id, '1. Переходим в @botfather.\n2. Вводим команду <code>/newbot</code>.\n3. Вводим имя бота и никнейм.\n4. Под этим текстом: "Use this token to access the HTTP API:" будет токен.\n5. Вставляем токен в бота АОтветы.\n\nОжидаю токен.',parse_mode='html')
+        await callback.message.edit_text( '1. Переходим в @botfather.\n2. Вводим команду <code>/newbot</code>.\n3. Вводим имя бота и никнейм.\n4. Под этим текстом: "Use this token to access the HTTP API:" будет токен.\n5. Вставляем токен в бота АОтветы.\n\nОжидаю токен.',parse_mode='html')
         await state.set_state("get_bot_token")
     elif callback.data == 'mccancel_call':
         await state.clear()
@@ -178,7 +178,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         await callback.message.edit_text('Вы уверены, что хотите удалить бота?', reply_markup=del_bot_kb(int(callback.data.split('_')[-1])))
     elif callback.data.startswith('mcdel_bot_yes_'):
         await delete_bot(int(callback.data.split('_')[-1]))
-        await callback.message.edit_text(callback.from_user.id, 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
+        await callback.message.edit_text( 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
     elif callback.data.startswith('mcadd_manager_choose_them_'):
         tbot_data = await get_one_bot(id = int(callback.data.split('_')[-1]))
         await callback.message.edit_text(f'Выберете менеджера из списка. Если его в списке нет, вероятно, он не нажал кнопу старт в боте {tbot_data.bot_username}', reply_markup=await add_manager_list_kb(tbot_data.bot_username))    
@@ -188,16 +188,16 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         success = await update_register(id=callback.data.split('_')[-1], approve = True, principal_chat_id=int(callback.message.chat.id))
         if success is not None:
             bot_list[n]['managers'].append(int(success.chat_id))
-            await callback.message.edit_text(callback.from_user.id, 'Менеджер добавлен.')
+            await callback.message.edit_text( 'Менеджер добавлен.')
         else:
             await bot.send_message(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')
     elif callback.data.startswith('mcdel_manager_choose_them_'):
         tbot = await get_one_bot(id=int(callback.data.split('_')[-1]))
         managers = await get_all_register(bot_username=tbot.bot_username)
         if managers:
-            await callback.message.edit_text(callback.from_user.id, 'Выберете менеджера для удаления', reply_markup=await del_manager_list_kb(tbot.bot_username))
+            await callback.message.edit_text( 'Выберете менеджера для удаления', reply_markup=await del_manager_list_kb(tbot.bot_username))
         else:
-            await callback.message.edit_text(callback.from_user.id, 'Менеджеров нет.')
+            await callback.message.edit_text( 'Менеджеров нет.')
             
     elif callback.data.startswith('mcdel_manager_next_'):
         '''We get bot.id and then manager.id'''
@@ -207,9 +207,9 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         if success is not None:
             logging.info(bot_list[n]['managers'])
             bot_list[n]['managers'].remove(success.chat_id)
-            await callback.message.edit_text(callback.from_user.id, 'Менеджер удалён.')
+            await callback.message.edit_text( 'Менеджер удалён.')
         else:
-            await callback.message.edit_text(callback.from_user.id, 'Что-то пошло не так, попробуйте ещё раз.')
+            await callback.message.edit_text( 'Что-то пошло не так, попробуйте ещё раз.')
             
             
     else:
@@ -459,13 +459,12 @@ def register_selling_handlers(dp: Dispatcher):
     dp.message.register(process_unsuccessful_payment, StateFilter(PayState.buying))
     dp.message.register(get_description, StateFilter(Form.description))
     dp.message.register(get_company_name, StateFilter(Form.company_name))
-    dp.message.register(share_promo, F.contains(types.ContentType.USERS_SHARED))
     # Marketer
 
     dp.message.register(new_promo, StateFilter('promo_name_state', 'promo_price_state', 'promo_expire_date_state'))
 
     dp.callback_query.register(callback_marketer, lambda c: c.data in ('my_promos', 'create_promo'))
-    dp.message.register(edit_promo, lambda c: (c.text.startswith('/edit_promo') if c.text is not None else None))
+    dp.message.register(edit_promo, lambda c: c.text.startswith('/edit_promo'))
 async def main_bot():
     try:
         config.read('config.ini')
