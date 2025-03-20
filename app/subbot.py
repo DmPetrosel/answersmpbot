@@ -279,15 +279,10 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                             if len(bot_list[n]['managers'])>1 and is_paused[manag]==True:
                                 print(f'{manag} PAUSED\n\n')
                                 continue
-                        except KeyError: logging.info('subbot:nmain_loop:319 KeyError (is_paused empty)')
+                        except KeyError: logging.info(f'subbot:nmain_loop:319 KeyError({manag}) (is_paused empty){is_paused}')
                         try:
                             print('\n\nis paused: '+str(is_paused[manag])+'\n\n')
                         except: print('is paused array empty\n\n')
-                        try:
-                            if len(bot_list[n]['managers'])>1 and is_paused[manag]==True:
-                                print(f"{manag} {automated_type[manag]} PAUSED\n\n")
-                                continue        
-                        except: pass
                         added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id, total_tokens=total_tokens)).id
                         if automated_type[manag]== 'half-auto' and user.balance>0:
                             msg = await bot.send_message(manag, text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
