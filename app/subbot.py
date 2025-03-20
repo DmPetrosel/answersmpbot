@@ -68,7 +68,7 @@ async def agen(message: types.Message, state: FSMContext, bot: MyBot):
             temp_state_str = "ручная"
         else:
             temp_state_str = "полуавтоматическая"
-        await bot.send_message(message.from_user.id, f"ℹ💵 Сейчас на вашем счету {manager.user.balance} Р\n\nℹ️ Пока вы не ответили на это сообщение, вам не будет приходить что-то ещё.\n\nВыберете способ обработки отзывов или оставьте как есть.", reply_markup=await agen_kb(manager.automated_type))
+        await bot.send_message(message.from_user.id, f"💵 Сейчас на вашем счету {manager.user.balance} Р\n\nℹ️ Пока вы не ответили на это сообщение, вам не будет приходить что-то ещё.\n\nВыберете способ обработки отзывов или оставьте как есть.", reply_markup=await agen_kb(manager.automated_type))
     except Exception as e:
         print(f"agen: {e}\n\n{traceback.format_exc()}")
         logging.error(f"agen: {e}\n\n{traceback.format_exc()}")
