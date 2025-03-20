@@ -256,6 +256,13 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                         print('ALL MANAGERS PAUSED\n\n')
                         await asyncio.sleep(60)
                         break
+                    count_paused = 0
+                    for manag in bot_list[n]['managers']:
+                        if is_paused[manag]==True
+                            count_paused+=1
+                    if count_paused >= len(bot_list[n]['managers']):
+                        await asyncio.sleep(60)
+                        break
                 except KeyError: logging.info('subbot:nmain_loop:253 KeyError(is_paused empty)')
                 generated = ""
                 BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
@@ -272,6 +279,11 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                     if success:
                         await update_wbfeed(id=mess.id, is_answering=False, feed_ans=generated)
                     else:
+                        for manag in bot_list[n]['managers']:
+                            try:
+                                if is_paused[manag]:
+                                    continue
+                            except KeyError: pass
                         await bot.send_messages(user_list=bot_list[n]['managers'], text=f'Что-то пошло не так. На сообщение: \n{whole_msg}\n\n Ответить не получилось. Попробуйте ещё раз. \n\n🚀 Ответ:\n{added_data.text}', reply_markup=await wbfeedsent_kb(answer_id=added_data.id))
                 else:    
                     for manag in bot_list[n]['managers']:
