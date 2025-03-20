@@ -30,7 +30,7 @@ Structure of the application must consist of the next blocks:
         > [!Importnant]
         > If balance would be zero it impossible use ai generation. Other functions are free.
 
-        [ ] Create a notification when balance under 150 Rub. 
+        [v] Create a notification when balance under 150 Rub. 
     4. Marketer
         1. Buttons
             1. Create promocodes
@@ -51,7 +51,7 @@ Structure of the application must consist of the next blocks:
     2. Settings
         1. Commands
 
-            [ ] agen -- Set autogenerattion. Autogeneration settiongs must be for individual user.
+            [v] agen -- Set autogenerattion. Autogeneration settiongs must be for individual user.
             - Generate and answer
             - Not generate
             - Generate and check
