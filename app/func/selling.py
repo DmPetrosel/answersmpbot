@@ -407,6 +407,11 @@ async def process_successful_payment(message: types.Message, state: FSMContext, 
         ratio = 1
         if data.get("bonus") == True: ratio = 1.2
         await update_user_by_id(id=user.id, balance = user.balance + (message.successful_payment.total_amount / 100)*ratio)
+        if user.is_payed_first_time == False:
+            temp_promo = await get_promo_by_kwargs(promocode=user.promocode)
+            await update_promo(id=temp_promo.id, quantity=temp_promo.quantity + 1)
+            await update_user_by_id(id=temp_promo.user.id, balance = temp_promo.user.balance + ((message.successful_payment.total_amount / 100)*0.3))
+            await update_user_by_id(id=user.id, is_payed_first_time=True)
         current_state = await state.get_state()
         if current_state is not None:
             await state.clear()  # чтобы свободно перейти сюда из любого другого состояния

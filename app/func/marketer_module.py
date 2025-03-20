@@ -73,7 +73,7 @@ async def callback_marketer(call: types.CallbackQuery, state: FSMContext, bot: M
 async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
     var = message.text
     if await state.get_state() == 'promo_name_state':
-        if re.match('[a-z0-9_ ]', var.lower()):
+        if re.match('[a-z0-9_]', var.lower()):
             promos_dict[message.from_user.id]['promocode'] = var.lower()
             await bot.send_message(message.from_user.id, text= 'Введите цену')
             await state.set_state('promo_price_state')
