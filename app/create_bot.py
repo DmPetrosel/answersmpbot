@@ -78,15 +78,17 @@ async def start_bot(dp: Dispatcher, nbot : MyBot):
     tasks.append(asyncio.create_task((bot_registration(dp, nbot))))
     nbot_username = (await nbot.get_me()).username
     bot_info = await get_one_bot(bot_username=nbot_username)
+    stat_o = WBStat(wb_token=bot_info.wb_token, bot_username=nbot_username)
+    tasks.append(asyncio.create_task((stat_o.run())))
+    await asyncio.sleep(5)
     wb_feed = WBFeedback(bot_username=nbot_username, bot=nbot)
     tasks.append(asyncio.create_task((wb_feed.run())))
     logging.info('AFTER task')
-    # stat_o = WBStat(wb_token=bot_info.wb_token, bot_username=nbot_username)
-    # tasks.append(asyncio.create_task((stat_o.run())))
     logging.info('AFTER task STOCKS ')
     await set_subbot_commands(nbot)
     tasks.append(asyncio.create_task((nmain_loop(nbot, main_bot=bot))))
-    
+    logging.info(f'All tasks {nbot_username} loaded' )
+    print(f'\nAll tasks {nbot_username} loaded\n' )
     
 async def bot_init(token:str, chat_id, managers : list):
     try:

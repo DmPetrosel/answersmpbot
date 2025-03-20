@@ -5,40 +5,53 @@ import requests
 import time
 import logging
 from  threading import Thread
+import sys
+sys.path.append('../app')
+from db.get import *
 import random as rand
+# base_url = 'https://statistics-api-sandbox.wildberries.ru'
+# base_url ='https://seller-analytics-api.wildberries.ru' # prod
+base_url ='https://seller-analytics-api-sandbox.wildberries.ru' # prod
+
 class WBStat:
-    def __init__(self, wb_token, bot_username, 
+    def __init__(self, bot_username, 
                   daemon = True):
-        self.token = wb_token
+        self.token = ""
         self.bot_username = bot_username
         self.daemon = daemon
         self.interval = 30
-    def request_for_stocks(self):
-        url = "https://seller-analytics-api.wildberries.ru/api/v1/warehouse_remains"
+    async def request_for_stocks(self):
+        url = f"{base_url}/api/v1/warehouse_remains"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
         with requests.get(url, headers=headers) as response:
             response.encoding = 'utf-8'
-            data = response.json()
-            taskId = data.get("data", 'taskId')
+            if response.status_code == 200:
+                data = response.json()
+                taskId = data.get("data", 'taskId')
+                return taskId
+            else:
+                print(f"request for stock {response.status_code}")
         return None
 
-    def check_status(self, taskId):
-        url = f"https://seller-analytics-api.wildberries.ru/api/v1/warehouse_remains/tasks/{taskId}/status"
+    async def check_status(self, taskId):
+        url = f"{base_url}/api/v1/warehouse_remains/tasks/{taskId}/status"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
         status = None
         i = 0
         while (status == 'new' or status == 'processing')and i < 40:
             with requests.get(url, headers=headers) as response:
                 response.encoding = 'utf-8'
-                data = response.json()
-                status = data.get("data", 'status')
-                time.sleep(3)
+                if response.status_code == 200:
+                    data = response.json()
+                    status = data.get("data", 'status')
+                    time.sleep(3)
+                else: print(f"check_status:{response.status_code}")
                 i +=1
         if status == 'done': return True
         else: return False
 
-    def get_stocks(self, taskId):
-        url = f"https://seller-analytics-api.wildberries.ru/api/v1/warehouse_remains/tasks/{taskId}/download"
+    async def get_stocks(self, taskId):
+        url = f"{base_url}/api/v1/warehouse_remains/tasks/{taskId}/download"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
         with requests.get(url, headers=headers) as response:
             response.encoding = 'utf-8'
@@ -46,7 +59,7 @@ class WBStat:
             return data
         return None
 
-    def write_to_file(self, data):
+    async def write_to_file(self, data):
         with open(f"data/{self.bot_username}_stocks.json", 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         return None
@@ -68,14 +81,19 @@ class WBStat:
         
 
     async def run(self):
-        taskId = self.request_for_stocks()
         while True:
             logging.info('STOCKS UPDATING...')
-            if self.check_status(taskId):
-                data = self.get_stocks(taskId)
-                self.write_to_file(data)
+            self.token = (await get_one_bot(bot_username=self.bot_username)).wb_token
+            taskId = await self.request_for_stocks()
+            print(taskId)
+            if await self.check_status(taskId):
+                data = await self.get_stocks(taskId)
+                print(data)
+                await self.write_to_file(data)
+                print('\ndata obtained\n')
             else:
                 logging.error(f'Stock data in bot {self.bot_username} was not obtained.')
+                print('\ndata NOT obtained\n')
             await asyncio.sleep(self.interval * 60)    
 
 def get_random_three_str( 
@@ -289,6 +307,6 @@ if __name__ == '__main__':
  
             ]
  
-    wb = WBStat("dafsadfs", "booooooooot_bot", daemon=False)
-    r3 = wb.get_random_three_str(data)
-    print(r3)
+    wb = WBStat("testconnectwb_bot")
+    asyncio.run(wb.run())
+    # r3 = wb.get_random_three_str(data)
