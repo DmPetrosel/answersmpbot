@@ -1,26 +1,18 @@
-import aiogram.filters
 from create_bot import *
 from aiogram import types,  Dispatcher, handlers, F
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command, StateFilter
 from aiogram.filters.command import CommandObject
-import configparser
 from db.set import *
 from db.update import *
 from db.get import *
-import errh
-from functools import partial
 import logging
 from keyboard.basic_kb import *
 from func.marketer_module import *
 from func.states import *
-from db.session import Base
-import aiogram
 from middleware import *
 import traceback
-from aiogram.types.message import ContentType
 from configparser import ConfigParser
-import yookassa
 import math
 config = ConfigParser()
 

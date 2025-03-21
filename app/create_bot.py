@@ -35,6 +35,7 @@ async def set_commands_marketer(bot: MyBot):
     await bot(SetMyCommands(commands=[types.BotCommand(command='start', description='Начать работу'),
                                types.BotCommand(command='help', description='Поддержка'),
                                types.BotCommand(command='pay', description='Пополнить баланс'),
+                               types.BotCommand(command='payout', description='Запросить выплату'),
                                types.BotCommand(command='balnshare', description='->Баланс или ->пригласить'),
                                ]))
 
