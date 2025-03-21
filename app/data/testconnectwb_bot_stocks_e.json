@@ -1,0 +1,930 @@
+[
+    {
+        "subjectName": "Маркеры",
+        "nmId": 243782518,
+        "volume": 3.87,
+        "inWayToClient": 12,
+        "inWayFromClient": 3,
+        "quantityWarehousesFull": 444,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 38
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 239
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 70
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 30
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 23
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 33
+            },
+            {
+                "warehouseName": "Рязань (Тюшевское)",
+                "quantity": 9
+            },
+            {
+                "warehouseName": "Волгоград",
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "subjectName": "Ручки",
+        "nmId": 243210259,
+        "volume": 0.21,
+        "inWayToClient": 11,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 441,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 247
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 118
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 28
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 36
+            },
+            {
+                "warehouseName": "Рязань (Тюшевское)",
+                "quantity": 12
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 98843906,
+        "volume": 1.9,
+        "inWayToClient": 26,
+        "inWayFromClient": 4,
+        "quantityWarehousesFull": 371,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 155
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 76
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 85
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 6
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 38
+            },
+            {
+                "warehouseName": "Рязань (Тюшевское)",
+                "quantity": 11
+            }
+        ]
+    },
+    {
+        "subjectName": "Ручки",
+        "nmId": 243210260,
+        "volume": 0.39,
+        "inWayToClient": 16,
+        "inWayFromClient": 2,
+        "quantityWarehousesFull": 289,
+        "warehouses": [
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 189
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 80
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 20
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 243782519,
+        "volume": 1.9,
+        "inWayToClient": 8,
+        "inWayFromClient": 2,
+        "quantityWarehousesFull": 296,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 45
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 25
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 136
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 27
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 21
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 32
+            },
+            {
+                "warehouseName": "Рязань (Тюшевское)",
+                "quantity": 9
+            },
+            {
+                "warehouseName": "Чашниково",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 128122716,
+        "volume": 3.87,
+        "inWayToClient": 25,
+        "inWayFromClient": 5,
+        "quantityWarehousesFull": 200,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 76
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 32
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 54
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 2
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 32
+            },
+            {
+                "warehouseName": "Рязань (Тюшевское)",
+                "quantity": 4
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 215225682,
+        "volume": 1.76,
+        "inWayToClient": 23,
+        "inWayFromClient": 6,
+        "quantityWarehousesFull": 192,
+        "warehouses": [
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 191
+            },
+            {
+                "warehouseName": "Волгоград",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Наборы для рисования",
+        "nmId": 135773950,
+        "volume": 3.87,
+        "inWayToClient": 47,
+        "inWayFromClient": 4,
+        "quantityWarehousesFull": 167,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 9
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 79
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 44
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 2
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 26
+            },
+            {
+                "warehouseName": "Рязань (Тюшевское)",
+                "quantity": 7
+            }
+        ]
+    },
+    {
+        "subjectName": "Наборы для рисования",
+        "nmId": 206372616,
+        "volume": 2,
+        "inWayToClient": 43,
+        "inWayFromClient": 4,
+        "quantityWarehousesFull": 124,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 107
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 1
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 15
+            },
+            {
+                "warehouseName": "Белые Столбы",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Блокноты",
+        "nmId": 97978079,
+        "volume": 0.36,
+        "inWayToClient": 31,
+        "inWayFromClient": 7,
+        "quantityWarehousesFull": 56,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 8
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 47
+            },
+            {
+                "warehouseName": "Чашниково",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 270356787,
+        "volume": 3.78,
+        "inWayToClient": 30,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 62,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 50
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 1
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 11
+            }
+        ]
+    },
+    {
+        "subjectName": "Наборы для рисования",
+        "nmId": 302157258,
+        "volume": 3.87,
+        "inWayToClient": 11,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 62,
+        "warehouses": [
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 43
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 9
+            },
+            {
+                "warehouseName": "Невинномысск",
+                "quantity": 10
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886372,
+        "volume": 0.15,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 51,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 50
+            },
+            {
+                "warehouseName": "Чашниково",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886373,
+        "volume": 0.14,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 46,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 45
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554682,
+        "volume": 6.55,
+        "inWayToClient": 8,
+        "inWayFromClient": 3,
+        "quantityWarehousesFull": 35,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 34
+            },
+            {
+                "warehouseName": "Екатеринбург - Испытателей 14г",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886353,
+        "volume": 0.14,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 39,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 39
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886358,
+        "volume": 0.14,
+        "inWayToClient": 0,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 39,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 38
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 304836062,
+        "volume": 3.87,
+        "inWayToClient": 3,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 35,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 35
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554683,
+        "volume": 6.55,
+        "inWayToClient": 0,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 37,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 37
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280556769,
+        "volume": 6.55,
+        "inWayToClient": 4,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 32,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 32
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554676,
+        "volume": 6.55,
+        "inWayToClient": 5,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 30,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 30
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886359,
+        "volume": 0.14,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 33,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 2
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 31
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554677,
+        "volume": 6.55,
+        "inWayToClient": 1,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 30,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 30
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886368,
+        "volume": 0.15,
+        "inWayToClient": 0,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 30,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 30
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886370,
+        "volume": 0.19,
+        "inWayToClient": 3,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 28,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 1
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 20
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 7
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554681,
+        "volume": 6.55,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 28,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 28
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280556770,
+        "volume": 6.55,
+        "inWayToClient": 0,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 29,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 29
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 304836059,
+        "volume": 3.87,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 28,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 2
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 26
+            }
+        ]
+    },
+    {
+        "subjectName": "Блокноты",
+        "nmId": 311565956,
+        "volume": 0.36,
+        "inWayToClient": 3,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 25,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 4
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 12
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 9
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886356,
+        "volume": 0.14,
+        "inWayToClient": 0,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 28,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 27
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554685,
+        "volume": 6.55,
+        "inWayToClient": 2,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 25,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 25
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 304836061,
+        "volume": 3.87,
+        "inWayToClient": 0,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 24,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 24
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886371,
+        "volume": 0.14,
+        "inWayToClient": 2,
+        "inWayFromClient": 2,
+        "quantityWarehousesFull": 19,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 19
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280556767,
+        "volume": 6.55,
+        "inWayToClient": 12,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 9,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 9
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886366,
+        "volume": 0.14,
+        "inWayToClient": 0,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 21,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 20
+            },
+            {
+                "warehouseName": "Котовск",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886354,
+        "volume": 0.19,
+        "inWayToClient": 1,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 18,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 2
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 12
+            },
+            {
+                "warehouseName": "Электросталь",
+                "quantity": 3
+            },
+            {
+                "warehouseName": "Тула",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280556771,
+        "volume": 6.55,
+        "inWayToClient": 3,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 11,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 9
+            },
+            {
+                "warehouseName": "Казань",
+                "quantity": 1
+            },
+            {
+                "warehouseName": "Краснодар",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886355,
+        "volume": 0.14,
+        "inWayToClient": 2,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 11,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 2
+            },
+            {
+                "warehouseName": "Подольск",
+                "quantity": 8
+            },
+            {
+                "warehouseName": "Рязань (Тюшевское)",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554678,
+        "volume": 6.43,
+        "inWayToClient": 2,
+        "inWayFromClient": 2,
+        "quantityWarehousesFull": 8,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 6
+            },
+            {
+                "warehouseName": "Котовск",
+                "quantity": 1
+            },
+            {
+                "warehouseName": "Чашниково",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886364,
+        "volume": 0.14,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 10,
+        "warehouses": [
+            {
+                "warehouseName": "Подольск",
+                "quantity": 10
+            }
+        ]
+    },
+    {
+        "subjectName": "Наборы для рисования",
+        "nmId": 302157256,
+        "volume": 3.87,
+        "inWayToClient": 7,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280554684,
+        "volume": 6.55,
+        "inWayToClient": 2,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 2,
+        "warehouses": [
+            {
+                "warehouseName": "Коледино",
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 98841440,
+        "volume": 0.69,
+        "inWayToClient": 1,
+        "inWayFromClient": 3,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Блокноты",
+        "nmId": 311565957,
+        "volume": 0.4,
+        "inWayToClient": 3,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Картины по номерам",
+        "nmId": 280556768,
+        "volume": 6.55,
+        "inWayToClient": 1,
+        "inWayFromClient": 1,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Блокноты",
+        "nmId": 134176646,
+        "volume": 0.72,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886363,
+        "volume": 0.14,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 267886365,
+        "volume": 0.14,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Маркеры",
+        "nmId": 304836060,
+        "volume": 3.87,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Наборы для рисования",
+        "nmId": 302157257,
+        "volume": 3.87,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    },
+    {
+        "subjectName": "Наборы для рисования",
+        "nmId": 302157259,
+        "volume": 3.87,
+        "inWayToClient": 1,
+        "inWayFromClient": 0,
+        "quantityWarehousesFull": 0,
+        "warehouses": []
+    }
+]

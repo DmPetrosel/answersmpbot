@@ -11,7 +11,7 @@ from db.get import *
 import random as rand
 # base_url = 'https://statistics-api-sandbox.wildberries.ru'
 # base_url ='https://seller-analytics-api.wildberries.ru' # prod
-base_url ='https://seller-analytics-api-sandbox.wildberries.ru' # prod
+base_url ='https://seller-analytics-api.wildberries.ru' # prod
 
 class WBStat:
     def __init__(self, bot_username, 
@@ -21,43 +21,46 @@ class WBStat:
         self.daemon = daemon
         self.interval = 30
     async def request_for_stocks(self):
-        url = f"{base_url}/api/v1/warehouse_remains"
+        url = f"{base_url}/api/v1/warehouse_remains?groupByNm=true&groupBySubject=true"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
-        with requests.get(url, headers=headers) as response:
-            response.encoding = 'utf-8'
-            if response.status_code == 200:
-                data = response.json()
-                taskId = data.get("data", 'taskId')
-                return taskId
-            else:
-                print(f"request for stock {response.status_code}")
-        return None
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=headers) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    taskId = data.get("data").get('taskId')
+                    print(f"taskId = {taskId}")
+                    return taskId
+                else:
+                    print(f"request for stock {response.status}")
+            return None
 
     async def check_status(self, taskId):
         url = f"{base_url}/api/v1/warehouse_remains/tasks/{taskId}/status"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
         status = None
         i = 0
-        while (status == 'new' or status == 'processing')and i < 40:
-            with requests.get(url, headers=headers) as response:
-                response.encoding = 'utf-8'
-                if response.status_code == 200:
-                    data = response.json()
-                    status = data.get("data", 'status')
-                    time.sleep(3)
-                else: print(f"check_status:{response.status_code}")
-                i +=1
-        if status == 'done': return True
-        else: return False
+        async with aiohttp.ClientSession() as session:
+            while (status != 'done') and i < 40:
+                async with session.get(url, headers=headers) as response:
+                    if response.status == 200:
+                        data = await response.json()
+                        status = data.get("data").get('status')
+                        print(f'status = {status}')
+                    else: print(f"check_status:{response.status} {await response.json()}")
+                    await asyncio.sleep(3)
+                    i +=1
+            if status == 'done': return True
+            else: return False
 
     async def get_stocks(self, taskId):
         url = f"{base_url}/api/v1/warehouse_remains/tasks/{taskId}/download"
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
-        with requests.get(url, headers=headers) as response:
-            response.encoding = 'utf-8'
-            data = response.json()
-            return data
-        return None
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=headers) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data
+            return None
 
     async def write_to_file(self, data):
         with open(f"data/{self.bot_username}_stocks.json", 'w', encoding='utf-8') as f:
@@ -104,10 +107,12 @@ def get_random_three_str(
     bot_username = bot_info.bot_username
     number_of_art = bot_info.number_of_art if bot_info.number_of_art is not None else number_of_art
     samples_ans = bot_info.samples_ans if bot_info.samples_ans else samples_ans
-    
-    with open(f"data/{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
+    try:    
+        with open(f"data/{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except:
+        logging.error(f"There is no file {bot_username}_stocks.json")
+        return ""
     rand_data = []
     for i in range(min(number_of_art, len(data))):
         j = 7
@@ -120,11 +125,18 @@ def get_random_three_str(
                 continue
         if data[r]["quantityWarehousesFull"] == 0:
             break
-        rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmID"]}')
+        rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmId"]}')
         del data[r]
     random_three_str = samples_ans[rand.randint(0, len(samples_ans)-1)]
     random_three_str+=", ".join(rand_data)
     return random_three_str
+
+async def main_wbstat():
+    # wb = WBStat('testconnectwb_bot')
+    # await wb.run()
+    bot_info = await get_one_bot(bot_username='testconnectwb_bot')
+    data = get_random_three_str(bot_info)
+    print(f"data: ({data})")
 
 '''
         
@@ -307,6 +319,6 @@ if __name__ == '__main__':
  
             ]
  
-    wb = WBStat("testconnectwb_bot")
-    asyncio.run(wb.run())
-    # r3 = wb.get_random_three_str(data)
+    # wb = WBStat("testconnectwb_bot")
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main_wbstat())
