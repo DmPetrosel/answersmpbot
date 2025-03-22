@@ -132,6 +132,8 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
             bot_username = (await bot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
+            if bot_info.user.balance<=0:
+                await bot.send_message(callback.from_user.id, f"❗️❗️❗️На вашем балансе нет средств.\n\nСвяжитесь с администратором бота (@{bot_info.user.username}), чтобы пополнить баланс.")
             generated, total_tokens  = await generate_answer(whole_msg, bot_info, mess.customer_name)
             ex_message = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), question_id=mess.id)
             try:
@@ -177,12 +179,17 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 prefix = "Обработка сообщений изменена: "
                 reg_id = (await get_register_by_kwargs(chat_id=int(callback.from_user.id))).id
                 await update_register(id=reg_id, automated_type=agen_type)
-            if agen_type == 'auto':
-                await callback.message.edit_text(f'{prefix} 🚀 автоматическая обработка.')
-            elif agen_type == 'manual':
-                await callback.message.edit_text(f'{prefix} ✍️ ручная обработка.')
-            elif agen_type == 'half-auto':
-                await callback.message.edit_text(f'{prefix} 📝 полуавтоматическая обработка.')
+            bot_username = (await bot.get_me()).username
+            bot_info = await get_one_bot(bot_username=bot_username)
+            if bot_info.user.balance<=0 and (agen_type=='auto' or agen_type=='half-auto'):
+                await callback.message.edit_text(f"❗️❗️❗️На вашем балансе нет средств.\n\nСвяжитесь с администратором бота (@{bot_info.user.username}), чтобы пополнить баланс.")
+            else:
+                if agen_type == 'auto':
+                    await callback.message.edit_text(f'{prefix} 🚀 автоматическая обработка.')
+                elif agen_type == 'manual':
+                    await callback.message.edit_text(f'{prefix} ✍️ ручная обработка.')
+                elif agen_type == 'half-auto':
+                    await callback.message.edit_text(f'{prefix} 📝 полуавтоматическая обработка.')
             is_paused[callback.message.chat.id]= False
         except Exception as e:
             print(f"subbot:sbb_handle_: {e}\n\n{traceback.format_exc()}")
