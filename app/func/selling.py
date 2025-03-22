@@ -314,7 +314,7 @@ def payment(value:int,description:str):
                   "value": f"{value:.2f}",
                   "currency": 'RUB'
                 },
-                "vat_code": 1
+                "vat_code": 2
 
               }
             ]
