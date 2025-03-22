@@ -254,6 +254,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                 automated_type['all'] = 'half-auto'
         for mess in new_messages:
             not_paused_managers = []
+            user = await get_user(bot_info.chat_id)
             try:
                 count_paused = 0
                 for manag in bot_list[n]['managers']:

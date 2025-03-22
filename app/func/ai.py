@@ -16,31 +16,31 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
     company_description=bot_info.company_description
     user_id = bot_info.user.id
     balance = (await get_user_by_kwargs(id=user_id)).balance
-
-    payload = Chat(
-        messages=[
-            Messages(
-                role=MessagesRole.SYSTEM,
-                content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}."
-            )
-        ],
-        temperature=0,
-    )
-    content = ""
-    # Используйте токен, полученный в личном кабинете из поля Авторизационные данные
-    with GigaChat(credentials=access_token,
-    scope=scope,
-    model=model, 
-    verify_ssl_certs=False) as giga:
-        user_input = feedback
-        payload.messages.append(Messages(role=MessagesRole.USER, content=user_input))
-        response = giga.chat(payload)
-        # payload.messages.append(response.choices[0].message)
-        total_tokens = int(response.usage.total_tokens) if int(response.usage.total_tokens) else 0
-        user_cost = total_tokens*2/10000*ratio
-        logging.info(f"{bot_info.bot_username} use {total_tokens} wich cost {total_tokens*2/10000} for user it cost {user_cost} as feedback")
-        content=response.choices[0].message.content
-    await update_user_by_id(id=user_id, balance=balance-user_cost)
+    if balance > 0:
+        payload = Chat(
+            messages=[
+                Messages(
+                    role=MessagesRole.SYSTEM,
+                    content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}."
+                )
+            ],
+            temperature=0,
+        )
+        content = ""
+        # Используйте токен, полученный в личном кабинете из поля Авторизационные данные
+        with GigaChat(credentials=access_token,
+        scope=scope,
+        model=model, 
+        verify_ssl_certs=False) as giga:
+            user_input = feedback
+            payload.messages.append(Messages(role=MessagesRole.USER, content=user_input))
+            response = giga.chat(payload)
+            # payload.messages.append(response.choices[0].message)
+            total_tokens = int(response.usage.total_tokens) if int(response.usage.total_tokens) else 0
+            user_cost = total_tokens*2/10000*ratio
+            logging.info(f"{bot_info.bot_username} use {total_tokens} wich cost {total_tokens*2/10000} for user it cost {user_cost} as feedback")
+            content=response.choices[0].message.content if response.choices[0].message.content else ""
+        await update_user_by_id(id=user_id, balance=balance-user_cost)
     return content, total_tokens
 async def generate_answer(feedback, bot_info, customer_name):
     str_answer, tokens = await generate_answer_for_feedback_ai(feedback, bot_info, customer_name)
