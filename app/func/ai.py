@@ -3,7 +3,7 @@ from gigachat.models import Chat, Messages, MessagesRole
 from configparser import ConfigParser
 from func.wbstat import *
 from db.update import *
-from db.get import get_one_bot
+from db.get import get_one_bot, get_user
 import logging
 config = ConfigParser()
 config.read('config.ini', encoding='utf-8')
@@ -14,8 +14,8 @@ ratio = int(config.get('gigachat','ratio'))
 async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
     company=bot_info.company_name
     company_description=bot_info.company_description
-    balance = bot_info.user.balance
     user_id = bot_info.user.id
+    balance = (await get_user(user_id)).balance
 
     payload = Chat(
         messages=[
