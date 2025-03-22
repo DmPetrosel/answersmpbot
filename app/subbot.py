@@ -199,7 +199,9 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
 
 async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
     try: 
-        question = (await state.get_data())['question_id']
+        question_id = (await state.get_data())['question_id']
+        question = await get_one_wbfeed_last(id=question_id)
+
     except:
         bot.send_message('ℹ️ Бот был обновлён. Если вы собирались ответить на другое сообщение, нажмите "Отмена", но можете и ответить на это сообщение.')    
         question = await get_one_wbfeed_last(is_answering=True, answering_chat_id=message.from_user.id)
