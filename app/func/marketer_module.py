@@ -75,13 +75,17 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
     if await state.get_state() == 'promo_name_state':
         if re.match('[a-z0-9_]', var.lower()):
             promos_dict[message.from_user.id]['promocode'] = var.lower()
-            await bot.send_message(message.from_user.id, text= 'Введите цену')
+            await bot.send_message(message.from_user.id, text= 'Введите сумму для пополнения.')
             await state.set_state('promo_price_state')
         else:
             await bot.send_message(message.from_user.id, text= 'Промокод должен состоять из латинских букв, цифр и символа подчеркивания')
             await state.set_state('promo_name_state')
     elif await state.get_state() == 'promo_price_state':
         promos_dict[message.from_user.id]['price'] = int(var.replace(' ','').replace('.','').replace(',','').strip())
+        if promos_dict[message.from_user.id]['price'] < 0:
+            await message.reply('Цена не может быть отрицательной. Введите сумму для пополнения ещё раз.')
+            await state.set_state('promo_price_state')
+            return
         await bot.send_message(message.from_user.id, text= 'Введите дату окончания в формате dd.mm.yyyy\n По умолчанию, промокод делается на год. Чтобы оставить значение по умолчанию, напишите 0')
         await state.set_state('promo_expire_date_state')
     elif await state.get_state() == 'promo_expire_date_state':

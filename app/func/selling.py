@@ -364,6 +364,10 @@ async def pay_sum(message: types.Message, state: FSMContext, bot: MyBot):
         amount = int(usr[message.chat.id]['price'])
     else:
         amount = int(message.text.strip().replace(' ', '').replace('.', '').replace(',', ''))
+    if amount < 0:
+        await bot.send_message(message.chat.id, "Сумма не может быть отрицательной. Введите сумму ещё раз (в рублях).")
+        await state.set_state(PayState.enter_sum)
+        return
     amount_cop = int(amount * 100)
     config.read('config.ini')
     try:
