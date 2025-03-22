@@ -219,7 +219,9 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
         user = await get_user(bot_info.chat_id)
         if is_notified_balance_list[bot_info.chat_id]==False and user.balance < 100:
             is_notified_balance_list[bot_info.chat_id] = True
-            main_bot.send_message(bot_info.chat_id, '❗️❗️❗️Баланс менее 100 р. Для продолжения пользования платными функциями бота, пополните баланс. 💵 Воспользуйтесь командой /pay')
+            try:
+                main_bot.send_message(chat_id=bot_info.chat_id, text='❗️❗️❗️Баланс менее 100 р. Для продолжения пользования платными функциями бота, пополните баланс. 💵 Воспользуйтесь командой /pay')
+            except: logging.error("MESSAGE NOT SENT Баланс мельше 100 р")
             logging.info(f"nmain_loop:{bot_info.chat_id} баланс меньше 100 USER NOTIFIED")
         elif user.balance >= 100:
             is_notified_balance_list[bot_info.chat_id] = False        
