@@ -104,8 +104,9 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
                 await bot.send_message(message.from_user.id, text= 'Дата окончания не может быть меньше текущей даты')
                 await state.set_state('promo_expire_date_state')
             else:
-                await create_promo(message, bot)
-            
+                n_promo = await create_promo(message, bot)
+                await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
+
     else:
         await message.answer('Что-то пошло не так')
         
@@ -116,7 +117,7 @@ async def edit_promo(message : types.Message, state: FSMContext, bot: MyBot):
     promos_dict[message.from_user.id] = {}
     prom = await get_promo_by_id(promocode_id)
     promos_dict[message.from_user.id]['promocode'] = prom.promocode
-    promos_dict[message.from_user.id]['chat_id'] = prom.chat_id
+    promos_dict[message.from_user.id]['cdatetime.strptime(hat_id'] = prom.chat_id
     promos_dict[message.from_user.id]['id'] = promocode_id
     promos_dict[message.from_user.id]['referal'] = prom.referal
     config = configparser.ConfigParser()
@@ -142,9 +143,9 @@ async def create_promo(message : types.Message, bot :MyBot):
         await update_promo(promos_dict[message.from_user.id])
     else:
         n_promo = await add_promocode(promos_dict[message.from_user.id])
-        await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
+        # await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
 
-        return
+        return n_promo
     await marketer(message, bot)
     
 

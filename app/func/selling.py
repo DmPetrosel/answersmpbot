@@ -31,7 +31,7 @@ cast_state = {}
 config.read('config.ini')
 user_cost = 176*2/10000*int(config.get('gigachat', 'ratio'))
 
-async def start(message: types.Message, command: CommandObject, state: FSMContext):
+async def start(message: types.Message, command: CommandObject, state: FSMContext, bot: MyBot):
     try:
         await state.clear()
         cast_state[message.chat.id] = {}
@@ -67,17 +67,17 @@ async def start(message: types.Message, command: CommandObject, state: FSMContex
                 usr[message.from_user.id]['expire_date'] = None
                 usr[message.from_user.id]['promocode'] = None  
                 usr[message.from_user.id]['price'] = None
-            if promo_obj and promo_obj.expire_date != None and datetime.strptime(usr[message.from_user.id]['expire_date'], '%d.%m.%Y') < datetime.now():
+            if promo_obj and promo_obj.expire_date != None and usr[message.from_user.id]['expire_date'] < datetime.now().date():
                 await bot.send_message(message.from_user.id, "Ваш промокод просрочен!")
                 usr[message.from_user.id]['referal'] = None
                 usr[message.from_user.id]['expire_date'] = None
                 usr[message.from_user.id]['promocode'] = None
                 usr[message.from_user.id]['price'] = None
 
-            await registration(message, state)
+            await registration(message, state, bot)
     except Exception as e:
         logging.error(f"При запуске бота ошибка {e}")
-async def registration(message: types.Message, state: FSMContext):
+async def registration(message: types.Message, state: FSMContext, bot: MyBot):
     await bot.send_message(message.from_user.id, "Давайте зарегистрируемся!")
     usr[message.from_user.id]['marketer'] = False
 
@@ -90,7 +90,7 @@ async def registration(message: types.Message, state: FSMContext):
         await state.set_state("first_name")
     
 
-async def get_answer_reg(message : types.Message, state: FSMContext):
+async def get_answer_reg(message : types.Message, state: FSMContext, bot: MyBot):
     var = message.text
     if await state.get_state() == 'username':
         usr[message.from_user.id]['username'] = var
@@ -106,7 +106,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
                 logging.error(f"{e}")
         else:
             await state.clear()
-            await write_registration(message)
+            await write_registration(message, bot)
 
     elif await state.get_state() == 'promocode':   
         usr[message.from_user.id]['promocode'] = var.lower().strip()
@@ -126,7 +126,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
                     await state.set_state("promocode")
                 else:
                     await state.clear()
-            await write_registration(message)
+            await write_registration(message, bot)
             
         except Exception as e:
             logging.error(f"{e}")
@@ -134,7 +134,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext):
         await bot.send_message(message.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     
 
-async def write_registration(message :types.Message):
+async def write_registration(message :types.Message, bot: MyBot):
     chat_id = message.chat.id 
     logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['first_name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
     if await add_user(chat_id=chat_id, username=usr[chat_id]['username'], first_name=usr[chat_id]['first_name'], promocode=usr[chat_id]['promocode'], marketer=usr[chat_id]['marketer']):
@@ -144,7 +144,6 @@ async def write_registration(message :types.Message):
         return False
     user_obj[chat_id] = await get_user(chat_id)
     if user_obj[chat_id].marketer == True:
-        await set_commands_marketer()
         await marketer(message, bot)
     else:
         await promo_continue(chat_id, usr[chat_id]['price'])
@@ -155,7 +154,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = int(price)
         print("\n\n",callback.message.chat.id,"CB\n\n")
-        await write_registration(callback.message)
+        await write_registration(callback.message, bot)
 
     elif callback.data == 'pay_call':
         # await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')
