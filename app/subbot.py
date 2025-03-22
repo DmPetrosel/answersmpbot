@@ -87,7 +87,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         try:
             question_id = int(callback.data.split('_')[-1])
             await state.clear()
-            question = await get_one_wbfeed(id=question_id)
+            question = await get_one_wbfeed_last(id=question_id)
             await callback.message.edit_text(f'Действие отменено.\n\nДля управления воспользуйтесь командами. Или можете ответить на сообщение по-другому.\n\n{question.feed_mess}', reply_markup=await wb_ans_manual_kb(question_id))
             mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
             await bot.edit_messages_beside(f"Другой менеджер отменил ответ на этот отзыв: {question.feed_mess}", callback.message.message_id, mess_ids, reply_markup=await wb_ans_manual_kb(question_id))
@@ -101,7 +101,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             answer_id = int(callback.data.split('_')[-1])
             ans = await get_one_wbfeedanswer(id=answer_id)
             question_id = ans.question_id
-            question = await get_one_wbfeed(id=question_id)
+            question = await get_one_wbfeed_last(id=question_id)
             bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
             success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=ans.text)
             if success:
@@ -128,7 +128,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             else:
                 answer_id = int(callback.data.split('_')[-1])
                 question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
-            mess = await get_one_wbfeed(id=question_id)
+            mess = await get_one_wbfeed_last(id=question_id)
             whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
             bot_username = (await bot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
@@ -158,7 +158,8 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         else:    
             answer_id = int(callback.data.split('_')[-1])
             question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
-        mess = await get_one_wbfeed(id=question_id)
+        await state.set_data(question_id=question_id)
+        mess = await get_one_wbfeed_last(id=question_id)
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
         await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}", callback.message.message_id, mess_ids)
@@ -197,7 +198,20 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             
 
 async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
-    question = await get_one_wbfeed(is_answering=True, answering_chat_id=message.from_user.id)
+    try: 
+        question = (await state.get_data())['question_id']
+    except:
+        bot.send_message('ℹ️ Бот был обновлён. Если вы собирались ответить на другое сообщение, нажмите "Отмена", но можете и ответить на это сообщение.')    
+        question = await get_one_wbfeed_last(is_answering=True, answering_chat_id=message.from_user.id)
+        mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]
+        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{question.feed_mess}", message.message_id, mess_ids)
+        temp_answer = await get_one_wbfeedanswer_last(chat_id=int(message.chat.id), mess_id=message.message_id)
+        request_mess = await bot.send_message(message.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {question.feed_mess}', reply_markup=await cancel_answer_sbb_kb(question_id=question.id))
+        is_paused[message.chat.id] = True
+        await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
+        await state.update_data(question_id=question.id)
+        await state.set_state(FeedState.mess_answering)
+        return
     bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=message.text)
     if success:
