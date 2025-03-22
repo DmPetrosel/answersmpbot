@@ -31,6 +31,9 @@ async def get_one_register(*args, session:AsyncSession, **kwargs):
 async def get_user(chat_id:int, session:AsyncSession, **kwargs):
     return await UserDAO.get_by_chat_id(chat_id, session=session)
 @connection
+async def get_user_by_kwargs(*args, session:AsyncSession, **kwargs):
+    return await UserDAO.get_by_kwarg_one(*args, session=session, **kwargs)
+@connection
 async def get_all_promos(chat_id, session:AsyncSession, **kwargs):
     return await PromoDAO.get_all({'chat_id': chat_id}, session=session)
 
