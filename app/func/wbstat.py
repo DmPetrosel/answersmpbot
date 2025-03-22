@@ -81,12 +81,18 @@ class WBStat:
         
     #     prod = ", ".join(list_of_products)
     #     return prod
-        
+    async def get_wb_token_loop(self):
+        while True:    
+            self.token = (await get_one_bot(bot_username=self.bot_username)).wb_token
+            if not self.token or self.token == '':
+                asyncio.sleep(60)
+            else: return True
+        return False
 
     async def run(self):
         while True:
             logging.info('STOCKS UPDATING...')
-            self.token = (await get_one_bot(bot_username=self.bot_username)).wb_token
+            await self.get_wb_token_loop()
             taskId = await self.request_for_stocks()
             print(taskId)
             if await self.check_status(taskId):
