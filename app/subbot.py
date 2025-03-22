@@ -268,6 +268,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                     await asyncio.sleep(60)
                     break
                 generated = ""
+                total_tokens = 0
                 BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
                 BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! У вас нет средств на балансе. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=0 else "")
                 whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
