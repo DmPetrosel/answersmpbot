@@ -28,3 +28,9 @@ async def choose_bot_for_add_manager_kb(chat_id:str):
             kb.inline_keyboard.append([InlineKeyboardButton(text=ibot.bot_username, callback_data=f'mcadd_manager_choose_them_{ibot.id}')])
     kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
     return kb        
+
+async def paysum_kb(paysum):
+    kb = InlineKeyboardMarkup(inline_keyboard=[])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Подтвердить', callback_data=f'pout_confirm_{paysum}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
+    return kb
