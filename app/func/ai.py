@@ -36,7 +36,7 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
         payload.messages.append(Messages(role=MessagesRole.USER, content=user_input))
         response = giga.chat(payload)
         # payload.messages.append(response.choices[0].message)
-        total_tokens = int(response.usage.total_tokens)
+        total_tokens = int(response.usage.total_tokens) if int(response.usage.total_tokens) else 0
         user_cost = total_tokens*2/10000*ratio
         logging.info(f"{bot_info.bot_username} use {total_tokens} wich cost {total_tokens*2/10000} for user it cost {user_cost} as feedback")
         content=response.choices[0].message.content
