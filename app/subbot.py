@@ -34,7 +34,7 @@ async def nstart(message: types.Message, state: FSMContext, bot: MyBot):
     n_of_list = await get_bot_row(bot=bot)
     config = ConfigParser()
     config.read('config.ini')
-    await bot.send_message(message.from_user.id, f"Привет, {message.from_user.first_name}! Я бот АОтветы. \n\nЗдесь буду присылать сообщения с отзывами, а также генерировать ответ на них. Вы можете включить автоматическую отправку сгенерированных сообщений. \n\nА также можете отвечать на сообщения самостоятельно. Когда вы отвечаете самостоятельно, средства с баланса не списываются.\n\nЕсли какие-то вопросы или что-то случилось, напишите нам в поддержку {config.get('support', 'support')}")
+    await bot.send_message(message.from_user.id, f"Привет, {message.from_user.first_name}! Я бот АОтветы. \n\nЗдесь буду присылать сообщения с отзывами, а также генерировать ответ на них. Вы можете включить автоматическую отправку сгенерированных сообщений. \n\nА также можете отвечать на сообщения самостоятельно. Когда ответ на сообщение не генерируется, средства с баланса не списываются.\nСделать нужный настройки автогенерации вы можете по каоманде /agen .\n\nЕсли какие-то вопросы или что-то случилось, напишите нам в поддержку {config.get('support', 'support')}")
     register = await get_register_by_kwargs(chat_id=int(message.from_user.id))
     logging.info(f"Register: {register}")
     if message.from_user.username == None:

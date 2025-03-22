@@ -33,10 +33,11 @@ user_cost = 176*2/10000*int(config.get('gigachat', 'ratio'))
 
 async def start(message: types.Message, command: CommandObject, state: FSMContext):
     try:
+        await state.clear()
         cast_state[message.chat.id] = {}
         await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
         if(await get_user(chat_id=message.from_user.id)):
-            await bot.send_message(message.from_user.id, "Вы уже зарегистрированы! Здесь будут кнопки с меню. ")
+            await bot.send_message(message.from_user.id, "Вы уже зарегистрированы! Для управления ботом воспользуйтесь командами.")
             user_obj[message.from_user.id] = await get_user(message.from_user.id)
             if user_obj[message.from_user.id].marketer == True:
                 print('Condition with is marketer passed ==============')
