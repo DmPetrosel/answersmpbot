@@ -158,7 +158,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         else:    
             answer_id = int(callback.data.split('_')[-1])
             question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
-        await state.set_data(question_id=question_id)
+        await state.set_data({'question_id':question_id})
         mess = await get_one_wbfeed_last(id=question_id)
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
