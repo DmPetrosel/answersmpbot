@@ -407,10 +407,11 @@ async def process_successful_payment(message: types.Message, state: FSMContext, 
         logging.info(f"Получен платеж от {message.from_user.id}")
         await add_money_stat(chat_id = message.from_user.id, amount=(message.successful_payment.total_amount / 100), invoice_id=message.successful_payment.telegram_payment_charge_id, invoice_payload=message.successful_payment.invoice_payload)
         user = await get_user(message.from_user.id)
-        data = cast_state.get(message.chat.id)
+        data = cast_state.get(message.chat.id, {'bonus':False})
         ratio = 1
         if data.get("bonus") == True: ratio = 1.2
-        await update_user_by_id(id=user.id, balance = user.balance + (message.successful_payment.total_amount / 100)*ratio)
+        new_balance = user.balance + (message.successful_payment.total_amount / 100)*ratio
+        await update_user_by_id(id=user.id, balance = new_balance)
         if user.is_payed_first_time == False:
             temp_promo = await get_promo_by_kwargs(promocode=user.promocode)
             await update_promo(id=temp_promo.id, quantity=temp_promo.quantity + 1)
