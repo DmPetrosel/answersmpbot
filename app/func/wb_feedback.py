@@ -12,6 +12,7 @@ from db.get import *
 from db.set import *
 from db.update import *
 import aiohttp
+import traceback
 
 # handle_errors.logger_params()
 # with open("data/config.json", "r", encoding="UTF-8") as config_file:
@@ -162,10 +163,12 @@ class WBFeedback:
     async def run(self):
         while True:
             logging.info("UPDATE FEEDBACKS wb")
-            self.wb_token = (await get_one_bot(bot_username=self.bot_username)).wb_token
-            if self.wb_token:
-                data = await self.get_feedback_wb(self.wb_token, datetime.now())
-                await self.write_to_db(data)
+            try:
+                self.wb_token = (await get_one_bot(bot_username=self.bot_username)).wb_token
+                if self.wb_token:
+                    data = await self.get_feedback_wb(self.wb_token, datetime.now())
+                    await self.write_to_db(data)
+            except Exception as e: logging.error(f"wb_feedback.py:run:170 Error: {e}\n\n {traceback.print_exc()}")
             print("\nSLEEPING\n")
             await asyncio.sleep(self.interval * 60)
 
