@@ -27,5 +27,5 @@ async def delete_manager(message: types.Message, state: FSMContext, bot: MyBot):
 
 async def share_command(message: types.Message, state: FSMContext, bot: MyBot):
     await state.clear()
-    await marketer(message, bot=bot)
+    await marketer(message,state, bot=bot)
     return

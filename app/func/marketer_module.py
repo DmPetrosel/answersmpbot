@@ -21,7 +21,7 @@ config.read('config.ini')
 bot_link = config.get('bot', 'link')
 default_promo_name = "good_start"
 DESCRIPTION = "🚀 Будьте эффективней. Отвечайте на отзывы быстрее и легче. \n\n💪 SSet АОтветы - бот для автоответов на ВБ"
-async def marketer(message: types.Message, bot: MyBot):
+async def marketer(message: types.Message, state: FSMContext, bot: MyBot):
     '''Маркетолог должен быть самозанятым и оформлять получение средств как продажа.
     У марктолога будет в главном меню:
         - текущий баланс. 
@@ -39,20 +39,22 @@ async def marketer(message: types.Message, bot: MyBot):
     user_obj[chat_id] = await get_user(chat_id)
     balance = user_obj[chat_id].balance
     await bot.send_message(chat_id,  f"Ваш баланс: {balance}", reply_markup=marketer_menu_kb())
-    msg = await bot.send_message(chat_id, f"Ваш промокод ниже. Также вы можете создать промокоды на другую сумму.")
-    if not await get_promo_by_kwargs(chat_id=chat_id, promocode=default_promo_name):
-        await default_promo(message, bot)
-    def_promo = await get_promo_by_kwargs(chat_id=chat_id, promocode=default_promo_name)
+    if not await get_promo_by_kwargs_last(chat_id=chat_id):
+        await default_promo(message, state, bot)
+    def_promo = await get_promo_by_kwargs_last(chat_id=chat_id)
     await bot.send_message(chat_id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{def_promo.promocode}</code>\n💵 Сумма пополнения: <code>{def_promo.price} Р</code>\n📅 Дата окончания: <code>{(def_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={def_promo.referal}</code>", parse_mode='html')
-    await asyncio.sleep(12)
+    msg = await bot.send_message(chat_id, f"ℹ️ Ваш промокод. Поделитесь им! 🗣 Вы получите 30% от первого пополнения реферала 💰, а реферал получит +20% к его сумме, если он оплатит сразу 💵.\n\nТакже вы можете создать промокоды на другую сумму.")
+    await asyncio.sleep(20)
     await msg.delete()
-async def default_promo(message : types.Message, bot):
+async def default_promo(message : types.Message, state: FSMContext, bot):
     promos_dict[message.from_user.id] = {}
-    promos_dict[message.from_user.id]['promocode'] = default_promo_name
+    promos_dict[message.from_user.id]['promocode'] = default_promo_name+"__"+str(message.chat.id)
     promos_dict[message.from_user.id]['price'] = int(("6 000").replace(' ','').replace('.','').replace(',',''))
     promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=14)).date()
-    await create_promo(message, bot)
-    return
+    n_promo= await create_promo(message, state,  bot)
+    p_name = (n_promo.promocode).split('__')[0]
+    result = await update_promo(id=n_promo.id, promocode=f"{p_name}{n_promo.id}")
+    return result
 async def callback_marketer(call: types.CallbackQuery, state: FSMContext, bot: MyBot):
     # await call.answer(cache_time=60)
     print('callback marketer')
@@ -92,7 +94,7 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
         promos_dict[message.from_user.id]['expire_date'] = var
         if var == '0':
             promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=365)).date()
-            await create_promo(message, bot)
+            await create_promo(message, state, bot)
         else:
             try: 
                 date_var = datetime.strptime(var, '%d.%m.%Y')
@@ -104,7 +106,7 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
                 await bot.send_message(message.from_user.id, text= 'Дата окончания не может быть меньше текущей даты')
                 await state.set_state('promo_expire_date_state')
             else:
-                n_promo = await create_promo(message, bot)
+                n_promo = await create_promo(message, state, bot)
                 await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
 
     else:
@@ -135,17 +137,21 @@ async def edit_promo(message : types.Message, state: FSMContext, bot: MyBot):
             await state.set_state('promo_price_state')
         else:
             await message.answer('Промокод не найден')
-async def create_promo(message : types.Message, bot :MyBot):
+async def create_promo(message : types.Message, state: FSMContext, bot :MyBot):
     promos_dict[message.from_user.id]['chat_id'] = message.from_user.id  
     promos_dict[message.from_user.id]['referal'] = f'{message.from_user.id}_{promos_dict[message.from_user.id]["promocode"]}'.replace(' ', '_')
-    if promo_temp.get(message.chat.id) and promo_temp[message.from_user.id].get('is_updating'):
-        promo_temp[message.from_user.id]['is_updating'] = False
-        await update_promo(promos_dict[message.from_user.id])
-    else:
-        n_promo = await add_promocode(promos_dict[message.from_user.id])
+    try:
+        if promo_temp.get(message.chat.id) and promo_temp[message.from_user.id].get('is_updating'):
+            promo_temp[message.from_user.id]['is_updating'] = False
+            n_promo = await update_promo(promos_dict[message.from_user.id])
+        else:
+            n_promo = await add_promocode(promos_dict[message.from_user.id])
+            return n_promo
+    except SQLAlchemyError:
+        await bot.send_message(message.chat.id, "Промокод не создан. Возможно, промокод с таким именем уже существует. Давайте попробуем ещё раз.\n\nВведите название промокода.")
+        await state.set_state("promo_name_state")
         # await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
-
-        return n_promo
-    await marketer(message, bot)
+        return 
+    await marketer(message,state, bot)
     
 

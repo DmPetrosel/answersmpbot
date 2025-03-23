@@ -41,7 +41,7 @@ async def start(message: types.Message, command: CommandObject, state: FSMContex
             user_obj[message.from_user.id] = await get_user(message.from_user.id)
             if user_obj[message.from_user.id].marketer == True:
                 print('Condition with is marketer passed ==============')
-                await marketer(message, bot)
+                await marketer(message, state, bot)
         else:
 
             usr[message.from_user.id] = {}
@@ -106,7 +106,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext, bot: MyBot)
                 logging.error(f"{e}")
         else:
             await state.clear()
-            await write_registration(message, bot)
+            await write_registration(message, state, bot)
 
     elif await state.get_state() == 'promocode':   
         usr[message.from_user.id]['promocode'] = var.lower().strip()
@@ -126,7 +126,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext, bot: MyBot)
                     await state.set_state("promocode")
                 else:
                     await state.clear()
-            await write_registration(message, bot)
+            await write_registration(message, state, bot)
             
         except Exception as e:
             logging.error(f"{e}")
@@ -134,7 +134,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext, bot: MyBot)
         await bot.send_message(message.from_user.id, 'Что-то пошло не так, попробуйте ещё раз: /start')
     
 
-async def write_registration(message :types.Message, bot: MyBot):
+async def write_registration(message :types.Message, state:FSMContext, bot: MyBot):
     chat_id = message.chat.id 
     logging.info(f"REGISTRATION DATA: {usr[chat_id]['username']}, {usr[chat_id]['first_name']}, {usr[chat_id]['promocode']}, {usr[chat_id]['marketer']}")
     if await add_user(chat_id=chat_id, username=usr[chat_id]['username'], first_name=usr[chat_id]['first_name'], promocode=usr[chat_id]['promocode'], marketer=usr[chat_id]['marketer']):
@@ -144,7 +144,7 @@ async def write_registration(message :types.Message, bot: MyBot):
         return False
     user_obj[chat_id] = await get_user(chat_id)
     if user_obj[chat_id].marketer == True:
-        await marketer(message, bot)
+        await marketer(message, state, bot)
     else:
         await promo_continue(chat_id, usr[chat_id]['price'])
     return True
@@ -154,7 +154,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         price = config.get('price', 'default')
         usr[callback.from_user.id]['price'] = int(price)
         print("\n\n",callback.message.chat.id,"CB\n\n")
-        await write_registration(callback.message, bot)
+        await write_registration(callback.message, state, bot)
 
     elif callback.data == 'pay_call':
         # await bot.send_message(callback.from_user.id, f"Оплата по ссылке {usr[callback.from_user.id]['price']}₽: <a href='yookassa.ru'>ЮКасса</a>", parse_mode='html')

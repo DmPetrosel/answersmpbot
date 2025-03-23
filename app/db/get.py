@@ -51,6 +51,9 @@ async def get_promo_by_id(promo_id, session:AsyncSession, **kwargs):
 @connection
 async def get_promo_by_kwargs(*args, session:AsyncSession, **kwargs):
     return await PromoDAO.get_by_kwarg_one(session=session, **kwargs)
+@connection
+async def get_promo_by_kwargs_last(*args, session:AsyncSession, **kwargs):
+    return await PromoDAO.get_by_kwarg_last_id(session=session, **kwargs)
 
 @connection
 async def get_register_by_kwargs(*args, session:AsyncSession, **kwargs):
