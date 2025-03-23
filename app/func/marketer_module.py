@@ -55,7 +55,8 @@ async def default_promo(message : types.Message, state: FSMContext, bot):
         promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=14)).date()
         n_promo= await create_promo(message, state,  bot)
         p_name = (n_promo.promocode).split('__')[0] + str(n_promo.id)
-        result = await update_promo(id=n_promo.id, promocode=p_name)
+        p_referal = (n_promo.referal).split('__')[0] + str(n_promo.id)
+        result = await update_promo(id=n_promo.id, promocode=p_name, referal=p_referal)
     except Exception as e:
         logging.error(f"Error default_promo:59 {e} {traceback.print_exec}")
     return result
