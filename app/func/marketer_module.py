@@ -12,6 +12,7 @@ from aiogram.filters.command import Command
 import configparser
 import re
 from aide import MyBot
+import logging, traceback
 import asyncio
 user_obj = {}
 promos_dict = {}
@@ -47,13 +48,16 @@ async def marketer(message: types.Message, state: FSMContext, bot: MyBot):
     await asyncio.sleep(20)
     await msg.delete()
 async def default_promo(message : types.Message, state: FSMContext, bot):
-    promos_dict[message.from_user.id] = {}
-    promos_dict[message.from_user.id]['promocode'] = default_promo_name+"__"+str(message.chat.id)
-    promos_dict[message.from_user.id]['price'] = int(("6 000").replace(' ','').replace('.','').replace(',',''))
-    promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=14)).date()
-    n_promo= await create_promo(message, state,  bot)
-    p_name = (n_promo.promocode).split('__')[0]
-    result = await update_promo(id=n_promo.id, promocode=f"{p_name}{n_promo.id}")
+    try:
+        promos_dict[message.from_user.id] = {}
+        promos_dict[message.from_user.id]['promocode'] = default_promo_name+"__"+str(message.chat.id)
+        promos_dict[message.from_user.id]['price'] = int(("6 000").replace(' ','').replace('.','').replace(',',''))
+        promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=14)).date()
+        n_promo= await create_promo(message, state,  bot)
+        p_name = (n_promo.promocode).split('__')[0] + str(n_promo.id)
+        result = await update_promo(id=n_promo.id, promocode=p_name)
+    except Exception as e:
+        logging.error(f"Error default_promo:59 {e} {traceback.print_exec}")
     return result
 async def callback_marketer(call: types.CallbackQuery, state: FSMContext, bot: MyBot):
     # await call.answer(cache_time=60)
