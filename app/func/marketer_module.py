@@ -98,8 +98,10 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
     elif await state.get_state() == 'promo_expire_date_state':
         promos_dict[message.from_user.id]['expire_date'] = var
         if var == '0':
-            promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=365)).date()
-            await create_promo(message, state, bot)
+            try:
+                promos_dict[message.from_user.id]['expire_date'] = (datetime.now() + timedelta(days=365)).date()
+            except Exception as e:
+                logging.error(f"Error new_promo:105 {e} {traceback.print_exc()}")
         else:
             try: 
                 date_var = datetime.strptime(var, '%d.%m.%Y')
@@ -107,12 +109,14 @@ async def new_promo(message:types.Message, state: FSMContext, bot: MyBot):
             except Exception as e: 
                 await bot.send_message(message.from_user.id, text= f'Дата должна быть в формате дд.мм.гггг.')
                 state.set_state('expiering_date_state')
+                return
             if datetime.strptime(var, '%d.%m.%Y').date() < datetime.now().date():
                 await bot.send_message(message.from_user.id, text= 'Дата окончания не может быть меньше текущей даты')
                 await state.set_state('promo_expire_date_state')
-            else:
-                n_promo = await create_promo(message, state, bot)
-                await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
+                return
+            
+        n_promo = await create_promo(message, state, bot)
+        await bot.send_message(message.chat.id, f"{DESCRIPTION}\n\n<b>Ваш промокод:</b> <code>{n_promo.promocode}</code>\n💵 Пополнение на сумму: <code>{n_promo.price} Р</code>\n📅 Дата окончания: <code>{(n_promo.expire_date).strftime('%d.%m.%Y')}</code>\n\n⚡️ Ссылка: <code>https://t.me/{bot_link}?start={n_promo.referal}</code>", parse_mode='html')
 
     else:
         await message.answer('Что-то пошло не так')
