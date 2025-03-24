@@ -13,6 +13,7 @@ from func.states import *
 from func.wb_feedback import *
 from func.ping import *
 import traceback
+
 bot_list = []
 is_paused = {}
 
@@ -32,17 +33,24 @@ async def get_bot_row(chat_id : int = None, dp : Dispatcher = None, bot_username
 async def nstart(message: types.Message, state: FSMContext, bot: MyBot):
     await state.clear()
     n_of_list = await get_bot_row(bot=bot)
+    bot_username = (await bot.get_me()).username
+    bot_info = await get_one_bot(bot_username=bot_username)
     config = ConfigParser()
     config.read('config.ini')
     await bot.send_message(message.from_user.id, f"Привет, {message.from_user.first_name}! Я бот АОтветы. \n\nЗдесь буду присылать сообщения с отзывами, а также генерировать ответ на них. Вы можете включить автоматическую отправку сгенерированных сообщений. \n\nА также можете отвечать на сообщения самостоятельно. Когда ответ на сообщение не генерируется, средства с баланса не списываются.\nСделать нужный настройки автогенерации вы можете по каоманде /agen .\n\nЕсли какие-то вопросы или что-то случилось, напишите нам в поддержку {config.get('support', 'support')}")
     register = await get_register_by_kwargs(chat_id=int(message.from_user.id))
-    logging.info(f"Register: {register}")
+    logging.info(f"Register: {register} ")
     if message.from_user.username == None:
         await bot.send_message(message.from_user.id, "Перед началом работы, пожалуйста, добавьте username. \n\nЭто можно сделать в настройках.")
     elif register == None:
-        bot_username = (await bot.get_me()).username
-        logging.info("add_register: " + str(bot_username))
-        await add_register(chat_id=int(message.from_user.id), username=message.from_user.username, name=message.from_user.first_name, bot_username=bot_username)
+        logging.info("add_register: " + str(bot_username)+f" {message.chat.id}")
+        if bot_list[n_of_list].get('chat_id', None) == message.chat.id:
+            success = await add_register(chat_id=int(message.from_user.id), username=message.from_user.username, name=message.from_user.first_name, bot_username=bot_username,approve = True, principal_chat_id=int(message.chat.id))
+            if success is not None:
+                bot_list[n_of_list]['managers'].append(int(success.chat_id))
+                await bot.send_message(message.chat.id, f'Вы добавлены в список менеджеров бота, так как вы создатель бота. Для добавления других менеджеров, в главном боте @{config.get("bot", "link")} введите команду /addm .')
+        else:
+            await add_register(chat_id=int(message.from_user.id), username=message.from_user.username, name=message.from_user.first_name, bot_username=bot_username)
     # if register and register.approve == False:
     #     await bot.send_message(message.from_user.id, f'Вас ещё не подтвердили как менеджера.\n\nОбратитесь к владельцу бота.\n\nИз главного бота можно выбрать команду "Добавить менеджера".')
 

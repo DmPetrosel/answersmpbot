@@ -248,7 +248,7 @@ async def get_bot_token(message: types.Message, state: FSMContext):
                 if reg is not None:
                     await update_register(id=reg.id, chat_id=int(message.from_user.id), approve=True, principal_chat_id=int(message.chat.id))
                 else: 
-                    await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'], approve=True)
+                    await add_register(chat_id=int(message.from_user.id), username= message.from_user.username, name = message.from_user.first_name, bot_username = bot_list[list_n]['bot_username'], approve=True, principal_chat_id=int(message.chat.id))
                     bot_list[list_n]['managers'].append(message.from_user.id)                    
                 await asyncio.sleep(10)
                 if msgs is not None: 
