@@ -5,9 +5,10 @@ import time
 from threading import Thread
 import logging
 import asyncio
-
 # import handle_errors
 import random as rd
+# import sys
+# sys.path.append('/home/dm/dev/TGbots/AnswerMPbot/app')
 from db.get import *
 from db.set import *
 from db.update import *
@@ -40,9 +41,10 @@ class WBFeedback:
         self.bot = bot
         self.loop = asyncio.new_event_loop()
 
-    async def get_feedback_wb(self, wb_token, time_now: datetime):
-        url = f"{wb_feedbacks_link}/api/v1/feedbacks?isAnswered=false&take={self.quantity_of_cards}&skip=0"
-        header = {"Authorization": self.wb_token}
+    async def get_feedback_wb(self, wb_token, time_now: datetime = datetime.now()):
+        dateFrom = int((time_now - timedelta(days=3)).timestamp())
+        url = f"{wb_feedbacks_link}/api/v1/feedbacks?isAnswered=false&take={self.quantity_of_cards}&skip=0&dateFrom={dateFrom}&order=dateDesc"
+        header = {"Authorization": wb_token}
         with requests.get(url, headers=header) as response:
             response.encoding = "utf-8"
             last_munutes = time_now - timedelta(minutes=self.interval, hours=3, days=3)
@@ -97,7 +99,7 @@ class WBFeedback:
                 logging.error(f"Error: {response.status_code}")
                 data = response.json()
 
-                return data["errorText"]
+                return data
 
     async def write_to_db(self, feedbacks_list):
         fb_db_feedids = [fb.feed_id for fb in await get_all_wbfeed(bot_username=self.bot_username)]        
@@ -194,8 +196,12 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
     return
 
 
+
 if __name__ == "__main__":
-    # wb_feedback = WBFeedback()
+    wb_token = "eyJhbGciOiJFUzI1NiIsImtpZCI6IjIwMjUwMjE3djEiLCJ0eXAiOiJKV1QifQ.eyJlbnQiOjEsImV4cCI6MTc1NjkzMTkxMSwiaWQiOiIwMTk1NjU3NC1kYWFjLTdkZmEtYjJiOS1kZmJiMDQ5ZjE4MzEiLCJpaWQiOjg3MDEyMzgwLCJvaWQiOjQ0NjgxMjksInMiOjAsInNpZCI6IjExZmQwNDYxLWYxMjQtNGY1Ny04N2I0LWIyZTI5YThiNWNiNyIsInQiOnRydWUsInVpZCI6ODcwMTIzODB9.gYWHav8EqfD4JPPiRb5LTrWO38v5QUcZVIWpOw5NDSYJXebOFQRfqnoCmfqirpJGz__JvDVRGHsyVymiGRLH4g"
+    wb_feedback = WBFeedback(None, None)
+    data = asyncio.run(wb_feedback.get_feedback_wb(wb_token=wb_token))
+    print(data)
     # wb_feedback.new_feedbacks_to_file(time_now=datetime.now())
     # wb_stocks = WBStocks()
     # wb_stocks.update_stocks(wb_token)
