@@ -182,6 +182,7 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
     elif callback.data.startswith('mcdel_bot_yes_'):
         bot_info = await get_one_bot(id=int(callback.data.split('_')[-1]))
         n = await get_bot_row(bot_username=bot_info.bot_username)
+        await bot_list[n]['dp'].stop_polling()
         await bot_list[n]['bot'].session.close()
         del bot_list[n]
         await delete_bot(int(callback.data.split('_')[-1]))
@@ -277,7 +278,7 @@ async def get_bot_token(message: types.Message, state: FSMContext, bot: MyBot):
             await bot_list[list_n]['bot'].send_message(message.from_user.id, f'Поздравляем, бот подключён!')
             await add_bot_info(new_bot[message.from_user.id])
             try:
-                reg = await get_one_register(chat_id=int(message.from_user.id))
+                reg = await get_one_register(chat_id=int(message.from_user.id), bot_username=bot_list[list_n]['bot_username'])
                 if reg is not None:
                     await update_register(id=reg.id, chat_id=int(message.from_user.id), approve=True, principal_chat_id=int(message.chat.id))
                 else: 

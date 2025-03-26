@@ -250,6 +250,13 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
     is_notified_auth_list[bot_info.chat_id] = False
     is_notified_balance_list[bot_info.chat_id] = False
     while True:
+        if await get_one_bot(bot_username=bot_username) is None:
+            logging.info(f"Bot {bot_username} not found in db. Exiting...")
+            try:
+                await bot.session.close()
+            except: pass 
+            break
+        
         user = await get_user(bot_info.chat_id)
         if is_notified_balance_list[bot_info.chat_id]==False and user.balance < 100:
             is_notified_balance_list[bot_info.chat_id] = True
