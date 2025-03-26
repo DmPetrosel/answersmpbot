@@ -163,6 +163,9 @@ class WBFeedback:
     #     return feedbacks_wb
 
     async def run(self):
+        logging.warning(f"self.bot_username= {self.bot_username}")
+        print(f"\n{self.bot_username}\n========================")
+        
         while True:
             logging.info("UPDATE FEEDBACKS wb")
             try:

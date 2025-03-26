@@ -38,7 +38,7 @@ async def nstart(message: types.Message, state: FSMContext, bot: MyBot):
     config = ConfigParser()
     config.read('config.ini')
     await bot.send_message(message.from_user.id, f"Привет, {message.from_user.first_name}! Я бот АОтветы. \n\nЗдесь буду присылать сообщения с отзывами, а также генерировать ответ на них. Вы можете включить автоматическую отправку сгенерированных сообщений. \n\nА также можете отвечать на сообщения самостоятельно. Когда ответ на сообщение не генерируется, средства с баланса не списываются.\nСделать нужный настройки автогенерации вы можете по каоманде /agen .\n\nЕсли какие-то вопросы или что-то случилось, напишите нам в поддержку {config.get('support', 'support')}")
-    register = await get_register_by_kwargs(chat_id=int(message.from_user.id))
+    register = await get_register_by_kwargs(chat_id=int(message.from_user.id), bot_username=bot_username)
     logging.info(f"Register: {register} ")
     if message.from_user.username == None:
         await bot.send_message(message.from_user.id, "Перед началом работы, пожалуйста, добавьте username. \n\nЭто можно сделать в настройках.")
@@ -62,13 +62,14 @@ async def help(message: types.Message, state: FSMContext, bot: MyBot):
 
 async def agen(message: types.Message, state: FSMContext, bot: MyBot):
     try:
+        bot_username = (await bot.get_me()).username
         await state.clear()
-        is_paused[message.chat.id] = True
-        manager = await get_register_by_kwargs(chat_id=int(message.from_user.id))
+        is_paused[bot_username][message.chat.id] = True
+        manager = await get_register_by_kwargs(chat_id=int(message.from_user.id), bot_username=bot_username)
         if manager.principal_chat_id is None:
             bot_info = await get_one_bot(bot_username=manager.bot_username)
             await update_register(id=manager.id, principal_chat_id=bot_info.chat_id)
-            manager = await get_register_by_kwargs(chat_id=int(message.from_user.id))
+            manager = await get_register_by_kwargs(chat_id=int(message.from_user.id), bot_username=bot_username)
         temp_state_str = ""
         if manager.automated_type == "auto":
             temp_state_str = "автоматическая"
@@ -88,6 +89,7 @@ async def get_messages_with_btn ():
 async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: MyBot):
     print("\nsbb_callbacks\n")
     print(callback.data)
+    bot_username = (await bot.get_me()).username
     if callback.data == 'sbb_cancel_call':
         await state.clear()
         await callback.message.edit_text('Действие отменено.\n\nДля управления воспользуйтесь командами')
@@ -99,7 +101,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             await callback.message.edit_text(f'Действие отменено.\n\nДля управления воспользуйтесь командами. Или можете ответить на сообщение по-другому.\n\n{question.feed_mess}', reply_markup=await wb_ans_manual_kb(question_id))
             mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
             await bot.edit_messages_beside(f"Другой менеджер отменил ответ на этот отзыв: {question.feed_mess}", callback.message.message_id, mess_ids, reply_markup=await wb_ans_manual_kb(question_id))
-            is_paused[callback.message.chat.id]= False
+            is_paused[bot_username][callback.message.chat.id]= False
         except Exception as e:
             print(f"subbot:sbb_cancel_answer_call: {e}\n\n{traceback.format_exc()}")
             logging.error(f"subbot:sbb_cancel_answer_call: {e}\n\n{traceback.format_exc()}")
@@ -138,7 +140,6 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
             mess = await get_one_wbfeed_last(id=question_id)
             whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
-            bot_username = (await bot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
             if bot_info.user.balance<=0:
                 await bot.send_message(callback.from_user.id, f"❗️❗️❗️На вашем балансе нет средств.\n\nСвяжитесь с администратором бота (@{bot_info.user.username}), чтобы пополнить баланс.")
@@ -174,7 +175,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         temp_answer = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), mess_id=callback.message.message_id)
         await callback.message.delete()
         request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
-        is_paused[callback.message.chat.id] = True
+        is_paused[bot_username][callback.message.chat.id] = True
         await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
         await state.set_state(FeedState.mess_answering)
     elif callback.data.startswith('sbb_handle_'):
@@ -186,7 +187,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 prefix = "Оставили как было: "
             else: 
                 prefix = "Обработка сообщений изменена: "
-                reg_id = (await get_register_by_kwargs(chat_id=int(callback.from_user.id))).id
+                reg_id = (await get_register_by_kwargs(chat_id=int(callback.from_user.id, bot_username=bot_username))).id
                 await update_register(id=reg_id, automated_type=agen_type)
             bot_username = (await bot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
@@ -199,13 +200,14 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                     await callback.message.edit_text(f'{prefix} ✍️ ручная обработка.')
                 elif agen_type == 'half-auto':
                     await callback.message.edit_text(f'{prefix} 📝 полуавтоматическая обработка.')
-            is_paused[callback.message.chat.id]= False
+            is_paused[bot_username][callback.message.chat.id]= False
         except Exception as e:
             print(f"subbot:sbb_handle_: {e}\n\n{traceback.format_exc()}")
             logging.error(f"subbot:sbb_handle_: {e}\n\n{traceback.format_exc()}")
             
 
 async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
+    bot_username = (await bot.get_me()).username
     try: 
         question_id = (await state.get_data())['question_id']
         question = await get_one_wbfeed_last(id=question_id)
@@ -217,7 +219,7 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
         await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{question.feed_mess}", message.message_id, mess_ids)
         temp_answer = await get_one_wbfeedanswer_last(chat_id=int(message.chat.id), mess_id=message.message_id)
         request_mess = await bot.send_message(message.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {question.feed_mess}', reply_markup=await cancel_answer_sbb_kb(question_id=question.id))
-        is_paused[message.chat.id] = True
+        is_paused[bot_username][message.chat.id] = True
         await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
         await state.update_data(question_id=question.id)
         await state.set_state(FeedState.mess_answering)
@@ -230,7 +232,7 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
         mess_ids= []
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]    
         await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\n✉️ {message.text}", None, mess_ids) 
-        is_paused[message.chat.id] = False
+        is_paused[bot_username][message.chat.id] = False
         await state.clear()
     else:
         
@@ -242,6 +244,7 @@ is_notified_balance_list = {}
 
 async def nmain_loop(bot: MyBot, main_bot: MyBot):
     bot_username = (await bot.get_me()).username
+    print(f"NMAINLOOP {bot_username}\n\n")
     n = await get_bot_row(bot_username=bot_username)
     bot_info = await get_one_bot(bot_username=bot_username)
     is_notified_auth_list[bot_info.chat_id] = False
@@ -258,7 +261,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
         elif user.balance >= 100:
             is_notified_balance_list[bot_info.chat_id] = False        
         try:
-            if len(bot_list[n]['managers'])<=1 and is_paused[bot_list[n]['managers'][0]]==True:
+            if len(bot_list[n]['managers'])<=1 and is_paused[bot_username][bot_list[n]['managers'][0]]==True:
                 print('ALL MANAGERS PAUSED\n\n')
                 await asyncio.sleep(60)
                 continue
@@ -277,76 +280,79 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
         print("\nnNMAIN LOOP: " + str(len(new_messages)))
         automated_type = {}
         automated_type['all'] = 'manual'
-        for manag in bot_list[n]['managers']:
-            automated_type[manag] = (await get_one_register(chat_id=manag)).automated_type
-            if automated_type[manag] == 'auto':
-                automated_type['all'] = 'auto'
-                break
-            elif automated_type[manag] == 'half-auto':
-                automated_type['all'] = 'half-auto'
-        for mess in new_messages:
-            not_paused_managers = []
-            user = await get_user(bot_info.chat_id)
-            try:
-                count_paused = 0
-                for manag in bot_list[n]['managers']:
-                    try:
-                        if is_paused[manag]==True:
-                            count_paused+=1
-                        else:
-                            not_paused_managers.append(manag)
-                    except:not_paused_managers.append(manag)
-                if count_paused >= len(bot_list[n]['managers']):
-                    await asyncio.sleep(60)
+        if bot_list[n]['managers']:
+            for manag in bot_list[n]['managers']:
+                automated_type[manag] = (await get_one_register(chat_id=manag, bot_username=bot_username)).automated_type
+                if automated_type[manag] == 'auto':
+                    automated_type['all'] = 'auto'
                     break
-                generated = ""
-                total_tokens = 0
-                BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
-                BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! У вас нет средств на балансе. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=0 else "")
-                whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
-                if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
-                    if user.balance>0:
-                        generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name)
-                mess_ids = []
-                if automated_type['all'] == 'auto' and user.balance>0:
-                    msg = await bot.send_messages(user_list=not_paused_managers, text=BALANCE_IS_OVER+whole_msg+'\n\n🚀 Ответ: \n'+generated)
-                    success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=mess.feed_id, text=generated)
-                    added_data = await add_answer_data(chat_id=bot_list[n]['managers'][0], text=generated, question_id=mess.id, total_tokens=total_tokens)
-                    if success:
-                        await update_wbfeed(id=mess.id, is_answering=False, feed_ans=generated)
-                    else:
-                        for manag in bot_list[n]['managers']:
-                            try:
-                                if is_paused[manag]:
-                                    continue
-                            except KeyError: pass
-                        await bot.send_messages(user_list=bot_list[n]['managers'], text=f'Что-то пошло не так. На сообщение: \n{whole_msg}\n\n Ответить не получилось. Попробуйте ещё раз. \n\n🚀 Ответ:\n{added_data.text}', reply_markup=await wbfeedsent_kb(answer_id=added_data.id))
-                else:    
+                elif automated_type[manag] == 'half-auto':
+                    automated_type['all'] = 'half-auto'
+            for mess in new_messages:
+                not_paused_managers = []
+                user = await get_user(bot_info.chat_id)
+                try:
+                    count_paused = 0
                     for manag in bot_list[n]['managers']:
                         try:
-                            if len(bot_list[n]['managers'])>1 and is_paused[manag]==True:
-                                print(f'{manag} PAUSED\n\n')
-                                continue
-                        except KeyError: logging.info(f'subbot:nmain_loop:319 KeyError({manag}) (is_paused empty){is_paused}')
-                        try:
-                            print('\n\nis paused: '+str(is_paused[manag])+'\n\n')
-                        except: print(f'is paused {is_paused}\n\n')
-                        added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id, total_tokens=total_tokens)).id
-                        if automated_type[manag]== 'half-auto' and user.balance>0:
-                            msg = await bot.send_message(manag, text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
+                            if is_paused[bot_username][manag]==True:
+                                count_paused+=1
+                            else:
+                                not_paused_managers.append(manag)
+                        except:not_paused_managers.append(manag)
+                    if count_paused >= len(bot_list[n]['managers']):
+                        await asyncio.sleep(60)
+                        break
+                    generated = ""
+                    total_tokens = 0
+                    BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
+                    BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! У вас нет средств на балансе. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=0 else "")
+                    whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
+                    if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
+                        if user.balance>0:
+                            generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name)
+                    mess_ids = []
+                    if automated_type['all'] == 'auto' and user.balance>0:
+                        msg = await bot.send_messages(user_list=not_paused_managers, text=BALANCE_IS_OVER+whole_msg+'\n\n🚀 Ответ: \n'+generated)
+                        success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=mess.feed_id, text=generated)
+                        added_data = await add_answer_data(chat_id=bot_list[n]['managers'][0], text=generated, question_id=mess.id, total_tokens=total_tokens)
+                        if success:
+                            await update_wbfeed(id=mess.id, is_answering=False, feed_ans=generated)
                         else:
-                            msg = await bot.send_message(manag, text=whole_msg, reply_markup=await wb_ans_manual_kb(question_id=mess.id))
+                            for manag in bot_list[n]['managers']:
+                                try:
+                                    if is_paused[bot_username][manag]:
+                                        continue
+                                except KeyError: pass
+                            await bot.send_messages(user_list=bot_list[n]['managers'], text=f'Что-то пошло не так. На сообщение: \n{whole_msg}\n\n Ответить не получилось. Попробуйте ещё раз. \n\n🚀 Ответ:\n{added_data.text}', reply_markup=await wbfeedsent_kb(answer_id=added_data.id))
+                    else:    
+                        for manag in bot_list[n]['managers']:
+                            try:
+                                if len(bot_list[n]['managers'])>1 and is_paused[bot_username][manag]==True:
+                                    print(f'{manag} PAUSED\n\n')
+                                    continue
+                            except KeyError: logging.info(f'subbot:nmain_loop:319 KeyError({manag}) (is_paused[bot_username] empty){is_paused[bot_username]}')
+                            try:
+                                print('\n\nis paused: '+str(is_paused[bot_username][manag])+'\n\n')
+                            except: print(f'is paused {is_paused[bot_username]}\n\n')
+                            added_data_id = (await add_answer_data(chat_id=manag, text=generated, question_id=mess.id, total_tokens=total_tokens)).id
+                            if automated_type[manag]== 'half-auto' and user.balance>0:
+                                msg = await bot.send_message(manag, text=whole_msg+'\n\n✨ Ответ может быть: ✨\n'+generated, reply_markup=await wbfeedsent_kb(answer_id=added_data_id))  
+                            else:
+                                msg = await bot.send_message(manag, text=whole_msg, reply_markup=await wb_ans_manual_kb(question_id=mess.id))
 
-                        await update_wbfeedanswer(id=added_data_id, mess_id= msg.message_id)
-                        mess_ids.append(int(msg.message_id))
-                    await update_wbfeed(id=mess.id, is_new = False, mess_ids=mess_ids)
-                await asyncio.sleep(1.5)
-            except Exception as e:
-                print(f'Ошибка в main_loop: {e}\n\n{traceback.print_exc()}\n')
-                logging.error(f"nmain_loop: {e}\n\n{traceback.print_exc()}\n")
+                            await update_wbfeedanswer(id=added_data_id, mess_id= msg.message_id)
+                            mess_ids.append(int(msg.message_id))
+                        await update_wbfeed(id=mess.id, is_new = False, mess_ids=mess_ids)
+                    await asyncio.sleep(1.5)
+                except Exception as e:
+                    print(f'Ошибка в main_loop: {e}\n\n{traceback.print_exc()}\n')
+                    logging.error(f"nmain_loop: {e}\n\n{traceback.print_exc()}\n")
         if await get_one_bot(bot_username=bot_username) is None:
             logging.info(f"Bot {bot_username} not found in db. Exiting...")
-            bot.session.close()
+            try:
+                await bot.session.close()
+            except: pass 
             break
             
         await asyncio.sleep(60)

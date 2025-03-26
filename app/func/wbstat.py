@@ -86,10 +86,10 @@ def get_random_three_str(
     bot_username = bot_info.bot_username
     number_of_art = bot_info.number_of_art if bot_info.number_of_art is not None else number_of_art
     samples_ans = bot_info.samples_ans if bot_info.samples_ans else samples_ans
-    
-    with open(f"data/{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
+    try:
+        with open(f"data/{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except:data = {} 
     rand_data = []
     for i in range(min(number_of_art, len(data))):
         j = 7
@@ -104,7 +104,7 @@ def get_random_three_str(
             break
         rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmID"]}')
         del data[r]
-    random_three_str = samples_ans[rand.randint(0, len(samples_ans)-1)]
+    random_three_str = samples_ans[rand.randint(0, len(samples_ans)-1)] if rand_data else ""
     random_three_str+=", ".join(rand_data)
     return random_three_str
 

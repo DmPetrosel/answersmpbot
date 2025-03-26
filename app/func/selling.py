@@ -84,31 +84,34 @@ async def registration(message: types.Message, state: FSMContext, bot: MyBot):
     usr[message.from_user.id]['username'] = message.from_user.username
     if usr[message.from_user.id]['username'] == None: 
         await bot.send_message(message.from_user.id, "Введите никнейм")
-        await state.set_state("username")
+        await state.set_state(Form.username)
     else:
         await bot.send_message(message.from_user.id, "Введите имя")
-        await state.set_state("first_name")
+        print(f"\n\n{Form.first_name.state.title()}\n\n")
+        await state.set_state(Form.first_name)
     
 
 async def get_answer_reg(message : types.Message, state: FSMContext, bot: MyBot):
     var = message.text
-    if await state.get_state() == 'username':
+    cur_st = await state.get_state()
+    print(f"get_answer_reg {cur_st}")
+    if await state.get_state() == Form.username.state:
         usr[message.from_user.id]['username'] = var
         await bot.send_message(message.from_user.id, "Введите имя")
-        await state.set_state("name")
-    elif await state.get_state() == 'first_name':
+        await state.set_state(Form.first_name)
+    elif await state.get_state() == Form.first_name.state:
         usr[message.from_user.id]['first_name'] = var
         if usr[message.from_user.id]['promocode'] == None:
             try:
                 await bot.send_message(message.from_user.id, f"Введите промокод.", reply_markup=no_promo_kb())
-                await state.set_state("promocode")
+                await state.set_state(Form.promocode)
             except Exception as e:
                 logging.error(f"{e}")
         else:
             await state.clear()
             await write_registration(message, state, bot)
 
-    elif await state.get_state() == 'promocode':   
+    elif await state.get_state()== Form.promocode.state:   
         usr[message.from_user.id]['promocode'] = var.lower().strip()
         reg_success = False
         try:
@@ -123,7 +126,7 @@ async def get_answer_reg(message : types.Message, state: FSMContext, bot: MyBot)
 
                 if usr[message.from_user.id]['price'] == None:
                     await bot.send_message(message.from_user.id, 'Промокод не найден, попробуйте ещё раз: /start')
-                    await state.set_state("promocode")
+                    await state.set_state(Form.promocode)
                 else:
                     await state.clear()
             await write_registration(message, state, bot)
@@ -167,16 +170,20 @@ async def callback_selling(callback: types.CallbackQuery, state: FSMContext, bot
         user = await get_user(callback.from_user.id)
         await update_user_by_id(id=user.id, balance=300)
         await bot.send_message(callback.from_user.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
-        await state.set_state("get_bot_token")
+        await state.set_state(NewBot.get_bot_token)
     elif callback.data == 'how_to_create_bot_call':
         await callback.message.edit_text( '1. Переходим в @botfather.\n2. Вводим команду <code>/newbot</code>.\n3. Вводим имя бота и никнейм.\n4. Под этим текстом: "Use this token to access the HTTP API:" будет токен.\n5. Вставляем токен в бота АОтветы.\n\nОжидаю токен.',parse_mode='html')
-        await state.set_state("get_bot_token")
+        await state.set_state(NewBot.get_bot_token)
     elif callback.data == 'mccancel_call':
         await state.clear()
         await callback.message.edit_text('Действие отменено.\n\nДля управления воспользуйтесь командами')
     elif callback.data.startswith('mcdel_bot_next_'):
         await callback.message.edit_text('Вы уверены, что хотите удалить бота?', reply_markup=del_bot_kb(int(callback.data.split('_')[-1])))
     elif callback.data.startswith('mcdel_bot_yes_'):
+        bot_info = await get_one_bot(id=int(callback.data.split('_')[-1]))
+        n = await get_bot_row(bot_username=bot_info.bot_username)
+        await bot_list[n]['bot'].session.close()
+        del bot_list[n]
         await delete_bot(int(callback.data.split('_')[-1]))
         await callback.message.edit_text( 'Бот удалён. \n\nДля управления воспользуйтесь командами (меню)')
     elif callback.data.startswith('mcadd_manager_choose_them_'):
@@ -246,17 +253,24 @@ async def promo_continue(chat_id, price):
                            , reply_markup=promo_continue_kb())
 
 
-async def get_bot_token(message: types.Message, state: FSMContext):
+async def get_bot_token(message: types.Message, state: FSMContext, bot: MyBot):
+    is_exist = await get_one_bot(token=message.text.strip())
+    if is_exist:
+        await bot.send_message(message.chat.id, f'Бот с таким токеном уже существует.')
+        await my_bots(message, state, bot)
+        return
     result = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
     try:
         list_n, msgs = result
+        print(list_n, msgs, "================))))))))))))))))))")
     except:
-        list_n = result[0]
+        list_n = result
+        print(list_n, "================)))))))))))))))))")
     new_bot[message.from_user.id] = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
     new_bot[message.from_user.id]['token'] = message.text.strip()
-    if list_n != None:
+    if list_n is not None:
         try:
             new_bot[message.from_user.id]['bot_username'] = bot_list[list_n]['bot_username']
             if list_n is not None: await bot.send_message(message.from_user.id, f'Токен бота: {message.text.strip()}\n\n Теперь введите API-токен WB.\nОн должен быть сделан с возможностью записи чтобы можно было отвечать на WB отзывы. Должны быть подключены категории "Отзывы" и "Аналитика".')
@@ -277,27 +291,33 @@ async def get_bot_token(message: types.Message, state: FSMContext):
         except Exception as e:
             if list_n is None:
                 await bot.send_message(message.from_user.id, f'Бот не подключён. \n\n{e}\n\n{traceback.print_exc()}\n\nПопробуйте ещё раз. \n\nВведите токен бота: ')
-                await state.set_state("get_bot_token")    
-        await state.set_state('get_wb_token')
+                await state.set_state(NewBot.get_bot_token) 
+        print("\n\nset state on get WB TOKEN \n\n")   
+        await state.set_state(NewBot.get_wb_token)
     else:
         await bot.send_message(message.from_user.id, f'Бот не подключён. Попробуйте ещё раз. \n\nВведите токен бота: ')
-        await state.set_state("get_bot_token")
+        await state.set_state(NewBot.get_bot_token)
 async def get_wb_token(message: types.Message, state: FSMContext):
     list_n = await get_bot_row(bot_username=new_bot[message.from_user.id]['bot_username'])
     new_bot[message.from_user.id]['wb_token'] = message.text.strip()
     wb_token = message.text.strip()
     msg = await bot.send_message(message.chat.id, "Проверка токена, подождите.")
-    ping = await get_ping(message.text.strip())
+    ping = await get_ping(wb_token)
     if ping != 200:
         await bot.send_message(message.from_user.id, 'Токен ВБ не авторизован. Поменяйте токен или попробуйте ещё раз. Не забудьте дать разрешения на запись и категории: "Отзывы" и "Аналитика". Введите токен ещё раз.\n')       
-        await state.set_state("get_wb_token")
+        await state.set_state(NewBot.get_wb_token)
         return
-    if wb_token:
+    elif ping == 200:
         await bot.send_message(message.from_user.id, f'API-токен WB: {message.text.strip()}')
         await bot.send_message(message.from_user.id, f'Поздравляем, бот подключён!')
         await bot.send_message(message.from_user.id, "Теперь введите название компании (магазина).")
         bot_list[list_n]['wb_token'] = wb_token
-        await update_bot_info_dict_by_kw(new_bot[message.from_user.id], chat_id=int(message.from_user.id))
+        print("\nstate ping 200 ")
+        logging.warning(f"bot_username = {new_bot[message.from_user.id]['bot_username']}")
+        bot_info = await get_one_bot(bot_username=new_bot[message.from_user.id]['bot_username'])
+        await state.update_data({'bot_id': bot_info.id})
+        await update_bot_info_by_id(id=bot_info.id, wb_token=wb_token)
+        # await update_bot_info_dict_by_kw(new_bot[message.from_user.id], bot_username=new_bot[message.from_user.id]['bot_username'])
         await state.set_state(Form.company_name)
     else:
         await bot.send_message(message.from_user.id, f'Что-то пошло не так, возможно, проблема с токеном.')
@@ -319,13 +339,13 @@ async def change_wb_token(message: types.Message, state: FSMContext):
     ping = await get_ping(message.text.strip())
     if ping != 200:
         await bot.send_message(message.from_user.id, 'Токен ВБ не авторизован. Поменяйте токен или попробуйте ещё раз. Не забудьте дать разрешения на запись и категории: "Отзывы" и "Аналитика". Введите токен ещё раз.\n')       
-        await state.set_state("get_wb_token")
+        await state.set_state(NewBot.get_wb_token)
         return
-    if wb_token:
+    elif wb_token:
         await bot.send_message(message.from_user.id, f'API-токен WB: {message.text.strip()}')
         await bot.send_message(message.from_user.id, "Новый токен установлен. Для дальнейших действий, воспользуйтесь командами.")
         bot_list[list_n]['wb_token'] = wb_token
-        await update_bot_info_dict_by_kw(id=bot_info.id, wb_token=wb_token)
+        await update_bot_info_by_id(id=bot_info.id, wb_token=wb_token)
         await state.clear()
     else:
         await bot.send_message(message.from_user.id, f'Что-то пошло не так, возможно, проблема с токеном.')
@@ -334,14 +354,20 @@ async def change_wb_token(message: types.Message, state: FSMContext):
 
 
 async def get_company_name(message: types.Message, state: FSMContext, bot: MyBot):
+    print("get_company name ")
+    data = await state.get_data()
     new_bot[message.from_user.id]['company_name'] = message.text
-    await update_bot_info_dict_by_kw(new_bot[message.from_user.id], bot_username=new_bot[message.from_user.id]['bot_username'])
+    # await update_bot_info_dict_by_kw(new_bot[message.from_user.id], bot_username=new_bot[message.from_user.id]['bot_username'])
+    await update_bot_info_by_id(id=data.get('bot_id'), company_name=message.text)
     await bot.send_message(message.from_user.id, 'Введите описание и чем занимаетесь')
     await state.set_state(Form.description)
 
 async def get_description(message: types.Message, state: FSMContext, bot: MyBot):
+    print("get description ")
+    data = await state.get_data()
     new_bot[message.from_user.id]['company_description']= message.text
-    await update_bot_info_dict_by_kw(new_bot[message.from_user.id], bot_username=new_bot[message.from_user.id]['bot_username'])
+    # await update_bot_info_dict_by_kw(new_bot[message.from_user.id], bot_username=new_bot[message.from_user.id]['bot_username'])
+    await update_bot_info_by_id(id=data.get('bot_id'), company_description=message.text)
     await bot.send_message(message.from_user.id, "Описание и компания добавлены! Не забудьте добавить менеджеров в бота /addm . Менеждер, предварительно, должен нажать /start в Вашем боте.")
     await state.clear()
 
@@ -472,7 +498,7 @@ async def process_successful_payment(message: types.Message, state: FSMContext, 
             await state.clear()  # чтобы свободно перейти сюда из любого другого состояния
         if len(await get_all_bots(chat_id=message.chat.id)) == 0:
             await bot.send_message(message.chat.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
-            await state.set_state("get_bot_token")
+            await state.set_state(NewBot.get_bot_token)
 async def process_unsuccessful_payment(message: types.Message, state: FSMContext):
         await message.reply("Не удалось выполнить платеж!")
         current_state = await state.get_state()
@@ -509,9 +535,9 @@ async def process_unsuccessful_payment(message: types.Message, state: FSMContext
 def register_selling_handlers(dp: Dispatcher):
     dp.callback_query.register(callback_selling, lambda c: c.data in ('no_promo_call', 'pay_call', 'no_pay_call', 'how_to_create_bot_call', 'cancel_call') or c.data.startswith("mc"))
     dp.message.register(start, Command(commands=("start", "restart")), State(state="*"))
-    dp.message.register(get_answer_reg, StateFilter('first_name', 'username', 'promocode'))
-    dp.message.register(get_bot_token, StateFilter('get_bot_token'))
-    dp.message.register(get_wb_token, StateFilter('get_wb_token'))
+    dp.message.register(get_answer_reg, StateFilter(Form.first_name, Form.username, Form.promocode))
+    dp.message.register(get_bot_token, StateFilter(NewBot.get_bot_token))
+    dp.message.register(get_wb_token, StateFilter(NewBot.get_wb_token))
     dp.message.register(change_wb_token, StateFilter('change_wb_token'))
 
     # dp.callback_query.register(callback_selling, StateFilter('no_promo_call', 'pay_call' ))

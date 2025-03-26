@@ -71,6 +71,7 @@ async def bot_registration(dp :Dispatcher, nbot: MyBot):
 async def start_bot(dp: Dispatcher, nbot : MyBot):
     tasks.append(asyncio.create_task((bot_registration(dp, nbot))))
     nbot_username = (await nbot.get_me()).username
+    is_paused[nbot_username] = {}
     bot_info = await get_one_bot(bot_username=nbot_username)
     wb_feed = WBFeedback(bot_username=nbot_username, bot=nbot)
     tasks.append(asyncio.create_task((wb_feed.run())))
