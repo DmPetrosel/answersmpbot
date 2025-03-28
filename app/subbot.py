@@ -39,7 +39,6 @@ async def nstart(message: types.Message, state: FSMContext, bot: MyBot):
     config.read('config.ini')
     await bot.send_message(message.from_user.id, f"Привет, {message.from_user.first_name}! Я бот АОтветы. \n\nЗдесь буду присылать сообщения с отзывами, а также генерировать ответ на них. Вы можете включить автоматическую отправку сгенерированных сообщений. \n\nА также можете отвечать на сообщения самостоятельно. Когда ответ на сообщение не генерируется, средства с баланса не списываются.\nСделать нужный настройки автогенерации вы можете по каоманде /agen .\n\nЕсли какие-то вопросы или что-то случилось, напишите нам в поддержку {config.get('support', 'support')}")
     register = await get_register_by_kwargs(chat_id=int(message.from_user.id), bot_username=bot_username)
-    logging.info(f"Register: {register} ")
     if message.from_user.username == None:
         await bot.send_message(message.from_user.id, "Перед началом работы, пожалуйста, добавьте username. \n\nЭто можно сделать в настройках.")
     elif register == None:
@@ -338,7 +337,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                                 if len(bot_list[n]['managers'])>1 and is_paused[bot_username][manag]==True:
                                     print(f'{manag} PAUSED\n\n')
                                     continue
-                            except KeyError: logging.info(f'subbot:nmain_loop:319 KeyError({manag}) (is_paused[bot_username] empty){is_paused[bot_username]}')
+                            except KeyError: pass
                             try:
                                 print('\n\nis paused: '+str(is_paused[bot_username][manag])+'\n\n')
                             except: print(f'is paused {is_paused[bot_username]}\n\n')

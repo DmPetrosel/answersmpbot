@@ -103,8 +103,6 @@ class WBFeedback:
 
     async def write_to_db(self, feedbacks_list):
         fb_db_feedids = [fb.feed_id for fb in await get_all_wbfeed(bot_username=self.bot_username)]        
-        print("\n\nfb_db_feeds===================", fb_db_feedids)
-        print("\n\n=================== ", len(feedbacks_list))
         for fb in feedbacks_list:
             print("\n\nPLAIN ")
             try:
@@ -185,7 +183,7 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
     async with aiohttp.ClientSession() as session:
         async with session.post(url, headers=header, json=body) as response:
             if response.status == 204:
-                logging.info(f"feedback {feedback_id} was answered with text: {text}")
+                logging.info(f"feedback {feedback_id} was answered.")
                 return True
             else:
                 logging.error(

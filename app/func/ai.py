@@ -56,7 +56,6 @@ async def ai_main():
     while True:
         feedback = input("Введите отзыв: ")
         answer = await generate_answer_for_feedback_ai(feedback, bot_info)
-        print(answer)
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', encoding='utf-8', filemode='a', filename='data/log.log')
 

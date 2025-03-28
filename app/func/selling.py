@@ -263,10 +263,8 @@ async def get_bot_token(message: types.Message, state: FSMContext, bot: MyBot):
     result = await bot_init(token=message.text.strip(), chat_id=int(message.from_user.id), managers=[message.from_user.id])
     try:
         list_n, msgs = result
-        print(list_n, msgs, "================))))))))))))))))))")
     except:
         list_n = result
-        print(list_n, "================)))))))))))))))))")
     new_bot[message.from_user.id] = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 
     new_bot[message.from_user.id]['chat_id'] = int(message.from_user.id)
