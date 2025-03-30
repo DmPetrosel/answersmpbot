@@ -186,7 +186,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 prefix = "Оставили как было: "
             else: 
                 prefix = "Обработка сообщений изменена: "
-                reg_id = (await get_register_by_kwargs(chat_id=int(callback.from_user.id, bot_username=bot_username))).id
+                reg_id = (await get_register_by_kwargs(chat_id=int(callback.from_user.id), bot_username=bot_username)).id
                 await update_register(id=reg_id, automated_type=agen_type)
             bot_username = (await bot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
