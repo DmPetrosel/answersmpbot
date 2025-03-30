@@ -179,7 +179,6 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
     url = f"{wb_feedbacks_link}/api/v1/feedbacks/answer"
     header = {"Authorization": wb_token}
     body = {"id": feedback_id, "text": text}
-    await asyncio.sleep(1)
     async with aiohttp.ClientSession() as session:
         async with session.post(url, headers=header, json=body) as response:
             if response.status == 204:
@@ -190,7 +189,7 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
                     f"Error answer feedback {feedback_id} with status: {response.status}"
                 )
                 if count < 3: 
-                    await asyncio.sleep(3)
+                    await asyncio.sleep(4)
                     await answer_for_feedback(feedback_id, text, wb_token, count+1)
                 else:
                     return False
