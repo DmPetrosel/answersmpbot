@@ -190,7 +190,7 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
                 )
                 if count < 3: 
                     await asyncio.sleep(4)
-                    await answer_for_feedback(feedback_id, text, wb_token, count+1)
+                    return await answer_for_feedback(feedback_id, text, wb_token, count+1)
                 else:
                     return False
     return
