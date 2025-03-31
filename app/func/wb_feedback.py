@@ -175,7 +175,7 @@ class WBFeedback:
             print("\nSLEEPING\n")
             await asyncio.sleep(self.interval * 60)
 
-async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
+async def answer_for_feedback(feedback_id, text, wb_token, count = 1):
     url = f"{wb_feedbacks_link}/api/v1/feedbacks/answer"
     header = {"Authorization": wb_token}
     body = {"id": feedback_id, "text": text}
@@ -188,8 +188,8 @@ async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
                 logging.error(
                     f"Error answer feedback {feedback_id} with status: {response.status}"
                 )
-                if count < 3: 
-                    await asyncio.sleep(4)
+                if count <= 3: 
+                    await asyncio.sleep(count)
                     return await answer_for_feedback(feedback_id, text, wb_token, count+1)
                 else:
                     return False
