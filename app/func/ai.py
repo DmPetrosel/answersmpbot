@@ -24,7 +24,7 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
                     content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}. Ответь коротко."
                 )
             ],
-            temperature=0.5,
+            temperature=0.7,
         )
         content = ""
         # Используйте токен, полученный в личном кабинете из поля Авторизационные данные
