@@ -24,19 +24,13 @@ async def set_commands_main(bot: MyBot):
                                types.BotCommand(command='help', description='Поддержка'),
                                types.BotCommand(command='pay', description='Пополнить баланс'),
                                types.BotCommand(command='balnshare', description='->Баланс или ->пригласить'),
+                               types.BotCommand(command='mybots', description='Мои боты'),
                                types.BotCommand(command='add', description='Новый бот'),
-                               types.BotCommand(command='delb', description='Удалить бот'),
                                types.BotCommand(command='addm', description='Добавить менеджера'),
-                               types.BotCommand(command='delm', description='Удалить менеджера')
                                ]))
 
 
-async def set_commands_marketer(bot: MyBot):
-    await bot(SetMyCommands(commands=[types.BotCommand(command='start', description='Начать работу'),
-                               types.BotCommand(command='help', description='Поддержка'),
-                               types.BotCommand(command='pay', description='Пополнить баланс'),
-                               types.BotCommand(command='balnshare', description='->Баланс или ->пригласить'),
-                               ]))
+    
 
 
 
@@ -79,6 +73,7 @@ async def start_bot(dp: Dispatcher, nbot : MyBot):
     nbot_username = (await nbot.get_me()).username
     stat_o = WBStat(bot_username=nbot_username)
     tasks.append(asyncio.create_task((stat_o.run())))
+    is_paused[nbot_username] = {}
     wb_feed = WBFeedback(bot_username=nbot_username, bot=nbot)
     tasks.append(asyncio.create_task((wb_feed.run())))
     logging.info('AFTER task')

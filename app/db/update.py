@@ -11,6 +11,10 @@ async def update_user_by_id(*args, **kwargs):
 async def update_bot_info_dict_by_kw(*args, **kwargs):
     bot_info = await InfoBotDAO.update_dict_where_kwarg(*args, **kwargs)
     return bot_info
+@connection
+async def update_bot_info_by_id(*args, **kwargs):
+    bot_info = await InfoBotDAO.update_by_id(*args, **kwargs)
+    return bot_info
 
 @connection
 async def update_register(*args, **kwargs):

@@ -37,6 +37,7 @@ class NMiddlewareMessage(BaseMiddleware):
         event: types.Message,
         data: Dict[str, Any],
     ):
+        bot_username = (await self.bot.get_me()).username
         print(f"\n{event.text}\n")
         if event.text == '/start':
             pass
@@ -46,12 +47,11 @@ class NMiddlewareMessage(BaseMiddleware):
             await state.clear()
             await self.bot.send_message(event.from_user.id, f"Если что-то случилось или есть вопросы, \n\nнапишите {config.get('support', 'support')}")
         else:
-            user = await get_one_register(chat_id=event.from_user.id)
+            user = await get_one_register(chat_id=event.from_user.id, bot_username=bot_username)
             config.read('config.ini')
             if not user:
                 await self.bot.send_message(event.from_user.id, "Пожалуйста, нажмите /start , чтобы начать.")
             elif user and user.approve == False:
-                bot_username = (await self.bot.get_me()).username
                 bot_info = await get_one_bot(bot_username=bot_username)
                 await self.bot.send_message(event.from_user.id, f"Вас не добавили как менеджера в основном боте. Пожалуйста, дождитесь, когда владелец добавит вас в боте {config.get('bot','link')}. Вы можете отправить ему следующее сообщение: ")
                 msg_send_data[event.from_user.id] = f"Привет, добавьте меня в бот {bot_username} как менеджера с помощью команды /addm . Мой username -- {event.from_user.username}. "
@@ -70,8 +70,8 @@ class NMiddlewareCallback(BaseMiddleware):
         data: Dict[str, Any],
     ):
         print(f"\n{callback.data}\n")
-        
-        user = await get_one_register(chat_id=callback.from_user.id)
+        bot_username = (await self.nbot.get_me()).username
+        user = await get_one_register(chat_id=callback.from_user.id, bot_username=bot_username)
         config.read('config.ini')
         if callback.data.startswith("send_to_owner_yes_"):
             await self.mbot.send_message(callback.data.split('_')[-1], msg_send_data[callback.from_user.id])
@@ -80,7 +80,6 @@ class NMiddlewareCallback(BaseMiddleware):
             callback.message.edit_text("Отмена")
 
         elif user and user.approve == False:
-            bot_username = (await self.nbot.get_me()).username
             bot_info = await get_one_bot(bot_username=bot_username)
             logging.info(bot_info)
             await self.nbot.send_message(callback.from_user.id, f"Вас не добавили как менеджера в основном боте. Пожалуйста, дождитесь, когда владелец добавит вас в боте {config.get('bot','link')}. Вы можете отправить ему следующее сообщение: ")

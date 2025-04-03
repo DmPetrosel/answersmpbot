@@ -107,33 +107,33 @@ class WBStat:
 
 def get_random_three_str( 
     bot_info,
+    current_nmId :int = 0, 
     number_of_art :int = 3,
-    samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличие есть: ", "Смотрите, что у нас есть ещё: "]
+    samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличии есть: ", "Смотрите, что у нас есть ещё: "]
     ):
     bot_username = bot_info.bot_username
     number_of_art = bot_info.number_of_art if bot_info.number_of_art is not None else number_of_art
     samples_ans = bot_info.samples_ans if bot_info.samples_ans else samples_ans
-    try:    
+    
+    try:
         with open(f"data/{bot_username}_stocks.json", 'r', encoding='utf-8') as f:
             data = json.load(f)
-    except:
-        logging.error(f"There is no file {bot_username}_stocks.json")
-        return ""
+    except:data = {} 
     rand_data = []
     for i in range(min(number_of_art, len(data))):
         j = 7
         while j > 0 and len(data) > 0:
             j -= 1
             r = rand.randint(0, len(data)-1)
-            if data[r]["quantityWarehousesFull"] > 0:
+            if data[r]["quantityWarehousesFull"] > 0 and data[r]["nmID"] != current_nmId:
                 break
             else:
                 continue
-        if data[r]["quantityWarehousesFull"] == 0:
+        if data[r]["quantityWarehousesFull"] == 0 or data[r]["nmID"] == current_nmId:
             break
         rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmId"]}')
         del data[r]
-    random_three_str = samples_ans[rand.randint(0, len(samples_ans)-1)]
+    random_three_str = samples_ans[rand.randint(0, len(samples_ans)-1)] if rand_data else ""
     random_three_str+=", ".join(rand_data)
     return random_three_str
 

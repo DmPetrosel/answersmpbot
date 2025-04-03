@@ -1,0 +1,65 @@
+[
+        {
+            "nmID": 17692,
+            "imtID": 17688,
+            "subjectID": 744,
+            "subjectName": "Календари",
+            "vendorCode": "cnd0001",
+            "brand": "SSet WrmStone",
+            "title": "Candles - Свечи",
+            "description": "Свечи гладкие круглые",
+            "needKiz": false,
+            "dimensions": {
+                "length": 0,
+                "width": 0,
+                "height": 0,
+                "isValid": false
+            },
+            "characteristics": "",
+            "sizes": [
+                {
+                    "chrtID": 17690,
+                    "techSize": "0",
+                    "wbSize": "",
+                    "skus": [
+                        "sku333333"
+                    ]
+                }
+            ],
+            "createdAt": "2025-03-04T04:03:13.943Z",
+            "updatedAt": "2025-03-04T04:03:13.943Z",
+            "quantityWarehousesFull":5
+        },
+        {
+            "nmID": 17691,
+            "imtID": 17687,
+            "subjectID": 744,
+            "subjectName": "Календари",
+            "vendorCode": "cnd-crt-0001",
+            "brand": "SSet Craft",
+            "title": "Свечи",
+            "description": "Свечи маленькие круглые",
+            "needKiz": false,
+            "dimensions": {
+                "length": 0,
+                "width": 0,
+                "height": 0,
+                "isValid": false
+            },
+            "characteristics": "",
+            "sizes": [
+                {
+                    "chrtID": 17689,
+                    "techSize": "0",
+                    "wbSize": "",
+                    "skus": [
+                        "sku001111"
+                    ]
+                }
+            ],
+            "createdAt": "2025-03-04T04:03:13.942Z",
+            "updatedAt": "2025-03-04T04:03:13.942Z",
+            "quantityWarehousesFull":4
+        }
+
+    ]

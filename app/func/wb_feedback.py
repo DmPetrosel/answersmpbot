@@ -5,13 +5,15 @@ import time
 from threading import Thread
 import logging
 import asyncio
-
 # import handle_errors
 import random as rd
+# import sys
+# sys.path.append('/home/dm/dev/TGbots/AnswerMPbot/app')
 from db.get import *
 from db.set import *
 from db.update import *
 import aiohttp
+import traceback
 
 # handle_errors.logger_params()
 # with open("data/config.json", "r", encoding="UTF-8") as config_file:
@@ -39,9 +41,10 @@ class WBFeedback:
         self.bot = bot
         self.loop = asyncio.new_event_loop()
 
-    async def get_feedback_wb(self, wb_token, time_now: datetime):
-        url = f"{wb_feedbacks_link}/api/v1/feedbacks?isAnswered=false&take={self.quantity_of_cards}&skip=0"
-        header = {"Authorization": self.wb_token}
+    async def get_feedback_wb(self, wb_token, time_now: datetime = datetime.now()):
+        dateFrom = int((time_now - timedelta(days=3)).timestamp())
+        url = f"{wb_feedbacks_link}/api/v1/feedbacks?isAnswered=false&take={self.quantity_of_cards}&skip=0&dateFrom={dateFrom}&order=dateDesc"
+        header = {"Authorization": wb_token}
         with requests.get(url, headers=header) as response:
             response.encoding = "utf-8"
             last_munutes = time_now - timedelta(minutes=self.interval, hours=3, days=3)
@@ -96,12 +99,10 @@ class WBFeedback:
                 logging.error(f"Error: {response.status_code}")
                 data = response.json()
 
-                return data["errorText"]
+                return data
 
     async def write_to_db(self, feedbacks_list):
         fb_db_feedids = [fb.feed_id for fb in await get_all_wbfeed(bot_username=self.bot_username)]        
-        print("\n\nfb_db_feeds===================", fb_db_feedids)
-        print("\n\n=================== ", len(feedbacks_list))
         for fb in feedbacks_list:
             print("\n\nPLAIN ")
             try:
@@ -119,6 +120,8 @@ class WBFeedback:
                     print("before add\n")
                     await add_wbfeed(
                         feed_id=fb["id"],
+                        product_name = fb['product_name'],
+                        product_nmId=fb['product_nmId'],
                         valuation=valuation,
                         materials_links=material_links,
                         bot_username=self.bot_username,
@@ -160,39 +163,47 @@ class WBFeedback:
     #     return feedbacks_wb
 
     async def run(self):
+        logging.warning(f"self.bot_username= {self.bot_username}")
+        print(f"\n{self.bot_username}\n========================")
+        
         while True:
             logging.info("UPDATE FEEDBACKS wb")
-            self.wb_token = (await get_one_bot(bot_username=self.bot_username)).wb_token
-            if self.wb_token:
-                data = await self.get_feedback_wb(self.wb_token, datetime.now())
-                await self.write_to_db(data)
+            try:
+                self.wb_token = (await get_one_bot(bot_username=self.bot_username)).wb_token
+                if self.wb_token:
+                    data = await self.get_feedback_wb(self.wb_token, datetime.now())
+                    await self.write_to_db(data)
+            except Exception as e: logging.error(f"wb_feedback.py:run:170 Error: {e}\n\n {traceback.print_exc()}")
             print("\nSLEEPING\n")
             await asyncio.sleep(self.interval * 60)
 
-async def answer_for_feedback(feedback_id, text, wb_token, count = 0):
+async def answer_for_feedback(feedback_id, text, wb_token, count = 1):
     url = f"{wb_feedbacks_link}/api/v1/feedbacks/answer"
     header = {"Authorization": wb_token}
     body = {"id": feedback_id, "text": text}
-    await asyncio.sleep(1)
     async with aiohttp.ClientSession() as session:
         async with session.post(url, headers=header, json=body) as response:
             if response.status == 204:
-                logging.info(f"feedback {feedback_id} was answered with text: {text}")
+                logging.info(f"feedback {feedback_id} was answered.")
                 return True
             else:
                 logging.error(
                     f"Error answer feedback {feedback_id} with status: {response.status}"
                 )
-                if count < 3: 
-                    await asyncio.sleep(3)
-                    await answer_for_feedback(feedback_id, text, wb_token, count+1)
+                if count <= 3: 
+                    await asyncio.sleep(count)
+                    return await answer_for_feedback(feedback_id, text, wb_token, count+1)
                 else:
                     return False
     return
 
 
+
 if __name__ == "__main__":
-    # wb_feedback = WBFeedback()
+    wb_token = "eyJhbGciOiJFUzI1NiIsImtpZCI6IjIwMjUwMjE3djEiLCJ0eXAiOiJKV1QifQ.eyJlbnQiOjEsImV4cCI6MTc1NjkzMTkxMSwiaWQiOiIwMTk1NjU3NC1kYWFjLTdkZmEtYjJiOS1kZmJiMDQ5ZjE4MzEiLCJpaWQiOjg3MDEyMzgwLCJvaWQiOjQ0NjgxMjksInMiOjAsInNpZCI6IjExZmQwNDYxLWYxMjQtNGY1Ny04N2I0LWIyZTI5YThiNWNiNyIsInQiOnRydWUsInVpZCI6ODcwMTIzODB9.gYWHav8EqfD4JPPiRb5LTrWO38v5QUcZVIWpOw5NDSYJXebOFQRfqnoCmfqirpJGz__JvDVRGHsyVymiGRLH4g"
+    wb_feedback = WBFeedback(None, None)
+    data = asyncio.run(wb_feedback.get_feedback_wb(wb_token=wb_token))
+    print(data)
     # wb_feedback.new_feedbacks_to_file(time_now=datetime.now())
     # wb_stocks = WBStocks()
     # wb_stocks.update_stocks(wb_token)

@@ -20,6 +20,24 @@ def how_to_create_bot_kb():
         [InlineKeyboardButton(text='Назад', callback_data='mccancel_call')]
     ])
 
+async def my_bots_kb(chat_id: int):
+    user_bots = await get_all_bots(chat_id=chat_id)
+    kb = InlineKeyboardMarkup(inline_keyboard=[])
+    for bot in user_bots:
+        kb.inline_keyboard.append([InlineKeyboardButton(text=f'{bot.bot_username}', callback_data=f'mc_mybot_{bot.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
+    return kb
+
+async def mybot_actions_kb(bot_id: int):
+    bot = await get_one_bot(id=bot_id)
+    kb = InlineKeyboardMarkup(inline_keyboard=[])
+    kb.inline_keyboard.append([InlineKeyboardButton(text=f'Добавить менеджера', callback_data=f'mcadd_manager_choose_them_{bot.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text=f'Удалить менеджера', callback_data=f'mcdel_manager_choose_them_{bot.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text=f'Изменить токен ВБ', callback_data=f'mc_change_wb_token_{bot.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text=f'Удалить бота', callback_data=f'mcdel_bot_next_{bot.id}')])
+    kb.inline_keyboard.append([InlineKeyboardButton(text='Отмена', callback_data='mccancel_call')])
+    return kb
+
 async def delete_bot_list_kb(chat_id: int):
     user_bots = await get_all_bots(chat_id=chat_id)
     if user_bots:

@@ -9,7 +9,7 @@ from aide import MyBot
 async def add_bot(message: types.Message, state: FSMContext, bot: MyBot):
     await state.clear()
     await bot.send_message(message.from_user.id, 'Создайте бот в @botfather и вставьте сюда токен бота.', reply_markup=how_to_create_bot_kb())
-    await state.set_state("get_bot_token")
+    await state.set_state(NewBot.get_bot_token)
 
 async def delete_bot_ask(message: types.Message, state: FSMContext, bot: MyBot):
     await state.clear()
@@ -27,5 +27,5 @@ async def delete_manager(message: types.Message, state: FSMContext, bot: MyBot):
 
 async def share_command(message: types.Message, state: FSMContext, bot: MyBot):
     await state.clear()
-    await marketer(message, bot=bot)
+    await marketer(message,state, bot=bot)
     return
