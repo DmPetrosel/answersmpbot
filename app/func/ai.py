@@ -21,7 +21,7 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
             messages=[
                 Messages(
                     role=MessagesRole.SYSTEM,
-                    content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}."
+                    content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}. Ответь коротко."
                 )
             ],
             temperature=0.5,
