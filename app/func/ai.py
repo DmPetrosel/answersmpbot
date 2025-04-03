@@ -44,7 +44,7 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name, pro
     return content, total_tokens
 async def generate_answer(feedback, bot_info, customer_name, product_name, current_nmId = 0):
     str_answer, tokens = await generate_answer_for_feedback_ai(feedback, bot_info, customer_name, product_name)
-    str_answer = str_answer + "\n" + get_random_three_str(bot_info, current_nmId=current_nmId)
+    str_answer = str_answer + "\n" + get_random_three_str(bot_info, current_nmId=int(current_nmId))
     return str_answer, tokens
 
 async def ai_main():
