@@ -11,7 +11,7 @@ access_token = config.get('gigachat','access_token')
 model = config.get('gigachat','model')
 scope = config.get('gigachat','scope')
 ratio = int(config.get('gigachat','ratio'))
-async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
+async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name, product_name):
     company=bot_info.company_name
     company_description=bot_info.company_description
     user_id = bot_info.user.id
@@ -21,7 +21,7 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
             messages=[
                 Messages(
                     role=MessagesRole.SYSTEM,
-                    content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете. Покупателя зовут {customer_name}. Ответь коротко."
+                    content=f"Ты хороший в внимательный продавец в компании {company}, с таким описанием: {company_description}\nНапиши вежливый ответ на отзыв покупателя в итернете к товару {product_name}. Покупателя зовут {customer_name}. Ответь коротко."
                 )
             ],
             temperature=0.7,
@@ -42,9 +42,9 @@ async def generate_answer_for_feedback_ai(feedback, bot_info, customer_name):
             content=response.choices[0].message.content if response.choices[0].message.content else ""
         await update_user_by_id(id=user_id, balance=balance-user_cost)
     return content, total_tokens
-async def generate_answer(feedback, bot_info, customer_name):
-    str_answer, tokens = await generate_answer_for_feedback_ai(feedback, bot_info, customer_name)
-    str_answer = str_answer + "\n" + get_random_three_str(bot_info)
+async def generate_answer(feedback, bot_info, customer_name, product_name, current_nmId = 0):
+    str_answer, tokens = await generate_answer_for_feedback_ai(feedback, bot_info, customer_name, product_name)
+    str_answer = str_answer + "\n" + get_random_three_str(bot_info, current_nmId=current_nmId)
     return str_answer, tokens
 
 async def ai_main():
@@ -55,7 +55,7 @@ async def ai_main():
     articuls = "Краски - Арт 183804171, Колонки - Арт 183804172, Картинки - Арт 183804173, Клавиатура - Арт 111804171, Мышь - Арт 112804172, Наушники - Арт 113804173"
     while True:
         feedback = input("Введите отзыв: ")
-        answer = await generate_answer_for_feedback_ai(feedback, bot_info)
+        answer = await generate_answer_for_feedback_ai(feedback, bot_info, "Григорий Петров", "Краски")
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', encoding='utf-8', filemode='a', filename='data/log.log')
 

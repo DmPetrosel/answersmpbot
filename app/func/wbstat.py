@@ -80,8 +80,9 @@ class WBStat:
 
 def get_random_three_str( 
     bot_info,
+    current_nmId :int = 0, 
     number_of_art :int = 3,
-    samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличие есть: ", "Смотрите, что у нас есть ещё: "]
+    samples_ans :list = ["Рекомендуем присмотреться к этим вариантам: ", "Также у нас есть и другие товары в наличии: ", "Посмотрите, что у нас есть ещё: ", "Также, возможно вас заинтересует: ", "Также у нас в наличии есть: ", "Смотрите, что у нас есть ещё: "]
     ):
     bot_username = bot_info.bot_username
     number_of_art = bot_info.number_of_art if bot_info.number_of_art is not None else number_of_art
@@ -96,7 +97,7 @@ def get_random_three_str(
         while j > 0 and len(data) > 0:
             j -= 1
             r = rand.randint(0, len(data)-1)
-            if data[r]["quantityWarehousesFull"] > 0:
+            if data[r]["quantityWarehousesFull"] > 0 and data[r]["nmID"] != current_nmId:
                 break
             else:
                 continue

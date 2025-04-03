@@ -142,7 +142,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             bot_info = await get_one_bot(bot_username=bot_username)
             if bot_info.user.balance<=0:
                 await bot.send_message(callback.from_user.id, f"❗️❗️❗️На вашем балансе нет средств.\n\nСвяжитесь с администратором бота (@{bot_info.user.username}), чтобы пополнить баланс.")
-            generated, total_tokens  = await generate_answer(whole_msg, bot_info, mess.customer_name)
+            generated, total_tokens  = await generate_answer(whole_msg, bot_info, mess.customer_name, mess.product_name, mess.product_nmId)
             ex_message = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), question_id=mess.id)
             try:
                 added_data = await update_wbfeedanswer(id=ex_message.id, text=generated, total_tokens=ex_message.total_tokens+total_tokens)
@@ -316,7 +316,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                     whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
                     if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
                         if user.balance>0:
-                            generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name)
+                            generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name, mess.product_name, mess.product_nmId)
                     mess_ids = []
                     if automated_type['all'] == 'auto' and user.balance>0:
                         msg = await bot.send_messages(user_list=not_paused_managers, text=BALANCE_IS_OVER+whole_msg+'\n\n🚀 Ответ: \n'+generated)

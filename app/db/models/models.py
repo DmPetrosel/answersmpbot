@@ -53,6 +53,8 @@ class Promo(Base):
 class WBFeedData(Base):
     id = Column(BigInteger, primary_key=True, unique=True, autoincrement=True)
     mess_ids = Column(ARRAY(BigInteger), nullable=True)
+    product_name = Column(String(256), nullable=True)
+    product_nmId = Column(BigInteger)
     feed_id = Column(String(256), nullable=False)
     feed_mess = Column(String(1024), nullable=True)
     feed_ans = Column(String(1024), nullable=True)

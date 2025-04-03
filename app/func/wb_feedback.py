@@ -120,6 +120,8 @@ class WBFeedback:
                     print("before add\n")
                     await add_wbfeed(
                         feed_id=fb["id"],
+                        product_name = fb['product_name'],
+                        product_nmId=fb['product_nmId'],
                         valuation=valuation,
                         materials_links=material_links,
                         bot_username=self.bot_username,
