@@ -101,7 +101,7 @@ def get_random_three_str(
                 break
             else:
                 continue
-        if data[r]["quantityWarehousesFull"] == 0 and data[r]["nmID"] == current_nmId:
+        if data[r]["quantityWarehousesFull"] == 0 or data[r]["nmID"] == current_nmId:
             break
         rand_data.append(f'{data[r]["subjectName"]} Арт. {data[r]["nmID"]}')
         del data[r]
