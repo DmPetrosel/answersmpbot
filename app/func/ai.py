@@ -1,6 +1,8 @@
 from gigachat import GigaChat
 from gigachat.models import Chat, Messages, MessagesRole
 from configparser import ConfigParser
+# import sys
+# sys.path.append("/home/dm/dev/TGbots/AnswerMPbot/app")
 from func.wbstat import *
 from db.update import *
 from db.get import get_one_bot, get_user_by_kwargs
@@ -56,7 +58,10 @@ async def ai_main():
     articuls = "Краски - Арт 183804171, Колонки - Арт 183804172, Картинки - Арт 183804173, Клавиатура - Арт 111804171, Мышь - Арт 112804172, Наушники - Арт 113804173"
     while True:
         feedback = input("Введите отзыв: ")
-        answer = await generate_answer_for_feedback_ai(feedback, bot_info, "Григорий Петров", "Краски")
+        customer_name = input("Введите имя покупателя: ")
+        product_name = input("Введите название продукта: ")
+        answer = await generate_answer_for_feedback_ai(feedback, bot_info, customer_name, product_name)
+        print(answer)
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', encoding='utf-8', filemode='a', filename='data/log.log')
 
