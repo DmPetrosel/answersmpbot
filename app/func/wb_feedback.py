@@ -28,8 +28,8 @@ import traceback
 
 # gc = gspread.authorize(credentials)
 
-wb_feedbacks_link = 'https://feedbacks-api-sandbox.wildberries.ru'
-# wb_feedbacks_link ='https://feedbacks-api.wildberries.ru' # Original
+# wb_feedbacks_link = 'https://feedbacks-api-sandbox.wildberries.ru'
+wb_feedbacks_link ='https://feedbacks-api.wildberries.ru' # Original
 class WBFeedback:
     def __init__(self, bot_username, bot, interval=1, quantity_of_cards=5):
         # super().__init__()
