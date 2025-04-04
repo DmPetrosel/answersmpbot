@@ -170,10 +170,10 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         mess = await get_one_wbfeed_last(id=question_id)
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
-        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n", callback.message.message_id, mess_ids)
+        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}\nОценка: {mess.valuation}\n{mess.createdDate}\n", callback.message.message_id, mess_ids)
         temp_answer = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), mess_id=callback.message.message_id)
         await callback.message.delete()
-        request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
+        request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}\nОценка: {mess.valuation}\n{mess.createdDate}\n', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
         is_paused[bot_username][callback.message.chat.id] = True
         await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
         await state.set_state(FeedState.mess_answering)
