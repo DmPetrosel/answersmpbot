@@ -85,7 +85,7 @@ class WBFeedback:
                             "valuation": feedback_valuation,
                             "photoLinks": fb_photoLinks,
                             "video": fb_video,
-                            "createdDate":data["data"]["feedbacks"][i]["createdDate"],
+                            "createdDate":(datetime.strptime(data["data"]["feedbacks"][i]["createdDate"],"%Y-%m-%d %H:%M:%S.%f")+timedelta(hours=3)).strftime("%Y-%m-%d %H:%M:%S"),
                             "date": feedback_date,
                             "product_nmId": product_nmId,
                             "product_name": product_name,

@@ -114,16 +114,16 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
             success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=ans.text)
             if success:
-                await callback.message.edit_text(f'✅ Ответ отправлен\n\n{question.feed_mess}\n\n✉️ {ans.text}')
+                await callback.message.edit_text(f'✅ Ответ отправлен\n\n{question.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n\n✉️ {ans.text}')
                 await update_wbfeed(id=question.id, is_answering=False, feed_ans=ans.text)
                 mess_ids = []
                 mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
                 print("MESS_IDS\n\n"+str(mess_ids)+"\n\n")
         
-                await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\n✉️ {ans.text}", callback.message.message_id, mess_ids) 
+                await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n\n\n✉️ {ans.text}", callback.message.message_id, mess_ids) 
        
             else:
-                await bot.send_message(callback.from_user.id, f'Что-то пошло не так. На сообщение: \n{question.feed_mess}\n\n Ответить не получилось. Попробуйте ещё раз.\n\n🚀Ответ:\n{ans.text}', await wbfeedsent_kb(answer_id=answer_id))
+                await bot.send_message(callback.from_user.id, f'Что-то пошло не так. На сообщение: \n{question.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n\n\n Ответить не получилось. Попробуйте ещё раз.\n\n🚀Ответ:\n{ans.text}', await wbfeedsent_kb(answer_id=answer_id))
             
             # mess_ids = ([m.mess_id for m in await get_all_wbfeedanswer(question_id=question_id)] if (len(await get_all_wbfeedanswer(question_id=question_id)) > 0) else mess.mess_ids)
         except Exception as e:
@@ -138,7 +138,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
                 answer_id = int(callback.data.split('_')[-1])
                 question_id = (await get_one_wbfeedanswer(id=answer_id)).question_id
             mess = await get_one_wbfeed_last(id=question_id)
-            whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
+            whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess)!="" else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links)!="" else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
             bot_info = await get_one_bot(bot_username=bot_username)
             if bot_info.user.balance<=0:
                 await bot.send_message(callback.from_user.id, f"❗️❗️❗️На вашем балансе нет средств.\n\nСвяжитесь с администратором бота (@{bot_info.user.username}), чтобы пополнить баланс.")
@@ -170,10 +170,10 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
         mess = await get_one_wbfeed_last(id=question_id)
         await update_wbfeed(id=mess.id, is_answering=True, answering_chat_id=callback.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
-        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}", callback.message.message_id, mess_ids)
+        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{mess.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n", callback.message.message_id, mess_ids)
         temp_answer = await get_one_wbfeedanswer_last(chat_id=int(callback.from_user.id), mess_id=callback.message.message_id)
         await callback.message.delete()
-        request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
+        request_mess = await bot.send_message(callback.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {mess.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n', reply_markup=await cancel_answer_sbb_kb(question_id=question_id))
         is_paused[bot_username][callback.message.chat.id] = True
         await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
         await state.set_state(FeedState.mess_answering)
@@ -215,9 +215,9 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
         bot.send_message('ℹ️ Бот был обновлён. Если вы собирались ответить на другое сообщение, нажмите "Отмена", но можете и ответить на это сообщение.')    
         question = await get_one_wbfeed_last(is_answering=True, answering_chat_id=message.from_user.id)
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]
-        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{question.feed_mess}", message.message_id, mess_ids)
+        await bot.edit_messages_beside(f"✔️ Другой менеджер уже отвечает на это сообщение:\n\n{question.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n", message.message_id, mess_ids)
         temp_answer = await get_one_wbfeedanswer_last(chat_id=int(message.chat.id), mess_id=message.message_id)
-        request_mess = await bot.send_message(message.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {question.feed_mess}', reply_markup=await cancel_answer_sbb_kb(question_id=question.id))
+        request_mess = await bot.send_message(message.from_user.id, text=f'✍️ Введите ответ на это сообщение.\n\n📄 {question.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n', reply_markup=await cancel_answer_sbb_kb(question_id=question.id))
         is_paused[bot_username][message.chat.id] = True
         await update_wbfeedanswer(id=temp_answer.id, mess_id=request_mess.message_id)
         await state.update_data(question_id=question.id)
@@ -226,11 +226,11 @@ async def mess_answering(message: types.Message, state: FSMContext, bot: MyBot):
     bot_info = await get_one_bot(bot_username=(await bot.get_me()).username)
     success = await answer_for_feedback(wb_token=bot_info.wb_token, feedback_id=question.feed_id, text=message.text)
     if success:
-        await bot.send_message(message.from_user.id, f'✅ Ответ на это сообщение отправлен:\n\n{question.feed_mess}\n\n✉️ {message.text}')
+        await bot.send_message(message.from_user.id, f'✅ Ответ на это сообщение отправлен:\n\n{question.feed_mess}\n\nОценка: {question.valuation}\n{question.createdDate}\n\n✉️ {message.text}')
         await update_wbfeed(id=question.id, is_answering=False, feed_ans=message.text, ai_usage='manual')
         mess_ids= []
         mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question.id)]    
-        await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\n✉️ {message.text}", None, mess_ids) 
+        await bot.edit_messages_beside(f"✔️ На это сообщение уже дан ответ:\n\n{question.feed_mess}\n\nОценка: {question.valuation}\n{question.createdDate}\n\n✉️ {message.text}", None, mess_ids) 
         is_paused[bot_username][message.chat.id] = False
         await state.clear()
     else:
@@ -313,7 +313,7 @@ async def nmain_loop(bot: MyBot, main_bot: MyBot):
                     total_tokens = 0
                     BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! На балансе менее 100 р. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=100 and user.balance>0 else "")
                     BALANCE_IS_OVER = (f"❗️❗️❗️Внимание! У вас нет средств на балансе. Свяжитесь с администратором бота, чтобы он пополнил баланс. @{user.username}\n\n" if user.balance<=0 else "")
-                    whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess) else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links) else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
+                    whole_msg = (str(mess.feed_mess) + '\n\n' if str(mess.feed_mess)!="" else "")+ (str(mess.materials_links) + '\n\n' if str(mess.materials_links)!="" else "") + str(mess.createdDate) + '\n\nОценка: ' + str(mess.valuation)
                     if automated_type['all'] == 'half-auto' or automated_type['all'] == 'auto':
                         if user.balance>0:
                             generated, total_tokens = await generate_answer(whole_msg, bot_info, mess.customer_name, mess.product_name, mess.product_nmId)
