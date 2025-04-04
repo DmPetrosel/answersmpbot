@@ -97,7 +97,7 @@ async def sbb_callbacks(callback: types.CallbackQuery, state: FSMContext, bot: M
             question_id = int(callback.data.split('_')[-1])
             await state.clear()
             question = await get_one_wbfeed_last(id=question_id)
-            await callback.message.edit_text(f'Действие отменено.\n\nДля управления воспользуйтесь командами. Или можете ответить на сообщение по-другому.\n\n{question.feed_mess}', reply_markup=await wb_ans_manual_kb(question_id))
+            await callback.message.edit_text(f'Действие отменено.\n\nДля управления воспользуйтесь командами. Или можете ответить на сообщение по-другому.\n\n{question.feed_mess}\nОценка: {question.valuation}\n{question.createdDate}\n', reply_markup=await wb_ans_manual_kb(question_id))
             mess_ids = [[m.chat_id, m.mess_id] for m in await get_all_wbfeedanswer(question_id=question_id)]
             await bot.edit_messages_beside(f"Другой менеджер отменил ответ на этот отзыв: {question.feed_mess}", callback.message.message_id, mess_ids, reply_markup=await wb_ans_manual_kb(question_id))
             is_paused[bot_username][callback.message.chat.id]= False
