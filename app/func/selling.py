@@ -29,7 +29,7 @@ user_obj = {}
 new_bot = {} # chat_id, token, bot_username, company_name, samples_ans, wb_token
 cast_state = {}
 config.read('config.ini')
-user_cost = 176*2/10000*int(config.get('gigachat', 'ratio'))
+user_cost = 215*2/10000*int(config.get('gigachat', 'ratio'))
 
 async def start(message: types.Message, command: CommandObject, state: FSMContext, bot: MyBot):
     try:
