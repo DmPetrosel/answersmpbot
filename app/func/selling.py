@@ -35,7 +35,7 @@ async def start(message: types.Message, command: CommandObject, state: FSMContex
     try:
         await state.clear()
         cast_state[message.chat.id] = {}
-        await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на обработку персональных данных.")
+        await bot.send_message(message.from_user.id, "Привет, я бот для автоответов на ВБ\nПродолжая пользоваться ботом, вы соглашаетесь на <a href='https://telegra.ph/Politika-konfidencialnosti-AOtvety-06-18'>обработку персональных данных и политикой конфидециальности</a>.", parse_mode='html')
         if(await get_user(chat_id=message.from_user.id)):
             await bot.send_message(message.from_user.id, "Вы уже зарегистрированы! Для управления ботом воспользуйтесь командами.")
             user_obj[message.from_user.id] = await get_user(message.from_user.id)
